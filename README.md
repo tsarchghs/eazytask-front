@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/gjergjk71/eazytask-front.svg?token=QpSVmx5Fy3yptqbZpksN&branch=master)](https://travis-ci.com/gjergjk71/eazytask-front)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
