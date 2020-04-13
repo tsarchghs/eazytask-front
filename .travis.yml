@@ -9,6 +9,6 @@ script:
   - npm run build
 deploy:
   provider: heroku
-  api_key: ...
+  api_key: e05950f4-6058-49ad-bd9c-dd80ed1d6070
   app:
     staging: eazytask-front
