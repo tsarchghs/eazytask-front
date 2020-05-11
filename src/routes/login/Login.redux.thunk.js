@@ -1,5 +1,5 @@
 
-import { postAuth as _postAuth} from "./Auth.redux.action";
+import { postAuth as _postAuth} from "./Login.redux.action";
 import axios from "../../utils/axios";
 
 export const postAuth = ({email,password}) => {

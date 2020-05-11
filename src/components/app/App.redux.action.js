@@ -1,7 +1,7 @@
-// import { ADD_TODO, FETCH_TASKS } from "../../redux/actionTypes";
+import { GET_AUTH } from "./App.redux.actionTypes";
 
-// export const fetchTasks = (res, err) => ({
-  // type: FETCH_TASKS,
-  // payload: res,
-  // error: err
-// })
+export const getAuth = (res, err) => ({
+    type: GET_AUTH,
+    payload: res,
+    error: err
+})

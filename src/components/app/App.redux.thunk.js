@@ -1,12 +1,21 @@
 
-// import { fetchTasks as _fetchTasks} from "./App.redux.action";
-// import axios from "axios";
+import { getAuth as _getAuth} from "./App.redux.action";
+import axios from "../../utils/axios";
+import Cookies from "js-cookie";
 
-// export const fetchTasks = () => {
-//     return dispatch => {
-//         return axios.get("https://virtserver.swaggerhub.com/gjergjk71/easytask/1.0.1-oas3/tasks")
-//             .then(({ data }) => {
-//                 dispatch(_fetchTasks(data));
-//             }).catch(err => dispatch(_fetchTasks(null,err)));
-//     };
-// }
+export const getAuth = () => {
+    return dispatch => {
+        let token = Cookies.get("eazytask:token");
+        let config = {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        }
+        console.log({config})
+        return axios.get("/auth",config)
+            .then(({ data }) => {
+                console.log(data, 7777, _getAuth(data))
+                dispatch(_getAuth(data));
+            }).catch(err => dispatch(_getAuth(null,err)));
+    };
+}
