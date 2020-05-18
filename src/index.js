@@ -1,11 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 // import App from './components/app/App';
-import * as serviceWorker from './serviceWorker';
-import App from "./components/app"
+import "foundation-sites/dist/css/foundation.min.css";
+import * as serviceWorker from "./serviceWorker";
+import App from "./components/app";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { BrowserRouter as Router } from "react-router-dom";
+import "../src/4.helpers/helper.scss";
+import "../src/utils/fonts/product-sans.ttf";
+import "../src/utils/fonts/product-sans-bold.ttf";
+import "../src/4.helpers/normalize.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +20,7 @@ ReactDOM.render(
       </Provider>
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
