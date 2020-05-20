@@ -8,14 +8,14 @@ import Location from "./Location.view"
 import BecomeTasker from "./BecomeTasker.view"
 import MySkills from "./MySkills.view"
 import MyLanguages from "./MyLanguages.view"
-import MyAreaOfActivity from "./MyAreaOfActivity.view"
+import MyCities from "./MyCities.view"
 import ReadyToGo from "./ReadyToGo.view"
 
 class Setup extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            step: 6,
+            step: 0,
             data: {
                 profile_picture_file: undefined,
                 cover_picture_file: undefined,
@@ -24,7 +24,7 @@ class Setup extends React.Component {
                 city: "",
                 skills: [],
                 languages: [],
-                area_of_activities: [],
+                cities: [],
             },
             steps: [
                 "WELCOME_USER",
@@ -34,7 +34,7 @@ class Setup extends React.Component {
                 "BECOME_TASKER",
                 "MY_SKILLS",
                 "MY_LANGUAGES",
-                "MY_AREA_OF_ACTIVITY",
+                "MY_CITIES",
                 "READY_TO_GO"
             ]
         }
@@ -87,7 +87,11 @@ class Setup extends React.Component {
                 addLanguage={this.onListAdd("languages")}
                 removeLanguage={this.onListRemove("languages")}
             />
-            case 7: return <MyAreaOfActivity />
+            case 7: return <MyCities
+                cities={this.state.data.cities}
+                addCity={this.onListAdd("cities")}
+                removeCity={this.onListRemove("cities")}
+            />
             case 8: return <ReadyToGo />
         }
     }
@@ -101,6 +105,7 @@ class Setup extends React.Component {
     }
     getButtonText = () => {
         if (this.state.step === 0) return "Setup"
+        if (this.state.step === this.lastStepIndex - 1) return "Finish"
         if (this.state.step !== this.lastStepIndex) return "Next"
         else return "Go"
     }
