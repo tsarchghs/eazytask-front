@@ -1,5 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
-import { authReducer } from "./reducers/auth";
+import authReducer from "./reducers/auth";
+import skillsReducer from "./reducers/skills";
+import languagesReducer from "./reducers/languages";
 import thunk from "redux-thunk";
 import logger from 'redux-logger';
 
@@ -12,6 +14,10 @@ const reduceReducers = (...reducers) => {
 }
 
 export default createStore(
-    combineReducers({ auth: authReducer }),
+    combineReducers({ 
+      auth: authReducer, 
+      skills: skillsReducer,
+      languages: languagesReducer
+    }),
     applyMiddleware(thunk, logger)
 )

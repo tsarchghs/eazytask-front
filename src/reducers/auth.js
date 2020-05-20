@@ -22,7 +22,7 @@ const INITIAL_STATE = {
 }
 
 
-export const authReducer = (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action) => {
     console.log({ action }, 912)
     let token = localStorage.getItem("eazytask:token");
     console.log({before:token})

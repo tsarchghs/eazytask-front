@@ -24,7 +24,7 @@ export const postUser = ({ first_name, last_name, email, password }) => {
             first_name, last_name, email, password
         })
             .then(({ data }) => {
-                dispatch(postUserFailed(data));
-            }).catch(err => dispatch(postUserSuccess(err)));
+                dispatch(postUserSuccess(data));
+            }).catch(err => dispatch(postUserFailed(err)));
     };
 }
