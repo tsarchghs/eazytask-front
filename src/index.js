@@ -5,7 +5,7 @@ import "foundation-sites/dist/css/foundation.min.css";
 import * as serviceWorker from "./serviceWorker";
 import App from "./components/app";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store from "./store";
 import { BrowserRouter as Router } from "react-router-dom";
 import "../src/4.helpers/helper.scss";
 import "../src/utils/fonts/product-sans.ttf";

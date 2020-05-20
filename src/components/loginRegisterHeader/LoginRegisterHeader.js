@@ -2,12 +2,15 @@ import React from "react";
 import { GridContainer } from "react-foundation";
 import styled from "styled-components";
 import arrow from "../../utils/images/arrow.jpeg";
+import { Link } from "react-router-dom";
 
 export default (props) => {
   return (
     <GridContainer>
       <Header>
-        <Arrow alt="" src={arrow} />
+        <Link to="/">
+          <Arrow alt="" src={arrow} />
+        </Link>
         <Logo alt="" src="/images/logo.svg" />
       </Header>
     </GridContainer>

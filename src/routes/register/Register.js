@@ -1,16 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { postUser } from "./Register.redux.thunk.js";
-import { postAuth } from "../login/Login.redux.thunk";
+import { postAuth } from "../../actions/auth";
+import { postUser } from "../../actions/user";
+import { POST_USER } from "../../actionTypes";
 import RegisterForm from "./RegisterForm.view";
-import { POST_USER } from "./Register.redux.actionTypes";
 import Button from "../../components/button";
-import { Redirect } from "react-router-dom";
 import LoginRegisterHeader from "../../components/loginRegisterHeader";
-
-const mapStateToProps = (state) => {
-  return { auth: state.auth };
-};
+import { NavLink } from "react-router-dom";
 
 class Register extends React.Component {
   constructor(props) {
@@ -29,50 +25,67 @@ class Register extends React.Component {
       email: this.state.email,
       password: this.state.password,
     });
-    if (
-      this.props.auth[POST_USER] &&
-      (!this.props.auth[POST_USER].errors ||
-        !this.props.auth[POST_USER].errors.length)
-    ) {
-      this.props.postAuth({
-        email: this.state.email,
-        password: this.state.password,
-      });
-    }
   };
   getErrors = () => {
-    if (this.props.auth && this.props.auth[POST_USER])
-      if (this.props.auth[POST_USER].errors)
-        return this.props.auth[POST_USER].errors;
+    let { errors } = this.props;
+    if (errors && errors.length)
+      return errors;
     return [];
   };
   render() {
-    if (this.props.auth.isAuthenticated) return <Redirect to="/" />;
     return (
       <React.Fragment>
-        <RegisterForm
-          first_name={{
-            value: this.state.first_name,
-            onChange: this.onChange("first_name"),
-          }}
-          last_name={{
-            value: this.state.last_name,
-            onChange: this.onChange("last_name"),
-          }}
-          email={{
-            value: this.state.email,
-            onChange: this.onChange("email"),
-          }}
-          password={{
-            value: this.state.password,
-            onChange: this.onChange("password"),
-          }}
-          errors={this.getErrors()}
-          onSubmit={this.onSubmit}
-        />
+          <div className="layout">
+            <div className="layout__form">
+              <LoginRegisterHeader />
+              <h4 className="shadow-text">join eazytask now</h4>
+              <div className="grid-container register__tabs">
+                <NavLink to="/login">
+                  <button>Log In</button>
+                </NavLink>
+                <NavLink to="/register" onClick={this.changeImg}>
+                  <button>Register</button>
+                </NavLink>
+              </div>
+              <div className="grid-container register__layout">
+                <RegisterForm
+                  first_name={{
+                    value: this.state.first_name,
+                    onChange: this.onChange("first_name"),
+                  }}
+                  last_name={{
+                    value: this.state.last_name,
+                    onChange: this.onChange("last_name"),
+                  }}
+                  email={{
+                    value: this.state.email,
+                    onChange: this.onChange("email"),
+                  }}
+                  password={{
+                    value: this.state.password,
+                    onChange: this.onChange("password"),
+                  }}
+                  errors={this.getErrors()}
+                  loading={this.props.loading}
+                  onSubmit={this.onSubmit}
+                />
+              </div>
+            </div>
+            <div className="layout__image change"></div>
+          </div>
       </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  if (!state) return state;
+  console.log({ state });
+  return {
+    ...state.auth[POST_USER],
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
 
 export default connect(mapStateToProps, { postUser, postAuth })(Register);

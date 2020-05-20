@@ -34,7 +34,8 @@ export default (props) => {
         />
         <div className="register__button">
           <a href="#">Trouble loging in?</a>
-          <button className="button__style">Register</button>
+          {props.loading && "Loading"}
+          {!props.loading && <button className="button__style">Register</button>}
         </div>
       </form>
     </React.Fragment>

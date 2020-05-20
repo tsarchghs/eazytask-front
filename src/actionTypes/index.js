@@ -1,0 +1,15 @@
+
+export const GET_TASKS = "GET_TASKS"
+export const LOGOUT = "LOGOUT";
+export const GET_AUTH = "GET_AUTH";
+export const GET_AUTH_REQUEST = "GET_AUTH_REQUEST";
+export const GET_AUTH_SUCCESS = "GET_AUTH_SUCCESS";
+export const GET_AUTH_FAILED = "GET_AUTH_FAILED";
+export const POST_AUTH = "POST_AUTH"
+export const POST_AUTH_REQUEST = "POST_AUTH_REQUEST"
+export const POST_AUTH_SUCCESS = "POST_AUTH_SUCCESS"
+export const POST_AUTH_FAILED = "POST_AUTH_FAILED"
+export const POST_USER = "POST_USER";
+export const POST_USER_REQUEST = "POST_USER_REQUEST";
+export const POST_USER_SUCCESS = "POST_USER_SUCCESS";
+export const POST_USER_FAILED = "POST_USER_FAILED";
