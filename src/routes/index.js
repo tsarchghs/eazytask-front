@@ -22,7 +22,8 @@ class _ProtectedRoute extends React.Component {
             this.props.auth.isAuthenticated !== undefined && 
             !isAuthLoading(this.props.auth)
 
-        if (this.props.auth.isAuthenticated === this.props.allowLoggedIn) return <Component {...this.props.props} />
+        if (this.props.auth.isAuthenticated === this.props.allowLoggedIn) 
+            return <Component {...this.props.props} />
         else if (!authRequestBack) return null;
         else return <Redirect to="/" />
     }

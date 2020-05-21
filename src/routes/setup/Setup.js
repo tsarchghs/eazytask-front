@@ -56,7 +56,6 @@ class Setup extends React.Component {
     }
     onListChange = (type,key,value) => this.setState(prevState => {
         let alreadyExists = prevState.data[key].indexOf(value) !== -1;
-        console.log(prevState.data[key],999)
         if (type === "ADD" && !alreadyExists) 
             prevState.data[key].push(value);
         else if (type === "REMOVE" && alreadyExists) 

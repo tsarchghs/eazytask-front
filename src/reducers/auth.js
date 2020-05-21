@@ -51,6 +51,7 @@ export default (state = INITIAL_STATE, action) => {
         case POST_USER_FAILED:
             return { ...state, isAuthenticated: false, POST_USER: onFailed }
         case POST_USER_SUCCESS:
+            console.log("action.payload.data", action.payload)
             state.profile = action.payload.data.user
             localStorage.setItem("eazytask:token", action.payload.data.token);
             return { ...state, isAuthenticated: true, POST_USER: { data: action.payload, type: action.type, loading: false } }

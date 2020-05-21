@@ -9,12 +9,12 @@ export const postUserRequest = () => ({
     type: POST_USER_REQUEST
 })
 
-export const postUserFailed = payload => ({
-    type: POST_USER_SUCCESS, payload
+export const postUserFailed = err => ({
+    type: POST_USER_FAILED, err
 })
 
-export const postUserSuccess = err => ({
-    type: POST_USER_FAILED, err
+export const postUserSuccess = payload => ({
+    type: POST_USER_SUCCESS, payload
 })
 
 export const postUser = ({ first_name, last_name, email, password }) => {
