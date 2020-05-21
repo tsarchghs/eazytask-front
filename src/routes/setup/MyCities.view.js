@@ -36,7 +36,6 @@ class MyCities extends React.Component {
         </React.Fragment>
     )
     render() {
-        console.log("ADSADS")
         return (
             <React.Fragment>
                 Area of activity

@@ -25,11 +25,11 @@ class App extends React.Component {
   };
 
   render() {
-    if (
-      this.props.auth.profile && 
-      !this.props.auth.profile.setupCompleted && 
-      this.props.history.location.pathname !== "/setup"
-    ) return <Redirect to="/setup" />
+    // if (
+    //   this.props.auth.profile && 
+    //   !this.props.auth.profile.setupCompleted && 
+    //   this.props.history.location.pathname !== "/setup"
+    // ) return <Redirect to="/setup" />
     return (
       <React.Fragment>
         {/* In App.js ->  */}

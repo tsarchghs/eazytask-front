@@ -15,7 +15,7 @@ import {
 } from "../actionTypes"
 
 const INITIAL_STATE = {
-    isAuthenticated: false,
+    isAuthenticated: undefined,
     POST_AUTH: { loading: false, error: false, errorResponse: undefined },
     GET_AUTH: { loading: false, error: false, errorResponse: undefined },
     POST_USER: { loading: false, error: false, errorResponse: undefined }
@@ -27,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
     let token = localStorage.getItem("eazytask:token");
     console.log({before:token})
     let onRequest = { loading: true, error: false, errorResponse: undefined }
-    let onFailed = { errors: action.err && action.err.response.data.errors, loading: false, error: true }
+    let onFailed = { isAuthenticated: false, errors: action.err && action.err.response.data.errors, loading: false, error: true }
     switch (action.type) {
         case GET_AUTH_REQUEST:
             return { ...state, isAuthenticated: false, GET_AUTH: onRequest }
