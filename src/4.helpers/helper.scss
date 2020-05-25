@@ -42,10 +42,12 @@ body {
   padding-left: calc(65px + 4vw);
   padding-right: calc(85px + 4vw);
   position: relative;
+  max-width: 750px;
+  margin: 0 auto;
 }
 .register__tabs {
   margin-bottom: 60px;
-  margin-top: 55px;
+  margin-top: 25px;
   a {
     outline: none;
     cursor: pointer;
@@ -77,7 +79,7 @@ body {
     border-radius: 8px;
     height: initial;
     border: solid 1.4px #828282;
-    background-color: #ffffff;
+    background-color: transparent;
     margin-bottom: 30px;
     padding: 14px 10px;
     box-shadow: none;
@@ -97,6 +99,7 @@ body {
 
 .button__style {
   border-radius: 19px;
+  margin-top: 10px;
   box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.25);
   background-color: #1f4732;
   width: 234px;
@@ -120,12 +123,16 @@ body {
   align-items: center;
   flex-direction: column;
   position: absolute;
-  bottom: 60px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
+  text-align: center;
+  p {
+    font-size: 16px;
+    color: #aaaaaa;
+  }
   a {
-    font-size: 20px;
-    line-height: 2.26;
+    font-size: 16px;
     color: #2565b0;
   }
 }
@@ -141,7 +148,7 @@ body {
   z-index: -1;
   left: 0;
   width: 100vw;
-  top: 135px;
+  top: 95px;
 }
 
 .register__form--flex {
@@ -150,6 +157,16 @@ body {
   input {
     width: 48%;
   }
+}
+
+.register__form--error {
+  font-size: 17px;
+  color: #e51b1b;
+  text-align: center;
+}
+
+.mobile__welcome {
+  display: none;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -163,20 +180,52 @@ body {
 @media only screen and (max-width: 768px) {
   html,
   body {
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .layout__image {
     display: none;
   }
+  .layout {
+    height: initial;
+  }
   .shadow-text {
     font-size: calc(63px + 1vw);
     width: 200vw;
+    top: 35px;
   }
+
   .layout__form {
     padding: 0 15px;
   }
+
+  .button__style {
+    width: 210px;
+    padding: 17px;
+    color: #fff;
+    &.not-filled {
+      background-color: #cdcdcd;
+    }
+  }
+
+  .mobile__welcome {
+    text-align: center;
+    display: block;
+    margin-bottom: 35px;
+    h5 {
+      font-size: 24px;
+      font-family: "FiraSans-bold";
+      color: #1f4732;
+      margin-bottom: 5px;
+    }
+    p {
+      font-size: 17px;
+      color: #1f4732;
+    }
+  }
+
   .register__form {
-    padding-right: 0;
+    padding: 0 30px;
+    padding-bottom: 130px;
     input {
       box-shadow: none;
       outline: none;
@@ -184,13 +233,36 @@ body {
       border-bottom: 1px solid #828282;
       border-radius: 0;
       padding: 0 0 10px 0;
+      &:focus,
+      &:active {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1.4px solid #828282;
+      }
+    }
+  }
+  .register__button {
+    width: 100%;
+    padding: 0px 15px;
+    p,
+    a {
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+    button {
+      font-size: 16px;
     }
   }
   .register__tabs {
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
   }
   .register__form--flex {
     flex-direction: column;
+    input {
+      width: 100%;
+    }
   }
 }

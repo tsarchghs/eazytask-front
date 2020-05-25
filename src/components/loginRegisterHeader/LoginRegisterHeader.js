@@ -21,6 +21,7 @@ const Header = styled.div`
   padding-bottom: 30px;
   @media (max-width: 768px) {
     justify-content: center;
+    padding-top: 20px;
   }
 `;
 
@@ -34,4 +35,7 @@ const Arrow = styled.img`
 
 const Logo = styled.img`
   width: 150px;
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 `;

@@ -25,9 +25,14 @@ class App extends React.Component {
 
   changeImg = () => {
     this.setState({
-      isActive: !this.state.isActive,
+      isActive: true,
     });
-    console.log(this.state.isActive);
+  };
+
+  noChangeImg = () => {
+    this.setState({
+      isActive: false,
+    });
   };
 
   render() {
@@ -45,7 +50,7 @@ class App extends React.Component {
             <LoginRegisterHeader />
             <h4 className="shadow-text">join eazytask now</h4>
             <div className="grid-container register__tabs">
-              <NavLink to="/login">
+              <NavLink to="/login" onClick={this.noChangeImg}>
                 <button>Log In</button>
               </NavLink>
               <NavLink to="/register" onClick={this.changeImg}>
