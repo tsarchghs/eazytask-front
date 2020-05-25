@@ -37,9 +37,11 @@ class App extends React.Component {
           ? "isAuthenticated"
           : "Not isAuthenticated"} */}
         {this.props.auth.isAuthenticated && (
-          <button onClick={this.props.logout}>Logout</button>
+          <React.Fragment>
+            <button onClick={this.props.logout}>Logout</button>
+            <br />
+          </React.Fragment>
         )}{" "}
-        <br/>
         <Routes/>
       </React.Fragment>
     );

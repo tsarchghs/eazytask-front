@@ -6,9 +6,13 @@ import styled from "styled-components";
 export default (props) => {
   return (
     <React.Fragment>
+      <div className="mobile__welcome">
+        <h5>Welcome back</h5>
+        <p>Please fill the informations</p>
+      </div>
       <form className="register__form" onSubmit={props.onSubmit}>
         {props.errors.map((x) => (
-          <div>{x}</div>
+          <div class="register__form--error">{x}</div>
         ))}
         <input
           placeholder="Email"
@@ -25,7 +29,17 @@ export default (props) => {
         <div className="register__button">
           <a href="#">Trouble loging in?</a>
           { props.loading && "Loading"}
-          { !props.loading && <button className="button__style">Join us</button>}
+          { !props.loading && 
+              <button
+                className={
+                  Boolean(props.email.value) && Boolean(props.password.value)
+                    ? "button__style "
+                    : "button__style not-filled"
+                }
+              >
+                Join us
+            </button>
+          }
         </div>
       </form>
     </React.Fragment>
