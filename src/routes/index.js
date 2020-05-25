@@ -6,6 +6,7 @@ import Login from "./login";
 import Register from "./register";
 import Setup from "./setup";
 import CreateTask from "./create_task";
+import Task from "./task";
 import E404 from "./E404";
 
 import { Redirect } from "react-router-dom";
@@ -34,9 +35,13 @@ const ProtectedRoute = connect(mapStateToProps)(_ProtectedRoute)
 
 const Routes = props => (
     <Switch>
-        <Route path="/" exact>
-            <Home />
+        <Route path="/" component={Home} exact/>
+        <Route path="/task/:taskId" component={Task} exact/>
+
+        <Route path="/create-task" exact>
+            <ProtectedRoute Component={CreateTask} allowLoggedIn={true} />
         </Route>
+
 
         <Route path="/login" exact>
             <ProtectedRoute Component={Login} allowLoggedIn={false} />
@@ -46,18 +51,13 @@ const Routes = props => (
             <ProtectedRoute Component={Register} allowLoggedIn={false} />
         </Route>
 
-        <Route path="/create-task" exact>
-            <ProtectedRoute Component={CreateTask} allowLoggedIn={true} />
-        </Route>
 
         <Route path="/setup" exact>
             <ProtectedRoute Component={Setup} allowLoggedIn={true} />
         </Route>
 
 
-        <Route path="/">
-            <E404 />
-        </Route>
+        <Route path="/" component={E404} />
     </Switch>
 )
 

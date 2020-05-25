@@ -6,7 +6,7 @@ export default props => {
     let fixedClassNames = commonClassNames
     let untilClassNames = commonClassNames
     console.log({ fixedClassNames, untilClassNames})
-    if (props.date_type === "FIXED") 
+    if (props.date_type === "FIXED_DATE") 
         fixedClassNames += " " + selectedClassNames
     else untilClassNames += " " + selectedClassNames
     return (

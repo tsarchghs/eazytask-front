@@ -2,10 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import NameDescription from "./NameDescription.view";
+import Name from "./Name.view";
+import Description from "./Description.view";
 import PickDate from "./PickDate.view";
 import Location from "./Location.view";
 import ExpectedPrice from "./ExpectedPrice.view";
+import CategoryGroup from "./CategoryGroup.view";
+import Category from "./Category.view.js";
 import TaskPublished from "./TaskPublished.view";
 
 const currentYear = new Date().getFullYear()
@@ -33,11 +36,11 @@ class CreateTask extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            step: 2,
+            step: 0,
             data: {
                 name: "",
                 description:"",
-                date_type: "FIXED",
+                date_type: "FIXED_DATE",
                 day: "01",
                 month: "01",
                 zipCode: "",
@@ -47,15 +50,19 @@ class CreateTask extends React.Component {
                 year: String(currentYear)
             },
             steps: [
-                "WELCOME_USER",
+                "NAME",
+                "DESCRIPTION",
                 "PICK_DATE",
                 "TASK_LOCATION",
                 "EXPECTED_PRICE",
+                "CATEGORY_GROUP",
+                "CATEGORY",
                 "TASK_PUBLISHED"
             ]
         }
         this.lastStepIndex = this.state.steps.length - 1
     }
+    getCurrentStepName = () => this.state.steps[this.state.step];
     onFileChange = key => e => {
         e.persist()
         this.setState(prevState => {
@@ -81,33 +88,59 @@ class CreateTask extends React.Component {
     createTask = () => console.log("createTask", this.state.data);
     showCurrentStep = () => {
         switch (this.state.step) {
-            case 0: return <NameDescription 
+            case 0: return <Name 
                 onNameChange={this.onChange("name")} name={this.state.data.name}
-                onDescriptionChange={this.onChange("description")} description={this.state.data.description}
-                onCityChange={this.onChange("city")} city={this.state.data.city}
             />
-            case 1: return <PickDate 
+            case 1: return <Description
+                onDescriptionChange={this.onChange("description")} description={this.state.data.description}
+            />
+            case 2: return <PickDate 
                 date_type={this.state.data.date_type}
-                fixedOnClick={this.onChangeWithVal("date_type","FIXED")}
-                untilOnClick={this.onChangeWithVal("date_type","UNTIL")}
+                fixedOnClick={this.onChangeWithVal("date_type","FIXED_DATE")}
+                untilOnClick={this.onChangeWithVal("date_type","UNTIL_DATE")}
                 onDayChange={this.onChange("day")} day={this.state.data.day}
                 onMonthChange={this.onChange("month")} month={this.state.data.month}
                 onYearChange={this.onChange("year")} year={this.state.data.year}
 
             />
-            case 2: return <Location
+            case 3: return <Location
                 onZipCodeChange={this.onChange("zipCode")} zipCode={this.state.data.zipCode}
                 onAddressChange={this.onChange("address")} address={this.state.data.address}
                 onCityChange={this.onChange("city")} city={this.state.data.city}
             />
-            case 3: return <ExpectedPrice
+            case 4: return <ExpectedPrice
                 onExpectedPriceChange={this.onChange("expected_price")} 
                 expected_price={this.state.data.expected_price}
             />
-            case 4: return <TaskPublished/>
+            case 5: return <CategoryGroup
+                onCategoryGroupClick={id => {
+                    this.setState({ categoryGroupId: id })
+                    this.setState({ step: this.state.step + 1 })
+                }}
+            />
+            case 6: return <Category 
+                categoryGroupId={this.state.categoryGroupId} 
+                onCategoryClick={id => {
+                    this.onChangeWithVal("category",id)()
+                    this.setState({ step: this.state.step + 1 })
+                }}
+            />
+            case 7: return <TaskPublished/>
         }
     }
     nextStep = step => () => this.setState({ step })
+    showButtonCondition = () => {
+        let currentStep = this.getCurrentStepName();
+        let excludedSteps = ["CATEGORY_GROUP", "CATEGORY"];
+        console.log({
+            currentStep,
+            excludedSteps,
+            i: excludedSteps.indexOf(currentStep),
+            bool: excludedSteps.indexOf(currentStep) !== 1
+        })
+        if (excludedSteps.indexOf(currentStep) === -1) return true
+        else return false
+    }
     getButtonText = () => {
         if (this.state.step === this.lastStepIndex - 1) return "Finish"
         if (this.state.step !== this.lastStepIndex) return "Next"
@@ -127,8 +160,8 @@ class CreateTask extends React.Component {
         if (this.props.tasker) return <Redirect to="/" />
         return (
             <React.Fragment>
-                {this.showCurrentStep()} <br />
-                <button onClick={this.getButtonOnClick()}>{this.getButtonText()}</button>
+                { this.showCurrentStep() } <br />
+                { this.showButtonCondition() && <button onClick={this.getButtonOnClick()}>{this.getButtonText()}</button> }
             </React.Fragment>
         )
     }

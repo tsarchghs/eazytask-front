@@ -1,10 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
+import thunk from "redux-thunk";
+import logger from 'redux-logger';
+
 import authReducer from "./reducers/auth";
 import skillsReducer from "./reducers/skills";
 import languagesReducer from "./reducers/languages";
 import citiesReducer from "./reducers/cities";
-import thunk from "redux-thunk";
-import logger from 'redux-logger';
+import tasksReducer from "./reducers/tasks";
+import categoriesGroupsReducer from "./reducers/categories_groups";
+import categoriesReducer from "./reducers/categories";
 
 const reduceReducers = (...reducers) => {
   return (previous, current) =>
@@ -19,7 +23,10 @@ export default createStore(
       auth: authReducer, 
       skills: skillsReducer,
       languages: languagesReducer,
-      cities: citiesReducer
+      cities: citiesReducer,
+      tasks: tasksReducer,
+      categoriesGroups: categoriesGroupsReducer,
+      categories: categoriesReducer
     }),
     applyMiddleware(thunk, logger)
 )
