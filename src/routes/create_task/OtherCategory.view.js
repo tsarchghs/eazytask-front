@@ -3,10 +3,8 @@ import React from "react";
 export default props => {
     return (
         <React.Fragment>
-            Your task is published
-            {
-                props.loading && <h3>Loading</h3>
-            }
+            Other category:<br />
+            Name: <input value={props.category} onChange={props.onCategoryChange} />
         </React.Fragment>
     )
 }

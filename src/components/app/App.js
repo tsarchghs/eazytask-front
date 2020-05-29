@@ -32,6 +32,7 @@ class App extends React.Component {
     // ) return <Redirect to="/setup" />
     return (
       <React.Fragment>
+      {JSON.stringify(this.props.auth)}
         {/* In App.js ->  */}
         {/* {this.props.auth.isAuthenticated
           ? "isAuthenticated"

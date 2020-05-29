@@ -1,6 +1,7 @@
 import React from "react";
+import { compose } from "recompose";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 import Name from "./Name.view";
 import Description from "./Description.view";
@@ -10,6 +11,9 @@ import ExpectedPrice from "./ExpectedPrice.view";
 import CategoryGroup from "./CategoryGroup.view";
 import Category from "./Category.view.js";
 import TaskPublished from "./TaskPublished.view";
+import OtherCategory from "./OtherCategory.view";
+
+import { postTasks } from "../../actions/task";
 
 const currentYear = new Date().getFullYear()
 
@@ -18,11 +22,11 @@ const format_number = val => {
     if (num_val < 0) return "0";
 }
 
-const format_day_or_month = val => {
+const format_day_or_month = (val,max) => {
     let str_val = String(val);
     let num_val = Number(val)
     if (num_val <= 0) return "01"
-    else if (num_val > 31) return "31"
+    else if (num_val > max) return String(max)
     else if (str_val.length === 1) return String(`0${str_val}`)
     else if (str_val.length === 2) return val;
 }
@@ -57,10 +61,32 @@ class CreateTask extends React.Component {
                 "EXPECTED_PRICE",
                 "CATEGORY_GROUP",
                 "CATEGORY",
+                "OTHER_CATEGORY",
                 "TASK_PUBLISHED"
             ]
         }
         this.lastStepIndex = this.state.steps.length - 1
+    }
+    createTask = () => {
+        console.log("CREATE_TASK", this.state.data)
+        let { name, date_type, day, month, year } = this.state.data;
+        let due_date = new Date(`${month}/${day}/${year}`)
+        console.log(`${day}/${month}/${year}`,due_date)
+        let body = {
+            ...this.state.data, title: name, 
+            due_date_type: date_type, due_date,
+        }
+        this.props.postTasks(body,true);
+    }
+    componentDidUpdate(prevProps,prevState){
+        console.log("prevState,this.state.step,this.lastStepIndex",prevState.step,this.state.step,this.lastStepIndex)
+        if (this.state.steps[prevState.step] === "OTHER_CATEGORY" ||
+            this.state.steps[prevState.step] === "CATEGORY"
+        ) {
+            if (this.state.step === this.lastStepIndex) {
+                this.createTask();
+            }
+        }
     }
     getCurrentStepName = () => this.state.steps[this.state.step];
     onFileChange = key => e => {
@@ -74,7 +100,8 @@ class CreateTask extends React.Component {
         e.persist()
         this.setState(prevState => {
             let val = e.target.value;
-            if (key === "day" || key === "month") val = format_day_or_month(val);
+            if (key === "day") val = format_day_or_month(val,31);
+            else if (key === "month") val = format_day_or_month(val,12);
             else if (key === "year") val = format_year(val);
             else if (key === "expected_price") val = format_number(val);
             prevState.data[key] = val;
@@ -85,7 +112,6 @@ class CreateTask extends React.Component {
         prevState.data[key] = val;
         return prevState;
     })
-    createTask = () => console.log("createTask", this.state.data);
     showCurrentStep = () => {
         switch (this.state.step) {
             case 0: return <Name 
@@ -115,29 +141,32 @@ class CreateTask extends React.Component {
             case 5: return <CategoryGroup
                 onCategoryGroupClick={id => {
                     this.setState({ categoryGroupId: id })
-                    this.setState({ step: this.state.step + 1 })
+                    this.setState({ step: 6 })
                 }}
+                onOtherClick={this.nextStep(7)}
             />
             case 6: return <Category 
                 categoryGroupId={this.state.categoryGroupId} 
-                onCategoryClick={id => {
-                    this.onChangeWithVal("category",id)()
-                    this.setState({ step: this.state.step + 1 })
+                onCategoryClick={name => {
+                    this.onChangeWithVal("category",name)()
+                    this.setState({ step: 8 })
                 }}
+                onOtherClick={this.nextStep(7)}
             />
-            case 7: return <TaskPublished/>
+            case 7: return <OtherCategory
+                category={this.state.data.category}
+                onCategoryChange={this.onChange("category")}
+            />
+            case 8: return <TaskPublished
+                loading={this.props.app_createTask.loading}
+            />
         }
     }
     nextStep = step => () => this.setState({ step })
     showButtonCondition = () => {
         let currentStep = this.getCurrentStepName();
         let excludedSteps = ["CATEGORY_GROUP", "CATEGORY"];
-        console.log({
-            currentStep,
-            excludedSteps,
-            i: excludedSteps.indexOf(currentStep),
-            bool: excludedSteps.indexOf(currentStep) !== 1
-        })
+        if (this.props.app_createTask.loading) excludedSteps.push("TASK_PUBLISHED")
         if (excludedSteps.indexOf(currentStep) === -1) return true
         else return false
     }
@@ -148,16 +177,15 @@ class CreateTask extends React.Component {
     }
     getButtonOnClick = () => {
         let nextStep = this.state.step + 1;
-        if (this.state.step === this.lastStepIndex) return () => { }
-        if (this.state.step === this.lastStepIndex - 1) return () => {
-            this.createTask()
-            this.nextStep(nextStep)()
-        }
+        if (this.state.step === this.lastStepIndex) return () => {
+            this.props.history.push("/");
+            // this.props.history.push("/task/",this.props.app_createTask.data.id)
+        } 
         else return this.nextStep(nextStep)
     }
     render() {
-        console.log({step: this.state.step})
-        if (this.props.tasker) return <Redirect to="/" />
+        console.log(this.state.data)
+        if (!this.props.auth_profile.Tasker) return <Redirect to="/" />
         return (
             <React.Fragment>
                 { this.showCurrentStep() } <br />
@@ -168,7 +196,13 @@ class CreateTask extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    ...state.auth.profile
+    auth_profile: state.auth.profile,
+    app_createTask: state.app.createTask
 })
 
-export default connect(mapStateToProps)(CreateTask);
+const enhance = compose(
+    withRouter,
+    connect(mapStateToProps, { postTasks })
+)
+
+export default enhance(CreateTask);

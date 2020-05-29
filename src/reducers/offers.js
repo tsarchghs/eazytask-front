@@ -1,14 +1,12 @@
 import {
-    GET_TASK,
-    GET_TASK_FAILED,
-    GET_TASK_REQUEST,
-    GET_TASK_SUCCESS
+    POST_TASKS_FAILED,
+    POST_TASKS_REQUEST,
+    POST_TASKS_SUCCESS
 } from "../actionTypes"
 
 const INITIAL_STATE = {
     byIds: {},
     allIds: [],
-    [GET_TASK]: {},
     loading: true,
     error: false,
     errorResponse: undefined
@@ -18,14 +16,14 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     console.log("tasks", action)
     switch (action.type) {
-        case GET_TASK_REQUEST:
+        case POST_TASKS_REQUEST:
             if (state.allIds.indexOf(action.id) === -1) state.allIds.push(action.id);
             state.byIds[action.id] = { loading: true, error: false, errorResponse: undefined }
             return { ...state }
-        case GET_TASK_FAILED:
+        case POST_TASKS_FAILED:
             state.byIds[action.id] = { loading: false, error: true, errorResponse: action.err }
             return { ...state }
-        case GET_TASK_SUCCESS:
+        case POST_TASKS_SUCCESS:
             state.byIds[action.id] = { 
                 loading: false, error: false, errorResponse: undefined, data: action.payload 
             }

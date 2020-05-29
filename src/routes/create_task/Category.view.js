@@ -18,7 +18,7 @@ class CategoryGroup extends React.Component {
                         let category = this.props.categories.byIds[id];
                         return (
                             <React.Fragment key={category.id}>
-                                <button onClick={() => this.props.onCategoryClick(id)}>
+                                <button onClick={() => this.props.onCategoryClick(category.name)}>
                                     {category.name}
                                 </button><br />
                                     
@@ -26,6 +26,9 @@ class CategoryGroup extends React.Component {
                         )
                     })
                 }
+                <button onClick={this.props.onOtherClick}>
+                    Other
+                </button>
             </React.Fragment>
         )
     }

@@ -25,6 +25,9 @@ class CategoryGroup extends React.Component {
                         )
                     })
                 }
+                <button onClick={this.props.onOtherClick}>
+                    Other
+                </button>
             </React.Fragment>
         )
     }

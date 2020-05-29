@@ -11,6 +11,8 @@ import {
     POST_USER_REQUEST,
     POST_USER_SUCCESS,
     POST_USER_FAILED,  
+    UPDATE_AUTH_PROFILE,
+    UPDATE_AUTH_PROFILE_TASKER,
     LOGOUT 
 } from "../actionTypes"
 
@@ -56,6 +58,12 @@ export default (state = INITIAL_STATE, action) => {
             localStorage.setItem("eazytask:token", action.payload.data.token);
             return { ...state, isAuthenticated: true, POST_USER: { data: action.payload, type: action.type, loading: false } }
 
+        case UPDATE_AUTH_PROFILE:
+            return { ...state, profile: { ...state.profile, ...action.data } }
+        case UPDATE_AUTH_PROFILE_TASKER:
+            if (!state.profile) state.profile = { Tasker: {} }
+            state.profile.Tasker = { ...state.profile.tasker, ...action.data }
+            return { ...state }
             
         case LOGOUT:
             localStorage.setItem("eazytask:token", null);
