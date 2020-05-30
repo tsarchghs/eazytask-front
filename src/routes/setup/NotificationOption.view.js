@@ -9,9 +9,9 @@ export default props => {
             <button onClick={props.setEMAIL}>EMAIL</button>
 
 
-            { props.notification_option === "EMAIL" && 
-                <input type="email" value={props.email} onChange={props.emailOnChange}/>
+            { props.notification_option === "EMAIL" && null
             }
+                {/* <input type="email" value={props.email} onChange={props.emailOnChange}/> */}
             { props.notification_option === "SMS" && 
                 <PhoneInput
                     defaultCountry="CH"

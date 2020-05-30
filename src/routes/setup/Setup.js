@@ -14,7 +14,7 @@ import ReadyToGo from "./ReadyToGo.view"
 
 import { connect } from "react-redux";
 import { patchUser } from "../../actions/user"; 
-import { postTasker } from "../../actions/tasker"
+import { postTasker } from "../../actions/tasker";
 
 class Setup extends React.Component {
     constructor(props){

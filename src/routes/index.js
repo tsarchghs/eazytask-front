@@ -8,6 +8,8 @@ import Register from "./register";
 import Setup from "./setup";
 import CreateTask from "./create_task";
 import Task from "./task";
+import MyActiveTasks from "./my_active_tasks";
+
 import E404 from "./E404";
 
 import { Redirect } from "react-router-dom";
@@ -32,8 +34,8 @@ class _ProtectedRoute extends React.Component {
         else return <Redirect to="/" />
     }
 }
-const ProtectedRoute = connect(mapStateToProps)(_ProtectedRoute)
 
+const ProtectedRoute = connect(mapStateToProps)(_ProtectedRoute)
 
 const Routes = props => {
     console.log("------>",{props})
@@ -46,7 +48,12 @@ const Routes = props => {
         <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/task/:taskId" component={Task} exact/>
+            <Route path="/my_active_tasks" component={ () => 
+                <ProtectedRoute Component={MyActiveTasks} allowLoggedIn={true}/>
+            }/>
 
+            { /* TODO: Switch to closed Route tags */}
+            
             <Route path="/create-task" exact>
                 <ProtectedRoute Component={CreateTask} allowLoggedIn={true} />
             </Route>
