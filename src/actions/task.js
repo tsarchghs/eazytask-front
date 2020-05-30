@@ -58,3 +58,33 @@ export const postTasks = (body,fromCreateTask) => {
             }).catch(err => dispatch(postTasksFailed(err)));
     };
 }
+
+
+export const getTasksRequest = () => ({
+    type: GET_TASKS_REQUEST
+})
+
+export const getTasksFailed = err => ({
+    type: GET_TASKS_FAILED, err
+})
+
+export const getTasksSuccess = payload => ({
+    type: GET_TASKS_SUCCESS, payload
+})
+
+export const getTasks = ({UserId,onRequest,onFailed,onSuccess}) => {
+    console.log("LOG_TASKS")
+    return dispatch => {
+        dispatch(getTasksRequest())
+        if (onRequest) dispatch(onRequest);
+        let query = UserId ? "UserId=" + UserId : ""
+        return axios.get("/tasks" + query,)
+            .then(({ data }) => {
+                dispatch(getTasksSuccess(data.data));
+                if (onSuccess) dispatch(onSuccess(data.data));
+            }).catch(err => {
+                dispatch(getTasksFailed(err))
+                if (onFailed) dispatch(onFailed(err));
+            });
+    };
+}
