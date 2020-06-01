@@ -21,7 +21,6 @@ class CategoryGroup extends React.Component {
                                 <button onClick={() => this.props.onCategoryClick(category.name)}>
                                     {category.name}
                                 </button><br />
-                                    
                             </React.Fragment>
                         )
                     })

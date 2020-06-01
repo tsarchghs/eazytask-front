@@ -48,10 +48,23 @@ class Setup extends React.Component {
         }
         this.lastStepIndex = this.state.steps.length - 1
     }
-    onFileChange = key => e => {
+    onFileChange = key => (e,ref) => {
         e.persist()
         this.setState(prevState => {
-            prevState.data[key] = e.target.files[0];
+            let file = e.target.files[0]
+            prevState.data[key] = file;
+            console.log({ ref })
+            if (ref){
+                if (!file) ref.src = "/images/plus.png"
+                else {
+                    var fr = new FileReader();
+                    fr.onload = function () {
+                        console.log({ref})
+                        ref.src = fr.result;
+                    }
+                    fr.readAsDataURL(file);
+                }
+            }
             return prevState;
         })
     }
@@ -124,6 +137,20 @@ class Setup extends React.Component {
             case 9: return <ReadyToGo />
         }
     }
+    getStepImage = () => {
+        switch (this.state.steps[this.state.step]){
+            case "WELCOME_USER": return "/images/Group.png"
+            case "NOTIFICATION_OPTION": return ""
+            case "PROFILE_PICTURE": return "/images/user_profile.png"
+            case "COVER_PICTURE": return "/images/user_profile.png"
+            case "LOCATION": return ""
+            case "BECOME_TASKER": return ""
+            case "MY_SKILLS": return ""
+            case "MY_LANGUAGES": return ""
+            case "MY_CITIES": return ""
+            case "READY_TO_GO": return ""
+        }
+    }
     nextStep = step => () => this.setState({ step })
     getSkipForNowInfo = () => {
         if (this.state.step === 0) 
@@ -142,17 +169,46 @@ class Setup extends React.Component {
         if (this.state.step === this.lastStepIndex) return this.setupAccount
         else return this.nextStep(this.state.step + 1)
     }
+    getDots = () => {
+        return this.state.steps.map((x,i) => {
+            let active = this.state.steps[this.state.step] === x;
+            return <span onClick={this.nextStep(i)} className={`dot ${active ? "active" : ""}`} />
+        })
+    }
     render(){
-        console.log(this.props.profile,"PROFILE")
-        if (this.props.setupCompleted) return <Redirect to="/"/>
+        console.log(this.props.profile, "PROFILE")
+        if (this.props.setupCompleted) return <Redirect to="/" />
         let displaySkip = this.state.step !== this.lastStepIndex && this.getSkipForNowInfo();
         return (
-            <React.Fragment>
-                { this.showCurrentStep() } <br/>
-                { displaySkip && <React.Fragment><button onClick={displaySkip.onClick}>{displaySkip.show}</button><br/></React.Fragment> }
-                <button onClick={this.getButtonOnClick()}>{this.getButtonText()}</button>
-            </React.Fragment>            
+            <div className="container">
+                <div className="content">
+                    <header>
+                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                    </header>
+                    <section className="two-column__layout setup__mobile">
+                        <div className="two-column__info flex flex-column">
+                            { this.showCurrentStep() }
+                            <div className="buttons__group">
+                                {   
+                                    displaySkip && 
+                                    <button onClick={displaySkip.onClick} className="button__style no-color">{displaySkip.show} <span className="show__mobile">for now</span></button>
+                                }
+                                <button className="button__style" onClick={this.getButtonOnClick()}>{this.getButtonText()}</button>
+                            </div>
+                        </div>
+                        <div className="two-column__img">
+                            <div className="two-column__image">
+                                <img src={this.getStepImage()} alt="" />
+                            </div>
+                            <div className="dots__group">
+                                { this.getDots() }
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         )
+
     }
 }
 

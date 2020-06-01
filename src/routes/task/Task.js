@@ -24,9 +24,13 @@ class Task extends React.Component {
     }
     onChange = key => e => this.setState({ [key]: e.target.value })
     showOfferUI = () => (
-        this.props.own_user && 
-        this.props.own_user.id !== this.props.task.UserId && 
+        this.props.own_user &&
+        this.props.own_user.id !== this.props.task.UserId &&
         this.props.own_user.Tasker
+    )
+    showEditUI = () => (
+        this.props.own_user &&
+        this.props.own_user.id === this.props.task.UserId
     )
     amountOnChange = e => this.setState({ amount: format_number(e.target.value) })
     setStep = step => () => this.setState({ step })
@@ -47,8 +51,8 @@ class Task extends React.Component {
             <div>
                 <br />
                 {JSON.stringify(this.props.task)} <br /><br />
-                Title - {this.props.task.title} <br />
-                Description - {this.props.task.description}<br /> <br />
+                Title - { this.showEditUI() && "Edit" } {this.props.task.title} <br />
+                Description - { this.showEditUI() && "Edit"} {this.props.task.description}<br /> <br />
                 {this.showOfferUI() && this.getOfferUI()}
             </div> 
         )

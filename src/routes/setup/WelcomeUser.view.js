@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 export default props => {
     return (
         <React.Fragment>
-            Welcome {props.first_name}
+            <div className="background-title mb30">
+                <h1>Account Setup</h1>
+                <p className="shadow__title">setup your account</p>
+                <img className="img__mobile" src="/images/Group.png" alt="" />
+                <h3>Welcome {props.first_name}!</h3>
+            </div>        
+            <h5 className="flex-grow">Do you want to <br /> setup your account now?</h5>
         </React.Fragment>
     )
 }

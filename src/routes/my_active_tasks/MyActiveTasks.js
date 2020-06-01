@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getMyActiveTasks } from "../../actions/app";
+import { Link } from "react-router-dom";
 
 class MyActiveTasks extends React.Component {
     constructor(props){
@@ -11,7 +12,9 @@ class MyActiveTasks extends React.Component {
     }
     showTasks(){
         return this.props.tasks.map(task => (
-            <li key={task.id}>{task.title}</li>
+            <Link  to={`/task/${task.id}`}>
+                <li key={task.id}>{task.title}</li>
+            </Link>
         ))
     }
     render(){
