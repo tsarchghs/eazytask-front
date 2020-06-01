@@ -8,7 +8,7 @@ export default (props) => {
     <React.Fragment>
       <form className="register__form" onSubmit={props.onSubmit}>
         {props.errors.map((x) => (
-          <div>{x}</div>
+           <div class="register__form--error">{x}</div>
         ))}
         <div className="register__form--flex">
           <input
@@ -29,6 +29,7 @@ export default (props) => {
         />
         <input
           placeholder="Password"
+          type="password"
           value={props.password.value}
           onChange={props.password.onChange}
         />

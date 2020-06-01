@@ -28,43 +28,71 @@ class MySkills extends React.Component {
     }
     getAllowedOperation = skill_name => {
         let alreadyExists = this.props.skills.indexOf(skill_name) !== -1
-        if (alreadyExists) return <div onClick={() => this.props.removeSkill(skill_name)}>-</div>
-        else return <div 
-            onClick={this.customAddSkill(skill_name)}>+</div>
+        if (alreadyExists) {
+            let div = <span onClick={() => this.props.removeSkill(skill_name)}>-</span>
+            return { type: "-", div }
+        }
+        else {
+            let div = <span onClick={this.customAddSkill(skill_name)}>+</span>
+            return { type: "+", div }
+        }
     }
     createCustomSkill = () => (
         <React.Fragment>
-            <li>Create "{this.state.query}"</li>
-            {this.getAllowedOperation(this.state.query)}
+            <div className="list-item"><p>Create "{this.state.query}"</p>
+                {this.getAllowedOperation(this.state.query).div}
+            </div>
         </React.Fragment>
     )
     render(){
         console.log({props: this.props})
         return (
             <React.Fragment>
-                My skills
-                <input 
-                    type="text" 
-                    value={this.state.query} 
-                    onChange={e => this.setState({ query: e.target.value })}
-                    placeholder="Search skill..." 
-                />
-                <ItemList items={this.props.skills} />
-                <ul>
-                    {this.props.loading && "Loading"}
-                    {!this.props.loading && this.getFilteredSkills().map(skill => {
-                        return (
-                            <React.Fragment>
-                                <li key={skill.id}>{skill.name}</li>
-                                {this.getAllowedOperation(skill.name)}
-                            </React.Fragment>
-                        )
-                    })}
-                    {
-                        !this.props.loading && !this.getFilteredSkills().length && 
-                        this.createCustomSkill()
-                    }
-                </ul>
+                <div className="background-title mb5">
+                    <h1>My skills</h1>
+                    <p className="shadow__title">setup your account</p>
+                </div>
+                <div className="flex-grow input__group skills__input-group">
+                    <div className="search__input mb40">
+                        <span><img src="/images/new/search.png" alt="" /></span>
+                        <input 
+                            type="text" 
+                            placeholder="Search for a skill or add a custom one" 
+                            value={this.state.query}
+                            onChange={e => this.setState({ query: e.target.value })}
+                        />
+                    </div>
+                    <div className="items-added">
+                        {!this.props.loading && this.getFilteredSkills()
+                            .filter(skill => this.getAllowedOperation(skill.name).type == "-")
+                            .map(skill => (
+                                <div className="item-added">
+                                    <p>{skill.name}</p>
+                                    {this.getAllowedOperation(skill.name).div}
+                                </div>
+                                
+                            ))
+                        }
+                    </div>
+                    <div className="list-items">
+                        {!this.props.loading && this.getFilteredSkills()
+                            .filter(skill => this.getAllowedOperation(skill.name).type == "+")
+                            .map(skill => {
+                            return (
+                                <React.Fragment>
+                                    <div className="list-item"><p>{skill.name}</p>
+                                        {this.getAllowedOperation(skill.name).div}
+                                    </div>
+                                </React.Fragment>
+                            )
+                        })}
+                        {
+                            !this.props.loading && !this.getFilteredSkills().length &&
+                            this.createCustomSkill()
+                        }
+                    </div>
+                </div>
+
             </React.Fragment>
         )
     }

@@ -8,7 +8,9 @@ import { getCustomItems } from "./utils";
 class MyLanguages extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { query: "" }
+        this.state = {
+            query: ""
+        }
     }
     componentDidMount() {
         this.props.getLanguages()
@@ -26,42 +28,71 @@ class MyLanguages extends React.Component {
     }
     getAllowedOperation = language_name => {
         let alreadyExists = this.props.languages.indexOf(language_name) !== -1
-        if (alreadyExists) return <div onClick={() => this.props.removeLanguage(language_name)}>-</div>
-        else return <div onClick={this.customAddLanguage(language_name)}>+</div>
+        if (alreadyExists) {
+            let div = <span onClick={() => this.props.removeLanguage(language_name)}>-</span>
+            return { type: "-", div }
+        }
+        else {
+            let div = <span onClick={this.customAddLanguage(language_name)}>+</span>
+            return { type: "+", div }
+        }
     }
     createCustomLanguage = () => (
         <React.Fragment>
-            <li>Create "{this.state.query}"</li>
-            {this.getAllowedOperation(this.state.query)}
+            <div className="list-item"><p>Create "{this.state.query}"</p>
+                {this.getAllowedOperation(this.state.query).div}
+            </div>
         </React.Fragment>
     )
     render() {
-        console.log("ADSADS")
+        console.log({ props: this.props })
         return (
             <React.Fragment>
-                My languages
-                <input
-                    type="text"
-                    value={this.state.query}
-                    onChange={e => this.setState({ query: e.target.value })}
-                    placeholder="Search language..."
-                />
-                <ItemList items={this.props.languages} />
-                <ul>
-                    {this.props.loading && "Loading"}
-                    {!this.props.loading && this.getFilteredLanguages().map(language => {
-                        return (
-                            <React.Fragment>
-                                <li key={language.id}>{language.name}</li>
-                                {this.getAllowedOperation(language.name)}
-                            </React.Fragment>
-                        )
-                    })}
-                    {
-                        !this.props.loading && !this.getFilteredLanguages().length &&
-                        this.createCustomLanguage()
-                    }
-                </ul>
+                <div className="background-title mb5">
+                    <h1>My languages</h1>
+                    <p className="shadow__title">setup your account</p>
+                </div>
+                <div className="flex-grow input__group skills__input-group">
+                    <div className="search__input mb40">
+                        <span><img src="/images/new/search.png" alt="" /></span>
+                        <input
+                            type="text"
+                            placeholder="Search for a language or add a custom one"
+                            value={this.state.query}
+                            onChange={e => this.setState({ query: e.target.value })}
+                        />
+                    </div>
+                    <div className="items-added">
+                        {!this.props.loading && this.getFilteredLanguages()
+                            .filter(language => this.getAllowedOperation(language.name).type == "-")
+                            .map(language => (
+                                <div className="item-added">
+                                    <p>{language.name}</p>
+                                    {this.getAllowedOperation(language.name).div}
+                                </div>
+
+                            ))
+                        }
+                    </div>
+                    <div className="list-items">
+                        {!this.props.loading && this.getFilteredLanguages()
+                            .filter(language => this.getAllowedOperation(language.name).type == "+")
+                            .map(language => {
+                                return (
+                                    <React.Fragment>
+                                        <div className="list-item"><p>{language.name}</p>
+                                            {this.getAllowedOperation(language.name).div}
+                                        </div>
+                                    </React.Fragment>
+                                )
+                            })}
+                        {
+                            !this.props.loading && !this.getFilteredLanguages().length &&
+                            this.createCustomLanguage()
+                        }
+                    </div>
+                </div>
+
             </React.Fragment>
         )
     }

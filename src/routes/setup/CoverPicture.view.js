@@ -14,10 +14,10 @@ export default class CoverPicture extends React.Component {
                     <span className="dot" />
                     <span className="dot" />
                 </div>
-                <h4 className="mb30">Add your profile picture</h4>
+                <h4 className="mb30">Add your cover picture</h4>
                 {/* <input class="circle-upload" type="file"> */}
                 <div className="flex-grow image-upload__style">
-                    <label htmlFor="file-upload" style={{ width: 504, height: 254, borderRadius: 16 }} className="custom-file-upload">
+                    <label htmlFor="file-upload" className="custom-file-upload">
                         <img ref={ref => this.plusRef = ref} src="/images/plus.png" className="plus-img" alt="" />
                     </label>
                     <input

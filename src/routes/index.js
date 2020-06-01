@@ -14,6 +14,8 @@ import E404 from "./E404";
 
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { logout } from "../actions/auth";
+
 import isAuthLoading from "../utils/isAuthLoading";
 
 let mapStateToProps = state => ({ auth: state.auth })
@@ -51,6 +53,10 @@ const Routes = props => {
             <Route path="/my_active_tasks" component={ () => 
                 <ProtectedRoute Component={MyActiveTasks} allowLoggedIn={true}/>
             }/>
+            <Route path="/logout" component={() => {
+                props.logout()
+                return <Redirect to="/"/>
+            }} />
 
             { /* TODO: Switch to closed Route tags */}
             
@@ -72,7 +78,6 @@ const Routes = props => {
                 <ProtectedRoute Component={Setup} allowLoggedIn={true} />
             </Route>
 
-
             <Route path="/" component={E404} />
         </Switch>
 
@@ -80,4 +85,4 @@ const Routes = props => {
 }
 
 
-export default compose(connect(mapStateToProps),withRouter)(Routes);
+export default compose(connect(mapStateToProps, { logout }),withRouter)(Routes);

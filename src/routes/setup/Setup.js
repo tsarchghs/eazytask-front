@@ -35,10 +35,10 @@ class Setup extends React.Component {
             },
             steps: [
                 "WELCOME_USER",
-                "NOTIFICATION_OPTION",
                 "PROFILE_PICTURE",
                 "COVER_PICTURE",
                 "LOCATION",
+                "NOTIFICATION_OPTION",
                 "BECOME_TASKER",
                 "MY_SKILLS",
                 "MY_LANGUAGES",
@@ -101,7 +101,14 @@ class Setup extends React.Component {
     showCurrentStep = () => {
         switch (this.state.step) {
             case 0: return <WelcomeUser first_name={this.props.first_name} />
-            case 1: return <NotificationOption 
+            case 1: return <ProfilePicture onChange={this.onFileChange("profile_image")} />
+            case 2: return <CoverPicture onChange={this.onFileChange("cover_image")} />
+            case 3: return <Location
+                onZipCodeChange={this.onChange("zipCode")} zipCode={this.state.data.zipCode}
+                onAddressChange={this.onChange("address")} address={this.state.data.address}
+                onCityChange={this.onChange("city")} city={this.state.data.city}
+            />
+            case 4: return <NotificationOption 
                 email={this.state.data.email}
                 emailOnchange={this.onChange("email")}
                 phone={this.onChange("phone")}
@@ -110,13 +117,6 @@ class Setup extends React.Component {
                 phoneOnChange={val => this.getDataPropertyValueOnChange("phone",val)()}
                 setSMS={this.getDataPropertyValueOnChange("notification_option", "SMS")}
                 setEMAIL={this.getDataPropertyValueOnChange("notification_option","EMAIL")}
-            />
-            case 2: return <ProfilePicture onChange={this.onFileChange("profile_image")} />
-            case 3: return <CoverPicture onChange={this.onFileChange("cover_image")} />
-            case 4: return <Location
-                onZipCodeChange={this.onChange("zipCode")} zipCode={this.state.data.zipCode}
-                onAddressChange={this.onChange("address")} address={this.state.data.address}
-                onCityChange={this.onChange("city")} city={this.state.data.city}
             />
             case 5: return <BecomeTasker />
             case 6: return <MySkills
@@ -140,14 +140,14 @@ class Setup extends React.Component {
     getStepImage = () => {
         switch (this.state.steps[this.state.step]){
             case "WELCOME_USER": return "/images/Group.png"
-            case "NOTIFICATION_OPTION": return ""
+            case "NOTIFICATION_OPTION": return "/images/checklist.png"
             case "PROFILE_PICTURE": return "/images/user_profile.png"
             case "COVER_PICTURE": return "/images/user_profile.png"
-            case "LOCATION": return ""
-            case "BECOME_TASKER": return ""
-            case "MY_SKILLS": return ""
-            case "MY_LANGUAGES": return ""
-            case "MY_CITIES": return ""
+            case "LOCATION": return "/images/conversation.png"
+            case "BECOME_TASKER": return "/images/Group.png"
+            case "MY_SKILLS": return "/images/super_man.png"
+            case "MY_LANGUAGES": return "/images/world_connection.png"
+            case "MY_CITIES": return "/images/map.png"
             case "READY_TO_GO": return ""
         }
     }
@@ -179,31 +179,35 @@ class Setup extends React.Component {
         console.log(this.props.profile, "PROFILE")
         if (this.props.setupCompleted) return <Redirect to="/" />
         let displaySkip = this.state.step !== this.lastStepIndex && this.getSkipForNowInfo();
+        let coverPicture = this.state.step == 2 ? " profile__cover" : ""
         return (
             <div className="container">
-                <div className="content">
+                <div className={"content" + (this.state.step === this.lastStepIndex ? " setup-ready" : "") }>
                     <header>
                         <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                     </header>
-                    <section className="two-column__layout setup__mobile">
+                    <section className={`two-column__layout setup__mobile ${coverPicture}`}>
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }
                             <div className="buttons__group">
                                 {   
                                     displaySkip && 
-                                    <button onClick={displaySkip.onClick} className="button__style no-color">{displaySkip.show} <span className="show__mobile">for now</span></button>
+                                    <button onClick={displaySkip.onClick} className="button__style no-color">{displaySkip.show}</button>
                                 }
                                 <button className="button__style" onClick={this.getButtonOnClick()}>{this.getButtonText()}</button>
                             </div>
                         </div>
-                        <div className="two-column__img">
-                            <div className="two-column__image">
-                                <img src={this.getStepImage()} alt="" />
+                        {
+                            this.state.step !== this.lastStepIndex &&
+                            <div className="two-column__img">
+                                <div className="two-column__image">
+                                    <img src={this.getStepImage()} alt="" />
+                                </div>
+                                <div className="dots__group">
+                                    { this.getDots() }
+                                </div>
                             </div>
-                            <div className="dots__group">
-                                { this.getDots() }
-                            </div>
-                        </div>
+                        }
                     </section>
                 </div>
             </div>

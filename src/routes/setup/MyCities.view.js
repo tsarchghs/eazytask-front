@@ -6,9 +6,11 @@ import { filter } from "../../utils/search";
 import { getCustomItems } from "./utils";
 
 class MyCities extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = { query: "" }
+        this.state = {
+            query: ""
+        }
     }
     componentDidMount() {
         this.props.getCities()
@@ -19,48 +21,78 @@ class MyCities extends React.Component {
         let combined = customCities.concat(cities);
         return filter(this.state.query, combined)
     }
+    resetQuery = () => this.setState({ query: "" })
     customAddCity = city_name => () => {
         this.props.addCity(city_name)
         if (this.state.query === city_name) this.resetQuery()
     }
     getAllowedOperation = city_name => {
         let alreadyExists = this.props.cities.indexOf(city_name) !== -1
-        if (alreadyExists) return <div onClick={() => this.props.removeCity(city_name)}>-</div>
-        else return <div onClick={this.customAddCity(city_name)}>+</div>
+        if (alreadyExists) {
+            let div = <span onClick={() => this.props.removeCity(city_name)}>-</span>
+            return { type: "-", div }
+        }
+        else {
+            let div = <span onClick={this.customAddCity(city_name)}>+</span>
+            return { type: "+", div }
+        }
     }
-    resetQuery = () => this.setState({ query: "" })
     createCustomCity = () => (
         <React.Fragment>
-            <li>Create "{this.state.query}"</li>
-            {this.getAllowedOperation(this.state.query)}
+            <div className="list-item"><p>Create "{this.state.query}"</p>
+                {this.getAllowedOperation(this.state.query).div}
+            </div>
         </React.Fragment>
     )
     render() {
+        console.log({ props: this.props })
         return (
             <React.Fragment>
-                Area of activity
-                <input
-                    type="text"
-                    value={this.state.query}
-                    onChange={e => this.setState({ query: e.target.value })}
-                    placeholder="Search city..."
-                />
-                <ItemList items={this.props.cities} />
-                <ul>
-                    {this.props.loading && "Loading"}
-                    {!this.props.loading && this.getFilteredCities().map(city => {
-                        return (
-                            <React.Fragment>
-                                <li key={city.id}>{city.name}</li>
-                                {this.getAllowedOperation(city.name)}
-                            </React.Fragment>
-                        )
-                    })}
-                    {
-                        !this.props.loading && !this.getFilteredCities().length &&
-                        this.createCustomCity()
-                    }
-                </ul>
+                <div className="background-title mb5">
+                    <h1>My cities</h1>
+                    <p className="shadow__title">setup your account</p>
+                </div>
+                <div className="flex-grow input__group skills__input-group">
+                    <div className="search__input mb40">
+                        <span><img src="/images/new/search.png" alt="" /></span>
+                        <input
+                            type="text"
+                            placeholder="Search for a city or add a custom one"
+                            value={this.state.query}
+                            onChange={e => this.setState({ query: e.target.value })}
+                        />
+                    </div>
+                    <div className="items-added">
+                        {!this.props.loading && this.getFilteredCities()
+                            .filter(city => this.getAllowedOperation(city.name).type == "-")
+                            .map(city => (
+                                <div className="item-added">
+                                    <p>{city.name}</p>
+                                    {this.getAllowedOperation(city.name).div}
+                                </div>
+
+                            ))
+                        }
+                    </div>
+                    <div className="list-items">
+                        {!this.props.loading && this.getFilteredCities()
+                            .filter(city => this.getAllowedOperation(city.name).type == "+")
+                            .map(city => {
+                                return (
+                                    <React.Fragment>
+                                        <div className="list-item"><p>{city.name}</p>
+                                            {this.getAllowedOperation(city.name).div}
+                                        </div>
+                                    </React.Fragment>
+                                )
+                            })}
+                        {
+                            !this.props.loading && !this.getFilteredCities().length &&
+                            this.createCustomCity()
+                        }
+                    </div>
+                </div>
+
             </React.Fragment>
         )
     }
