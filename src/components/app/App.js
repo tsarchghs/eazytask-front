@@ -32,17 +32,17 @@ class App extends React.Component {
     // ) return <Redirect to="/setup" />
     return (
       <React.Fragment>
-      {JSON.stringify(this.props.auth)}
+      {/* {JSON.stringify(this.props.auth)} */}
         {/* In App.js ->  */}
         {/* {this.props.auth.isAuthenticated
           ? "isAuthenticated"
           : "Not isAuthenticated"} */}
-        {this.props.auth.isAuthenticated && (
+        {/* {this.props.auth.isAuthenticated && (
           <React.Fragment>
             <button onClick={this.props.logout}>Logout</button>
             <br />
           </React.Fragment>
-        )}{" "}
+        )}{" "} */}
         <Routes/>
       </React.Fragment>
     );
