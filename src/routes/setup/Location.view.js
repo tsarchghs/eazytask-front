@@ -16,10 +16,10 @@ export default props => {
             <h4 className="mb30">Please add your location</h4>
             <div className="flex-grow input__group">
                 <div className="two__inputs">
-                    <input value={props.zipCode} onChange={props.onZipCodeChange} type="text" className="input" placeholder="ZIP" />
-                    <input value={props.city} onChange={props.onCityChange} type="text" className="input" placeholder="Town" />
+                    <input value={props.zipCode} onChange={props.onZipCodeChange} type="text" className="input gray" placeholder="ZIP" />
+                    <input value={props.city} onChange={props.onCityChange} type="text" className="input gray" placeholder="Town" />
                 </div>
-                <input value={props.address} onChange={props.onAddressChange} type="text" className="input" placeholder="Address" />
+                <input value={props.address} onChange={props.onAddressChange} type="text" className="input gray" placeholder="Address" />
 
             </div>
         </React.Fragment>

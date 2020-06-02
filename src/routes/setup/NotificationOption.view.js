@@ -17,19 +17,30 @@ export default props => {
             <h5 className>How do you want <br /> to be notified?</h5>
             {/* <img class="img__mobile" src="/images/checklist.png" alt=""/> */}
             <div className="flex-grow radio-buttons">
-                <label className="radio-container">
+                <label className={"radio-container " + (props.notification_option !== "EMAIL" ? "shadowed" : "")}>
                     <img src="/images/message.png" style={{ marginBottom: '14px' }} alt="" />
                     <div>
                         <h5>Mail</h5>
-                        <input type="radio" name="notification" />
+                        <input 
+                            checked={props.notification_option == "EMAIL"} 
+                            type="radio" 
+                            name="notification"
+                            onChange={props.setEMAIL}
+                        />
                         <span className="checkmark" />
                     </div>
                 </label>
-                <label className="radio-container">
+                <label className={"radio-container " + (props.notification_option !== "SMS" ? "shadowed" : "")}>
                     <img src="/images/chat.png" alt="" />
                     <div>
                         <h5>SMS</h5>
-                        <input type="radio" name="notification" />
+                        <input 
+                            checked={props.notification_option == "SMS"} 
+                            type="radio" 
+                            name="notification"
+                            onChange={props.setSMS}
+     
+                        />
                         <span className="checkmark" />
                     </div>
                 </label>

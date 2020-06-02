@@ -55,12 +55,16 @@ class Setup extends React.Component {
             prevState.data[key] = file;
             console.log({ ref })
             if (ref){
-                if (!file) ref.src = "/images/plus.png"
+                if (!file) {
+                    ref.src = "/images/plus.png"
+                    ref.className = "plus-img"
+                }
                 else {
                     var fr = new FileReader();
                     fr.onload = function () {
                         console.log({ref})
                         ref.src = fr.result;
+                        ref.className = ""
                     }
                     fr.readAsDataURL(file);
                 }
@@ -124,15 +128,15 @@ class Setup extends React.Component {
                 addSkill={this.onListAdd("skills")}
                 removeSkill={this.onListRemove("skills")}
             />
-            case 7: return <MyLanguages
-                languages={this.state.data.languages}
-                addLanguage={this.onListAdd("languages")}
-                removeLanguage={this.onListRemove("languages")}
-            />
-            case 8: return <MyCities
+            case 7: return <MyCities
                 cities={this.state.data.cities}
                 addCity={this.onListAdd("cities")}
                 removeCity={this.onListRemove("cities")}
+            />
+            case 8: return <MyLanguages
+                languages={this.state.data.languages}
+                addLanguage={this.onListAdd("languages")}
+                removeLanguage={this.onListRemove("languages")}
             />
             case 9: return <ReadyToGo />
         }
@@ -143,10 +147,10 @@ class Setup extends React.Component {
             case "NOTIFICATION_OPTION": return "/images/checklist.png"
             case "PROFILE_PICTURE": return "/images/user_profile.png"
             case "COVER_PICTURE": return "/images/user_profile.png"
-            case "LOCATION": return "/images/conversation.png"
-            case "BECOME_TASKER": return "/images/Group.png"
+            case "LOCATION": return "/images/world_connection.png"
+            case "BECOME_TASKER": return "/images/checklist.png"
             case "MY_SKILLS": return "/images/super_man.png"
-            case "MY_LANGUAGES": return "/images/world_connection.png"
+            case "MY_LANGUAGES": return "/images/conversation.png"
             case "MY_CITIES": return "/images/map.png"
             case "READY_TO_GO": return ""
         }
@@ -175,6 +179,42 @@ class Setup extends React.Component {
             return <span onClick={this.nextStep(i)} className={`dot ${active ? "active" : ""}`} />
         })
     }
+    getHeader = () => {
+        let show = {
+            "MY_SKILLS": "My skills",
+            "MY_LANGUAGES": "My languages",
+            "MY_CITIES": "My area of activity"
+        }
+        let step_name = this.state.steps[this.state.step] 
+        switch (step_name) {
+            case "WELCOME_USER":
+                return <header>
+                    <a href="#"><img class="logo__img" src="/images/logo.svg" alt=""/></a>
+                </header> 
+            case "PROFILE_PICTURE":
+            case "COVER_PICTURE":
+            case "NOTIFICATION_OPTION":
+            case "BECOME_TASKER":
+            case "READY_TO_GO":
+            case "LOCATION":
+                return (
+                    <header>
+                        <span class="show__mobile"><img src="/images/arrow.jpeg" alt=""/></span>
+                        <a href="#"><img class="logo__img" src="/images/logo.svg" alt=""/></a>
+                    </header>
+                )
+            case "MY_SKILLS":
+            case "MY_LANGUAGES":
+            case "MY_CITIES":
+                return (
+                    <header className="logo-text">
+                        <span class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                        <h4 class="hide-on-desktop">{show[step_name]}</h4>
+                        <a href="#"><img class="logo__img" src="/images/logo.svg" alt="" /></a>
+                    </header>
+                )
+        }
+    }
     render(){
         console.log(this.props.profile, "PROFILE")
         if (this.props.setupCompleted) return <Redirect to="/" />
@@ -183,9 +223,7 @@ class Setup extends React.Component {
         return (
             <div className="container">
                 <div className={"content" + (this.state.step === this.lastStepIndex ? " setup-ready" : "") }>
-                    <header>
-                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                    </header>
+                    { this.getHeader() }
                     <section className={`two-column__layout setup__mobile ${coverPicture}`}>
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }
