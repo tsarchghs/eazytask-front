@@ -19,8 +19,6 @@
     "node-sass": "4.14.1",
     "object-to-formdata": "3.0.9",
     "query-string": "6.13.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "react-filter-search": "1.0.11",
     "react-foundation": "^0.9.6",
     "react-foundation-sites": "^0.0.1",
@@ -40,12 +38,9 @@
     "yup": "0.29.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build-and-serve": "npm run build && node server",
-    "serve": "node server",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server",
+    "build-and-serve": "node server",
+    "serve": "node server"
   },
   "eslintConfig": {
     "extends": "react-app"
