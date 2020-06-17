@@ -6175,7 +6175,7 @@ p {
   top: 0;
   max-width: 1170px; }
   @media screen and (max-width: 39.9375em) {
-    .steps__layout img {
+    .steps__layout-toggle img {
       display: none; } }
 
 .listing-cards {
