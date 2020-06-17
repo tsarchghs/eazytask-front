@@ -13,7 +13,7 @@ class CategoryGroup extends React.Component {
                     Household <br />
                     <span>Category</span>
                 </h4>
-                <div className="cards-section flex-grow ">
+                <div className="cards-section ">
                     {
                         this.props.categories.loading && "Loading"
                     }
