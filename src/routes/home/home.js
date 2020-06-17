@@ -90,7 +90,7 @@ class Home extends React.Component {
         return (
             <React.Fragment>
                 <div className="wrapper">
-                    <section className="background-img panel" style={{zIndex: 0}}id="fixed">
+                    <section className="background-img panel" id="fixed">
                         <div className="container">
                             <div className="content setup-ready">
                                 <header>
