@@ -9,6 +9,14 @@ class CategoryGroup extends React.Component {
     render(){
         return (
             <React.Fragment>
+                <div className="background-title mb30">
+                    <h1>Almost there</h1>
+                    <p className="shadow__title no-contain">create a task on eazytask easy </p>
+                </div>
+                <h4 className="show__mobile">
+                    Almost there <br />
+                </h4>
+
                 <h4 className="show__mobile">
                     Household <br />
                     <span>Category</span>

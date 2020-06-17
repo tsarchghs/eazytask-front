@@ -22,6 +22,9 @@ export default props => {
                     value={props.description}
                     onChange={props.onDescriptionChange}
                 />
+                {props.errors.map(x => (
+                    <div class="register__form--error">{x}</div>
+                ))}
             </div>
             <div className="flex-grow img-wrapper flex aic jcc">
                 <img className="img__mobile " src="/images/startup.png" alt="" />

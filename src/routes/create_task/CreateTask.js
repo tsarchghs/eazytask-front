@@ -79,14 +79,14 @@ class CreateTask extends React.Component {
         }
         this.validations = {
             "NAME": Yup.object().shape({ name: Yup.string().required("Name is required") }),
-            "DESCRIPTION": Yup.object().shape({ description: Yup.string().required("Required")}),
+            "DESCRIPTION": Yup.object().shape({ description: Yup.string().required("Description is required")}),
             "TASK_LOCATION": Yup.object().shape({ 
-                zipCode: Yup.string().required("Required"),
-                address: Yup.string().required("Required"),
-                city: Yup.string().required("Required")
+                zipCode: Yup.string().required("Zip Code is required"),
+                address: Yup.string().required("Address is required"),
+                city: Yup.string().required("Town is required")
             }),
             "OTHER_CATEGORY": Yup.object().shape({
-                category: Yup.string().required("Required")
+                category: Yup.string().required("Category name is required")
             })
         }
         this.lastStepIndex = this.state.steps.length - 1
@@ -176,9 +176,11 @@ class CreateTask extends React.Component {
         switch (this.state.step) {
             case 0: return <Name 
                 onNameChange={this.onChange("name")} name={this.state.data.name}
+                errors={this.state.errors}
             />
             case 1: return <Description
                 onDescriptionChange={this.onChange("description")} description={this.state.data.description}
+                errors={this.state.errors}
             />
             case 2: return <PickDate 
                 date_type={this.state.data.date_type}
@@ -193,6 +195,7 @@ class CreateTask extends React.Component {
                 onZipCodeChange={this.onChange("zipCode")} zipCode={this.state.data.zipCode}
                 onAddressChange={this.onChange("address")} address={this.state.data.address}
                 onCityChange={this.onChange("city")} city={this.state.data.city}
+                errors={this.state.errors}
             />
             case 4: return <ExpectedPrice
                 onExpectedPriceChange={this.onChange("expected_price")} 
@@ -216,6 +219,7 @@ class CreateTask extends React.Component {
             case 7: return <OtherCategory
                 category={this.state.data.category}
                 onCategoryChange={this.onChange("category")}
+                errors={this.state.errors}
             />
             case 8: return <TaskGallery
                 gallery={this.state.data.gallery}
@@ -316,9 +320,9 @@ class CreateTask extends React.Component {
                     <section className={"two-column__layout setup__mobile create-task " + extra}>
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }
-                            {this.state.errors.map(x => (
+                            {/* {this.state.errors.map(x => (
                                 <div class="register__form--error">{x}</div>
-                            ))}
+                            ))} */}
                             {
                                 this.showButtonCondition() &&
                                 <div className="buttons__group">

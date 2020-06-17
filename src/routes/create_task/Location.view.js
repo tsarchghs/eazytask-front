@@ -19,6 +19,9 @@ export default props => {
                         <input value={props.zipCode} onChange={props.onZipCodeChange} type="text" className="input gray" placeholder="ZIP" />
                         <input value={props.city} onChange={props.onCityChange} type="text" className="input gray" placeholder="Town" />
                     </div>
+                    {props.errors.map(x => (
+                        <div class="register__form--error">{x}</div>
+                    ))}
                 </div>
                 <div className="flex-grow img-wrapper flex aic jcc">
                     <img className="img__mobile " src="/images/stand.png" alt="" />
