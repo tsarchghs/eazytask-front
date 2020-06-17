@@ -10,10 +10,8 @@ export default (props) => {
         <h5>Welcome back</h5>
         <p>Please fill the informations</p>
       </div>
-      <form className="register__form" onSubmit={props.onSubmit}>
-        {props.errors.map((x) => (
-          <div class="register__form--error">{x}</div>
-        ))}
+      <form className="register__form" onSubmit={Boolean(props.email.value) && Boolean(props.password.value) ? props.onSubmit : e => e.preventDefault()}>
+        <div className="flex-grow"> 
         <input
           placeholder="Email"
           type="email"
@@ -26,6 +24,10 @@ export default (props) => {
           value={props.password.value}
           onChange={props.password.onChange}
         />
+        {props.errors.map((x) => (
+          <div class="register__form--error">{x}</div>
+        ))}
+        </div>
         <div className="register__button">
           <a href="#">Trouble loging in?</a>
           { props.loading && "Loading"}

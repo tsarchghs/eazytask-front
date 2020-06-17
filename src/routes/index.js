@@ -9,7 +9,9 @@ import Setup from "./setup";
 import CreateTask from "./create_task";
 import Task from "./task";
 import MyActiveTasks from "./my_active_tasks";
-
+import ActiveListing from "./active_listing";
+import EditTask from "./edit_task/EditTask"; 
+import Profile from "./profile/Profile";
 import E404 from "./E404";
 
 import { Redirect } from "react-router-dom";
@@ -49,7 +51,10 @@ const Routes = props => {
     return (
         <Switch>
             <Route path="/" component={Home} exact/>
-            <Route path="/task/:taskId" component={Task} exact/>
+            <Route path="/task/:taskId" component={Task} exact />
+            <Route path="/task/:taskId/edit" component={EditTask} exact />
+            <Route path="/active_listing" component={ActiveListing} exact />
+            <Route path="/profile/:userId" component={Profile} exact/>
             <Route path="/my_active_tasks" component={ () => 
                 <ProtectedRoute Component={MyActiveTasks} allowLoggedIn={true}/>
             }/>

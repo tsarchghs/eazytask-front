@@ -17,11 +17,10 @@ export const postOffersSuccess = payload => ({
     type: POST_OFFERS_SUCCESS, payload
 })
 
-
 export const postOffers = body => {
     return dispatch => {
         dispatch(postOffersRequest())
-        return axios.post("/tasks", body)
+        return axios.post("/offers", body)
             .then(({ data }) => {
                 dispatch(postOffersSuccess(data.data));
             }).catch(err => dispatch(postOffersFailed(err)));

@@ -8,6 +8,15 @@ import Button from "../../components/button";
 import LoginRegisterHeader from "../../components/loginRegisterHeader";
 import { NavLink } from "react-router-dom";
 
+let showError = {
+  "requestBody.email is a required field": "Email is a required field",
+  "requestBody.password is a required field": "Password is a required field",
+  "requestBody.email must be a valid email": "Email must be a valid email",
+  "requestBody.first_name is a required field": "First name is a required field",
+  "requestBody.last_name is a required field": "Last name is a required field",
+  "requestBody.password must be at least 6 characters": "Passowrd must be at least 6 characters"
+}
+
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +38,7 @@ class Register extends React.Component {
   getErrors = () => {
     let { errors } = this.props;
     if (errors && errors.length)
-      return errors;
+      return errors.map(x => showError[x] || x);
     return [];
   };
   render() {

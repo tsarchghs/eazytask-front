@@ -5,10 +5,9 @@ import {
 } from "../actionTypes"
 
 const INITIAL_STATE = {
-    data: undefined,
+    allIds: [],
+    byIds: {},
     loading: true,
-    error: false,
-    errorResponse: undefined
 }
 
 

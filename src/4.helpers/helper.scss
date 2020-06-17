@@ -22,6 +22,8 @@ body {
 .register__layout {
   display: flex;
   flex-direction: column;
+  height: 100%;
+    flex-grow: 1;
 }
 
 .layout__image {
@@ -44,6 +46,10 @@ body {
   position: relative;
   max-width: 750px;
   margin: 0 auto;
+      display: flex;
+    flex-direction: column;
+    align-self: baseline;
+    height: 100vh;
 }
 .register__tabs {
   margin-bottom: 60px;
@@ -73,6 +79,7 @@ body {
 
 .register__form {
   display: flex;
+  height: 100%;
   flex-direction: column;
   input {
     font-family: "FiraSans";
@@ -122,10 +129,9 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  position:initial!important;
+  transform: initial!important;
+  margin-bottom: 15px;  
   text-align: center;
   p {
     font-size: 16px;
@@ -228,6 +234,7 @@ body {
     padding-bottom: 130px;
     input {
       box-shadow: none;
+      width: 100%;
       outline: none;
       border: none;
       border-bottom: 1px solid #828282;
@@ -265,4 +272,8 @@ body {
       width: 100%;
     }
   }
+}
+
+.overflow-hidden {
+  overflow-x: hidden;
 }

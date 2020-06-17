@@ -4,11 +4,15 @@ import {
     POST_USER_FAILED,  
     PATCH_USER_REQUEST,
     PATCH_USER_FAILED,
-    PATCH_USER_SUCCESS
+    PATCH_USER_SUCCESS,
+    GET_USER_REQUEST,
+    GET_USER_FAILED,
+    GET_USER_SUCCESS
 } from "../actionTypes";
 import { updateAuthProfile } from "./auth"; 
 import axios from "../utils/axios";
 import { objectToFormData } from 'object-to-formdata';
+import queryString from "query-string";
 
 export const postUserRequest = () => ({
     type: POST_USER_REQUEST
@@ -21,6 +25,29 @@ export const postUserFailed = err => ({
 export const postUserSuccess = payload => ({
     type: POST_USER_SUCCESS, payload
 })
+
+export const getUserRequest = () => ({
+    type: GET_USER_REQUEST
+})
+
+export const getUserFailed = err => ({
+    type: GET_USER_FAILED, err
+})
+
+export const getUserSuccess = payload => ({
+    type: GET_USER_SUCCESS, payload
+})
+
+export const getUser = (id,options) => {
+    return dispatch => {
+        dispatch(getUserRequest())
+        let query = queryString.stringify(options)
+        return axios.get(`/users/${id}?` + query)
+            .then(({ data }) => {
+                dispatch(getUserSuccess(data));
+            }).catch(err => dispatch(getUserFailed(err)));
+    };
+}
 
 export const postUser = ({ first_name, last_name, email, password }) => {
     return dispatch => {

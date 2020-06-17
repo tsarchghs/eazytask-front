@@ -9,10 +9,16 @@ import {
     GET_TASK_SUCCESS,
     POST_TASKS_REQUEST,
     POST_TASKS_FAILED,
-    POST_TASKS_SUCCESS
+    POST_TASKS_SUCCESS,
+    GET_TASKS_COUNT_REQUEST,
+    GET_TASKS_COUNTS_FAILED,
+    GET_TASKS_COUNT_SUCCESS,
+    PATCH_TASKS_SUCCESS
 } from "../actionTypes";
 import axios from "../utils/axios";
+import { objectToFormData } from 'object-to-formdata';
 import { setCreateTask } from "./app";
+import queryString from "query-string";
 
 export const getTaskRequest = id => ({
     type: GET_TASK_REQUEST, id
@@ -38,20 +44,54 @@ export const postTasksSuccess = payload => ({
     type: POST_TASKS_SUCCESS, payload
 })
 
-export const getTask = (id) => {
+export const getTasksCountRequest = () => ({
+    type: GET_TASKS_COUNT_REQUEST
+})
+
+export const getTasksCountFailed = err => ({
+    type: GET_TASKS_COUNTS_FAILED, err
+})
+
+export const getTasksCountSuccess = count => ({
+    type: GET_TASKS_COUNT_SUCCESS, count
+})
+
+export const getTasksCount = filters => {
+    return dispatch => {
+        dispatch(getTasksCountRequest())
+        let query = queryString.stringify(filters)
+        return axios.get("/tasks/count?" + query)
+            .then(({ data }) => {
+                dispatch(getTasksCountSuccess(data.data.count));
+            }).catch(err => dispatch(getTasksCountFailed(err)));
+    }
+}
+
+export const getTask = (id, query) => {
+    id = Number(id);
     return dispatch => {
         dispatch(getTaskRequest(id))
-        return axios.get("/tasks/" + id + "?fields=offers")
+        return axios.get("/tasks/" + id + "?" + query)
             .then(({ data }) => {
                 dispatch(getTaskSuccess(data.data, id));
             }).catch(err => dispatch(getTaskFailed(err,id)));
     };
 }
 
-export const postTasks = (body,fromCreateTask) => {
+export const postTasks = (body,fromCreateTask, query) => {
+    var fd = new FormData();
+    for (let key of Object.keys(body)){
+        if (key == "gallery"){
+            for (let x=0;x<body[key].length;x++){
+                fd.append("gallery[]",body[key][x]);
+            }
+        } else {
+            fd.append(key,body[key])
+        }
+    }
     return dispatch => {
         dispatch(postTasksRequest())
-        return axios.post("/tasks", body)
+        return axios.post("/tasks?" + (query || ""), fd)
             .then(({ data }) => {
                 dispatch(postTasksSuccess(data.data));
                 if (fromCreateTask) dispatch(setCreateTask({ loading: false, data: data.data }))
@@ -72,18 +112,39 @@ export const getTasksSuccess = payload => ({
     type: GET_TASKS_SUCCESS, payload
 })
 
-export const getTasks = ({UserId,onRequest,onFailed,onSuccess}) => {
-    console.log("LOG_TASKS")
+export const getTasks = ({filters,onRequest,onFailed,onSuccess} = {}) => {
+    console.log("LOG_TASKS",filters)
     return dispatch => {
         dispatch(getTasksRequest())
         if (onRequest) dispatch(onRequest);
-        let query = UserId ? "UserId=" + UserId : ""
-        return axios.get("/tasks" + query,)
+        let query = queryString.stringify(filters)
+        return axios.get("/tasks?" + query)
             .then(({ data }) => {
                 dispatch(getTasksSuccess(data.data));
                 if (onSuccess) dispatch(onSuccess(data.data));
             }).catch(err => {
                 dispatch(getTasksFailed(err))
+                if (onFailed) dispatch(onFailed(err));
+            });
+    };
+}
+
+export const patchTasksSuccess = payload => ({
+    type: PATCH_TASKS_SUCCESS, payload
+})
+
+export const patchTasks = ({ id, data, onRequest, onFailed, onSuccess } = {}) => {
+    console.log("LOG_TASKS", data)
+    return dispatch => {
+        // dispatch(patchTasksRequest())
+        if (onRequest) dispatch(onRequest);
+        console.log("objectToFormData(data)", objectToFormData(data), data)
+        return axios.patch("/tasks/" + id, objectToFormData(data))
+            .then(({ data }) => {
+                // dispatch(patchTasksSuccess(data.data));
+                if (onSuccess) dispatch(onSuccess(data.data));
+            }).catch(err => {
+                // dispatch(patchTasksFailed(err))
                 if (onFailed) dispatch(onFailed(err));
             });
     };

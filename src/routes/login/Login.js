@@ -7,6 +7,12 @@ import Button from "../../components/button";
 import LoginRegisterHeader from "../../components/loginRegisterHeader";
 import { NavLink } from "react-router-dom";
 
+let showError = {
+  "requestBody.email is a required field": "Email is a required field",
+  "requestBody.password is a required field": "Password is a required field",
+  "requestBody.email must be a valid email": "Email must be a valid email"
+}
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +33,7 @@ class Login extends React.Component {
   getErrors = () => {
     let { errors } = this.props[POST_AUTH];
     if (errors && errors.length)
-      return errors;
+      return errors.map(x => showError[x] || x);
     return [];
   };
   render() {

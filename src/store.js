@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 
 import appReducer from "./reducers/app";
 import authReducer from "./reducers/auth";
+import usersReducer from "./reducers/user";
 import skillsReducer from "./reducers/skills";
 import languagesReducer from "./reducers/languages";
 import citiesReducer from "./reducers/cities";
@@ -22,7 +23,8 @@ const reduceReducers = (...reducers) => {
 export default createStore(
     combineReducers({ 
       app: appReducer,
-      auth: authReducer, 
+      auth: authReducer,
+      users: usersReducer, 
       skills: skillsReducer,
       languages: languagesReducer,
       cities: citiesReducer,
