@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.39fc2903.chunk.css",
+    "main.js": "/static/js/main.26f89b2c.chunk.js",
+    "main.js.map": "/static/js/main.26f89b2c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5e2e2b12.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5e2e2b12.js.map",
+    "static/js/2.384425fd.chunk.js": "/static/js/2.384425fd.chunk.js",
+    "static/js/2.384425fd.chunk.js.map": "/static/js/2.384425fd.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.57848d72e875bb1fe7f259a6269d974b.js": "/precache-manifest.57848d72e875bb1fe7f259a6269d974b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.39fc2903.chunk.css.map": "/static/css/main.39fc2903.chunk.css.map",
+    "static/js/2.384425fd.chunk.js.LICENSE.txt": "/static/js/2.384425fd.chunk.js.LICENSE.txt",
+    "static/media/product-sans-bold.ttf": "/static/media/product-sans-bold.dba0c688.ttf",
+    "static/media/product-sans.ttf": "/static/media/product-sans.eae9c18c.ttf",
+    "static/media/helper.scss": "/static/media/ustah.cde37b28.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5e2e2b12.js",
+    "static/js/2.384425fd.chunk.js",
+    "static/css/main.39fc2903.chunk.css",
+    "static/js/main.26f89b2c.chunk.js"
+  ]
+}
