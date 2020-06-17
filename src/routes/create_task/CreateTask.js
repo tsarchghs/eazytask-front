@@ -258,6 +258,7 @@ class CreateTask extends React.Component {
                 if (schema){
                     try {
                         await schema.validate(this.state.data, { abortEarly: false } );
+                        this.setState({ errors: [] })
                     } catch (err) {
                         this.setState({ errors: err.errors })
                         return;
@@ -293,7 +294,7 @@ class CreateTask extends React.Component {
         console.log("this.state.step ", this.state.step )
         if (this.state.step < 0) return <Redirect to="/"/>
         console.log("this.state.datathis.state.data",this.state)
-        if (!this.props.auth_profile.Tasker) return <Redirect to="/" />
+        // if (!this.props.auth_profile.Tasker) return <Redirect to="/" />
         let extra = "";
         let stepName = this.state.steps[this.state.step]
         if (stepName == "TASK_GALLERY") {

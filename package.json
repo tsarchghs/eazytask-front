@@ -40,8 +40,8 @@
     "yup": "0.29.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build-and-serve": "npm run build && node server",
+    "start": "node server",
+    "build-and-serve": "node server",
     "serve": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test",
