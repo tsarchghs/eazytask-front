@@ -42,7 +42,7 @@
   "scripts": {
     "start": "node server",
     "start-dev": "react-scripts start",
-    "build-and-serve": "npm run build && node server",
+    "build-and-serve": "npm run-script build-dev && node server",
     "serve": "node server",
     "build-dev": "react-scripts build",
     "test": "react-scripts test",
