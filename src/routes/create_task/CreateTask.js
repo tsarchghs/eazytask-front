@@ -272,11 +272,25 @@ class CreateTask extends React.Component {
             }
         }
     }
+    // getDots = () => {
+    //     return this.state.steps.map((x, i) => {
+    //         let active = this.state.steps[this.state.step] === x;
+    //         return <span onClick={this.nextStep(i)} className={`dot ${active ? "active" : ""}`} />
+    //     })
+    // }
     getDots = () => {
-        return this.state.steps.map((x, i) => {
-            let active = this.state.steps[this.state.step] === x;
-            return <span onClick={this.nextStep(i)} className={`dot ${active ? "active" : ""}`} />
-        })
+        if (this.state.step === this.state.steps.length-1) return [];
+        return this.state.steps.slice(0, this.state.steps.length).map((x, i) => {
+            let getOnClick = () => {
+                console.log(this.state.step, index)
+                if (this.state.step <= index) return () => { }
+                else return this.nextStep(index);
+            }
+            let index = this.state.steps.indexOf(x)
+            let onStep = this.state.step + 1
+            let active = onStep >= i + 1;
+            return <span onClick={getOnClick()} className={`dot ${active ? "active" : ""}`} />
+        }).filter((el, step) => step != 6 && step != 7)
     }
     getStepImage = () => {
         switch (this.state.steps[this.state.step]) {

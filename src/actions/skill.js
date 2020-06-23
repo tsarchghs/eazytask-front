@@ -18,7 +18,6 @@ export const getSkillsSuccess = payload => ({
 })
 
 export const getSkills = () => {
-    console.log("LOG_SKILLS")
     return dispatch => {
         dispatch(getSkillsRequest())
         return axios.get("/skills")

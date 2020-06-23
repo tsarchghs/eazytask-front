@@ -8,7 +8,9 @@ import {
     GET_ACTIVE_LISTING_SUCCESS,
     GET_ACTIVE_LISTING2_REQUEST,
     GET_ACTIVE_LISTING2_FAILED,
-    GET_ACTIVE_LISTING2_SUCCESS
+    GET_ACTIVE_LISTING2_SUCCESS,
+    GET_MY_ACTIVE_OFFERS_REQUEST,
+    GET_MY_ACTIVE_OFFERS_SUCCESS
 } from "../actionTypes"
 
 const INITIAL_STATE = {
@@ -17,6 +19,10 @@ const INITIAL_STATE = {
         task: undefined
     },
     myActiveTasks: {
+        loading: true,
+        ids: []
+    },
+    myActiveOffers: {
         loading: true,
         ids: []
     },
@@ -41,12 +47,21 @@ export default (state = INITIAL_STATE, action) => {
             state.createTask = action.createTask
             return { ...state }
         case GET_MY_ACTIVE_TASKS_REQUEST:
-            let exists = state.allIds.indexOf(action.id) !== -1;
-            state.myActiveTasks.loading = !exists;
+            let exists5 = state.myActiveTasks.ids.indexOf(action.id) !== -1;
+            state.myActiveTasks.loading = !exists5;
             return { ...state }
         case GET_MY_ACTIVE_TASKS_SUCCESS:
             state.myActiveTasks.loading = false;
             state.myActiveTasks.ids = action.ids;
+            return { ...state }
+
+        case GET_MY_ACTIVE_OFFERS_REQUEST:
+            let exists = state.myActiveOffers.ids.indexOf(action.id) !== -1;
+            state.myActiveOffers.loading = !exists;
+            return { ...state }
+        case GET_MY_ACTIVE_OFFERS_SUCCESS:
+            state.myActiveOffers.loading = false;
+            state.myActiveOffers.ids = action.ids;
             return { ...state }
 
         case GET_ACTIVE_LISTING_REQUEST:

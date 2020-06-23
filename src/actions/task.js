@@ -112,13 +112,13 @@ export const getTasksSuccess = payload => ({
     type: GET_TASKS_SUCCESS, payload
 })
 
-export const getTasks = ({filters,onRequest,onFailed,onSuccess} = {}) => {
-    console.log("LOG_TASKS",filters)
+export const getTasks = ({ filters, onRequest, onFailed, onSuccess, UserId} = {}) => {
     return dispatch => {
         dispatch(getTasksRequest())
         if (onRequest) dispatch(onRequest);
         let query = queryString.stringify(filters)
-        return axios.get("/tasks?" + query)
+        let byUser = UserId ? "UserId=" + UserId + "&" : ""
+        return axios.get("/tasks?" + byUser + query)
             .then(({ data }) => {
                 dispatch(getTasksSuccess(data.data));
                 if (onSuccess) dispatch(onSuccess(data.data));
@@ -129,19 +129,17 @@ export const getTasks = ({filters,onRequest,onFailed,onSuccess} = {}) => {
     };
 }
 
-export const patchTasksSuccess = payload => ({
-    type: PATCH_TASKS_SUCCESS, payload
+export const patchTasksSuccess = (id,payload) => ({
+    type: PATCH_TASKS_SUCCESS, id, payload
 })
 
 export const patchTasks = ({ id, data, onRequest, onFailed, onSuccess } = {}) => {
-    console.log("LOG_TASKS", data)
     return dispatch => {
         // dispatch(patchTasksRequest())
         if (onRequest) dispatch(onRequest);
-        console.log("objectToFormData(data)", objectToFormData(data), data)
         return axios.patch("/tasks/" + id, objectToFormData(data))
             .then(({ data }) => {
-                // dispatch(patchTasksSuccess(data.data));
+                dispatch(patchTasksSuccess(id,data.data));
                 if (onSuccess) dispatch(onSuccess(data.data));
             }).catch(err => {
                 // dispatch(patchTasksFailed(err))

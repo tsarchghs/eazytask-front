@@ -1,0 +1,60 @@
+{
+  "name": "react-project",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/styled-components": "^5.1.0",
+    "axios": "0.19.2",
+    "babel-loader": "^8.1.0",
+    "express": "4.17.1",
+    "formik": "2.1.4",
+    "foundation-sites": "^6.6.3",
+    "js-cookie": "^2.2.1",
+    "jwt-decode": "2.2.0",
+    "lodash": "4.17.15",
+    "lodash.debounce": "4.0.8",
+    "node-sass": "4.14.1",
+    "object-to-formdata": "3.0.9",
+    "query-string": "6.13.0",
+    "react-filter-search": "1.0.11",
+    "react-foundation": "^0.9.6",
+    "react-foundation-sites": "^0.0.1",
+    "react-helmet": "6.0.0",
+    "react-phone-number-input": "3.0.23",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "5.1.2",
+    "react-scripts": "3.4.1",
+    "react-scrollmagic": "2.2.0",
+    "react-slider": "1.0.8",
+    "recompose": "0.30.0",
+    "redux": "4.0.5",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.3.0",
+    "styled-components": "5.1.1",
+    "uuid": "8.1.0",
+    "yup": "0.29.1"
+  },
+  "scripts": {
+    "start": "node server",
+    "build-and-serve": "node server",
+    "serve": "node server"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

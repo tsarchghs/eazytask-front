@@ -88,6 +88,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state }
 
         case PATCH_TASKS_SUCCESS:
+            console.log(action.payload,"...action.payload...action.payload",action.id)
             state.byIds[action.id] = {
                 ...state.byIds[action.id],
                 loading: false,

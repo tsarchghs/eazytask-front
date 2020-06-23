@@ -4,9 +4,12 @@ import { getTask } from "../../actions/task";
 import { updateTask } from "../../actions/app";
 import { postOffers } from "../../actions/offer";
 import Loading from "../../components/loading";
-import { Redirect } from "react-router-dom"
+import { Redirect, withRouter, Link } from "react-router-dom"
 import { v4 } from "uuid";
+import { GET_AUTH } from "../../actionTypes";
+import { debounce } from "lodash";
 import E404 from "../E404";
+import { compose } from "recompose";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -86,7 +89,10 @@ class EditTask extends React.Component {
                 value: task.thumbnail
             }
             if (task.thumbnail){
-                prevState.data.gallery.push(task.thumbnail);
+                prevState.data.gallery.push({
+                    type: "SOURCE",
+                    value: task.thumbnail
+                });
             }
             console.log("prevState.data.gallery", prevState.data.gallery)
             return prevState;
@@ -136,6 +142,10 @@ class EditTask extends React.Component {
             id: this.props.match.params.taskId,
             data
         })
+        // this.setState({ data: {}, onEdit: "" })
+        setTimeout( () => {
+            window.location.replace("")
+        }, 450)
     }
     onThumbnailChange = val => () => this.setState(prevState => {
         console.log("onThumbnailChangeonThumbnailChange")
@@ -152,11 +162,191 @@ class EditTask extends React.Component {
         }
         return prevState;
     })
+    showUpdateButton = () => {
+        let { gallery, thumbnail, ...rest } = this.state.data;
+        return Object.keys(rest).length || this.state.imagesUpdated;
+    }
+    toggleOptions = () => {
+        if (this.state.settingsOpen) return () => this.setState({ settingsOpen: false });
+        return () => this.setState({ settingsOpen: true})
+    }
     render = () => {
-        if (this.props.loading) return <Loading />
-        if (this.props.own_user && this.props.own_user.id !== this.props.task.User.id) return <Redirect to={"/task/" + this.props.task.id}/>
+        if (this.props.loading || this.props.auth.loading) return <Loading />
+        if (
+            (this.props.own_user && this.props.own_user.id !== this.props.task.User.id) || 
+            this.props.auth.isAuthenticated === false
+        ) return <Redirect to={"/task/" + this.props.task.id}/>
         if (!this.executed_fillGalleryThumbnailState) this.fillGalleryThumbnailState()
         console.log("this.stateee",this.state)
+        return (
+            <div>
+                {/* Hello world */}
+                <div className="awesome">	
+                    <div className="edit-task__wrapper">
+                    <div className="container">
+                        <div className="content">
+                            <header className="logo-text">
+                                <span onClick={() => this.props.history.push("/my_active_tasks")} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                <h4 className="hide-on-desktop logo-title">
+                                    Edit task
+                                    <div className="touchable">
+                                        <img onClick={debounce(this.toggleOptions(),10)} src="/images/more.png" style={{ width: '18px' }} alt="" />
+                                        <div className={"touchable__content " + (this.state.settingsOpen ? "show" : "")}>
+                                            <div className="flex aic jcsb"><p>Delete</p> <img src="/images/trash.png" alt="" /></div>
+                                            <div className="flex aic jcsb"><p>Deactivate</p> <img src="/images/sleep.png" alt="" /></div>
+                                        </div>
+                                    </div>
+                                </h4>
+                            </header>
+                            <section className="tasker-profile">
+                                <div className=" edit-task__title">
+                                {
+                                    this.state.onEdit === "TITLE" ?
+                                        <React.Fragment>
+                                            <input onChange={e => e.persist() || this.setState(prevState => {
+                                                    prevState.data["title"] = e.target.value;
+                                                    return prevState;
+                                                })}
+                                                className="register__form_input"
+                                                value={this.state.data.title || this.props.task.title}
+                                            /> 
+                                                <span onClick={e => this.setState({ onEdit: "" })} className="edit-pen">
+                                                    <img src="/images/edit-pen.png" alt="" />
+                                                </span>
+                                        </React.Fragment>
+                                        :
+                                        <h3>{this.state.data.title || this.props.task.title}
+                                            <span onClick={e => this.setState({ onEdit: "TITLE" })} className="edit-pen">
+                                                <img src="/images/edit-pen.png" alt="" />
+                                            </span>
+                                        </h3>
+                                }
+                                {
+                                    this.state.onEdit === "DESCRIPTION" ?
+                                        <React.Fragment>
+                                            <input className="register__form_input" onChange={e => e.persist() || this.setState(prevState => {
+                                                prevState.data["description"] = e.target.value;
+                                                return prevState;
+                                            })}
+                                                    value={this.state.data.description || this.props.task.description}
+                                            />
+                                            <span onClick={e => this.setState({ onEdit: "" })} className="edit-pen">
+                                                <img src="/images/edit-pen.png" alt="" />
+                                            </span>
+                                        </React.Fragment>
+                                        :
+                                        <h3>{this.state.data.description || this.props.task.description}
+                                            <span onClick={e => this.setState({ onEdit: "DESCRIPTION" })} className="edit-pen">
+                                                <img src="/images/edit-pen.png" alt="" />
+                                            </span>
+                                        </h3>
+                                }
+                                    {/* <img src="/images/edit-pen.png" alt="" /></span></p> */}
+                                </div>
+                                <div className="big-icons">
+                                    <div className="big-icon">
+                                        <div className="flex-grow">
+                                            <img src="/images/inter.png" alt="" />
+                                        </div>
+                                        <p>Active until</p>
+                                        <h5>{new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")}</h5>
+                                    </div>
+                                    <div className="big-icon">
+                                        <div className="flex-grow">
+                                            <img src="/images/pins.png" alt="" />
+                                        </div>
+                                        <p>{this.props.task.city}</p>
+                                        <h5>{this.props.task.zipCode}</h5>
+                                    </div>
+                                    <div className="big-icon">
+                                        <div className="flex-grow">
+                                            <img src="/images/shop.png" alt="" />
+                                        </div>
+                                        <p>Price</p>
+                                        <h5>CHF {this.props.task.expected_price}.-</h5>
+                                    </div>
+                                    <div className="big-icon">
+                                        <div className="flex-grow">
+                                            <img src="/images/house.png" alt="" />
+                                        </div>
+                                        <p>Type</p>
+                                        <h5>{this.props.task.Category.name}</h5>
+                                    </div>
+                                </div>
+                                <div className="offers-images__layout">
+                                    <p className="offers-images__title">Gallery</p>
+                                    <div className="offers-images">
+                                        {
+                                            this.state.data.gallery && this.state.data.gallery.map(obj => {
+                                                return (
+                                                    <div className={"offers-image image-uploads " + (this.state.data.thumbnail.value == obj.value ? "active" : "")}>
+                                                        <img onClick={this.onThumbnailChange(obj.value)} src={obj.value} alt="" />
+                                                        <h4 onClick={this.onThumbnailChange(obj.value)}>Thumbnail</h4>
+                                                        <span style={{ zIndex: 1000000 }} onClick={this.onGalleryImageRemove(obj.value)} className="remove-th">X</span>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        <div className="offers-image image-uploads empty">
+                                            <img onClick={() => this.fileInputRef.click()} src="/images/plus.png" alt="" />
+                                            <input ref={ref => this.fileInputRef = ref} onChange={this.onFileChange} id="file-upload-2" type="file" />
+                                        </div>
+                                                    {/* <React.Fragment>
+                                                        <div>
+                                                            {this.state.data.thumbnail.value == obj.value && <div onClick={this.onThumbnailChange(obj.value)}><h2>Thumbnail</h2></div>}
+                                                            {this.state.data.thumbnail.value != obj.value && <div onClick={this.onThumbnailChange(obj.value)}><h2>Set thumbnail</h2></div>}
+                                                            <img width={50} src={obj.value} alt="" />
+                                                        </div>
+                                                        <div
+                                                            onClick={this.onGalleryImageRemove(obj.value)}
+                                                            style={{ zIndex: 1000000 }}
+                                                        >X</div>
+                                                    </React.Fragment> */}
+                                        {/* <div className="offers-image image-uploads active">
+                                            <img src="/images/ustah.jpeg" alt="" />
+                                            <h4>Thumbnail</h4>
+                                            <span className="remove-th">X</span>
+                                        </div>
+                                        <div className="offers-image image-uploads ">
+                                            <img src="/images/ustah.jpeg" alt="" />
+                                            <h4>Thumbnail</h4>
+                                            <span className="remove-th">X</span>
+                                        </div>
+                                        <div className="offers-image image-uploads ">
+                                            <img src="/images/ustah.jpeg" alt="" />
+                                            <h4>Thumbnail</h4>
+                                            <span className="remove-th">X</span>
+                                        </div>
+                                        <div className="offers-image image-uploads empty">
+                                            <img src="/images/plus.png" alt="" />
+                                        </div> */}
+                                    </div>
+                                </div>
+                                <div className="text-center edit-task__btngroup">
+                                    <Link to={`/task/${this.props.match.params.taskId}/edit/offers`}>
+                                        <p>View offers for this task</p>
+                                    </Link>
+                                    {
+                                        this.showUpdateButton() ?
+                                            (
+                                                this.props.updateTask.loading ? "Loading" :
+                                                    <button onClick={this.updateTask} className="button__style small">Save</button>
+                                            )
+                                            : null
+                                    }
+                                    
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                    {/* <label htmlFor="name">Enter your name: </label>
+                    <input type="text" id="name" /> */}
+                </div>
+                {/* <p>Enter your HTML here</p> */}
+            </div>
+
+        )
         return (
             <div>
                 <br />
@@ -193,10 +383,11 @@ class EditTask extends React.Component {
                     Add image: <input onChange={this.onFileChange} type="file"/>
                 </label>
                 <br /><br />
-
-
+                <Link to={`/task/${this.props.match.params.taskId}/edit/offers`}>
+                    <h6>View offers for this task</h6>
+                </Link>
                 { 
-                    Object.keys(this.state.data).length ? 
+                    this.showUpdateButton() ? 
                     (
                         this.props.updateTask.loading ? "Loading" :
                         <button onClick={this.updateTask}>Update</button> 
@@ -213,7 +404,14 @@ const mapStateToProps = (state, ownProps) => {
     let { taskId } = ownProps.match.params
     let { error, loading, ...task } = state.tasks.byIds[taskId] || { loading: true }
     let own_user = state.auth.profile;
-    return { error, loading, own_user, task: task || {}, updateTask: state.updateTask }
+    return { 
+        error,
+        loading,
+        own_user,
+        task: task || {},
+        updateTask: state.updateTask,
+        auth: state.auth[GET_AUTH]
+    }
 }
 
-export default connect(mapStateToProps, { getTask, postOffers, updateTask })(EditTask);
+export default compose(withRouter,connect(mapStateToProps, { getTask, postOffers, updateTask }))(EditTask);

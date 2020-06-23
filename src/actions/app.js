@@ -3,6 +3,9 @@ import {
     GET_MY_ACTIVE_TASKS_REQUEST,
     GET_MY_ACTIVE_TASKS_FAILED,
     GET_MY_ACTIVE_TASKS_SUCCESS,
+    GET_MY_ACTIVE_OFFERS_REQUEST,
+    GET_MY_ACTIVE_OFFERS_FAILED,
+    GET_MY_ACTIVE_OFFERS_SUCCESS,
     GET_ACTIVE_LISTING_REQUEST,
     GET_ACTIVE_LISTING_FAILED,
     GET_ACTIVE_LISTING_SUCCESS,
@@ -14,6 +17,7 @@ import {
     UPDATE_TASK_SUCCESS
 } from "../actionTypes";
 import { getTasks, patchTasks } from "./task";
+import { getOffers } from "./offer";
 import jwt_decode from "jwt-decode";
 
 export const setCreateTask = createTask => ({ 
@@ -30,6 +34,18 @@ export const getMyActiveTasksFailed = err => ({
 
 export const getMyActiveTasksSuccess = ids => ({
     type: GET_MY_ACTIVE_TASKS_SUCCESS, ids
+})
+
+export const getMyActiveOffersRequest = () => ({
+    type: GET_MY_ACTIVE_OFFERS_REQUEST
+})
+
+export const getMyActiveOffersFailed = err => ({
+    type: GET_MY_ACTIVE_OFFERS_FAILED, err
+})
+
+export const getMyActiveOffersSuccess = ids => ({
+    type: GET_MY_ACTIVE_OFFERS_SUCCESS, ids
 })
 
 export const getActiveListingRequest = () => ({
@@ -70,15 +86,29 @@ export const updateTaskSuccess = () => ({
 
 export const getMyActiveTasks = () => {
     return dispatch => {
-        let { UserId } = jwt_decode(localStorage.getItem("eazytask:token"));
+        let { userId } = jwt_decode(localStorage.getItem("eazytask:token"));
         let configs = {
-            filters: { UserId },
             onRequest: getMyActiveTasksRequest(),
             onFailed: err => getMyActiveTasksFailed(err),
             onSuccess: tasks => getMyActiveTasksSuccess(tasks.map(x => x.id)),
-            filters: { fields: "category,user" }
+            filters: { fields: "category,user", },
+            UserId: userId
         }
         dispatch(getTasks(configs))
+    }
+}
+
+export const getMyActiveOffers = () => {
+    return dispatch => {
+        let { userId } = jwt_decode(localStorage.getItem("eazytask:token"));
+        let configs = {
+            onRequest: getMyActiveOffersRequest(),
+            onFailed: err => getMyActiveOffersFailed(err),
+            onSuccess: offers => getMyActiveOffersSuccess(offers.map(x => x.id)),
+            filters: { fields: "category,user", },
+            UserId: userId
+        }
+        dispatch(getOffers(configs))
     }
 }
 

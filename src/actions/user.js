@@ -26,26 +26,26 @@ export const postUserSuccess = payload => ({
     type: POST_USER_SUCCESS, payload
 })
 
-export const getUserRequest = () => ({
-    type: GET_USER_REQUEST
+export const getUserRequest = id => ({
+    type: GET_USER_REQUEST,id
 })
 
-export const getUserFailed = err => ({
-    type: GET_USER_FAILED, err
+export const getUserFailed = (id,err) => ({
+    type: GET_USER_FAILED, err,id
 })
 
-export const getUserSuccess = payload => ({
-    type: GET_USER_SUCCESS, payload
+export const getUserSuccess = (id,payload) => ({
+    type: GET_USER_SUCCESS, payload,id
 })
 
 export const getUser = (id,options) => {
     return dispatch => {
-        dispatch(getUserRequest())
+        dispatch(getUserRequest(id))
         let query = queryString.stringify(options)
         return axios.get(`/users/${id}?` + query)
             .then(({ data }) => {
-                dispatch(getUserSuccess(data));
-            }).catch(err => dispatch(getUserFailed(err)));
+                dispatch(getUserSuccess(id,data));
+            }).catch(err => dispatch(getUserFailed(id,err)));
     };
 }
 

@@ -12,6 +12,9 @@ import "../src/utils/fonts/product-sans.ttf";
 import "../src/utils/fonts/product-sans-bold.ttf";
 import { Helmet } from "react-helmet";
 
+window.__PROFILE_DEFAULT_PICTURE__ = "https://vectorified.com/images/no-profile-picture-icon-22.jpg"
+window.__THUMBNAIL_DEFAULT_PICTURE__ = "/images/ustah.jpeg"
+window.__COVER_DEFAULT_PICTURE__ = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlWuZdsBd1MLX3x_qVg7EvlKju9dixFiP7IlznNK3oixcJTWHa&usqp=CAU"
 ReactDOM.render(
   <React.StrictMode>
     <Router>

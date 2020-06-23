@@ -9,9 +9,12 @@ import Setup from "./setup";
 import CreateTask from "./create_task";
 import Task from "./task";
 import MyActiveTasks from "./my_active_tasks";
+import MyActiveOffers from "./my_active_offers";
 import ActiveListing from "./active_listing";
 import EditTask from "./edit_task/EditTask"; 
 import Profile from "./profile/Profile";
+import TaskOffers from "./edit_task_offers/TaskOffers";
+import TaskOffer from "./edit_task_offers_id/TaskOffer";
 import E404 from "./E404";
 
 import { Redirect } from "react-router-dom";
@@ -53,11 +56,16 @@ const Routes = props => {
             <Route path="/" component={Home} exact/>
             <Route path="/task/:taskId" component={Task} exact />
             <Route path="/task/:taskId/edit" component={EditTask} exact />
+            <Route path="/task/:taskId/edit/offers" component={TaskOffers} exact />
+            <Route path="/task/:taskId/edit/offers/:offerId" component={TaskOffer} exact />
             <Route path="/active_listing" component={ActiveListing} exact />
             <Route path="/profile/:userId" component={Profile} exact/>
-            <Route path="/my_active_tasks" component={ () => 
-                <ProtectedRoute Component={MyActiveTasks} allowLoggedIn={true}/>
-            }/>
+            <Route path="/my_active_tasks" component={() =>
+                <ProtectedRoute Component={MyActiveTasks} allowLoggedIn={true} />
+            } />
+            <Route path="/my_active_offers" component={() =>
+                <ProtectedRoute Component={MyActiveOffers} allowLoggedIn={true} />
+            } />
             <Route path="/logout" component={() => {
                 props.logout()
                 return <Redirect to="/"/>

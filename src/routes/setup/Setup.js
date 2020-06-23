@@ -21,6 +21,7 @@ class Setup extends React.Component {
         super(props);
         this.state = {
             step: 0,
+            prevStep: 0,
             data: {
                 profile_picture_file: undefined,
                 cover_picture_file: undefined,
@@ -41,8 +42,8 @@ class Setup extends React.Component {
                 "NOTIFICATION_OPTION",
                 "BECOME_TASKER",
                 "MY_SKILLS",
-                "MY_LANGUAGES",
                 "MY_CITIES",
+                "MY_LANGUAGES",
                 "READY_TO_GO"
             ]
         }
@@ -94,13 +95,15 @@ class Setup extends React.Component {
     onListAdd = key => value => this.onListChange("ADD", key, value);
     onListRemove = key => value => this.onListChange("REMOVE",key,value);
     setupAccount = () => {
-        console.log("setupAccount",this.state.data);
         this.props.patchUser({
             userId: this.props.id,
             data: { ...this.state.data, setupCompleted: true },
             callUpdateAuthProfile: true
         });
-        this.props.postTasker(this.state.data);
+        if (this.state.prevStep == 8) {
+            console.log("POST_TASKER")
+            this.props.postTasker(this.state.data);
+        }
     }
     showCurrentStep = () => {
         switch (this.state.step) {
@@ -155,7 +158,14 @@ class Setup extends React.Component {
             case "READY_TO_GO": return ""
         }
     }
-    nextStep = step => () => this.setState({ step })
+    nextStep = step => () => this.setState(prevState => {
+        prevState.prevStep = step - 1;
+        prevState.step = step;
+        return step;
+    })
+    showSkipBool = () => 
+        this.state.step !== this.lastStepIndex &&
+        this.state.step <= 5
     getSkipForNowInfo = () => {
         if (this.state.step === 0) 
             return { onClick: this.setupAccount, show: "Skip for now" }
@@ -166,6 +176,7 @@ class Setup extends React.Component {
     getButtonText = () => {
         if (this.state.step === 0) return "Setup"
         if (this.state.step === this.lastStepIndex - 1) return "Finish"
+        if (this.state.step === 4) return "Finish"
         if (this.state.step !== this.lastStepIndex) return "Next"
         else return "Go"
     }
@@ -174,9 +185,21 @@ class Setup extends React.Component {
         else return this.nextStep(this.state.step + 1)
     }
     getDots = () => {
-        return this.state.steps.map((x,i) => {
-            let active = this.state.steps[this.state.step] === x;
-            return <span onClick={this.nextStep(i)} className={`dot ${active ? "active" : ""}`} />
+        if (this.state.step === 0) return [];
+        if (this.state.step === 5) return [];
+        let sliceValues = []
+        if (this.state.step > 0 && this.state.step < 5) sliceValues = [1,5]
+        else sliceValues = [6,this.state.steps.length -1];
+        return this.state.steps.slice(...sliceValues).map((x,i) => {
+            let getOnClick = () => {
+                console.log(this.state.step,index)
+                if (this.state.step <= index) return () => {}
+                else return this.nextStep(index);
+            }
+            let index = this.state.steps.indexOf(x)
+            let onStep = this.state.step - sliceValues[0] + 1
+            let active = onStep >= i + 1;
+            return <span onClick={getOnClick()} className={`dot ${active ? "active" : ""}`} />
         })
     }
     getHeader = () => {
@@ -216,9 +239,9 @@ class Setup extends React.Component {
         }
     }
     render(){
-        console.log(this.props.profile, "PROFILE")
+        console.log(this.state, "this.state")
         if (this.props.setupCompleted) return <Redirect to="/" />
-        let displaySkip = this.state.step !== this.lastStepIndex && this.getSkipForNowInfo();
+        let displaySkip = this.showSkipBool() && this.getSkipForNowInfo();
         let coverPicture = this.state.step == 2 ? " profile__cover" : ""
         return (
             <div className="container">

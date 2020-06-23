@@ -68,6 +68,10 @@ class ActiveListing extends React.Component {
         ))
     } 
     getAllPagesNumber = () => Math.floor(this.props.tasks_count.count / this.state.limit)
+    getToggleFilterFunc = () => {
+        if (!this.state.onFilter) return () => this.setState({ onFilter: "MAIN" })
+        else return () => this.setState({ onFilter: "" })
+    }
     render() {
         let loading = this.props.loading || this.props.tasks_count.loading
         const Pages = () => {
@@ -80,7 +84,7 @@ class ActiveListing extends React.Component {
             if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2) 
             console.log("this.state.currentPage -2 ", this.state.currentPage-2)
             for (let x = start; x <= end;x++){
-                content.push(<Link to={`/active_listing?page=${x}`}><div onClick={() => this.updateTasks(x)}>{x}</div></Link>)
+                content.push(<Link to={`/active_listing?page=${x}`}><div onClick={() => this.updateTasks(x)}>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
             }
             return content;
         }
@@ -94,7 +98,68 @@ class ActiveListing extends React.Component {
         if (!show_category_name_or_default) show_category_name_or_default = "Categories"
         return (
             <React.Fragment>
-                <div className="filters-card" style={{ display: "block" }}>
+                <section className="landing-info panel card-section" id="c" style={{ background: 'white' }}>
+                    <div className="container">
+                        <div className="content">
+                            <header className="flex jcsb aic">
+                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                                <Link to="/register">
+                                    <a href="#" className="h4">Join us</a>
+                                </Link>
+                            </header>
+                            <section className="profile__cover">
+                                <div className="two-column__info flex flex-column">
+                                    <div className=" flex jcsb aic w100">
+                                        <div className="background-title mb5 flex1">
+                                            <h3>Active</h3>
+                                            <h4>listings</h4>
+                                            <p className="shadow__title hide__mobile">some active listings on eazytask</p>
+                                            <p className="shadow__title show__mobile">COMMERCIAL</p>
+                                        </div>
+                                        <button style={{ cursor: "pointer" }} onClick={debounce(this.getToggleFilterFunc(), 10)}><img style={{width: 25}} src="/images/tools-and-utensils.png"/></button>
+                                        <br />
+                                    </div>
+                                    <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" : "")}>
+                                        {this.props.loading && "Loading"}
+                                        {
+                                            !this.props.loading &&
+                                            this.props.tasks.map(task => (
+                                                <div className="listing-card">
+                                                    <Link to={"/task/" + task.id}>
+                                                        <div className="listing-card__img">
+                                                            <div className="lc-img" style={{
+                                                                backgroundImage:
+                                                                    task.thumbnail ? `url("${task.thumbnail}")` : 'url("/images/ustah.jpeg")'
+                                                            }}
+                                                            />
+                                                            <div className="listing-card__img--mask" />
+                                                        </div>
+                                                        <div className="listing-card__info">
+                                                            <h3>{task.title}</h3>
+                                                            <h5>{task.User.first_name} {task.User.last_name[0]}</h5>
+                                                        </div>
+                                                        <div className="listing-card__hover flex aic">
+                                                            <div>
+                                                                <h5>{task.city || "-"}</h5>
+                                                                <h5>{task.due_date ? new Date(task.due_date).toLocaleDateString() : "-"}</h5>
+                                                            </div>
+                                                            <div>
+                                                                <h5>{task.Category.name}</h5>
+                                                                <h5>CHF {task.expected_price}.-</h5>
+                                                            </div>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <div className="filters-card" style={{ zIndex: 1000000000000,display: (this.state.onFilter ? "block" : "none") }}>
                     <h4 className="mb15">Filter</h4>
                     <label htmlFor className="mb25">
                         <span><img src="images/search.png" alt="" /></span>
@@ -129,13 +194,13 @@ class ActiveListing extends React.Component {
                         </div>
                     </div>
                     <div className={"filters-card__extra " + (this.state.onFilter === "CATEGORIES" ? "slide" : "")}>
-                        <h4 className="mb25 flex aic remove-extra"><img onClick={() => this.setState({ onFilter: "" })} style={{ transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
+                        <h4 className="mb25 flex aic remove-extra"><img onClick={() => this.setState({ onFilter: "MAIN" })} style={{ transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
                         {
                             this.props.categories.loading ? "Loading categories" :
                                 this.props.categories.items.map(x => (
                                     <div className="filters-list" onClick={() => {
                                         this.onFilterChange("category_id")({ target: { value: x.id } })
-                                        this.setState({ onFilter: "" })
+                                        this.setState({ onFilter: "MAIN" })
                                     }}>
                                         <div className="filter-input filter-slide">
                                             <span>
@@ -148,7 +213,7 @@ class ActiveListing extends React.Component {
                         }
                     </div>
                     <div className={"filters-card__extra " + (this.state.onFilter === "BUDGET_RANGE" ? "slide" : "")}>
-                        <h4 className="mb25 flex aic remove-extra"><img onClick={() => this.setState({ onFilter: "" })} style={{ transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
+                        <h4 className="mb25 flex aic remove-extra"><img onClick={() => this.setState({ onFilter: "MAIN" })} style={{ transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
                         Budget: 
                         {
                             this.state.filters.min_expected_price == this.state.filters.max_expected_price 
@@ -178,29 +243,36 @@ class ActiveListing extends React.Component {
                         />
                     </div>
                 </div>
+                <center className="flex aic jcc">
+                    {!loading && this.state.currentPage && <Pages />}
+                </center>
 
+            </React.Fragment>
+        )
+        return (
+            <React.Fragment>
                 <div>Discover all</div>
                 {loading && "Loading"}
                 {/* { !loading && } */}
                 {
                     this.props.categories.loading ? "Loading categories" :
-                    this.props.categories.items.map(x => (
-                        <label>{x.name}
-                            <input 
-                                type="radio" 
-                                name="categories" 
-                                value={x.id}
-                                checked={this.state.filters.category_id == x.id}
-                                onChange={this.onFilterChange("category_id")}    
-                            />
-                        </label>
-                    ))
+                        this.props.categories.items.map(x => (
+                            <label>{x.name}
+                                <input
+                                    type="radio"
+                                    name="categories"
+                                    value={x.id}
+                                    checked={this.state.filters.category_id == x.id}
+                                    onChange={this.onFilterChange("category_id")}
+                                />
+                            </label>
+                        ))
                 }
-                <input 
+                <input
                     type="date"
                     placeholder="Due date..."
                     value={this.state.filters.due_date}
-                    onChange={this.onFilterChange("due_date",300)}
+                    onChange={this.onFilterChange("due_date", 300)}
                 />
                 <input
                     type="text"
@@ -216,7 +288,7 @@ class ActiveListing extends React.Component {
                 />
                 <label>
                     Expire soon
-                    <input 
+                        <input
                         type="checkbox"
                         value={this.state.filters.expire_soon}
                         onChange={this.onFilterChange("expire_soon")}
@@ -227,7 +299,7 @@ class ActiveListing extends React.Component {
                         {this.showTasks()}
                     </ul>
                 }
-                { !loading && this.state.currentPage && <Pages/> }
+
             </React.Fragment>
         )
     }

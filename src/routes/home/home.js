@@ -193,7 +193,7 @@ class Home extends React.Component {
                                         <div className="container">
                                             <div className="content">
                                                 <header class="flex jcsb aic"></header>
-                                                <section ref={ref => this.stepsSectionRef = ref} className="two-column__layout steps__layout-toggle profile__cover"> {/* two-column__layout steps__layout-toggle steps__layout profile__cover */ }
+                                                <section ref={ref => this.stepsSectionRef = ref} className="two-column__layout steps__layout-toggle profile__cover steps__layout"> {/* two-column__layout steps__layout-toggle steps__layout profile__cover */ }
                                                     <div className="two-column__info flex flex-column">
                                                         <div className=" flex flex-column  w100">
                                                             <div className="background-title mb5">
