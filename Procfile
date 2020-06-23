@@ -1,1 +1,1 @@
-web: npm run-script build-and-serve
+web: npm serve
