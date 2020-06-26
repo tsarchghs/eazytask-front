@@ -14,7 +14,7 @@ class MyActiveTasks extends React.Component {
         return this.props.tasks.map(task => (
             <Link to={`/task/${task.id}/edit`}>
                 <div className="offers-image active">
-                    <img src="/images/ustah.jpeg" alt="" />
+                    <img src={task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                     <div>
                         <h4>{task.title}</h4>
                         <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>

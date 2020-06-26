@@ -12,6 +12,7 @@ import citiesReducer from "./reducers/cities";
 import tasksReducer from "./reducers/tasks";
 import categoriesGroupsReducer from "./reducers/categories_groups";
 import categoriesReducer from "./reducers/categories";
+import messagesReducer from "./reducers/messages";
 
 const reduceReducers = (...reducers) => {
   return (previous, current) =>
@@ -32,7 +33,8 @@ export default createStore(
       cities: citiesReducer,
       tasks: tasksReducer,
       categoriesGroups: categoriesGroupsReducer,
-      categories: categoriesReducer
+      categories: categoriesReducer,
+      messages: messagesReducer
     }),
     applyMiddleware(thunk, logger)
 )

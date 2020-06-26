@@ -18,7 +18,7 @@ const format_number = val => {
 }
 
 function urltoFile(url, filename, mimeType) {
-    if (true) url = "https://i.imgur.com/fHyEMsl.jpg"
+    if (true) url = url
     return (fetch(url)
         .then(function (res) { return res.arrayBuffer(); })
         .then(function (buf) { return new File([buf], filename, { type: mimeType }); })
@@ -34,6 +34,7 @@ class EditTask extends React.Component {
                 
             },
             imagesUpdated: false,
+            loading: false
         }
         this.executed_fillGalleryThumbnailState = false;
     }
@@ -123,6 +124,7 @@ class EditTask extends React.Component {
     }
     updateTask = async () => {
         console.log("UPDATE_TASK::",this.state.data);
+        this.setState({ loading: true })
         let { gallery, thumbnail, ...rest } = this.state.data;
         let data = { ...rest }
         if (this.state.imagesUpdated || true) {
@@ -145,7 +147,7 @@ class EditTask extends React.Component {
         // this.setState({ data: {}, onEdit: "" })
         setTimeout( () => {
             window.location.replace("")
-        }, 450)
+        }, 1000)
     }
     onThumbnailChange = val => () => this.setState(prevState => {
         console.log("onThumbnailChangeonThumbnailChange")
@@ -329,7 +331,7 @@ class EditTask extends React.Component {
                                     {
                                         this.showUpdateButton() ?
                                             (
-                                                this.props.updateTask.loading ? "Loading" :
+                                                this.state.loading ? <button className="button__style small">Saving..</button> :
                                                     <button onClick={this.updateTask} className="button__style small">Save</button>
                                             )
                                             : null

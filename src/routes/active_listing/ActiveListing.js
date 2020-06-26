@@ -116,7 +116,8 @@ class ActiveListing extends React.Component {
                                             <p className="shadow__title hide__mobile">some active listings on eazytask</p>
                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                         </div>
-                                        <button style={{ cursor: "pointer" }} onClick={debounce(this.getToggleFilterFunc(), 10)}><img style={{width: 25}} src="/images/tools-and-utensils.png"/></button>
+                                        <button style={{ cursor: "pointer" }} onClick={debounce(this.getToggleFilterFunc(), 10)}>
+                                        <img style={{width: 25, transform: this.state.onFilter ? "rotate(90deg)" : ""}} src="/images/tools-and-utensils.png"/></button>
                                         <br />
                                     </div>
                                     <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" : "")}>

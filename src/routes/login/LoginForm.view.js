@@ -29,7 +29,8 @@ export default (props) => {
         ))}
         </div>
         <div className="register__button">
-          <a href="#">Trouble loging in?</a>
+        
+          <Link to="/forget_password">Trouble loging in?</Link>
           { props.loading && "Loading"}
           { !props.loading && 
               <button

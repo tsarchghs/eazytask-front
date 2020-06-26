@@ -130,7 +130,9 @@ class Task extends React.Component {
                         <div className="offers-buttons">
                             {
                                 this.state.belowUI === "DEFAULT" &&
-                                <a href="#" className="button">Q&amp;A</a>
+                                <Link to={`/task/${this.props.match.params.taskId}/qa`}>
+                                    <a href="#" className="button">Q&amp;A</a>
+                                </Link>
                             }
                             {
                                 this.state.belowUI === "DEFAULT" &&
@@ -296,8 +298,9 @@ class Task extends React.Component {
     </div>
 
     render(){
+        console.log({err: this.props})
         if (this.props.error)
-            if (this.props.errorResponse.response.status === 404) 
+            if (this.props.task.errorResponse.response.status === 404) 
                 return <E404/>
         if (this.props.loading) return <Loading/>
         switch (this.state.step) {
