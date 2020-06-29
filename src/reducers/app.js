@@ -10,7 +10,13 @@ import {
     GET_ACTIVE_LISTING2_FAILED,
     GET_ACTIVE_LISTING2_SUCCESS,
     GET_MY_ACTIVE_OFFERS_REQUEST,
-    GET_MY_ACTIVE_OFFERS_SUCCESS
+    GET_MY_ACTIVE_OFFERS_SUCCESS,
+    VALIDATE_VERIFICATION_CODE_REQUEST,
+    VALIDATE_VERIFICATION_CODE_FAILED,
+    VALIDATE_VERIFICATION_CODE_SUCCESS,
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_FAILED,
+    RESET_PASSWORD_SUCCESS
 } from "../actionTypes"
 
 const INITIAL_STATE = {
@@ -37,6 +43,16 @@ const INITIAL_STATE = {
     updateTask: {
         loading: false,
         finished: false
+    },
+    validateVerificationCode: {
+        loading: false,
+        err: undefined,
+        success: undefined
+    },
+    resetPassword: {
+        loading: false,
+        err: undefined,
+        success: undefined
     }
 }
 
@@ -87,6 +103,59 @@ export default (state = INITIAL_STATE, action) => {
             state.activeListing2.loading = false;
             state.activeListing2.ids = action.ids;
             return { ...state }
+
+        case VALIDATE_VERIFICATION_CODE_REQUEST:
+            state.validateVerificationCode = {
+                loading: true,
+                err: undefined,
+                success: undefined
+            }
+            return { ...state }
+        case VALIDATE_VERIFICATION_CODE_FAILED:
+            state.validateVerificationCode.err = action.err;
+            state.validateVerificationCode.loading = false;
+            state.validateVerificationCode.success = false;
+            return {
+                ...state,
+                validateVerificationCode: {
+                    ...state.validateVerificationCode
+                }
+            }        
+        case VALIDATE_VERIFICATION_CODE_SUCCESS:
+            state.validateVerificationCode.success = true;
+            state.validateVerificationCode.loading = false;
+            return { 
+                ...state, 
+                validateVerificationCode: {
+                    ...state.validateVerificationCode 
+                }
+            }
+        case RESET_PASSWORD_REQUEST:
+            state.resetPassword = {
+                loading: true,
+                err: undefined,
+                success: undefined
+            }
+            return { ...state }
+        case RESET_PASSWORD_FAILED:
+            state.resetPassword.err = action.err;
+            state.resetPassword.loading = false;
+            state.resetPassword.success = false;
+            return {
+                ...state,
+                resetPassword: {
+                    ...state.resetPassword
+                }
+            }
+        case RESET_PASSWORD_SUCCESS:
+            state.resetPassword.success = true;
+            state.resetPassword.loading = false;
+            return {
+                ...state,
+                resetPassword: {
+                    ...state.resetPassword
+                }
+            }
         default: return state
     }
 }

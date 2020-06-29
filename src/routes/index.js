@@ -18,6 +18,8 @@ import TaskOffer from "./edit_task_offers_id/TaskOffer";
 import TaskChat from "./task_chat";
 import MyProfileEdit from "./my_profile_edit";
 import DeleteAccount from "./delete_account";
+import queryString from "query-string";
+
 import E404 from "./E404";
 
 import { Redirect } from "react-router-dom";
@@ -42,7 +44,9 @@ class _ProtectedRoute extends React.Component {
         if (this.props.auth.isAuthenticated === this.props.allowLoggedIn) 
             return <Component {...this.props.props} />
         else if (!authRequestBack) return null;
-        else return <Redirect to="/" />
+        else {
+            return <Redirect to={this.props.to || "/"} />
+        }
     }
 }
 
@@ -88,7 +92,7 @@ const Routes = props => {
             { /* TODO: Switch to closed Route tags */}
             
             <Route path="/create-task" exact>
-                <ProtectedRoute Component={CreateTask} allowLoggedIn={true} />
+                <ProtectedRoute to="/register" Component={CreateTask} allowLoggedIn={true} />
             </Route>
 
 
@@ -102,7 +106,7 @@ const Routes = props => {
 
 
             <Route path="/setup" exact>
-                <ProtectedRoute Component={Setup} allowLoggedIn={true} />
+                <ProtectedRoute to="/register" Component={Setup} allowLoggedIn={true} />
             </Route>
 
             <Route path="/" component={E404} />

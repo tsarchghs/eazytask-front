@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getMessages, postMessages } from "../../actions/messages";
+import { getTask } from "../../actions/task";
 import Loading from "../../components/loading";
 import { Link } from "react-router-dom";
 import E404 from "../E404";
@@ -17,6 +18,7 @@ class TaskChat extends React.Component {
     }
     componentDidMount(){
         let { taskId } = this.props.match.params;
+        this.props.getTask(taskId, "fields=question,user,offers,category")
         this.props.getMessages({taskId})
         this.socket = io.connect(baseURL_WS)
         console.log("this.socket", this.socket)
@@ -26,13 +28,14 @@ class TaskChat extends React.Component {
         })
         this.socket.on('share_message', message => {
             console.log("ON_MESSAGE", message)
-            if (message.UserId != this.props.currentUserId)
+            // if (message.UserId != this.props.currentUserId)
             this.setState(prevState => {
                 if (
                     prevState.messages.find(msg => msg.uniqueID == message.uniqueID)
                 ) return prevState;
+                if (!message.User) message.User = { profile_image: message.profile_image }
                 prevState.messages.push(message);
-                return prevState;
+                return { ...prevState, messages: { ...prevState.messages } };
             })
             
         });
@@ -54,21 +57,33 @@ class TaskChat extends React.Component {
         }
         this.props.postMessages(message)
         message.UserId = this.props.currentUserId
+        message.profile_image = this.props.own_profile.profile_image;
         message.uniqueID = v4();
+        console.log({message})
         this.socket.emit(`send_message`, message)
-        this.setState({ content: ""})
+        this.setState({ content: "" })
     }
     render(){
+        if (this.props.taskInfo.loading) return null;
+        if (this.props.taskInfo.error) return <E404/>
         return (
             <div>
+                <div>
+                    <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} width="30" />
+                    { this.props.taskInfo.task.title} Q&A <br/> 
+                    {this.props.taskInfo.task.User.first_name} {this.props.taskInfo.task.User.last_name[0]}
+                </div><br/>
                 Test<br/>
                 Messages: <br/>
                 {
                     this.props.messages.concat(this.state.messages).map(msg => (
-                        <div>Content: {msg.content}, UserId: {msg.UserId}<br/></div>
+                        <div>
+                            <img width="30" src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} />
+                            Content: {msg.content}, UserId: {msg.UserId}<br/>
+                        </div>
                     ))
                 }
-                {!this.props.messages.length && "No messages to show" }<br/>
+                {!this.props.messages.concat(this.state.messages).length && "No messages to show" }<br/>
                 <form onSubmit={this.handleOnSubmit}>
                     <input value={this.state.content} onChange={e => this.setState({content: e.target.value})} />
                     <button>Send</button>
@@ -84,9 +99,14 @@ let mapStateToProps = (state, ownProps) => {
     let messages = task.allIds
                     .map(id => task.byIds[id])
                     .filter(msg => msg.TaskId == taskId)
+
+    let taskInfo = state.tasks.byIds[taskId] || { loading: true };
     return {
-        messages, currentUserId: state.auth.profile ? state.auth.profile.id : undefined
+        messages, 
+        own_profile: state.auth.profile, 
+        currentUserId: state.auth.profile ? state.auth.profile.id : undefined,
+        taskInfo: { error: taskInfo.error, loading: taskInfo.loading, task: taskInfo }
     }
 }
 
-export default connect(mapStateToProps, { getMessages, postMessages })(TaskChat);
+export default connect(mapStateToProps, { getTask, getMessages, postMessages })(TaskChat);

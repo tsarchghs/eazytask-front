@@ -1,5 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
+import { withRouter } from "react-router-dom";
+import queryString from "query-string";
 
 class CodeInputs extends React.Component {
     render(){
@@ -49,12 +51,25 @@ class VerificationCode extends React.Component {
         this.props.onSubmit(code)
     }
     render(){
-        console.log(this.state.values);
+        let { loading } = this.props.app_validateVerificationCode
+        if (this.props.app_validateVerificationCode.success) {
+            let code = Number(this.state.values.join(""));
+            let { search } = this.props.location;
+            let params = queryString.parse(search);
+            this.props.history.push(`?valid_code=${code}&email=${params.email}`)
+        }
         return (
             <React.Fragment>
                 Reset account <br /><br />
                 Verification code<br />
                 A code has been to your email, please enter it here<br /> <br />
+                {
+                    this.props.app_validateVerificationCode.err && 
+                    this.props.app_validateVerificationCode.err.response && 
+                    this.props.app_validateVerificationCode.err.response.data &&
+                    this.props.app_validateVerificationCode.err.response.data.errors.map(err => <div>{err}</div>)
+
+                }
                 <form onSubmit={this.onSubmit}>
                     <div style={{ display: "flex" }}>
                         <CodeInputs
@@ -62,11 +77,14 @@ class VerificationCode extends React.Component {
                             values={this.state.values}
                         />
                     </div>
-                    <button type={this.props.buttonType} style={this.props.buttonStyle}>Submit</button>
+                    {
+                        loading ? "Loading" :
+                        <button type={this.props.buttonType} style={this.props.buttonStyle}>Submit</button>
+                    }
                 </form>
             </React.Fragment>
         )
     }
 }
 
-export default VerificationCode;
+export default withRouter(VerificationCode);

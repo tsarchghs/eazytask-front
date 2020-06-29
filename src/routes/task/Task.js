@@ -25,13 +25,13 @@ class Task extends React.Component {
         }
     }
     componentDidMount(){
-        console.log(55555)
+        console.log(55555,`this.props.getTask(this.props.match.params.taskId,"fields=question,user,offers,category")`)
         this.props.getTask(this.props.match.params.taskId,"fields=question,user,offers,category")
     }
     setStep = step => () => this.setState({ step })
     onChange = key => e => this.setState({ [key]: e.target.value })
     amountOnChange = e => this.setState({ amount: format_number(e.target.value) })
-    showOfferUI = () => console.log({ tasker: this.props.own_user, task: this.props.task.Offers,loading: this.props.loading }) || (
+    showOfferUI = () => !this.props.own_user || (
         this.props.own_user &&
         this.props.own_user.id !== this.props.task.UserId &&
         this.props.own_user.Tasker &&
@@ -39,10 +39,14 @@ class Task extends React.Component {
         !this.props.task.Offers.find(offer => offer.Tasker.User.id === this.props.own_user.id)
     )
     getOfferUI = () => {
+        console.log(buttonOnClick, !!own_user,"buttonOnClick")
         let { clickedMakeOffer, amount } = this.state;
+        let { own_user } = this.props;
         let buttonText = !clickedMakeOffer ? "Make offer" : "Next"
-        let buttonOnClick = !clickedMakeOffer ? () => this.setState({ clickedMakeOffer: true })
-                                            : this.setStep("SELF_PROMOTE")
+        let buttonOnClick;
+        if (own_user) buttonOnClick = !clickedMakeOffer ? () => this.setState({ clickedMakeOffer: true })
+                                                : this.setStep("SELF_PROMOTE")
+        else buttonOnClick = () => this.props.history.push("/register?to=/task/" + this.props.task.id);
         return (
             <React.Fragment>
                 {clickedMakeOffer && <input type="number" value={amount} onChange={this.amountOnChange}/>}<br/>
@@ -135,19 +139,45 @@ class Task extends React.Component {
                                 </Link>
                             }
                             {
-                                this.state.belowUI === "DEFAULT" &&
-                                <a
-                                    button
-                                    onClick={() => this.setState({ belowUI: "SHOW_OFFERS" })}
-                                    className="button fill">
-                                    Go to offers
-                                </a>
+                                this.props.task.Offers ? 
+                                <React.Fragment>
+                                    {
+                                        this.state.belowUI === "DEFAULT" && (this.props.task.Offers.length || !this.showOfferUI()) ?
+                                        <a
+                                            button
+                                            onClick={() => this.setState({ belowUI: "SHOW_OFFERS" })}
+                                            className="button fill">
+                                            Go to offers
+                                        </a>
+                                        : ""
+                                    }
+                                    {
+                                        this.showOfferUI() && this.state.belowUI === "DEFAULT" && !this.props.task.Offers.length ?
+                                        <a
+                                            button
+                                            onClick={() => {
+                                                let { own_user } = this.props;
+                                                console.log("this.showOfferUI()", this.showOfferUI())
+                                                if (own_user) this.setState({ belowUI: "SHOW_OFFERS", clickedMakeOffer: true });
+                                                else this.props.history.push("/register?to=/task/" + this.props.task.id);
+                                            }}
+                                            className="button fill">
+                                            Make offer
+                                        </a>
+                                        : ""
+                                    }
+
+                                </React.Fragment> : ""
                             }
                             {
                                 this.state.belowUI === "SHOW_OFFERS" && this.showOfferUI() && !this.state.clickedMakeOffer &&
                                 <a
                                     button
-                                    onClick={() => this.setState({ clickedMakeOffer: true })}
+                                    onClick={() => {
+                                        if (this.props.own_user){
+                                            this.setState({ clickedMakeOffer: true })
+                                        } else this.props.history.push("/register?to=/task/" + this.props.task.id);
+                                    }}
                                     className="button fill">
                                     Make offer
                                 </a>

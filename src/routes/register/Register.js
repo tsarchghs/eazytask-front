@@ -14,7 +14,10 @@ let showError = {
   "requestBody.email must be a valid email": "Email must be a valid email",
   "requestBody.first_name is a required field": "First name is a required field",
   "requestBody.last_name is a required field": "Last name is a required field",
-  "requestBody.password must be at least 6 characters": "Passowrd must be at least 6 characters"
+  "requestBody.password must be at least 6 characters": "Passowrd must be at least 6 characters",
+  "users.email must be unique": "Email is already taken",
+  "requestBody.first_name must be at least 2 characters": "First name must be at least 2 characters",
+  "requestBody.last_name  must be at least 2 characters": "Last name must be at least 2 characters",
 }
 
 class Register extends React.Component {

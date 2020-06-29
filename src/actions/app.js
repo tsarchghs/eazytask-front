@@ -14,11 +14,21 @@ import {
     GET_ACTIVE_LISTING2_SUCCESS,
     UPDATE_TASK_REQUEST,
     UPDATE_TASK_FAILED,
-    UPDATE_TASK_SUCCESS
+    UPDATE_TASK_SUCCESS,
+    SEND_VERIFICATION_CODE_REQUEST,
+    SEND_VERIFICATION_CODE_FAILED,
+    SEND_VERIFICATION_CODE_SUCCESS,
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_FAILED,
+    RESET_PASSWORD_SUCCESS,
+    VALIDATE_VERIFICATION_CODE_REQUEST,
+    VALIDATE_VERIFICATION_CODE_FAILED,
+    VALIDATE_VERIFICATION_CODE_SUCCESS
 } from "../actionTypes";
 import { getTasks, patchTasks } from "./task";
 import { getOffers } from "./offer";
 import jwt_decode from "jwt-decode";
+import axios from "../utils/axios";
 
 export const setCreateTask = createTask => ({ 
     type: SET_CREATE_TASK, createTask
@@ -154,3 +164,62 @@ export const updateTask = ({ id, data }) => {
         dispatch(patchTasks(configs))
     }
 }
+
+// export const sendVerificationCodeRequest = () => ({
+//     type: SEND_VERIFICATION_CODE_REQUEST
+// })
+
+// export const sendVerificationCodeFailed = err => ({
+//     type: SEND_VERIFICATION_CODE_FAILED, err
+// })
+
+// export const sendVerificationCodeSuccess = () => ({
+//     type: SEND_VERIFICATION_CODE_SUCCESS
+// })
+
+export const sendVerificationCode = email => dispatch => axios.post("/users/send_verification_code", { email })
+
+export const resetPassowrdRequest = () => ({
+    type: RESET_PASSWORD_REQUEST
+})
+
+export const resetPassowrdFailed = err => ({
+    type: RESET_PASSWORD_FAILED, err
+})
+
+export const resetPassowrdSuccess = () => ({
+    type: RESET_PASSWORD_SUCCESS
+})
+
+export const resetPassword = ({ email, new_password, confirm_new_password, code }) => {
+    return dispatch => {
+        dispatch(resetPassowrdRequest())
+        let body = { email, new_password, confirm_new_password, code };
+        return axios.post("/users/reset_password", body)
+            .then(() => dispatch(resetPassowrdSuccess()))
+            .catch(err => dispatch(resetPassowrdFailed(err)));
+    }
+}
+
+export const validateVerificationCodeRequest = () => ({
+    type: VALIDATE_VERIFICATION_CODE_REQUEST
+})
+
+export const validateVerificationCodeFailed = err => ({
+    type: VALIDATE_VERIFICATION_CODE_FAILED, err
+})
+
+export const validateVerificationCodeSuccess = () => ({
+    type: VALIDATE_VERIFICATION_CODE_SUCCESS
+})
+
+export const validateVerificationCode = ({ email, code }) => {
+    return dispatch => {
+        dispatch(validateVerificationCodeRequest())
+        let body = { email, code };
+        return axios.post("/users/validate_verification_code", body)
+            .then(() => dispatch(validateVerificationCodeSuccess()))
+            .catch(err => dispatch(validateVerificationCodeFailed(err)));
+    }
+}
+
