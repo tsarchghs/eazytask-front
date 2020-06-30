@@ -9,6 +9,9 @@ import {
     GET_ACTIVE_LISTING2_REQUEST,
     GET_ACTIVE_LISTING2_FAILED,
     GET_ACTIVE_LISTING2_SUCCESS,
+    GET_ACTIVE_LISTING3_REQUEST,
+    GET_ACTIVE_LISTING3_FAILED,
+    GET_ACTIVE_LISTING3_SUCCESS,
     GET_MY_ACTIVE_OFFERS_REQUEST,
     GET_MY_ACTIVE_OFFERS_SUCCESS,
     VALIDATE_VERIFICATION_CODE_REQUEST,
@@ -37,6 +40,10 @@ const INITIAL_STATE = {
         ids: []
     },
     activeListing2: {
+        loading: true,
+        ids: []
+    },
+    activeListing3: {
         loading: true,
         ids: []
     },
@@ -102,6 +109,17 @@ export default (state = INITIAL_STATE, action) => {
         case GET_ACTIVE_LISTING2_SUCCESS:
             state.activeListing2.loading = false;
             state.activeListing2.ids = action.ids;
+            return { ...state }
+
+        case GET_ACTIVE_LISTING3_REQUEST:
+            let exists4 = Boolean(state.activeListing3.ids.length)
+            state.activeListing3.loading = !exists4;
+        case GET_ACTIVE_LISTING3_FAILED:
+            state.activeListing3.loading = false;
+            return { ...state }
+        case GET_ACTIVE_LISTING3_SUCCESS:
+            state.activeListing3.loading = false;
+            state.activeListing3.ids = action.ids;
             return { ...state }
 
         case VALIDATE_VERIFICATION_CODE_REQUEST:

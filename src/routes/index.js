@@ -18,6 +18,8 @@ import TaskOffer from "./edit_task_offers_id/TaskOffer";
 import TaskChat from "./task_chat";
 import MyProfileEdit from "./my_profile_edit";
 import DeleteAccount from "./delete_account";
+import DeleteAccountThank from "./delete_account_thank";
+import Dashboard from "./dashboard";
 import queryString from "query-string";
 
 import E404 from "./E404";
@@ -69,6 +71,10 @@ const Routes = props => {
             <Route path="/task/:taskId/edit/offers/:offerId" component={TaskOffer} exact />
             <Route path="/active_listing" component={ActiveListing} exact />
             <Route path="/profile/:userId" component={Profile} exact/>
+            <Route path="/delete_account/thank" component={DeleteAccountThank} exact/>
+            <Route path="/dashboard" component={() =>
+                <ProtectedRoute to="/login" Component={Dashboard} allowLoggedIn={true} />
+            } />
             <Route path="/my_active_tasks" component={() =>
                 <ProtectedRoute Component={MyActiveTasks} allowLoggedIn={true} />
             } />

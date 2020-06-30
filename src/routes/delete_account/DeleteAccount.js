@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { patchUser } from "../../actions/user";
+import { Redirect } from "react-router-dom";
 import MainStep from "./MainStep.view";
 import OtherStep from "./OtherStep.view";
-import ThankStep from "./ThankStep.view";
 
 class DeleteAccount extends React.Component {
     constructor(props){
@@ -37,7 +37,6 @@ class DeleteAccount extends React.Component {
             }, 
             callUpdateAuthProfile: true 
         })
-        window.location.href = ""
     }
     render(){
         switch (this.state.step) {
@@ -52,7 +51,7 @@ class DeleteAccount extends React.Component {
                 onChange={this.onChange}
                 goToStep={this.goToStep}
             />
-            case "THANK": return <ThankStep />
+            case "THANK": return <Redirect to="/delete_account/thank" />
         }    
     }
 }

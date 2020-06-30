@@ -184,7 +184,7 @@ class Task extends React.Component {
                             }
                             {
                                 this.showOfferUI() && 
-                                    <div className="register__form" style={{paddingBottom: 50}}>
+                                <div className="register__form" style={{ paddingBottom: 50, maxWidth: "800px", margin: "0 auto"}}>
                                         {
                                             this.state.clickedMakeOffer &&
                                             <input 
@@ -195,9 +195,10 @@ class Task extends React.Component {
                                             />
                                         }
                                         {
-                                            this.state.clickedMakeOffer&&
+                                            this.state.clickedMakeOffer && 
                                             <a
                                                 button
+                                                style={{ width: "120px", margin: "0 auto" }}
                                                 onClick={this.state.amount ? () => this.setState({ step: "SELF_PROMOTE" }) : undefined}
                                                 className={`button ${this.state.amount ? "fill" : "no-fill"}`}>
                                                 Next

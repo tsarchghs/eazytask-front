@@ -1,4 +1,4 @@
-import { 
+import {
     SET_CREATE_TASK,
     GET_MY_ACTIVE_TASKS_REQUEST,
     GET_MY_ACTIVE_TASKS_FAILED,
@@ -12,6 +12,9 @@ import {
     GET_ACTIVE_LISTING2_REQUEST,
     GET_ACTIVE_LISTING2_FAILED,
     GET_ACTIVE_LISTING2_SUCCESS,
+    GET_ACTIVE_LISTING3_REQUEST,
+    GET_ACTIVE_LISTING3_FAILED,
+    GET_ACTIVE_LISTING3_SUCCESS,
     UPDATE_TASK_REQUEST,
     UPDATE_TASK_FAILED,
     UPDATE_TASK_SUCCESS,
@@ -30,7 +33,7 @@ import { getOffers } from "./offer";
 import jwt_decode from "jwt-decode";
 import axios from "../utils/axios";
 
-export const setCreateTask = createTask => ({ 
+export const setCreateTask = createTask => ({
     type: SET_CREATE_TASK, createTask
 })
 
@@ -80,6 +83,18 @@ export const getActiveListing2Failed = err => ({
 
 export const getActiveListing2Success = ids => ({
     type: GET_ACTIVE_LISTING2_SUCCESS, ids
+})
+
+export const getActiveListing3Request = () => ({
+    type: GET_ACTIVE_LISTING3_REQUEST
+})
+
+export const getActiveListing3Failed = err => ({
+    type: GET_ACTIVE_LISTING3_FAILED, err
+})
+
+export const getActiveListing3Success = ids => ({
+    type: GET_ACTIVE_LISTING3_SUCCESS, ids
 })
 
 export const updateTaskRequest = () => ({
@@ -134,24 +149,44 @@ export const getActiveListing = () => {
     }
 }
 
-export const getActiveListing2 = ({ 
-        limit, offset, category_id, city, due_date, expire_soon, title,
-        min_expected_price,max_expected_price
-    }) => {
+export const getActiveListing2 = ({
+    limit, offset, category_id, city, due_date, expire_soon, title,
+    min_expected_price, max_expected_price
+}) => {
     return dispatch => {
         let configs = {
             onRequest: getActiveListing2Request(),
             onFailed: err => getActiveListing2Failed(err),
             onSuccess: tasks => getActiveListing2Success(tasks.map(x => x.id)),
-            filters: { 
-                fields: "category,user", limit, offset, category_id, city: city || undefined, 
-                due_date, expire_soon, title: title || undefined ,
+            filters: {
+                fields: "category,user", limit, offset, category_id, city: city || undefined,
+                due_date, expire_soon, title: title || undefined,
                 min_expected_price, max_expected_price
             }
         }
         dispatch(getTasks(configs))
     }
 }
+
+export const getActiveListing3 = ({
+    limit, offset, category_id, city, due_date, expire_soon, title,
+    min_expected_price, max_expected_price
+}) => {
+    return dispatch => {
+        let configs = {
+            onRequest: getActiveListing3Request(),
+            onFailed: err => getActiveListing3Failed(err),
+            onSuccess: tasks => getActiveListing3Success(tasks.map(x => x.id)),
+            filters: {
+                fields: "category,user", limit, offset, category_id, city: city || undefined,
+                due_date, expire_soon, title: title || undefined,
+                min_expected_price, max_expected_price
+            }
+        }
+        dispatch(getTasks(configs))
+    }
+}
+
 
 export const updateTask = ({ id, data }) => {
     return dispatch => {
