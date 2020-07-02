@@ -84,7 +84,7 @@ class ActiveListing extends React.Component {
             if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2) 
             console.log("this.state.currentPage -2 ", this.state.currentPage-2)
             for (let x = start; x <= end;x++){
-                content.push(<Link to={`/active_listing?page=${x}`}><div onClick={() => this.updateTasks(x)}>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
+                content.push(<Link to={`/active_listing?page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
             }
             return content;
         }

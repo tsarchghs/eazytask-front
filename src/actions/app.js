@@ -109,14 +109,14 @@ export const updateTaskSuccess = () => ({
     type: UPDATE_TASK_SUCCESS
 })
 
-export const getMyActiveTasks = () => {
+export const getMyActiveTasks = ({ limit, offset } = {}) => {
     return dispatch => {
         let { userId } = jwt_decode(localStorage.getItem("eazytask:token"));
         let configs = {
             onRequest: getMyActiveTasksRequest(),
             onFailed: err => getMyActiveTasksFailed(err),
             onSuccess: tasks => getMyActiveTasksSuccess(tasks.map(x => x.id)),
-            filters: { fields: "category,user", },
+            filters: { fields: "category,user", limit: limit || 6, offset: offset || 0 },
             UserId: userId
         }
         dispatch(getTasks(configs))

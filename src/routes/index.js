@@ -20,7 +20,12 @@ import MyProfileEdit from "./my_profile_edit";
 import DeleteAccount from "./delete_account";
 import DeleteAccountThank from "./delete_account_thank";
 import Dashboard from "./dashboard";
-import queryString from "query-string";
+import AdminPosts from "./admin/posts";
+import AdminPostsCreate from "./admin/posts_create";
+import AdminPostEdit from "./admin/posts_edit";
+
+import Blog from "./blog/home";
+import SingleBlog from "./blog/single";
 
 import E404 from "./E404";
 
@@ -33,29 +38,44 @@ import ForgetPassword from "./forget_password";
 
 let mapStateToProps = state => ({ auth: state.auth })
 
-class _ProtectedRoute extends React.Component {
-    render(){
-        let Component = this.props.Component
-        // If this.props.auth.isAuthenticated it means no auth request was sent to the server
-        // If isAuthLoading is true then it means that the request is not back
-        // Both are required to determine wether a request is sent and receiver
-        let authRequestBack = 
-            this.props.auth.isAuthenticated !== undefined && 
-            !isAuthLoading(this.props.auth)
+const _ProtectedRoute = props => {
+    let Component = props.Component
+    // If props.auth.isAuthenticated it means no auth request was sent to the server
+    // If isAuthLoading is true then it means that the request is not back
+    // Both are required to determine wether a request is sent and receiver
+    let authRequestBack =
+        props.auth.isAuthenticated !== undefined &&
+        !isAuthLoading(props.auth)
 
-        if (this.props.auth.isAuthenticated === this.props.allowLoggedIn) 
-            return <Component {...this.props.props} />
-        else if (!authRequestBack) return null;
-        else {
-            return <Redirect to={this.props.to || "/"} />
-        }
+    if (props.auth.isAuthenticated === props.allowLoggedIn)
+        return <Component {...props.props} />
+    else if (!authRequestBack) return null;
+    else {
+        return <Redirect to={props.to || "/"} />
+    }
+} 
+
+const _AdminOnly = props => {
+    let Component = props.Component
+    // If props.auth.isAuthenticated it means no auth request was sent to the server
+    // If isAuthLoading is true then it means that the request is not back
+    // Both are required to determine wether a request is sent and receiver
+    let authRequestBack =
+        props.auth.isAuthenticated !== undefined &&
+        !isAuthLoading(props.auth)
+
+    if (props.auth.isAuthenticated && props.auth.profile.isAdmin)
+        return <Component {...props.props} />
+    else if (!authRequestBack) return null;
+    else {
+        return <Redirect to={props.to || "/"} />
     }
 }
 
 const ProtectedRoute = connect(mapStateToProps)(_ProtectedRoute)
+const AdminOnly = connect(mapStateToProps)(_AdminOnly)
 
 const Routes = props => {
-    console.log("------>",{props})
     if (
         props.auth.profile && 
         !props.auth.profile.setupCompleted && 
@@ -63,6 +83,16 @@ const Routes = props => {
     ) return <Redirect to="/setup"/> 
     return (
         <Switch>
+            <Route exact path="/admin/posts" component={() =>
+                <AdminOnly to="/dashboard" Component={AdminPosts} />
+            } />
+            <Route exact path="/admin/posts/create" component={() =>
+                <AdminOnly to="/dashboard" Component={AdminPostsCreate} />
+            } />
+            <Route exact path="/admin/posts/:postId/edit" component={() =>
+                <AdminOnly to="/dashboard" Component={AdminPostEdit} />
+            } />
+
             <Route path="/" component={Home} exact/>
             <Route path="/task/:taskId" component={Task} exact />
             <Route path="/task/:taskId/qa" component={TaskChat} exact/>
@@ -72,6 +102,11 @@ const Routes = props => {
             <Route path="/active_listing" component={ActiveListing} exact />
             <Route path="/profile/:userId" component={Profile} exact/>
             <Route path="/delete_account/thank" component={DeleteAccountThank} exact/>
+
+            <Route path="/blog" component={Blog} exact />
+            <Route path="/blog/:postId" component={SingleBlog} exact />
+
+
             <Route path="/dashboard" component={() =>
                 <ProtectedRoute to="/login" Component={Dashboard} allowLoggedIn={true} />
             } />
