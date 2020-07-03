@@ -44,6 +44,14 @@ class MyCities extends React.Component {
             </div>
         </React.Fragment>
     )
+    searchOnKeyDown = e => {
+        let skills = this.getFilteredCities();
+        if (!skills.length) {
+            if (e.key === "Enter") {
+                this.customAddCity(this.state.query)();
+            }
+        }
+    }
     render() {
         console.log({ props: this.props })
         return (
@@ -60,6 +68,7 @@ class MyCities extends React.Component {
                             placeholder="Search or add a custom one"
                             value={this.state.query}
                             onChange={e => this.setState({ query: e.target.value })}
+                            onKeyDown={this.searchOnKeyDown}
                         />
                     </div>
                     <div className="items-added">

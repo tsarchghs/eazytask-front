@@ -44,6 +44,14 @@ class MySkills extends React.Component {
             </div>
         </React.Fragment>
     )
+    searchOnKeyDown = e => {
+        let skills = this.getFilteredSkills();
+        if (!skills.length) {
+            if (e.key === "Enter") {
+                this.customAddSkill(this.state.query)();
+            }
+        }
+    }
     render(){
         console.log({props: this.props})
         return (
@@ -60,6 +68,7 @@ class MySkills extends React.Component {
                             placeholder="Search for a skill or add a custom one" 
                             value={this.state.query}
                             onChange={e => this.setState({ query: e.target.value })}
+                            onKeyDown={this.searchOnKeyDown}
                         />
                     </div>
                     <div className="items-added">

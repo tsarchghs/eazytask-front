@@ -44,6 +44,14 @@ class MyLanguages extends React.Component {
             </div>
         </React.Fragment>
     )
+    searchOnKeyDown = e => {
+        let languages = this.getFilteredLanguages();
+        if (!languages.length) {
+            if (e.key === "Enter") {
+                this.customAddLanguage(this.state.query)();
+            }
+        }
+    }
     render() {
         console.log({ props: this.props })
         return (
@@ -60,6 +68,7 @@ class MyLanguages extends React.Component {
                             placeholder="Search for a language or add a custom one"
                             value={this.state.query}
                             onChange={e => this.setState({ query: e.target.value })}
+                            onKeyDown={this.searchOnKeyDown}
                         />
                     </div>
                     <div className="items-added">

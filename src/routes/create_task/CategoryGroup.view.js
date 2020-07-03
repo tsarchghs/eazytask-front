@@ -1,12 +1,23 @@
 import React from "react";
-import { connect } from "react-redux";
-import { getCategoriesGroups } from "../../actions/categories_group";
 
 class CategoryGroup extends React.Component {
-    componentDidMount(){
-        this.props.getCategoriesGroups();
+    constructor(props){
+        super(props);
+        this.state = {
+            categoriesGroups: [
+                {
+                    id: 1,
+                    name: "Household"
+                },
+                {
+                    id: 2,
+                    name: "Technical"
+                }
+            ]
+        }
     }
     render(){
+        let { categoriesGroups } = this.state;
         return (
             <React.Fragment>
                 <div className="background-title mb30">
@@ -20,12 +31,10 @@ class CategoryGroup extends React.Component {
                 </h4>
 
                 <div className="cards-section flex-grow">
+
                     {
-                        this.props.categoriesGroups.loading && "Loading"
-                    }
-                    {
-                        !this.props.categoriesGroups.loading && this.props.categoriesGroups.allIds.map(ID => {
-                            let { id, name } = this.props.categoriesGroups.byIds[ID];
+                        categoriesGroups.map(obj => {
+                            let { id, name } = obj;
                             let src;
                             if (name == "Household") src = "/images/house.png"
                             if (name == "Technical") src = "/images/garage.png"
@@ -58,32 +67,8 @@ class CategoryGroup extends React.Component {
 
             </React.Fragment>
         )
-        return (
-            <React.Fragment>
-                Task Category<br />
-                {
-                    this.props.categoriesGroups.loading && "Loading"
-                }
-                {
-                    !this.props.categoriesGroups.loading && this.props.categoriesGroups.allIds.map(ID => {
-                        let { id, name } = this.props.categoriesGroups.byIds[ID];
-                        return (
-                            <React.Fragment key={id}>
-                                <button onClick={() => this.props.onCategoryGroupClick(id)}>
-                                    {name}
-                                </button><br />
-                            </React.Fragment>
-                        )
-                    })
-                }
-                <button onClick={this.props.onOtherClick}>
-                    Other
-                </button>
-            </React.Fragment>
-        )
     }
 }
 
-const mapStateToProps = state => ({ categoriesGroups: state.categoriesGroups})
 
-export default connect(mapStateToProps, { getCategoriesGroups })(CategoryGroup);
+export default CategoryGroup;

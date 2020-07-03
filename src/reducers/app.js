@@ -37,14 +37,17 @@ const INITIAL_STATE = {
     },
     activeListing: {
         loading: true,
+        err: undefined,
         ids: []
     },
     activeListing2: {
         loading: true,
+        err: undefined,
         ids: []
     },
     activeListing3: {
         loading: true,
+        err: undefined,
         ids: []
     },
     updateTask: {
@@ -68,59 +71,59 @@ export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_CREATE_TASK:
             state.createTask = action.createTask
-            return { ...state }
+            return { ...state, createTask: { ...state.createTask } }
         case GET_MY_ACTIVE_TASKS_REQUEST:
-            let exists5 = state.myActiveTasks.ids.indexOf(action.id) !== -1;
-            state.myActiveTasks.loading = !exists5;
-            return { ...state }
+            state.myActiveTasks.loading = true;
+            return { ...state, myActiveTasks: { ...state.myActiveTasks } }
         case GET_MY_ACTIVE_TASKS_SUCCESS:
             state.myActiveTasks.loading = false;
             state.myActiveTasks.ids = action.ids;
-            return { ...state }
+            return { ...state, myActiveTasks: { ...state.myActiveTasks } }
 
         case GET_MY_ACTIVE_OFFERS_REQUEST:
             let exists = state.myActiveOffers.ids.indexOf(action.id) !== -1;
             state.myActiveOffers.loading = !exists;
-            return { ...state }
+            return { ...state, myActiveOffers: { ...state.myActiveOffers } }
         case GET_MY_ACTIVE_OFFERS_SUCCESS:
             state.myActiveOffers.loading = false;
             state.myActiveOffers.ids = action.ids;
-            return { ...state }
+            return { ...state, myActiveOffers: { ...state.myActiveOffers } }
 
         case GET_ACTIVE_LISTING_REQUEST:
-            console.log("state.activeListing.ids.length", state.activeListing.ids.length)
-            let exists2 = Boolean(state.activeListing.ids.length)
-            state.activeListing.loading = !exists2;
+            state.activeListing.loading = true;
+            return { ...state, activeListing: { ...state.activeListing } }
         case GET_ACTIVE_LISTING_FAILED:
             state.activeListing.loading = false;
-            return { ...state }
+            state.activeListing.error = action.err;
+            return { ...state, activeListing: { ...state.activeListing } }
         case GET_ACTIVE_LISTING_SUCCESS:
             state.activeListing.loading = false;
             state.activeListing.ids = action.ids;
-            return { ...state }
-
+            return { ...state, activeListing: { ...state.activeListing } }
 
         case GET_ACTIVE_LISTING2_REQUEST:
-            let exists3 = Boolean(state.activeListing2.ids.length)
-            state.activeListing2.loading = !exists3;
+            state.activeListing2.loading = true;
+            return { ...state, activeListing2: { ...state.activeListing2 } }
         case GET_ACTIVE_LISTING2_FAILED:
             state.activeListing2.loading = false;
-            return { ...state }
+            state.activeListing2.error = action.err;
+            return { ...state, activeListing2: { ...state.activeListing2 } }
         case GET_ACTIVE_LISTING2_SUCCESS:
             state.activeListing2.loading = false;
             state.activeListing2.ids = action.ids;
-            return { ...state }
+            return { ...state, activeListing2: { ...state.activeListing2 } }
 
         case GET_ACTIVE_LISTING3_REQUEST:
-            let exists4 = Boolean(state.activeListing3.ids.length)
-            state.activeListing3.loading = !exists4;
+            state.activeListing3.loading = true;
+            return { ...state, activeListing3: { ...state.activeListing3 } }
         case GET_ACTIVE_LISTING3_FAILED:
             state.activeListing3.loading = false;
-            return { ...state }
+            state.activeListing3.error = action.err;
+            return { ...state, activeListing3: { ...state.activeListing3 } }
         case GET_ACTIVE_LISTING3_SUCCESS:
             state.activeListing3.loading = false;
             state.activeListing3.ids = action.ids;
-            return { ...state }
+            return { ...state, activeListing3: { ...state.activeListing3 } }
 
         case VALIDATE_VERIFICATION_CODE_REQUEST:
             state.validateVerificationCode = {
@@ -128,52 +131,36 @@ export default (state = INITIAL_STATE, action) => {
                 err: undefined,
                 success: undefined
             }
-            return { ...state }
+            return { ...state, validateVerificationCode: { ...state.validateVerificationCode} }
         case VALIDATE_VERIFICATION_CODE_FAILED:
             state.validateVerificationCode.err = action.err;
             state.validateVerificationCode.loading = false;
             state.validateVerificationCode.success = false;
-            return {
-                ...state,
-                validateVerificationCode: {
-                    ...state.validateVerificationCode
-                }
-            }        
+            return { ...state, validateVerificationCode: { ...state.validateVerificationCode } }
+
         case VALIDATE_VERIFICATION_CODE_SUCCESS:
             state.validateVerificationCode.success = true;
             state.validateVerificationCode.loading = false;
-            return { 
-                ...state, 
-                validateVerificationCode: {
-                    ...state.validateVerificationCode 
-                }
-            }
+            return { ...state, validateVerificationCode: { ...state.validateVerificationCode } }
+
         case RESET_PASSWORD_REQUEST:
             state.resetPassword = {
                 loading: true,
                 err: undefined,
                 success: undefined
             }
-            return { ...state }
+            return { ...state, resetPassword: { ...state.resetPassword } }
         case RESET_PASSWORD_FAILED:
             state.resetPassword.err = action.err;
             state.resetPassword.loading = false;
             state.resetPassword.success = false;
-            return {
-                ...state,
-                resetPassword: {
-                    ...state.resetPassword
-                }
-            }
+            return { ...state, resetPassword: { ...state.resetPassword } }
+
         case RESET_PASSWORD_SUCCESS:
             state.resetPassword.success = true;
             state.resetPassword.loading = false;
-            return {
-                ...state,
-                resetPassword: {
-                    ...state.resetPassword
-                }
-            }
+            return { ...state, resetPassword: { ...state.resetPassword } }
+
         default: return state
     }
 }

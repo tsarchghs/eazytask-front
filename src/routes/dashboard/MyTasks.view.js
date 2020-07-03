@@ -40,21 +40,21 @@ class MyTasks extends React.Component {
         return content;
     }
     render() {
-        console.log({ count: this.props.tasks_count.count, limit: this.state.limit }, this.props.tasks_count.count / this.state.limit,)
-
+        let { loading, tasks } = this.props;
+        loading = loading || this.props.tasks_count.loading;
         return (
             <div>
                 My tasks: <br/>
-                { this.props.loading &&  "Loading" }
-                { !this.props.loading && this.props.tasks.map(task => (
+                { loading &&  "Loading" }
+                { !loading && tasks.map(task => (
                     <div>
                         {task.title}
                         <img src={task.thumbnail} width="30" />
                         <br/>
                     </div>
                 )) }
-                {!this.props.tasks.length && "No tasks to show"}
-                { this.getPages() }
+                { !loading && !tasks.length && "No tasks to show"}
+                { !loading && this.getPages() }
             </div>
         )
     }

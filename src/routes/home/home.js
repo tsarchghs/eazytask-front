@@ -87,6 +87,7 @@ class Home extends React.Component {
     }
     render(){
         console.log("this.state.onStep",this.state.onStep)
+        console.log("this.props.loading", this.props.loading)
         return (
             <React.Fragment>
                 <div className="wrapper">

@@ -121,9 +121,9 @@ class ActiveListing extends React.Component {
                                         <br />
                                     </div>
                                     <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" : "")}>
-                                        {this.props.loading && "Loading"}
+                                        {loading && "Loading"}
                                         {
-                                            !this.props.loading &&
+                                            !loading &&
                                             this.props.tasks.map(task => (
                                                 <div className="listing-card">
                                                     <Link to={"/task/" + task.id}>

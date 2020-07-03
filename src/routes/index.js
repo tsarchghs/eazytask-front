@@ -93,6 +93,14 @@ const Routes = props => {
                 <AdminOnly to="/dashboard" Component={AdminPostEdit} />
             } />
 
+            <Route exact path="/" component={() =>
+                <ProtectedRoute to="/dashboard" Component={Home} allowLoggedIn={false} />
+            } />
+
+            <Route exact path="/landing_page" component={() =>
+                <ProtectedRoute to="/" Component={Home} allowLoggedIn={true} />
+            } />
+
             <Route path="/" component={Home} exact/>
             <Route path="/task/:taskId" component={Task} exact />
             <Route path="/task/:taskId/qa" component={TaskChat} exact/>

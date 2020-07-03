@@ -54,12 +54,13 @@ class Discover extends React.Component {
         ))
     }
     render() {
-        console.log({ count: this.props.tasks_count.count, limit: this.state.limit},this.props.tasks_count.count / this.state.limit,)
+        let { loading } = this.props;
         return (
             <div>
                 Discover
-                { this.showTasks() }
-                { this.getPages() }
+                { loading && <div>Loading...<br/></div>}
+                { !loading && this.showTasks() }
+                { !loading && this.getPages() }
             </div>
         )
     }

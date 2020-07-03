@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 import WelcomeUser from "./WelcomeUser.view";
 import NotificationOption from "./NotificationOption.view";
@@ -15,6 +15,11 @@ import ReadyToGo from "./ReadyToGo.view"
 import { connect } from "react-redux";
 import { patchUser } from "../../actions/user"; 
 import { postTasker } from "../../actions/tasker";
+
+import { compose } from "recompose";
+
+import queryString from "query-string";
+
 
 class Setup extends React.Component {
     constructor(props){
@@ -72,6 +77,17 @@ class Setup extends React.Component {
             }
             return prevState;
         })
+    }
+    componentDidUpdate(prevProps){
+        if (prevProps.location.search != this.props.location.search){
+            let { search } = this.props.location;
+            let { step } = queryString.parse(search);
+            if (!step) step = 0;
+            step = Number(step);
+            this.setState({ 
+                step, prevStep: step - 1
+            })
+        }
     }
     onChange = key => e => {
         e.persist()
@@ -158,11 +174,14 @@ class Setup extends React.Component {
             case "READY_TO_GO": return ""
         }
     }
-    nextStep = step => () => this.setState(prevState => {
-        prevState.prevStep = step - 1;
-        prevState.step = step;
-        return step;
-    })
+    nextStep = step => () => {
+        this.props.history.push("?step=" + step)
+        // this.setState(prevState => {
+        //     prevState.prevStep = step - 1;
+        //     prevState.step = step;
+        //     return step;
+        // })
+    }
     showSkipBool = () => 
         this.state.step !== this.lastStepIndex &&
         this.state.step <= 5
@@ -281,4 +300,4 @@ const mapStateToProps = state => ({
     ...state.auth.profile
 })
 
-export default connect(mapStateToProps, { patchUser, postTasker })(Setup);
+export default compose(withRouter,connect(mapStateToProps, { patchUser, postTasker }))(Setup);

@@ -19,6 +19,8 @@ import { postTasks } from "../../actions/task";
 
 import * as Yup from "yup";
 
+import queryString from "query-string";
+
 const currentYear = new Date().getFullYear()
 
 const format_number = val => {
@@ -113,6 +115,13 @@ class CreateTask extends React.Component {
         console.log("prevState,this.state.step,this.lastStepIndex",prevState.step,this.state.step,this.lastStepIndex)
         if (this.state.step === this.lastStepIndex) {
             this.createTask();
+        }
+        if (prevProps.location.search != this.props.location.search) {
+            let { search } = this.props.location;
+            let { step } = queryString.parse(search);
+            if (!step) step = 0;
+            step = Number(step);
+            this.setState({ step })
         }
     }
     componentWillUnmount(){
@@ -210,6 +219,7 @@ class CreateTask extends React.Component {
             />
             case 6: return <Category 
                 categoryGroupId={this.state.categoryGroupId} 
+                categoryGroupName={this.state.categoryGroupName}
                 onCategoryClick={name => {
                     this.onChangeWithVal("category",name)()
                     this.setState({ step: 8 })
@@ -234,7 +244,10 @@ class CreateTask extends React.Component {
             />
         }
     }
-    nextStep = step => () => { this.setState({ step }); document.body.classList.remove("overflow-hidden") }
+    nextStep = step => () => {
+        this.props.history.push("?step=" + step)
+        document.body.classList.remove("overflow-hidden")
+    }
     showButtonCondition = () => {
         let currentStep = this.getCurrentStepName();
         let excludedSteps = ["CATEGORY_GROUP", "CATEGORY"];
