@@ -65,7 +65,7 @@ class Task extends React.Component {
                             <h4 className="flex aic jcc"> <div className="img-circle">
                             <Link to={"/profile/" + offer.Tasker.UserId}>
                                 <img 
-                                    src={offer.Tasker.User.profile_picture || window.__PROFILE_DEFAULT_PICTURE__} 
+                                    src={offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} 
                                     alt="" 
                                 />
                             </Link>
@@ -101,7 +101,7 @@ class Task extends React.Component {
                                     <div className="img-circle">
                                     <Link to={"/profile/" + this.props.task.UserId}>
                                         <img 
-                                            src={this.props.task.User.profile_picture || window.__PROFILE_DEFAULT_PICTURE__} 
+                                            src={this.props.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} 
                                             alt="" 
                                         />
                                     </Link>
