@@ -188,7 +188,7 @@ class EditTask extends React.Component {
                     <div className="container">
                         <div className="content">
                             <header className="logo-text">
-                                <span onClick={() => this.props.history.push("/my_active_tasks")} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                <span onClick={() => this.props.history.push("/dashboard")} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="hide-on-desktop logo-title">
                                     Edit task
                                     <div className="touchable">

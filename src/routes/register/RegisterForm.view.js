@@ -40,7 +40,7 @@ export default (props) => {
         ))} 
         </div>
         <div className="register__button">
-          {/* <a href="#">Trouble loging in?</a> */}
+          <a href="#" onClick={e => e.preventDefault()}>Terms & Conditions</a>
           {props.loading && "Loading"}
           {!props.loading && <button className={
             clicklable

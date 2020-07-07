@@ -41,6 +41,7 @@ class DeleteAccount extends React.Component {
     render(){
         switch (this.state.step) {
             case "MAIN": return <MainStep
+                from={this.props.from}
                 onChange={this.onChange}
                 reason={this.state.reason}
                 items={this.inputs}

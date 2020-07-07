@@ -18,7 +18,7 @@ class Posts extends React.Component {
                         <div className="dashboard-wrapper">
                             <div className="container-fluid dashboard-content">
                                 <div className="row" />
-                                <div className="page-header" style={{ marginTop: "60px" }}>
+                                <div className="page-header" style={{ marginTop: "5%" }}>
                                     {/* <div className="input-group col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <input
                                             type="text"

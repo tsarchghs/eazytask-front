@@ -13,6 +13,8 @@ class Profile extends React.Component {
     componentDidMount(){
         this.props.getUser(this.props.match.params.userId,{ fields: "tasker,task"});
     }
+    getPreviousListings = () => this.props.user.tasks.filter(task => new Date(task.due_date).getTime() < new Date().getTime())
+    getCurrentListings = () => this.props.user.tasks.filter(task => new Date(task.due_date).getTime() >= new Date().getTime() )
     render(){
         if (this.props.loading) return <Loading/>
         if (this.props.error) return <E404/>
@@ -61,22 +63,43 @@ class Profile extends React.Component {
                         <div className="offers-images__layout">
                             <p className="offers-images__title">Previous Listings</p>
                             <div className="offers-images">
-                            {
-                                this.props.user.tasks.map(task => (
-                                    <Link to={"/task/" + task.id}>
-                                        <div className="offers-image">
-                                            <img src={task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
-                                            <div>
-                                                <h4>{task.title}</h4>
-                                                <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                                {
+                                    this.getPreviousListings().map(task => (
+                                        <Link to={"/task/" + task.id}>
+                                            <div className="offers-image">
+                                                <img src={task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
+                                                <div>
+                                                    <h4>{task.title}</h4>
+                                                    <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Link>
-                                ))
-                            }
-                            {
-                                !this.props.user.tasks.length && "No tasks to show"
-                            }
+                                        </Link>
+                                    ))
+                                }
+                                {
+                                    !this.props.user.tasks.length && "No tasks to show"
+                                }
+                            </div>
+                        </div>
+                        <div className="offers-images__layout">
+                            <p className="offers-images__title">Current Listings</p>
+                            <div className="offers-images">
+                                {
+                                    this.getCurrentListings().map(task => (
+                                        <Link to={"/task/" + task.id}>
+                                            <div className="offers-image">
+                                                <img src={task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
+                                                <div>
+                                                    <h4>{task.title}</h4>
+                                                    <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))
+                                }
+                                {
+                                    !this.props.user.tasks.length && "No tasks to show"
+                                }
                             </div>
                         </div>
                     </div>

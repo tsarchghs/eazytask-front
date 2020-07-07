@@ -24,7 +24,7 @@ export default class Picture extends React.Component {
                         </div>
                         {
                             Object.keys(this.props.gallery).map(file_key => (
-                                <div className="image-upload__style flex flex-column">
+                                <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__style flex flex-column">
                                     {this.props.thumbnail == file_key && <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__mask"><h2>Thumbnail</h2></div>}
                                     {this.props.thumbnail != file_key && <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__mask"><h2>Set thumbnail</h2></div>}
                                     <div 

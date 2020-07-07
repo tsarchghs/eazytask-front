@@ -29,7 +29,8 @@ class Discover extends React.Component {
     }
     getAllPagesNumber = () => {
         let n = this.props.tasks_count.count / this.state.limit || 1;
-        if (String(n) !== String(n).slice(0,1)) n++;
+        if (String(n).slice(0, 1) == "0") n = 0;
+        if (String(n) !== String(n).slice(0, 1)) n++;
         return n;
     }
     getPages = () => {
@@ -49,7 +50,11 @@ class Discover extends React.Component {
     showTasks = () => {
         return this.props.tasks.map(task => (
             <Link to={`/task/${task.id}`}>
-                <li key={task.id}>{task.title}<img src={task.thumbnail} width="30" /></li>
+                <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
+                    <div className="home__card--mask" />
+                    <h5>View “{task.title}”</h5>
+                    <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                </div>           
             </Link>
         ))
     }
@@ -57,7 +62,6 @@ class Discover extends React.Component {
         let { loading } = this.props;
         return (
             <div>
-                Discover
                 { loading && <div>Loading...<br/></div>}
                 { !loading && this.showTasks() }
                 { !loading && this.getPages() }

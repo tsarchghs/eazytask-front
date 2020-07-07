@@ -39,7 +39,7 @@ const CreateForm = props => {
                         </div>
                         <div
                             className="col-md-12 mb-12"
-                            style={{ marginTop: "30px" }}
+                            style={{ marginTop: "5%" }}
                         >
                             <label style={{ display: "flex" }}>
                                 <img
@@ -145,7 +145,7 @@ class CreatePost extends React.Component {
                 <NavBar />
                 <div className="dashboard-wrapper">
                     <div className="container-fluid dashboard-content">
-                        <div className="row" style={{ marginTop: "20%" }}>
+                        <div className="row" style={{ marginTop: "5%" }}>
                             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div>
                                     <div style={{ marginTop: "20px", marginRight: "20px" }} />

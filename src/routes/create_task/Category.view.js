@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect, withRouter } from "react-router-dom";
 import queryString from "query-string";
 
 class CategoryGroup extends React.Component {
@@ -37,7 +38,13 @@ class CategoryGroup extends React.Component {
         }
     }
     render(){
-        if (!this.props.categoryGroupName) return "!this.props.categoryGroupName"
+        if (!this.props.categoryGroupName) {
+            let { search } = this.props.location;
+            let { step } = queryString.parse(search);
+            console.log("ERROR: ", `?step=${Number(step) - 1}`)
+            // return <Redirect to={`?step=${Number(step) - 1}`}/>
+            return "!this.props.categoryGroupName"
+        }
         let categories = this.state[this.props.categoryGroupName];
         return (
             <React.Fragment>
@@ -85,4 +92,4 @@ class CategoryGroup extends React.Component {
     }
 }
 
-export default CategoryGroup;
+export default withRouter(CategoryGroup);

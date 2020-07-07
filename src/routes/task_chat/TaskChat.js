@@ -33,7 +33,12 @@ class TaskChat extends React.Component {
                 if (
                     prevState.messages.find(msg => msg.uniqueID == message.uniqueID)
                 ) return prevState;
-                if (!message.User) message.User = { profile_image: message.profile_image }
+                if (!message.User) message.User = { 
+                    id: this.props.own_profile.id,
+                    profile_image: message.profile_image, 
+                    first_name: this.props.own_profile.first_name, 
+                    last_name: this.props.own_profile.last_name 
+                }
                 prevState.messages.push(message);
                 return { ...prevState, messages: { ...prevState.messages } };
             })
@@ -63,9 +68,139 @@ class TaskChat extends React.Component {
         this.socket.emit(`send_message`, message)
         this.setState({ content: "" })
     }
+    inputAndButton = () => (
+        <div className="qanda-textarea">
+            <textarea value={this.state.content} onChange={e => this.setState({ content: e.target.value })} name placeholder="Type your question here..." id cols={30} rows={1} />
+            <img onClick={this.handleOnSubmit} src={this.state.content ? "/images/send-b.png" : "/images/send-g.png"} alt="" />
+            {/* <img src="/images/send-b.png" alt="" /> */}
+        </div>
+
+    )
     render(){
         if (this.props.taskInfo.loading) return null;
         if (this.props.taskInfo.error) return <E404/>
+        return (
+            <div className=" edit-task__wrapper">
+                <section className="landing-info panel edit-task__section">
+                    <div className="container">
+                        <div className="content ">
+                            <header className="flex jcsb aic hide-on-mobile">
+                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                                <div className="header-nav-web">
+                                    <a href="#" className="h4 active">Home <div /></a>
+                                    <a href="#" className="h4">New Task</a>
+                                    <a href="#" className="h4">Profile</a>
+                                </div>
+                            </header>
+                            <section className="qanda-web hide-on-mobile">
+                                <div className="qanda-web__top">
+                                    <div className="img-circle with-hover">
+                                        <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                        <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                    </div>
+                                    <div className="name-info">
+                                        <h5>{this.props.taskInfo.task.title} Q&amp;A</h5>
+                                        <p>{this.props.taskInfo.task.User.first_name} {this.props.taskInfo.task.User.last_name[0]}.</p>
+                                    </div>
+                                </div>
+                                <div className="qanda-web__items">
+                                    {
+                                        this.props.messages.concat(this.state.messages).map(msg => {
+                                            if (msg.UserId == this.props.taskInfo.task.User.id){
+                                                return (
+                                                    <div className="qanda-item">
+                                                        <div className="img-circle with-hover">
+                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                        </div>
+                                                        <div className>
+                                                            <h4 className="active">{msg.content}</h4>
+                                                        </div>
+                                                    </div>
+
+                                                )
+                                            } 
+                                            else {
+                                                return (
+                                                    <div className="qanda-item">
+                                                        <div className="img-circle with-hover">
+                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                        </div>
+                                                        <div className>
+                                                            <h4>{msg.content}</h4>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        })
+                                    }
+                                    {this.inputAndButton()}
+                                </div>
+                            </section>
+                            <section className="profile__article--mobile qanda hide-on-web">
+                                <div className=" edit-task__wrapper">
+                                    <section className="landing-info panel edit-task__section">
+                                        <div className="container">
+                                            <div className="content ">
+                                                <header className="logo-text hide-on-desktop">
+                                                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                                    <h4 className="logo-title ">
+                                                        <div className="img-circle with-hover">
+                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                            <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                        </div>
+                                                        <div className="name-info">
+                                                            <h5>{this.props.taskInfo.task.title} Q&amp;A</h5>
+                                                            <p>{this.props.taskInfo.task.User.first_name} {this.props.taskInfo.task.User.last_name[0]}.</p>
+                                                        </div>
+                                                    </h4>
+                                                </header>
+                                                <div className="pb50 ">
+                                                    {
+                                                        this.props.messages.concat(this.state.messages).map(msg => {
+                                                            if (msg.UserId == this.props.taskInfo.task.User.id) {
+                                                                return (
+                                                                    <div className="qanda-item">
+                                                                        <div className="img-circle with-hover">
+                                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                        </div>
+                                                                        <div className>
+                                                                            <h4 className="active">{msg.content}</h4>
+                                                                        </div>
+                                                                    </div>
+
+                                                                )
+                                                            }
+                                                            else {
+                                                                return (
+                                                                    <div className="qanda-item">
+                                                                        <div className="img-circle with-hover">
+                                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                        </div>
+                                                                        <div className>
+                                                                            <h4>{msg.content}</h4>
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            }
+                                                        })
+                                                    }
+                                                </div>
+                                                {this.inputAndButton()}
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        )
         return (
             <div>
                 <div>
@@ -79,7 +214,7 @@ class TaskChat extends React.Component {
                     this.props.messages.concat(this.state.messages).map(msg => (
                         <div>
                             <img width="30" src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} />
-                            Content: {msg.content}, UserId: {msg.UserId}<br/>
+                            Content: {msg.content}, UserId: {msg.UserId}, {msg.User.first_name} {msg.User.last_name[0]}<br/>
                         </div>
                     ))
                 }

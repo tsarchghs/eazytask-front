@@ -37,7 +37,7 @@ const CreateForm = props => {
                         </div>
                         <div
                             className="col-md-12 mb-12"
-                            style={{ marginTop: "30px" }}
+                            style={{ marginTop: "5%" }}
                         >
                             <label style={{ display: "flex" }}>
                                 <img

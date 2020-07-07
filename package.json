@@ -20,6 +20,7 @@
     "object-to-formdata": "3.0.9",
     "query-string": "6.13.0",
     "react": "^16.13.1",
+    "react-device-detect": "1.13.1",
     "react-dom": "^16.13.1",
     "react-filter-search": "1.0.11",
     "react-foundation": "^0.9.6",

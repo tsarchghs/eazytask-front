@@ -10,7 +10,7 @@ const MainStep = props => {
             <div className="content">
                 <header>
                     <span className="show__mobile">
-                    <Link to="/my_profile_edit">
+                    <Link to={props.from || "/my_profile_edit"}>
                         <img src="/images/arrow.jpeg" alt="" />
                     </Link>
                     </span>

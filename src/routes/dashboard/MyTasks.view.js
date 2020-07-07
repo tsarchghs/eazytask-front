@@ -44,17 +44,18 @@ class MyTasks extends React.Component {
         loading = loading || this.props.tasks_count.loading;
         return (
             <div>
-                My tasks: <br/>
                 { loading &&  "Loading" }
                 { !loading && tasks.map(task => (
-                    <div>
-                        {task.title}
-                        <img src={task.thumbnail} width="30" />
-                        <br/>
-                    </div>
+                    <Link to={`/task/${task.id}/edit`}>
+                        <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
+                            <div className="home__card--mask" />
+                            <h5>View “{task.title}”</h5>
+                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                        </div>
+                    </Link>
                 )) }
                 { !loading && !tasks.length && "No tasks to show"}
-                { !loading && this.getPages() }
+                { !loading && tasks.length ? this.getPages() : null }
             </div>
         )
     }

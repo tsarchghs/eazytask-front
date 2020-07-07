@@ -16,6 +16,41 @@ class SingleBlog extends React.Component {
         if (loading) return "Loading..";
         if (error) return "Error...";
         return (
+            <div className=" edit-task__wrapper">
+                <section className="landing-info panel edit-task__section">
+                    <div className="container">
+                        <div className="content ">
+                            <header className="logo-text">
+                            <Link to="/blog">
+                                <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                <h4 className="hide-on-desktop logo-title ">
+                                    <span className="arraw hide-on-mobile"><img src="/images/arrow.jpeg" alt="" /></span>Blogs
+                                </h4>
+                            </Link>
+                            </header>
+                            <section className="blog-cards bg-inside">
+                                <div className="blog-card " style={{ width: "100%", wordBreak: "break-all" }}>
+                                    <div className="blog-card__img">
+                                        <img src={post.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
+                                    </div>
+                                    <div className="blog-card__date">
+                                        <p>{new Date(post.createdAt).toLocaleDateString().replace(/\//g, ".")}</p>
+                                    </div>
+                                    <div className="blog-card__title">
+                                        <h4>{post.title}</h4>
+                                    </div>
+                                    <div className="blog-card__article">
+                                        <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        )
+        return (
             <React.Fragment>
                 { post.title }
                 <div dangerouslySetInnerHTML={{__html: post.content }}/>
