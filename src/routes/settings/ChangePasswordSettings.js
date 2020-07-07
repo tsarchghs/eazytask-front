@@ -70,9 +70,9 @@ class ChangePasswordSettings extends React.Component {
                                                 <div className="pa--mobile pb50 max-vh">
                                                     <h4 className="pa-mobile__st">Choose a strong password and don’t reuse it from somewhere else. <br /> Use at least 8 characters. Don’t use a password from another site, <br /> or something too obvious like your pet’s name. </h4>
                                                     <div className="profile__passwords flex-grow">
-                                        { this.getInput("old_password", "Old password") }
-                                        { this.getInput("new_password", "New password") }
-                                        { this.getInput("confirm_new_password", "Confirm new password") }
+                                                        {this.getInput("old_password", "Old password")}
+                                                        {this.getInput("new_password", "New password")}
+                                                        {this.getInput("confirm_new_password", "Confirm new password")}
                                                     </div>
                                                     <div className="buttons__group">
                                                         { this.getConfirmButton() }

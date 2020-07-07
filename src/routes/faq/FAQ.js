@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import WebHeader from "../../components/WebHeader";
 
 class FAQ extends React.Component {
     constructor(props){
@@ -76,14 +77,7 @@ class FAQ extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <header className="flex jcsb aic hide-on-mobile">
-                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                <div className="header-nav-web">
-                                    <a href="#" className="h4 active">Home <div /></a>
-                                    <a href="#" className="h4">New Task</a>
-                                    <a href="#" className="h4">Profile</a>
-                                </div>
-                            </header>
+                            <WebHeader/>
                             <section className="faq-web hide-on-mobile">
                                 <div className="faq-web__top">
                                     <h4>View <span>Faq</span></h4>

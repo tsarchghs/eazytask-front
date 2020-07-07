@@ -96,6 +96,10 @@ class MyProfileEdit extends React.Component {
         }
         return false;
     }
+    redirectTo = path => e => {
+        e.preventDefault();
+        this.props.history.push(path);
+    }
     render(){
         let { currentUser } = this.props;
         return (
@@ -103,9 +107,9 @@ class MyProfileEdit extends React.Component {
                 <header className="flex jcsb aic hide-on-mobile header-white">
                     <a href="#"><img className="logo__img" src="/images/logo2.png" alt="" /></a>
                     <div className="header-nav-web">
-                        <a href="#" className="h4 active">Home <div /></a>
-                        <a href="#" className="h4">New Task</a>
-                        <a href="#" className="h4">Profile</a>
+                        <a href="#" onClick={this.redirectTo("/dashboard")} className="h4">Home </a>
+                        <a href="#" onClick={this.redirectTo("/create-task")} className="h4">New Task</a>
+                        <a href="#" onClick={this.redirectTo("/my_profile_edit")} className="h4 active">Profile<div/></a>
                     </div>
                 </header>
                 <div className="offers-picture">

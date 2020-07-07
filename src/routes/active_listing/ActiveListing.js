@@ -67,7 +67,7 @@ class ActiveListing extends React.Component {
             debounce_val
         ))
     } 
-    getAllPagesNumber = () => Math.floor(this.props.tasks_count.count / this.state.limit)
+    getAllPagesNumber = () => Math.floor(this.props.tasks_count.count / this.state.limit) 
     getToggleFilterFunc = () => {
         if (!this.state.onFilter) return () => this.setState({ onFilter: "MAIN" })
         else return () => this.setState({ onFilter: "" })
@@ -81,7 +81,7 @@ class ActiveListing extends React.Component {
             console.log("this.state.currentPage", this.state.currentPage,pagesNumber)
             let end = pagesNumber >= this.state.currentPage + 2 ? this.state.currentPage + 2 : pagesNumber
             let start = this.state.currentPage - 2 >= 1 ? this.state.currentPage - 2 : 1 
-            if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2) 
+            if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2)
             console.log("this.state.currentPage -2 ", this.state.currentPage-2)
             for (let x = start; x <= end;x++){
                 content.push(<Link to={`/active_listing?page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
@@ -122,6 +122,15 @@ class ActiveListing extends React.Component {
                                     </div>
                                     <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" : "")}>
                                         {loading && "Loading"}
+                                        {
+                                            !loading &&
+                                            !this.props.tasks.length &&
+                                            (
+                                                this.props.tasks_count.count ? "You've arrived to end of page"
+                                                : "No tasks to show"
+
+                                            )
+                                        }
                                         {
                                             !loading &&
                                             this.props.tasks.map(task => (

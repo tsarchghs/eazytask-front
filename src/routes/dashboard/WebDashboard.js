@@ -6,6 +6,7 @@ import queryString from "query-string";
 import { getMyActiveOffers, getActiveListing2 } from "../../actions/app";
 import { getPosts } from "../../actions/posts";
 import { getMyActiveTasks } from "../../actions/app";
+import WebHeader from "../../components/WebHeader";
 
 class WebDashboard extends React.Component {
     constructor(props) {
@@ -114,14 +115,7 @@ class WebDashboard extends React.Component {
                                 <section className="home-web hide-on-mobile">
                                     <div className="container">
                                         <div className="content">
-                                            <header className="flex jcsb aic hide-on-mobile">
-                                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                                <div className="header-nav-web">
-                                                    <a href="#" className="h4 active">Home <div /></a>
-                                                    <a href="#" className="h4">New Task</a>
-                                                    <a href="#" className="h4">Profile</a>
-                                                </div>
-                                            </header>
+                                            <WebHeader active="home"/>
                                             <div className="hero flex aic jcsb" style={{ height: 'calc(100vh - 165px)' }}>
                                                 <div className="home">
                                                     <div className="home__title">
@@ -179,7 +173,9 @@ class WebDashboard extends React.Component {
                                                             <p className="shadow__title hide__mobile">some active listings on eazytask</p>
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
-                                                        <h4>View all</h4>
+                                                        <Link to="/active_listing">
+                                                            <h4>View all</h4>
+                                                        </Link>
                                                     </div>
                                                     <div className="listing-cards ">
                                                         { this.props.activeListing2_info.loading && "Loading.." }
@@ -284,11 +280,13 @@ class WebDashboard extends React.Component {
                                                             <p className="shadow__title hide__mobile">some active listings on eazytask</p>
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
-                                                        <h4>View all</h4>
+                                                        <Link to="/blog">
+                                                            <h4>View all</h4>
+                                                        </Link>
                                                     </div>
                                                     <section className="blog-cards" style={{ marginTop: '50px' }}>
                                                         { this.props.posts_info.loading && "Loading" }
-                                                        { !this.props.posts_info.loading && !this.props.posts_info.posts.length && "Loading" }
+                                                        { !this.props.posts_info.loading && !this.props.posts_info.posts.length && "No posts to show..." }
                                                         {!this.props.posts_info.loading && this.props.posts_info.posts.map(post => (
                                                             <div className="blog-card">
                                                                 <Link to={"/blog/" + post.id}>

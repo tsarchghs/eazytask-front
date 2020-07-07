@@ -316,9 +316,17 @@ class Task extends React.Component {
                     <h4 className="show__mobile">Ready to go</h4>
                     <p className="mb30 flex-grow" style={{ fontSize: '18px', maxWidth: '240px' }}>You will be notified if the asker accept it or not</p>
                     <div className="buttons__group">
-                        <Link to={"/task/" + this.props.task.id}>
-                            <button className="button__style no-color">View task</button>
-                        </Link>
+                        <button onClick={() => {
+                            this.setState({
+                                amount: 0,
+                                step: "TASK_PROFILE", // or SELF_PROMOTE, OFFER_SENT,
+                                self_promote: "",
+                                clickedMakeOffer: false,
+                                showAllOffersUI: false,
+                                belowUI: "DEFAULT"
+                            })
+                            this.props.getTask(this.props.match.params.taskId, "fields=question,user,offers,category")
+                        }} className="button__style no-color">View task</button>
                         <Link to="/">
                             <button className="button__style">Go home</button>
                         </Link>

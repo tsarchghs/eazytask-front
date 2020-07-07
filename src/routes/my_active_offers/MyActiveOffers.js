@@ -63,7 +63,6 @@ const mapStateToProps = state => {
         x => state.offers.byIds[x]
     )
     let { loading } = state.app.myActiveOffers;
-    console.log({ loading, offers },"{ loading, offers }")
     return { loading, offers }
 }
 
