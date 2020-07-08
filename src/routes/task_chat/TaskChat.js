@@ -79,6 +79,7 @@ class TaskChat extends React.Component {
     render(){
         if (this.props.taskInfo.loading) return null;
         if (this.props.taskInfo.error) return <E404/>
+        console.log(this.state,this.props.messages);
         return (
             <div className=" edit-task__wrapper">
                 <section className="landing-info panel edit-task__section">
