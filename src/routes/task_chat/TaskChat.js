@@ -41,7 +41,7 @@ class TaskChat extends React.Component {
                 }
                 prevState.messages.push(message);
                 console.log("PUSHING message: ", message)
-                return { ...prevState, messages: { ...prevState.messages } };
+                return { ...prevState, messages: [ ...prevState.messages ] };
             })
         });
         this.socket.on('disconnect', () => console.log("DISCONNECT"));
