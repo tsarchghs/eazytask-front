@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import { getMessages, postMessages } from "../../actions/messages";
 import { getTask } from "../../actions/task";
 import Loading from "../../components/loading";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import E404 from "../E404";
 import io from 'socket.io-client';
 import { v4 } from "uuid";
 import { baseURL_WS } from "../../configs"
+import WebHeader from "../../components/WebHeader";
+import { compose } from "recompose";
 
 class TaskChat extends React.Component {
     constructor(props){
@@ -33,16 +35,14 @@ class TaskChat extends React.Component {
                 if (
                     prevState.messages.find(msg => msg.uniqueID == message.uniqueID)
                 ) return prevState;
-                if (!message.User) message.User = { 
-                    id: this.props.own_profile.id,
-                    profile_image: message.profile_image, 
-                    first_name: this.props.own_profile.first_name, 
-                    last_name: this.props.own_profile.last_name 
+                if (!message.User) message.User = {
+                    id: message.UserId,
+                    profile_image: message.user_profile_image,
                 }
                 prevState.messages.push(message);
+                console.log("PUSHING message: ", message)
                 return { ...prevState, messages: { ...prevState.messages } };
             })
-            
         });
         this.socket.on('disconnect', () => console.log("DISCONNECT"));
 
@@ -53,7 +53,7 @@ class TaskChat extends React.Component {
     handleOnSubmit = e => {
         e.preventDefault();
         if (!this.state.content) return;
-        if (!this.props.currentUserId) return;
+        if (!this.props.currentUserId) return this.props.history.push("/register")
         let { taskId } = this.props.match.params;
         let message = {
             taskId: Number(taskId),
@@ -62,7 +62,7 @@ class TaskChat extends React.Component {
         }
         this.props.postMessages(message)
         message.UserId = this.props.currentUserId
-        message.profile_image = this.props.own_profile.profile_image;
+        message.user_profile_image = this.props.own_profile.profile_image
         message.uniqueID = v4();
         console.log({message})
         this.socket.emit(`send_message`, message)
@@ -84,14 +84,7 @@ class TaskChat extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <header className="flex jcsb aic hide-on-mobile">
-                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                <div className="header-nav-web">
-                                    <a href="#" className="h4 active">Home <div /></a>
-                                    <a href="#" className="h4">New Task</a>
-                                    <a href="#" className="h4">Profile</a>
-                                </div>
-                            </header>
+                            <WebHeader/>
                             <section className="qanda-web hide-on-mobile">
                                 <div className="qanda-web__top">
                                     <div className="img-circle with-hover">
@@ -244,4 +237,4 @@ let mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, { getTask, getMessages, postMessages })(TaskChat);
+export default compose(withRouter,connect(mapStateToProps, { getTask, getMessages, postMessages }))(TaskChat);

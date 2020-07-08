@@ -33,12 +33,12 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state }
 
         case POST_MESSAGES_SUCCESS:
-            let message = action.payload;
-            let task = state.tasks[action.taskId] || { allIds: [], byIds: {} }
-            console.log("state.tasks[action.taskId]", state.tasks[action.taskId],"task",task)
-            task.allIds.push(message.id);
-            task.byIds[message.id] = message
-            state.tasks[action.taskId] = task;
+            // let message = action.payload;
+            // let task = state.tasks[action.taskId] || { allIds: [], byIds: {} }
+            // console.log("state.tasks[action.taskId]", state.tasks[action.taskId],"task",task)
+            // task.allIds.push(message.id);
+            // task.byIds[message.id] = message
+            // state.tasks[action.taskId] = task;
             return { ...state }
 
         default: return state
