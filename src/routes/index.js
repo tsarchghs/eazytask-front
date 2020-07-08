@@ -117,19 +117,19 @@ const Routes = props => {
     return (
         <React.Fragment>
             <Route exact path="/settings" component={() =>
-                <ProtectedRoute to="/" Component={MobileSettings} allowLoggedIn={true} />
+                <ProtectedRoute to="/login" Component={MobileSettings} allowLoggedIn={true} />
             } />
             <Route exact path="/settings/notifications" component={() =>
-                <ProtectedRoute to="/" Component={NotificationSettings} allowLoggedIn={true} />
+                <ProtectedRoute to="/login" Component={NotificationSettings} allowLoggedIn={true} />
             } />
             <Route exact path="/settings/change_password" component={() =>
-                <ProtectedRoute to="/" Component={ChangePasswordSettings} allowLoggedIn={true} />
+                <ProtectedRoute to="/login" Component={ChangePasswordSettings} allowLoggedIn={true} />
             } />
             <Route exact path="/settings/delete_account" component={() =>
-                <ProtectedRoute to="/" Component={DeleteAccountSettings} allowLoggedIn={true} />
+                <ProtectedRoute to="/login" Component={DeleteAccountSettings} allowLoggedIn={true} />
             } />
             <Route exact path="/settings/about" component={() =>
-                <ProtectedRoute to="/" Component={AboutSettings} allowLoggedIn={true} />
+                <ProtectedRoute to="/login" Component={AboutSettings} allowLoggedIn={true} />
             } />
             <Suspense fallback={<div></div>}>
 
@@ -174,19 +174,19 @@ const Routes = props => {
                         <ProtectedRoute to="/login" Component={Dashboard} allowLoggedIn={true} />
                     } />
                     <Route path="/my_active_tasks" component={() =>
-                        <ProtectedRoute Component={MyActiveTasks} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" Component={MyActiveTasks} allowLoggedIn={true} />
                     } />
                     <Route path="/forget_password" component={() =>
                         <ProtectedRoute Component={ForgetPassword} allowLoggedIn={false} />
                     } />
                     <Route path="/delete_account" component={() =>
-                        <ProtectedRoute Component={DeleteAccount} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" Component={DeleteAccount} allowLoggedIn={true} />
                     } />
                     <Route path="/my_profile_edit" component={() =>
-                        <ProtectedRoute Component={MyProfileEdit} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" Component={MyProfileEdit} allowLoggedIn={true} />
                     } />
                     <Route path="/my_active_offers" component={() =>
-                        <ProtectedRoute Component={MyActiveOffers} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" Component={MyActiveOffers} allowLoggedIn={true} />
                     } />
                     <Route path="/logout" component={() => {
                         props.logout()
@@ -201,11 +201,11 @@ const Routes = props => {
 
 
                     <Route path="/login" exact>
-                        <ProtectedRoute Component={Login} allowLoggedIn={false} />
+                        <ProtectedRoute to="/dashboard" Component={Login} allowLoggedIn={false} />
                     </Route>
 
                     <Route path="/register" exact>
-                        <ProtectedRoute Component={Register} allowLoggedIn={false} />
+                        <ProtectedRoute to="/dashboard" Component={Register} allowLoggedIn={false} />
                     </Route>
 
 
