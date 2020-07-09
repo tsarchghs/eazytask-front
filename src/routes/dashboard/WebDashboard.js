@@ -31,7 +31,7 @@ class WebDashboard extends React.Component {
             <div className="home__card--content">
             {
                     this.props.myActiveTasks_info.tasks.map(task => (
-                        <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
+                        <div onClick={() => this.props.history.push("/task/" + task.id + "/edit")} className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
                             <h5>View “{task.title}”</h5>
                             <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
@@ -47,11 +47,11 @@ class WebDashboard extends React.Component {
         return (
             <div className="home__card--content">
                 {
-                    this.props.offers_info.offers.map(({ task }) => (
-                        <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
+                    this.props.offers_info.offers.map(({ Task }) => (
+                        <div className="home__card" style={{ backgroundImage: `url("${Task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
-                            <h5>View “{task.title}”</h5>
-                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                            <h5>View “{Task.title}”</h5>
+                            <p>{new Date(Task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                         </div>
                     ))
                 }

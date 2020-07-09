@@ -2,12 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import WebSidebar from "./WebSidebar";
 import MobileNav from "../../components/MobileNav";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { patchUser } from "../../actions/user";
+import { compose } from "recompose";
 
 class NotificationSettings extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            opened: false
+            opened: false,
+            notification_option: props.currentUser.notification_option
         }
     }
     toggle = opened => () => {
@@ -16,14 +21,21 @@ class NotificationSettings extends React.Component {
     }
     GetNotificationOptions = () => (
         <div className="styled-select">
-            <p>Email</p>
+            <p>{this.state.notification_option}</p>
             <img onClick={this.toggle(this.state.opened)} src="/images/arr-right.png" alt="" />
             <div className={`styled-select__open ${this.state.opened ? "opened" : ""}`}>
-                <div className="styled-select__item">SMS</div>
-                <div className="styled-select__item">EMAIL</div>
+                <div onClick={e => this.setState({ notification_option: "SMS", opened: false })} className="styled-select__item">SMS</div>
+                <div onClick={e => this.setState({ notification_option: "EMAIL", opened: false })} className="styled-select__item">EMAIL</div>
             </div>
         </div>    
     )
+    update = () => {
+        let { notification_option } = this.state;
+        this.props.patchUser({ 
+            userId: this.props.currentUser.id, data: { notification_option },
+            callUpdateAuthProfile: true
+        });
+    }
     render(){
         return (
             <div className=" edit-task__wrapper">
@@ -47,6 +59,15 @@ class NotificationSettings extends React.Component {
                                     <div className="profile__select">
                                         <h4>I want to be notified with:</h4>
                                         {this.GetNotificationOptions()}
+                                        { 
+                                            this.props.currentUser.notification_option != this.state.notification_option && 
+                                            <button 
+                                                onClick={this.update}
+                                                classNmae="button__style" 
+                                                style={{backgroundColor:"darkgray"}}>
+                                                Save
+                                            </button>
+                                        }
                                     </div>
                                     {/* <div class="profile__passwords">
                                 <div class="profile__password">	
@@ -101,6 +122,15 @@ class NotificationSettings extends React.Component {
                                                     <div className="profile__select flex-grow">
                                                         <h4 style={{ color: '#808080' }}>I want to be notified with:</h4>
                                                         {this.GetNotificationOptions()}
+                                                        { 
+                                                            this.props.currentUser.notification_option != this.state.notification_option && 
+                                                            <button 
+                                                                onClick={this.update}
+                                                                classNmae="button__style" 
+                                                                style={{backgroundColor:"darkgray"}}>
+                                                                Save
+                                                            </button>
+                                                        }
                                                     </div>
                                                     {/* <div className="buttons__group">
                                                         <button className="button__style">Confirm</button>
@@ -121,4 +151,10 @@ class NotificationSettings extends React.Component {
     }
 }
 
-export default NotificationSettings;
+let mapStateToProps = state => {
+    return {
+        currentUser: state.auth.profile
+    }
+}
+
+export default compose(withRouter,connect(mapStateToProps, { patchUser }))(NotificationSettings);

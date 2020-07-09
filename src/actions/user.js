@@ -13,6 +13,7 @@ import { updateAuthProfile } from "./auth";
 import axios from "../utils/axios";
 import { objectToFormData } from 'object-to-formdata';
 import queryString from "query-string";
+import { browserHistory } from 'react-router'
 
 export const postUserRequest = () => ({
     type: POST_USER_REQUEST
@@ -74,13 +75,19 @@ export const patchUserSuccess = (id,payload) => ({
     type: PATCH_USER_SUCCESS, payload, id
 })
 
-export const patchUser = ({userId, data,callUpdateAuthProfile}) => {
+export const patchUser = ({userId, data,callUpdateAuthProfile, redirectTo, historyPush}) => {
     return dispatch => {
         dispatch(patchUserRequest())
+        if (historyPush) historyPush.push("?loading=true")
         return axios.patch("/users/" + userId, objectToFormData(data))
             .then(({ data }) => {
                 dispatch(patchUserSuccess(userId,data));
                 if (callUpdateAuthProfile) dispatch(updateAuthProfile(data.data));
-            }).catch(err => dispatch(patchUserFailed(userId,err)));
+                if (redirectTo) window.location.href = redirectTo
+                if (historyPush) historyPush.push("?success=true")
+            }).catch(err => {
+                dispatch(patchUserFailed(userId,err))
+                if (historyPush) historyPush.push("?error=true")
+            });
     };
 }

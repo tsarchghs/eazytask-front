@@ -27,9 +27,9 @@ class DeleteAccountSettings extends React.Component {
                 reason: this.state.reason,
                 deleted: true
             },
-            callUpdateAuthProfile: true
+            callUpdateAuthProfile: true,
         })
-        window.location.href = "/"
+        this.setState({ loading: true })
     }
     render() {
         return (
@@ -73,11 +73,21 @@ class DeleteAccountSettings extends React.Component {
                                     </div>
                                     {/*  */}
                                     <div className="buttons__group">
-                                        <button 
-                                            onClick={this.state.reason ? this.delete : undefined} 
-                                            style={!this.state.reason ? { backgroundColor: "darkgray"} : {}} 
-                                            className="button__style">
-                                        Delete</button>
+                                        {
+                                            this.state.loading && 
+                                                <button 
+                                                style={!this.state.reason ? { backgroundColor: "darkgray"} : {}} 
+                                                className="button__style">
+                                                Deleting...</button>
+                                        }
+                                        {
+                                            !this.state.loading && 
+                                            <button 
+                                                onClick={this.state.reason ? this.delete : undefined} 
+                                                style={!this.state.reason ? { backgroundColor: "darkgray"} : {}} 
+                                                className="button__style">
+                                            Delete</button>
+                                        }
                                     </div>
                                 </div>
                             </section>
