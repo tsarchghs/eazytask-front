@@ -46,7 +46,7 @@ class MyTasks extends React.Component {
             <div>
                 { loading &&  "Loading" }
                 { !loading && tasks.map(task => (
-                    <Link to={`/task/${task.id}/edit`}>
+                    <Link to={`/task/${task.id}`}>
                         <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
                             <h5>View “{task.title}”</h5>

@@ -133,6 +133,13 @@ class Task extends React.Component {
                         </div>
                         <div className="offers-buttons">
                             {
+                                this.props.own_user.id == this.props.task.UserId && this.state.belowUI === "DEFAULT"
+                                && 
+                                <Link to={`/task/${this.props.match.params.taskId}/edit`}>
+                                    <a href="#" className="button">Edit</a>
+                                </Link>
+                            }
+                            {
                                 this.state.belowUI === "DEFAULT" &&
                                 <Link to={`/task/${this.props.match.params.taskId}/qa`}>
                                     <a href="#" className="button">Q&amp;A</a>
@@ -143,12 +150,28 @@ class Task extends React.Component {
                                 <React.Fragment>
                                     {
                                         this.state.belowUI === "DEFAULT" && (this.props.task.Offers.length || !this.showOfferUI()) ?
-                                        <a
-                                            button
-                                            onClick={() => this.setState({ belowUI: "SHOW_OFFERS" })}
-                                            className="button fill">
-                                            Go to offers
-                                        </a>
+                                        (
+                                            this.props.own_user.id == this.props.task.UserId
+                                            ? 
+                                            <a
+                                                button
+                                                onClick={() => this.setState({ belowUI: "SHOW_OFFERS" })}
+                                                className="button fill">
+                                                Go to offers
+                                            </a>
+                                            :
+                                            <a
+                                                button
+                                                onClick={() => {
+                                                    let { own_user } = this.props;
+                                                    console.log("this.showOfferUI()", this.showOfferUI())
+                                                    if (own_user) this.setState({ belowUI: "NONE", clickedMakeOffer: true });
+                                                    else this.props.history.push("/register?to=/task/" + this.props.task.id);
+                                                }}
+                                                className="button fill">
+                                                Make offer
+                                            </a>
+                                        )
                                         : ""
                                     }
                                     {

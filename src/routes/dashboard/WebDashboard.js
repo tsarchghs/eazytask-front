@@ -16,7 +16,7 @@ class WebDashboard extends React.Component {
         }
     }
     componentDidMount(){
-        this.props.getMyActiveOffers({ limit: 4, offset: 0});
+        this.props.getMyActiveOffers({ limit: 4, offset: 0 });
         this.props.getMyActiveTasks({ limit: 4, offset: 0 });
         this.props.getPosts()
         this.props.getActiveListing2({
@@ -31,7 +31,7 @@ class WebDashboard extends React.Component {
             <div className="home__card--content">
             {
                     this.props.myActiveTasks_info.tasks.map(task => (
-                        <div onClick={() => this.props.history.push("/task/" + task.id + "/edit")} className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
+                        <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
                             <h5>View “{task.title}”</h5>
                             <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>

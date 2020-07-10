@@ -185,24 +185,11 @@ class EditTask extends React.Component {
             <div>
                 {/* Hello world */}
                 <div className="awesome">	
-                <ModalContainer>
-                    {(openModal, closeModal, isActive) => (
-                    <div>
-                        <button onClick={openModal}>click me!</button>
-                        <Modal
-                        isActive={isActive}     // required
-                        closeModal={closeModal} // required
-                        >
-                        <h1>modal content</h1>
-                        </Modal>
-                    </div>
-                    )}
-                </ModalContainer>
                     <div className="edit-task__wrapper">
                     <div className="container">
                         <div className="content">
                             <header className="logo-text">
-                                <span onClick={() => this.props.history.push("/dashboard")} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                <span onClick={() => this.props.history.push("/task/" + this.props.task.id)} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="hide-on-desktop logo-title">
                                     Edit task
                                     <div className="touchable">
@@ -260,34 +247,82 @@ class EditTask extends React.Component {
                                     {/* <img src="/images/edit-pen.png" alt="" /></span></p> */}
                                 </div>
                                 <div className="big-icons">
-                                    <div className="big-icon">
-                                        <div className="flex-grow">
-                                            <img src="/images/inter.png" alt="" />
+                                <ModalContainer>
+                                    {(openModal, closeModal, isActive) => (
+                                    <div>
+                                        <div onClick={openModal} className="big-icon">
+                                            <div className="flex-grow">
+                                                <img src="/images/inter.png" alt="" />
+                                            </div>
+                                            <p>Active until</p>
+                                            <h5>{new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")}</h5>
                                         </div>
-                                        <p>Active until</p>
-                                        <h5>{new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")}</h5>
+                                        <Modal
+                                            isActive={isActive}     // required
+                                            closeModal={closeModal} // required
+                                        >
+                                        <h3>modal content</h3>
+                                        </Modal>
                                     </div>
-                                    <div className="big-icon">
-                                        <div className="flex-grow">
-                                            <img src="/images/pins.png" alt="" />
+                                    )}
+                                </ModalContainer>
+                                <ModalContainer>
+                                    {(openModal, closeModal, isActive) => (
+                                    <div>
+                                        <div onClick={openModal} className="big-icon">
+                                            <div className="flex-grow">
+                                                <img src="/images/pins.png" alt="" />
+                                            </div>
+                                            <p>{this.props.task.city}</p>
+                                            <h5>{this.props.task.zipCode}</h5>
                                         </div>
-                                        <p>{this.props.task.city}</p>
-                                        <h5>{this.props.task.zipCode}</h5>
+                                        <Modal
+                                            isActive={isActive}     // required
+                                            closeModal={closeModal} // required
+                                        >
+                                        <h3>modal content2</h3>
+                                        </Modal>
                                     </div>
-                                    <div className="big-icon">
-                                        <div className="flex-grow">
-                                            <img src="/images/shop.png" alt="" />
+                                    )}
+                                </ModalContainer>
+                                <ModalContainer>
+                                    {(openModal, closeModal, isActive) => (
+                                    <div>
+                                        <div onClick={openModal} className="big-icon">
+                                            <div className="flex-grow">
+                                                <img src="/images/shop.png" alt="" />
+                                            </div>
+                                            <p>Price</p>
+                                            <h5>CHF {this.props.task.expected_price}.-</h5>
                                         </div>
-                                        <p>Price</p>
-                                        <h5>CHF {this.props.task.expected_price}.-</h5>
+                                        <Modal
+                                            isActive={isActive}     // required
+                                            closeModal={closeModal} // required
+                                        >
+                                        <h3>modal content3</h3>
+                                        </Modal>
                                     </div>
-                                    <div className="big-icon">
-                                        <div className="flex-grow">
-                                            <img src="/images/house.png" alt="" />
+                                    )}
+                                </ModalContainer>
+                                <ModalContainer>
+                                    {(openModal, closeModal, isActive) => (
+                                    <div>
+                                        <div onClick={openModal} className="big-icon">
+                                            <div className="flex-grow">
+                                                <img src="/images/house.png" alt="" />
+                                            </div>
+                                            <p>Type</p>
+                                            <h5>{this.props.task.Category.name}</h5>
                                         </div>
-                                        <p>Type</p>
-                                        <h5>{this.props.task.Category.name}</h5>
+                                        <Modal
+                                            isActive={isActive}     // required
+                                            closeModal={closeModal} // required
+                                        >
+                                        <h3>modal content4</h3>
+                                        </Modal>
                                     </div>
+                                    )}
+                                </ModalContainer>
                                 </div>
                                 <div className="offers-images__layout">
                                     <p className="offers-images__title">Gallery</p>

@@ -144,7 +144,9 @@ class MyProfileEdit extends React.Component {
         return (
             <section className="offers-layout offers-profile">
                 <header className="flex jcsb aic hide-on-mobile header-white">
-                    <a href="#"><img className="logo__img" src="/images/logo2.png" alt="" /></a>
+                    <Link to="/">
+                        <a href="#"><img className="logo__img" src="/images/logo2.png" alt="" /></a>
+                    </Link>
                     <div className="header-nav-web">
                         <a href="#" onClick={this.redirectTo("/dashboard")} className="h4">Home </a>
                         <a href="#" onClick={this.redirectTo("/create-task")} className="h4">New Task</a>
