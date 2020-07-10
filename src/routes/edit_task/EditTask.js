@@ -10,6 +10,7 @@ import { GET_AUTH } from "../../actionTypes";
 import { debounce } from "lodash";
 import E404 from "../E404";
 import { compose } from "recompose";
+import {ModalContainer, Modal} from 'minimal-react-modal';
 
 const format_number = val => {
     let num_val = Number(val)
@@ -184,6 +185,19 @@ class EditTask extends React.Component {
             <div>
                 {/* Hello world */}
                 <div className="awesome">	
+                <ModalContainer>
+                    {(openModal, closeModal, isActive) => (
+                    <div>
+                        <button onClick={openModal}>click me!</button>
+                        <Modal
+                        isActive={isActive}     // required
+                        closeModal={closeModal} // required
+                        >
+                        <h1>modal content</h1>
+                        </Modal>
+                    </div>
+                    )}
+                </ModalContainer>
                     <div className="edit-task__wrapper">
                     <div className="container">
                         <div className="content">

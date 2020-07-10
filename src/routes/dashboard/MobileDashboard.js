@@ -6,6 +6,7 @@ import queryString from "query-string";
 
 import MyTasks from "./MyTasks.view";
 import Discover from "./Discover.view";
+import MyActiveOffers from "./MyActiveOffers.view";
 import More from "./More.view";
 
 class MobileDashboard extends React.Component {
@@ -19,6 +20,7 @@ class MobileDashboard extends React.Component {
         switch (params.tab){
             case "my_tasks": return <MyTasks/>
             case "discover": return <Discover/>
+            case "offers": return <MyActiveOffers/>
             case "more": return <More/>
         }
     }
@@ -53,6 +55,9 @@ class MobileDashboard extends React.Component {
                                         </Link>
                                         <Link to="?tab=discover">
                                             <div className={`home__tab ${tab == "discover" && "active"}`}>Discover</div>
+                                        </Link>
+                                        <Link to="?tab=offers">
+                                            <div className={`home__tab ${tab == "offers" && "active"}`}>Offers</div>
                                         </Link>
                                         <Link to="?tab=more">
                                             <div className={`home__tab ${tab == "more" && "active"}`}>More</div>

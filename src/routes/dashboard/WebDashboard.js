@@ -291,7 +291,7 @@ class WebDashboard extends React.Component {
                                                             <div className="blog-card">
                                                                 <Link to={"/blog/" + post.id}>
                                                                     <div className="blog-card__img">
-                                                                        <img src={post.thumbnail} alt="" />
+                                                                        <img src={post.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                                                                     </div>
                                                                 </Link>
                                                                 <div className="blog-card__date">

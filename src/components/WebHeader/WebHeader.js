@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 const WebHeader = props => (
     <header className="flex jcsb aic hide-on-mobile">
-        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+        <Link to="/">
+            <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+        </Link>
         <div className="header-nav-web">
             <Link to="/dashboard">
                 <a href="#" className={`h4 ${props.active == "home" ? "active" : ""}`}>

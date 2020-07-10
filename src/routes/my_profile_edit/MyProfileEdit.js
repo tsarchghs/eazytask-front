@@ -49,9 +49,9 @@ class MyProfileEdit extends React.Component {
         </React.Fragment>
     )
     getStaticOrInput = (key, width) => this.state.onEdit != key ? this.getStatic(key) : this.getInput(key, width);
-    onFileChange = e => {
-        e.persist()
-        e.preventDefault()
+    onFileChange = key => e => {
+        e.preventDefault();
+        e.persist();
         let file = e.target.files[0]
         let useThis = this;
         if (file) {
@@ -62,7 +62,7 @@ class MyProfileEdit extends React.Component {
                 useThis.setState(prevState => {
                     console.log("file123", file)
 
-                    prevState.data["profile_image"] = { file, src };
+                    prevState.data[key] = { file, src };
                     return prevState;
                 })
             }
@@ -75,19 +75,51 @@ class MyProfileEdit extends React.Component {
         return window.__PROFILE_DEFAULT_PICTURE__
     }
     decline = () => this.setState({ data: {}, onEdit: ""})
-    update = () => {
+    update = e => {
+        e.preventDefault()
         let data = cloneDeep(this.state.data);
         if (data.profile_image) data.profile_image = this.state.data.profile_image.file
+        if (data.cover_image) data.cover_image = this.state.data.cover_image.file
         this.props.patchUser({ 
             userId: this.props.currentUser.id, data,
             callUpdateAuthProfile: true
         });
         
-        // var useThis = this;
-        // setTimeout(() => {
-        //     let el = document.getElementById("profileImage") 
-        //     if (el) el.src = useThis.props.currentUser.profile_image
-        // }, 500);
+        var useThis = this;
+        if (this.state.data.profile_image){
+            setTimeout(() => {
+                let el = document.getElementById("profileImage") 
+                if (el) {
+                    el.src = "";
+                    el.src = useThis.state.data.profile_image.src
+                }
+                setTimeout(() => {
+                    let el = document.getElementById("profileImage") 
+                    if (el) {
+                        el.src = "";
+                        el.src = useThis.state.data.profile_image.src
+                    }
+                }, 500);
+            }, 500);
+        }
+        if (this.state.data.cover_image){
+            setTimeout(() => {
+                let el = document.getElementById("coverImage") 
+                if (el) {
+                    let orig = el.style.backgroundImage
+                    el.style.backgroundImage = "";
+                    el.style.backgroundImage = orig;
+                }
+                setTimeout(() => {
+                    let el = document.getElementById("coverImage")
+                    if (el) {
+                        let orig = el.style.backgroundImage
+                        el.style.backgroundImage = "";
+                        el.style.backgroundImage = orig;
+                        }
+                }, 1500);
+            }, 500);
+        }
     }
     showUpdateButton = () => {
         let keys = Object.keys(this.state.data)
@@ -100,8 +132,15 @@ class MyProfileEdit extends React.Component {
         e.preventDefault();
         this.props.history.push(path);
     }
+    getOffersPictureStyle = () => {
+        let { currentUser } = this.props;
+        if (this.state.data.cover_image) return { backgroundImage: `url("${this.state.data.cover_image.src}"` }
+        let defaultCover = window.location.protocol + "//" + window.location.host + "/" + window.__USER_COVER_DEFAULT_PICTURE__
+        return { backgroundImage: `url("${currentUser.cover_image || defaultCover }")`}
+    }
     render(){
         let { currentUser } = this.props;
+        console.log(this.state.data)
         return (
             <section className="offers-layout offers-profile">
                 <header className="flex jcsb aic hide-on-mobile header-white">
@@ -112,11 +151,18 @@ class MyProfileEdit extends React.Component {
                         <a href="#" onClick={this.redirectTo("/my_profile_edit")} className="h4 active">Profile<div/></a>
                     </div>
                 </header>
-                <div className="offers-picture">
+                <div id="coverImage" style={this.getOffersPictureStyle()} className="offers-picture">
                     <div className="offers-picture__mask" />
                     <div className="offers-buttons">
-                        <a href="#" className="button">Edit Cover</a>
+                        <a 
+                            href="#" 
+                            className="button" 
+                            onClick={e => {
+                                e.preventDefault()
+                                if (this.coverImageInputRef) this.coverImageInputRef.click()
+                        }}>Edit Cover</a>
                     </div>
+                    <input ref={ref => this.coverImageInputRef = ref} onChange={this.onFileChange("cover_image")} type="file" style={{ display: "none" }} />
                 </div>
                 <div className="offers-content">
                     <div className="offers__cards">
@@ -129,7 +175,7 @@ class MyProfileEdit extends React.Component {
                                             if (this.profileImageInputRef) this.profileImageInputRef.click()
                                         }} className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
                                         <img id="profileImage" src={this.getProfileImage()} alt="" />
-                                        <input ref={ref => this.profileImageInputRef = ref} onChange={this.onFileChange} type="file" style={{ display: "none" }} />
+                                        <input ref={ref => this.profileImageInputRef = ref} onChange={this.onFileChange("profile_image")} type="file" style={{ display: "none" }} />
 
                                     </div>
                                 </h4>

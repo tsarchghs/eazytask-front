@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPost } from "../../../actions/posts";
+import E404 from "../../E404";
 
 class SingleBlog extends React.Component {
     constructor(props){
@@ -15,6 +16,8 @@ class SingleBlog extends React.Component {
         let { loading, post, error } = this.props;
         if (loading) return "Loading..";
         if (error) return "Error...";
+        if (!Object.keys(post).length) return <E404/>
+        console.log("POSTPOST",post)
         return (
             <div className=" edit-task__wrapper">
                 <section className="landing-info panel edit-task__section">

@@ -17,6 +17,7 @@ window.__BASE_URL__ = "http://localhost:4000/api/v1";
 window.__PROFILE_DEFAULT_PICTURE__ = "https://vectorified.com/images/no-profile-picture-icon-22.jpg"
 window.__THUMBNAIL_DEFAULT_PICTURE__ = "/images/ustah.jpeg"
 window.__COVER_DEFAULT_PICTURE__ = "https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-015.jpg"
+window.__USER_COVER_DEFAULT_PICTURE__ = "/images/user_cover.jpg"
 
 // window.__BASE_URL__ = "https://app.swaggerhub.com/apis/gjergjk71/easytask/1.0.0-oas3";
 // window.__BASE_URL__ = "https://eazytask-back.herokuapp.com/api/v1"

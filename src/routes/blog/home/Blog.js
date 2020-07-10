@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../../../actions/posts";
+import WebHeader from "../../../components/WebHeader";
 
 class Blog extends React.Component {
     constructor(props){
@@ -18,18 +19,7 @@ class Blog extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <header className="flex jcsb aic hide-on-mobile">
-                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                <div className="header-nav-web">
-                                    <a href="#" className="h4 active">Home <div /></a>
-                                    <Link to="/create-task">
-                                        <a href="#" className="h4">New Task</a>
-                                    </Link>
-                                    <Link to="/my_profile_edit">
-                                        <a href="#" className="h4">Profile</a>
-                                    </Link>
-                                </div>
-                            </header>
+                            <WebHeader/>
                             <header className="logo-text xn-br hide-on-desktop">
                                 <Link to="/dashboard?tab=more">
                                     <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
@@ -51,7 +41,7 @@ class Blog extends React.Component {
                                     <div className="blog-card">
                                         <Link to={"/blog/" + post.id}>
                                             <div className="blog-card__img">
-                                                <img src={post.thumbnail} alt="" />
+                                                <img src={post.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                                             </div>
                                         </Link>
                                         <div className="blog-card__date">
