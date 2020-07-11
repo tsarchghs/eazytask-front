@@ -14,7 +14,7 @@ export default props => {
                 <span className="dot" />
             </div>
             <h4 className="mb30">Please add your location</h4>
-            <div className="flex-grow input__group">
+            <div className="flex-grow input__group" style={{display:"block"}}>
                 <div className="two__inputs">
                     <input value={props.zipCode} onChange={props.onZipCodeChange} type="text" className="input gray" placeholder="ZIP" />
                     <input value={props.city} onChange={props.onCityChange} type="text" className="input gray" placeholder="Town" />

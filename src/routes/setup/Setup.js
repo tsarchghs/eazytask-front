@@ -1,8 +1,11 @@
 import React from "react";
 import { Redirect, withRouter } from "react-router-dom";
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 import WelcomeUser from "./WelcomeUser.view";
 import NotificationOption from "./NotificationOption.view";
+import PhoneInput from "./PhoneInput.view"
+import PhoneVerificationCode from "./PhoneVerificationCode.view";
 import ProfilePicture from "./ProfilePicture.view";
 import CoverPicture from "./CoverPicture.view"
 import Location from "./Location.view"
@@ -19,6 +22,7 @@ import { postTasker } from "../../actions/tasker";
 import { compose } from "recompose";
 
 import queryString from "query-string";
+import axios from "../../utils/axios";
 
 
 class Setup extends React.Component {
@@ -38,6 +42,7 @@ class Setup extends React.Component {
                 skills: [],
                 languages: [],
                 cities: [],
+                phone_number:"+383 43 434 397"
             },
             steps: [
                 "WELCOME_USER",
@@ -90,7 +95,7 @@ class Setup extends React.Component {
         }
     }
     onChange = key => e => {
-        e.persist()
+        if (e.persist) e.persist()
         this.setState(prevState => {
             prevState.data[key] = e.target.value;
             return prevState;
@@ -141,6 +146,11 @@ class Setup extends React.Component {
                 setSMS={this.getDataPropertyValueOnChange("notification_option", "SMS")}
                 setEMAIL={this.getDataPropertyValueOnChange("notification_option","EMAIL")}
             />
+            case 4.1: return <PhoneInput 
+                value={this.state.data.phone_number} 
+                onChange={value => this.onChange("phone_number")({ target: { value } })}
+            />
+            case 4.2: return <PhoneVerificationCode mainButtonClick={this.getButtonOnClick()} phone_number={this.state.data.phone_number}/>
             case 5: return <BecomeTasker />
             case 6: return <MySkills
                 skills={this.state.data.skills}
@@ -176,6 +186,7 @@ class Setup extends React.Component {
     }
     nextStep = step => () => {
         this.props.history.push("?step=" + step)
+        if (step == 1 && this.state.step == 0) this.setState({ step: 1})
         // this.setState(prevState => {
         //     prevState.prevStep = step - 1;
         //     prevState.step = step;
@@ -201,7 +212,12 @@ class Setup extends React.Component {
     }
     getButtonOnClick = () => {
         if (this.state.step === this.lastStepIndex) return this.setupAccount
-        else return this.nextStep(this.state.step + 1)
+        else {
+            if (this.state.step == 4 && this.state.data.notification_option == "SMS") return this.nextStep(4.1);
+            if (this.state.step == 4.1) return this.nextStep(4.2);
+            if (this.state.step == 4.2) return this.nextStep(5);
+            return this.nextStep(this.state.step + 1)
+        }
     }
     getDots = () => {
         if (this.state.step === 0) return [];
@@ -241,7 +257,7 @@ class Setup extends React.Component {
             case "LOCATION":
                 return (
                     <header>
-                        <span class="show__mobile"><img src="/images/arrow.jpeg" alt=""/></span>
+                        <span onClick={this.nextStep(this.state.prevStep)} class="show__mobile"><img src="/images/arrow.jpeg" alt=""/></span>
                         <a href="#"><img class="logo__img" src="/images/logo.svg" alt=""/></a>
                     </header>
                 )
@@ -250,17 +266,36 @@ class Setup extends React.Component {
             case "MY_CITIES":
                 return (
                     <header className="logo-text">
-                        <span class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                        <span onClick={this.nextStep(this.state.prevStep)} class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                         <h4 class="hide-on-desktop">{show[step_name]}</h4>
                         <a href="#"><img class="logo__img" src="/images/logo.svg" alt="" /></a>
                     </header>
                 )
         }
     }
+    getInsideButtonGroup(){
+        if (this.state.step == 4.2){
+            return <div>SDSASD</div>
+        }
+        let displaySkip = this.showSkipBool() && this.getSkipForNowInfo();
+        let buttonDisabled = this.state.step == 4.1 && !isValidPhoneNumber(this.state.data.phone_number);
+        return (
+            <React.Fragment>
+                {   
+                    displaySkip && 
+                    <button onClick={displaySkip.onClick} className="button__style no-color">{displaySkip.show}</button>
+                }
+                <button 
+                    className={`button__style ${buttonDisabled ? "not-filled" : ""}`} 
+                    onClick={!buttonDisabled && this.getButtonOnClick()}>
+                        {this.getButtonText()}
+                </button>
+            </React.Fragment>
+        )
+    }
     render(){
         console.log(this.state, "this.state")
         if (this.props.setupCompleted) return <Redirect to="/" />
-        let displaySkip = this.showSkipBool() && this.getSkipForNowInfo();
         let coverPicture = this.state.step == 2 ? " profile__cover" : ""
         return (
             <div className="container">
@@ -270,11 +305,9 @@ class Setup extends React.Component {
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }
                             <div className="buttons__group">
-                                {   
-                                    displaySkip && 
-                                    <button onClick={displaySkip.onClick} className="button__style no-color">{displaySkip.show}</button>
+                                {
+                                    this.getInsideButtonGroup()
                                 }
-                                <button className="button__style" onClick={this.getButtonOnClick()}>{this.getButtonText()}</button>
                             </div>
                         </div>
                         {

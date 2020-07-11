@@ -13,7 +13,6 @@ import { updateAuthProfile } from "./auth";
 import axios from "../utils/axios";
 import { objectToFormData } from 'object-to-formdata';
 import queryString from "query-string";
-import { browserHistory } from 'react-router'
 
 export const postUserRequest = () => ({
     type: POST_USER_REQUEST

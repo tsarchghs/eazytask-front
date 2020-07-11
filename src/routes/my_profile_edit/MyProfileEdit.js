@@ -170,7 +170,7 @@ class MyProfileEdit extends React.Component {
                     <div className="offers__cards">
                         <div className="offers__card">
                             <div className="offers__card--top">
-                                <div className="logout-mobile hide-on-web">Log Out</div>
+                                <div onClick={() => this.props.history.push("/logout")} className="logout-mobile hide-on-web">Log Out</div>
                                 <h4 className="flex aic jcc">
                                     <div className="img-circle with-hover">
                                         <div onClick={e => {
