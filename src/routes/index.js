@@ -13,6 +13,7 @@ import NotificationSettings from "./settings/NotificationSettings"
 import ChangePasswordSettings from "./settings/ChangePasswordSettings"
 import DeleteAccountSettings from "./settings/DeleteAccountSettings"
 import AboutSettings from "./settings/AboutSettings"
+import AdminDashboard from "./admin/dashboard";
 
 const Home = lazy(() => import('./home'));
 const Login = lazy(() => import('./login'));
@@ -134,6 +135,12 @@ const Routes = props => {
             <Suspense fallback={<div></div>}>
 
                 <Switch>
+                    <Route exact path="/admin" component={
+                        () => <Redirect to="/admin/dashboard"/>
+                    }/>
+                    <Route exact path="/admin/dashboard" component={() =>
+                        <AdminOnly to="/dashboard" Component={AdminDashboard} />
+                    } />
                     <Route exact path="/admin/posts" component={() =>
                         <AdminOnly to="/dashboard" Component={AdminPosts} />
                     } />

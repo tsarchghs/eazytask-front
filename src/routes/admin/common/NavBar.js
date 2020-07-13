@@ -20,15 +20,17 @@ export default props => {
                         <ul className="navbar-nav flex-column">
                             <li className="nav-divider">Menu</li>
                             <li className="nav-item ">
-                                <a href="/admin/dashboard" />
-                                <a
-                                    className="nav-link light-gray "
-                                    aria-expanded="false"
-                                    data-target="#submenu-2"
-                                >
-                                    <i className="fas fa-desktop" />
-                                Dashboard
-                                </a>
+                                <Link to="/admin/dashboard">
+                                    <a href="/admin/dashboard" />
+                                    <a
+                                        className="nav-link light-gray "
+                                        aria-expanded="false"
+                                        data-target="#submenu-2"
+                                    >
+                                        <i className="fas fa-desktop" />
+                                    Dashboard
+                                    </a>
+                                </Link>
                             </li>
                             <li className="nav-item ">
                                 <a href="/admin/posts" />

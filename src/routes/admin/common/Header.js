@@ -6,10 +6,10 @@ export default props => {
             <nav className="navbar navbar-expand-lg bg-white fixed-top">
                 <a
                     className="navbar-brand"
-                    href="../index.html"
-                    src="/assets/toolkit/images/logo.svg"
+                    href="#"
+                    src="/images/logo.svg"
                 >
-                    <img src="/assets/toolkit/images/logo.svg" />
+                    <img src="/images/logo.svg" />
                 </a>
                 <div
                     className="collapse navbar-collapse"
