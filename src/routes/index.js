@@ -40,6 +40,7 @@ const Blog = lazy(() => import('./blog/home'));
 const SingleBlog = lazy(() => import('./blog/single'));
 const ForgetPassword = lazy(() => import('./forget_password'));
 const FAQ = lazy(() => import('./faq'));
+const History = lazy(() => import('./history'));
 const E404 = lazy(() => import('./E404'));
 
 // import Login from "./login";
@@ -157,6 +158,10 @@ const Routes = props => {
 
                     <Route exact path="/landing_page" component={() =>
                         <ProtectedRoute to="/" Component={Home} allowLoggedIn={true} />
+                    } />
+
+                    <Route exact path="/history" component={() =>
+                        <ProtectedRoute to="/" Component={History} allowLoggedIn={true} />
                     } />
 
                     <Route path="/faq" component={() =>

@@ -15,7 +15,7 @@ class More extends React.Component {
                         <p>Read our <br /> latest Blog</p>
                     </div>
                 </div>
-                <div className="more__card">
+                <div onClick={() => this.props.history.push("/history")} className="more__card">
                     <img src="/images/clock_.png" alt="" />
                     <div>
                         <h4>History</h4>

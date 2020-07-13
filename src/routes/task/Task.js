@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getTask } from "../../actions/task";
 import { postOffers } from "../../actions/offer";
+import { patchTasks } from "../../actions/task";
 import Loading from "../../components/loading";
 import { Link } from "react-router-dom";
 import E404 from "../E404";
@@ -53,6 +54,25 @@ class Task extends React.Component {
                 <button onClick={buttonOnClick}>{ buttonText }</button>sddas
             </React.Fragment>
         )
+    }
+    reActivate = () => {
+        this.props.patchTasks({
+            id: this.props.match.params.taskId,
+            data: { status: "ACTIVE" }
+        })
+    }
+    deactivate = () => {
+        this.props.patchTasks({
+            id: this.props.match.params.taskId,
+            data: { status: "DEACTIVATED" }
+        })
+    }
+    delete = () => {
+        this.props.patchTasks({
+            id: this.props.match.params.taskId,
+            data: { status: "DELETED" }
+        })
+        this.props.history.push("/dashboard")
     }
     getAllOffersUI = () => <React.Fragment>
         <div className="other-offers__list">
@@ -110,7 +130,12 @@ class Task extends React.Component {
                             </div>
                             <div className="offers__card--bottom">
                                 <div>
-                                    <p><img src="/images/inter.png" alt="" /> {new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                                    <p><img src="/images/inter.png" alt="" />
+                                     {this.props.task.status == "ACTIVE" 
+                                            ? new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")
+                                            : "Deactive"
+                                     }
+                                    </p>
                                     <p><img src="/images/pins.png" alt="" /> {this.props.task.zipCode}, {this.props.task.city}</p>
                                 </div>
                                 <div>
@@ -131,9 +156,10 @@ class Task extends React.Component {
                             </React.Fragment>}
 
                         </div>
+                        {this.props.task.Offers.length ? `${this.props.task.Offers.length} offers given` : null}
                         <div className="offers-buttons">
                             {
-                                this.props.own_user.id == this.props.task.UserId && this.state.belowUI === "DEFAULT"
+                                this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.state.belowUI === "DEFAULT"
                                 && 
                                 <Link to={`/task/${this.props.match.params.taskId}/edit`}>
                                     <a href="#" className="button">Edit</a>
@@ -151,7 +177,7 @@ class Task extends React.Component {
                                     {
                                         this.state.belowUI === "DEFAULT" && (this.props.task.Offers.length || !this.showOfferUI()) ?
                                         (
-                                            this.props.own_user.id == this.props.task.UserId
+                                            this.props.own_user && this.props.own_user.id == this.props.task.UserId
                                             ? 
                                             <a
                                                 button
@@ -231,7 +257,18 @@ class Task extends React.Component {
                             }
                         </div>
                     </div>
-                </div></section>
+                </div>
+                {this.props.own_user && this.props.own_user.id == this.props.task.UserId &&
+                    <button onClick={this.delete}>Delete</button>
+                }
+                {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "ACTIVE" &&
+                    <button onClick={this.deactivate}>Deactivate</button>
+                }
+
+                {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "DEACTIVATED" &&
+                    <button onClick={this.reActivate}>Re-Activate</button>
+                }
+            </section>
         )
         return (
             <div>
@@ -380,4 +417,4 @@ const mapStateToProps = (state,ownProps) => {
     return { error, loading, own_user,task: task || {} }
 }
 
-export default connect(mapStateToProps, { getTask, postOffers })(Task);
+export default connect(mapStateToProps, { getTask, postOffers, patchTasks })(Task);

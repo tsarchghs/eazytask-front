@@ -9,7 +9,10 @@ import {
     GET_TASKS_COUNT_REQUEST,
     GET_TASKS_COUNTS_FAILED,
     GET_TASKS_COUNT_SUCCESS,
-    PATCH_TASKS_SUCCESS
+    PATCH_TASKS_SUCCESS,
+    GET_MY_HISTORY_REQUEST,
+    GET_MY_HISTORY_FAILED,
+    GET_MY_HISTORY_SUCCESS
 } from "../actionTypes"
 
 const INITIAL_STATE = {
@@ -22,6 +25,11 @@ const INITIAL_STATE = {
     tasks_count: {
         loading: true,
         count: 0,
+        err: undefined
+    },
+    my_history: {
+        ids: [],
+        loading: false,
         err: undefined
     }
 }
@@ -86,6 +94,37 @@ export default (state = INITIAL_STATE, action) => {
             state.tasks_count.loading = false;
             state.tasks_count.count = action.count;
             return { ...state }
+
+        case GET_MY_HISTORY_REQUEST:
+            state.my_history = {
+                ids: [],
+                loading: true,
+                err: undefined
+            }
+            return { ...state }
+        case GET_MY_HISTORY_FAILED:
+            state.my_history = {
+                ids: [],
+                loading: false,
+                err: state.err
+            }
+            return { ...state }
+        case GET_MY_HISTORY_SUCCESS:
+            let allIds2 = state.allIds;
+            let byIds2 = state.byIds;
+            let ids = [];
+            for (let task of action.payload) {
+                ids.push(task.id)
+                if (allIds2.indexOf(task.id) === -1) allIds2.push(task.id);
+                if (byIds2[task.id]) byIds2[task.id] = { ...byIds2[task.id], ...task }
+                else byIds2[task.id] = task
+            }
+            state.my_history = {
+                ids,
+                loading: false,
+                err: undefined
+            }
+            return { ...state, loading: false, byIds: byIds2, allIds: allIds2 }
 
         case PATCH_TASKS_SUCCESS:
             console.log(action.payload,"...action.payload...action.payload",action.id)

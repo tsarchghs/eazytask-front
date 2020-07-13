@@ -50,7 +50,7 @@ class ForgetPassword extends React.Component {
     }
     render() {
         let buttonType = this.state.valid ? "submit" : "button"
-        let buttonStyle = this.state.valid ? { color: "black" } : { color: "red" }
+        let buttonStyle = this.state.valid ? { backgroundColor: undefined } : { backgroundColor: "darkgrey" }
         
         let { search } = this.props.location;
         let params = queryString.parse(search);

@@ -320,13 +320,15 @@ class WebDashboard extends React.Component {
                                                     </div>
                                                 </div>
                                                 <div className="more__cards--content">
-                                                    <div className="more__card">
-                                                        <img src="/images/clock_.png" alt="" />
-                                                        <div>
-                                                            <h4>History</h4>
-                                                            <p>View history of <br />your activity</p>
+                                                    <Link to="/history">
+                                                        <div className="more__card">
+                                                            <img src="/images/clock_.png" alt="" />
+                                                            <div>
+                                                                <h4>History</h4>
+                                                                <p>View history of <br />your activity</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </Link>
                                                     <Link to="/landing_page">
                                                         <div className="more__card">
                                                             <img src="/images/landing_.png" alt="" />

@@ -13,7 +13,10 @@ import {
     GET_TASKS_COUNT_REQUEST,
     GET_TASKS_COUNTS_FAILED,
     GET_TASKS_COUNT_SUCCESS,
-    PATCH_TASKS_SUCCESS
+    PATCH_TASKS_SUCCESS,
+    GET_MY_HISTORY_REQUEST,
+    GET_MY_HISTORY_FAILED,
+    GET_MY_HISTORY_SUCCESS
 } from "../actionTypes";
 import axios from "../utils/axios";
 import { objectToFormData } from 'object-to-formdata';
@@ -145,5 +148,28 @@ export const patchTasks = ({ id, data, onRequest, onFailed, onSuccess } = {}) =>
                 // dispatch(patchTasksFailed(err))
                 if (onFailed) dispatch(onFailed(err));
             });
+    };
+}
+
+export const getMyHistoryRequest = () => ({
+    type: GET_MY_HISTORY_REQUEST
+})
+
+export const getMyHistoryFailed = err => ({
+    type: GET_MY_HISTORY_FAILED, err
+})
+
+export const getMyHistorySuccess = payload => ({
+    type: GET_MY_HISTORY_SUCCESS, payload
+})
+
+
+export const getMyHistory = () => {
+    return dispatch => {
+        dispatch(getMyHistoryRequest())
+        return axios.get("/tasks/my_history")
+            .then(({ data }) => {
+                dispatch(getMyHistorySuccess(data.data));
+            }).catch(err => dispatch(getMyHistoryFailed(err)));
     };
 }
