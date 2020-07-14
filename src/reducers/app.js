@@ -19,7 +19,8 @@ import {
     VALIDATE_VERIFICATION_CODE_SUCCESS,
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_FAILED,
-    RESET_PASSWORD_SUCCESS
+    RESET_PASSWORD_SUCCESS,
+    RE_INITIALISE_FORGET_PASSWORD
 } from "../actionTypes"
 
 const INITIAL_STATE = {
@@ -69,6 +70,18 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     console.log("APP", action)
     switch (action.type) {
+        case RE_INITIALISE_FORGET_PASSWORD:
+            state.validateVerificationCode = {
+                loading: false,
+                err: undefined,
+                success: undefined
+            }
+            state.resetPassword = {
+                loading: false,
+                err: undefined,
+                success: undefined
+            }
+            return { ...state }
         case SET_CREATE_TASK:
             state.createTask = action.createTask
             return { ...state, createTask: { ...state.createTask } }

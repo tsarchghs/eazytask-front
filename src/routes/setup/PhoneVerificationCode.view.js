@@ -9,7 +9,6 @@ class CodeInputs extends React.Component {
         for (let x=0;x<6;x++) inputs.push(
             <input 
                 ref={ref => this["input_" + x] = ref} 
-                style={{ width: "4%", marginLeft: 5 }} 
                 type="number" 
                 value={this.props.values[x]} 
                 onChange={e => {
@@ -34,7 +33,8 @@ class PhoneVerificationCode extends React.Component {
             success: false,
             loading: false,
             error: undefined,
-            values: []
+            values: [],
+            valid: false
         }
         this.valuesSchema = Yup.array(Yup.string().required().min(1).max(1)).test("len", "Unspecified", val => val.length == 6)
 
@@ -61,27 +61,47 @@ class PhoneVerificationCode extends React.Component {
         }))
 
     }
-    onChange = x => e => {
+    onChange = x => async e => {
         let { value } = e.target;
-        this.setState(prevState => {
-            prevState.values[x] = value;
-            return prevState;
-        })
+        let values = this.state.values;
+        values[x] = value
+        let valid = await this.valuesSchema.isValid(this.state.values);
+        console.log("VALID",valid)
+        this.setState({ values, valid })
     }
     render(){
         if (!this.props.phone_number) return "!this.props.phone_number"
         if (this.state.success) this.props.mainButtonClick()
         let { loading, error } = this.state;
         return (
-            <div>
+            <React.Fragment>
+                <div className="background-title mb5">
+                    <h1>Verification code</h1>
+                    <p className="shadow__title">Type your verification code</p>
+                </div>
+                <h5 className="show__mobile"><img src="/images/Vector.png" alt="" style={{ width: '20px', marginRight: '10px' }} />Location</h5>
+                <div className="mobile__dots">
+                    <span className="dot active"></span>
+                    <span className="dot active"></span>
+                    <span className="dot" />
+                </div>
+                <h4 className="mb30">Type your verification code</h4>
                 {
                     error && "Invalid code"
                 }
-                <CodeInputs values={this.state.values} onChange={this.onChange}/>
-                <button 
-                    onClick={!loading && this.submit}
-                >{loading ? "Loading..." : "Submit"}</button>
-            </div>
+                <div className="flex-grow input__group" style={{ display: "block" }}>
+                    <div className="small-input">
+                        <CodeInputs values={this.state.values} onChange={this.onChange} />
+                    </div>
+                </div>
+                <button
+                    className={`button__style ${this.state.valid ? "" : "not-filled"}`}
+                    // style={this.state.valid ? { backgroundColor: ""} : { backgroundColor: "darkgrey" }}
+                    onClick={loading ? undefined : this.submit}
+                >
+                    Next
+                </button>
+            </React.Fragment>
         )
     }
 }

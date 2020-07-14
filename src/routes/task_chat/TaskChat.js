@@ -138,7 +138,11 @@ class TaskChat extends React.Component {
                                         <div className="container">
                                             <div className="content ">
                                                 <header className="logo-text hide-on-desktop">
-                                                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                                    <span className="show__mobile">
+                                                    <Link to={`/task/${this.props.taskInfo.task.id}`}>
+                                                        <img src="/images/arrow.jpeg" alt="" />
+                                                    </Link>
+                                                    </span>
                                                     <h4 className="logo-title ">
                                                         <div className="img-circle with-hover">
                                                             <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>

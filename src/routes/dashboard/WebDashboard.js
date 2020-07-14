@@ -26,14 +26,22 @@ class WebDashboard extends React.Component {
     }
     getActiveTasks = () => {
         if (this.props.myActiveTasks_info.loading) return "Loading..."
-        if (!this.props.myActiveTasks_info.tasks.length) return "No tasks to show"
+        if (!this.props.myActiveTasks_info.tasks.length) return (
+            <div className="home__card--lonely" style={{width:"60%", margin: "0 auto"}}>
+                <h4>It's lonely here!</h4>
+                <p>You don't have any active task yet.</p>
+                <img src="/images/super_man.png" alt="" style={{ width: '35%' }} />
+                <img src="/images/lonely.jpeg" alt="" />
+            </div>
+
+        )
         return (
             <div className="home__card--content">
             {
                     this.props.myActiveTasks_info.tasks.map(task => (
                         <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
-                            <h5>View “{task.title}”</h5>
+                            <h5 style={{ textAlign: "center" }}>View “{task.title}”</h5>
                             <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                         </div>
                     ))
@@ -116,10 +124,10 @@ class WebDashboard extends React.Component {
                                     <div className="container">
                                         <div className="content">
                                             <WebHeader active="home"/>
-                                            <div className="hero flex aic jcsb" style={{ height: 'calc(100vh - 165px)' }}>
+                                            <div className="hero flex jcsb" style={{ height: 'calc(100vh - 165px)', paddingTop: 80 }}>
                                                 <div className="home">
                                                     <div className="home__title">
-                                                        <h3>Howdy, <br /> <span>Senat!</span></h3>
+                                                        <h3>Howdy, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
                                                         {/* <img src="/images/noti.png" alt=""> */}
                                                     </div>
                                                     <div className="home__cards">

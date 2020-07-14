@@ -205,8 +205,8 @@ class MyProfileEdit extends React.Component {
                                 <div className="account-profile__input">
                                     <p>Phone</p>
                                     <div className="ap__input">
-                                        <h5>None</h5>
-                                        <img src="/images/edit-pen.png" alt="" />
+                                        <h5>{this.props.currentUser.phone_number}</h5>
+                                        {/* <img src="/images/edit-pen.png" alt="" /> */}
                                     </div>
                                 </div>
                                 <div className="ap__input--double">

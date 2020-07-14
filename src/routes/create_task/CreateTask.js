@@ -20,6 +20,7 @@ import { postTasks } from "../../actions/task";
 import * as Yup from "yup";
 
 import queryString from "query-string";
+import MobileNav from "../../components/MobileNav";
 
 const currentYear = new Date().getFullYear()
 
@@ -55,8 +56,8 @@ class CreateTask extends React.Component {
                 name: "",
                 description:"",
                 date_type: "FIXED_DATE",
-                day: format_day_or_month(new Date().getDay(),31),
-                month: format_day_or_month(new Date().getMonth(),12),
+                day: format_day_or_month(new Date().getDate() + 1,31),
+                month: format_day_or_month(new Date().getMonth() + 1,12),
                 zipCode: "",
                 address: "",
                 city: "",
@@ -370,6 +371,25 @@ class CreateTask extends React.Component {
                         }
                     </section>
                 </div>
+                {/* <div className="mobile-nav">
+                    <Link to="/dashboard">
+                        <div className="mob-nav ">
+                            <img src="/images/nav-home.png" alt="" />
+                            <p>Home</p>
+                        </div>
+                    </Link>
+                    <Link to="/create-task">
+                        <div className="mob-nav active">
+                            <img src="/images/nav-plus.png" alt="" />
+                            <p>New</p>
+                        </div>
+                    </Link>
+                    <Link to="/my_profile_edit">
+                        <div className="mob-nav"><img src="/images/nav-profile.png" alt="" />
+                            <p>Profile</p>
+                        </div>
+                    </Link>
+                </div> */}
             </div>
         )
     }

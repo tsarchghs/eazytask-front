@@ -42,8 +42,9 @@ class Setup extends React.Component {
                 skills: [],
                 languages: [],
                 cities: [],
-                phone_number:"+383 43 434 397"
+                phone_number:"+43"
             },
+            setupTasker: false,
             steps: [
                 "WELCOME_USER",
                 "PROFILE_PICTURE",
@@ -88,9 +89,11 @@ class Setup extends React.Component {
             let { search } = this.props.location;
             let { step } = queryString.parse(search);
             if (!step) step = 0;
-            step = Number(step);
+            step = Number(String(step).slice(0,3));
+            let prevStep = String(step).indexOf(".") !== -1 ? Math.round(step - 0.1) : step - 1 ;
+            console.log({step,prevStep});
             this.setState({ 
-                step, prevStep: step - 1
+                step, prevStep
             })
         }
     }
@@ -121,7 +124,7 @@ class Setup extends React.Component {
             data: { ...this.state.data, setupCompleted: true },
             callUpdateAuthProfile: true
         });
-        if (this.state.prevStep == 8) {
+        if (this.state.setupTasker) {
             console.log("POST_TASKER")
             this.props.postTasker(this.state.data);
         }
@@ -171,6 +174,8 @@ class Setup extends React.Component {
         }
     }
     getStepImage = () => {
+        if (this.state.step == 4.1) return "/images/world_connection.png"
+        if (this.state.step == 4.2) return "/images/world_connection.png"
         switch (this.state.steps[this.state.step]){
             case "WELCOME_USER": return "/images/Group.png"
             case "NOTIFICATION_OPTION": return "/images/checklist.png"
@@ -214,8 +219,15 @@ class Setup extends React.Component {
         if (this.state.step === this.lastStepIndex) return this.setupAccount
         else {
             if (this.state.step == 4 && this.state.data.notification_option == "SMS") return this.nextStep(4.1);
-            if (this.state.step == 4.1) return this.nextStep(4.2);
+            if (this.state.step == 4.1) return () => {
+                console.log(55);
+                this.nextStep(4.2)();
+            }
             if (this.state.step == 4.2) return this.nextStep(5);
+            if (this.state.step == 5) return () => {
+                this.setState({ setupTasker: true })
+                this.nextStep(this.state.step + 1)()
+            }
             return this.nextStep(this.state.step + 1)
         }
     }
@@ -244,10 +256,18 @@ class Setup extends React.Component {
             "MY_CITIES": "My area of activity"
         }
         let step_name = this.state.steps[this.state.step] 
+        let Header1 = (
+            <header>
+                <span onClick={this.nextStep(this.state.prevStep)} class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                <img style={{cursor:"pointer"}} class="logo__img" src="/images/logo.svg" alt="" />
+            </header>
+        )
+        if (this.state.step == 4.1) return Header1
+        if (this.state.step == 4.2) return Header1
         switch (step_name) {
             case "WELCOME_USER":
                 return <header>
-                    <a href="#"><img class="logo__img" src="/images/logo.svg" alt=""/></a>
+                    <img style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt=""/>
                 </header> 
             case "PROFILE_PICTURE":
             case "COVER_PICTURE":
@@ -255,12 +275,7 @@ class Setup extends React.Component {
             case "BECOME_TASKER":
             case "READY_TO_GO":
             case "LOCATION":
-                return (
-                    <header>
-                        <span onClick={this.nextStep(this.state.prevStep)} class="show__mobile"><img src="/images/arrow.jpeg" alt=""/></span>
-                        <a href="#"><img class="logo__img" src="/images/logo.svg" alt=""/></a>
-                    </header>
-                )
+                return Header1
             case "MY_SKILLS":
             case "MY_LANGUAGES":
             case "MY_CITIES":
@@ -268,14 +283,20 @@ class Setup extends React.Component {
                     <header className="logo-text">
                         <span onClick={this.nextStep(this.state.prevStep)} class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                         <h4 class="hide-on-desktop">{show[step_name]}</h4>
-                        <a href="#"><img class="logo__img" src="/images/logo.svg" alt="" /></a>
+                        <img style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
                     </header>
                 )
         }
     }
     getInsideButtonGroup(){
         if (this.state.step == 4.2){
-            return <div>SDSASD</div>
+            return null;
+            return (
+                <button
+                    className={`button__style ${true ? "not-filled" : ""}`}>
+                    Next
+                </button>
+            )
         }
         let displaySkip = this.showSkipBool() && this.getSkipForNowInfo();
         let buttonDisabled = this.state.step == 4.1 && !isValidPhoneNumber(this.state.data.phone_number);

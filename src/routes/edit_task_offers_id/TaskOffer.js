@@ -6,6 +6,7 @@ import Loading from "../../components/loading";
 import { Link, Redirect, withRouter } from "react-router-dom"
 import { compose } from "recompose";
 import E404 from "../E404";
+import queryString from "query-string";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -29,7 +30,8 @@ class TaskOffer extends React.Component {
         let { offerId } = this.props.match.params 
         this.props.getOffer(Number(offerId)); //, "fields=question,user,offers,category")
     }
-    acceptOffer = () => {
+    acceptOffer = (e) => {
+        e.preventDefault();
         console.log("acceptOffer");
         this.props.acceptOffer(
             this.props.match.params.taskId,
@@ -41,8 +43,8 @@ class TaskOffer extends React.Component {
         let { loading } = this.props.acceptOffer;
         if (status == "ACCEPTED")
             if (loading) return <button>Loading</button>
-            else return <button className="button__style">Accepted</button>
-        else return <button onClick={this.acceptOffer} className="button__style">Accept Offer</button>
+            else return <a onClick={e => e.preventDefault()} className="button fill">Accepted</a>
+        else return <a onClick={this.acceptOffer} href="#" className="button fill">Accept offer</a>
     }
     render() {
         console.log("this.props.auth.isAuthenticated", this.props.auth.isAuthenticated)
@@ -52,12 +54,62 @@ class TaskOffer extends React.Component {
             this.props.auth.isAuthenticated === false
         ) return <Redirect to={"/task/" + this.props.match.params.taskId} />
         return (
+            <section className="offers-layout tasker-profile">
+                <div className="offers-picture" style={{
+                    backgroundImage: `url(${this.props.offer.Tasker.User.cover_image || window.__COVER_DEFAULT_PICTURE__})`
+                }}>
+                    <div className="offer-picture__buttons">
+                    <Link to={"/task/" + this.props.offer.Task.id}>
+                        <div className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
+                    </Link>
+                        <div className="offer-picture__edit hide">
+                            <img src="/images/more.png" alt="" />
+                        </div>
+                    </div>
+                    {/* <div class="slice"></div> */}
+                </div>
+                <div className="offers-content modified">
+                    <div className="offers__cards min-h__cards">
+                        <div className="offers__card " style={{ height: 'initial' }}>
+                            <div className="offers__card--top">
+                                <div className="offers__profile">
+                                    <div className="offers__profile--img" />
+                                    <h4 className="flex aic jcc"> <div className="img-circle">
+                                    <img src={this.props.offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" /></div> Ivan T.</h4>
+                                </div>
+                                <p className="special mb20">{this.props.offer.description || "No self-promote"}</p>
+                                <h4 className="flex aic jcc mt40"><img style={{ width: '20px', marginRight: '10px' }} src="/images/shop.png" alt="" />CHF {this.props.offer.amount}.-</h4>
+                            </div>
+                        </div>
+                        <div className="offers-buttons">
+                            <Link to={"/profile/" + this.props.offer.Tasker.UserId}>
+
+                                <a href="#" className="button">View Profile</a>
+                            </Link>
+                            {this.getButton()}
+                        </div>
+                    </div>
+                </div></section>
+
+        )
+        return (
             <div className=" edit-task__wrapper">
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content">
                             <header className="logo-text">
-                                <span onClick={() => this.props.history.push(`/task/${this.props.match.params.taskId}/edit/offers`)} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                <span onClick={() => {
+                                    let { search } = this.props.location;
+                                    let params = queryString.parse(search);
+                                    if (params.from_task){
+                                        this.props.history.push({
+                                            pathname: `/task/${this.props.match.params.taskId}`,
+                                            state: { belowUI: "SHOW_OFFERS" }
+                                        })
+                                    } else {
+                                        this.props.history.push(`/task/${this.props.match.params.taskId}/edit/offers`)
+                                    }
+                                }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="hide-on-desktop logo-title">
                                     Offers
                 </h4>

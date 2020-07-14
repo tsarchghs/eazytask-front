@@ -54,7 +54,15 @@ class MyTasks extends React.Component {
                         </div>
                     </Link>
                 )) }
-                { !loading && !tasks.length && "No tasks to show"}
+                { !loading && !tasks.length && 
+                    <div className="home__card--lonely">
+                        <h4>It's lonely here!</h4>
+                        <p>You don't have any active task yet.</p>
+                        <img src="/images/super_man.png" alt="" style={{ width: '35%' }} />
+                        <img src="/images/lonely.jpeg" alt="" />
+                    </div>
+
+                }
                 { !loading && tasks.length ? this.getPages() : null }
             </div>
         )

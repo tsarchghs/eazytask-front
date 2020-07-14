@@ -26,7 +26,8 @@ import {
     RESET_PASSWORD_SUCCESS,
     VALIDATE_VERIFICATION_CODE_REQUEST,
     VALIDATE_VERIFICATION_CODE_FAILED,
-    VALIDATE_VERIFICATION_CODE_SUCCESS
+    VALIDATE_VERIFICATION_CODE_SUCCESS,
+    RE_INITIALISE_FORGET_PASSWORD
 } from "../actionTypes";
 import { getTasks, patchTasks } from "./task";
 import { getOffers } from "./offer";
@@ -214,6 +215,10 @@ export const updateTask = ({ id, data }) => {
 
 export const sendVerificationCode = email => dispatch => axios.post("/users/send_verification_code", { email })
 
+
+export const reInitialiseForgetPassword = () => ({
+    type: RE_INITIALISE_FORGET_PASSWORD
+})
 export const resetPassowrdRequest = () => ({
     type: RESET_PASSWORD_REQUEST
 })

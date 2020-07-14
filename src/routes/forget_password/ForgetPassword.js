@@ -12,7 +12,8 @@ import { compose } from "recompose";
 import { 
     sendVerificationCode, 
     validateVerificationCode,
-    resetPassword
+    resetPassword,
+    reInitialiseForgetPassword
 } from "../../actions/app";
 
 class ForgetPassword extends React.Component {
@@ -23,6 +24,9 @@ class ForgetPassword extends React.Component {
             valid: false
         }
         this.emailSchema = Yup.string().required().email()
+    }
+    componentDidMount() {
+        this.props.reInitialiseForgetPassword()
     }
     isEmailValid = async email => this.setState({ valid: await this.emailSchema.isValid(email) });
     onChange = key => e => this.setState({ [key]: e.target.value })
@@ -54,7 +58,7 @@ class ForgetPassword extends React.Component {
         
         let { search } = this.props.location;
         let params = queryString.parse(search);
-        console.log({params})
+        console.log({params,state: this.state})
         if (params.success) return <Success/>
         if (params.valid_code && params.email) return <NewPasswordForm
             onSubmit={this.onNewPasswordSubmit}
@@ -91,7 +95,8 @@ export default
             { 
                 sendVerificationCode, 
                 validateVerificationCode, 
-                resetPassword 
+                resetPassword,
+                reInitialiseForgetPassword
             }
         )
     )(ForgetPassword);

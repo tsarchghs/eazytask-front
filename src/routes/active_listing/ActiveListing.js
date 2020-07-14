@@ -98,11 +98,13 @@ class ActiveListing extends React.Component {
         if (!show_category_name_or_default) show_category_name_or_default = "Categories"
         return (
             <React.Fragment>
-                <section className="landing-info panel card-section" id="c" style={{ background: 'white' }}>
+                <section className="landing-info panel card-section" id="c" style={{ background: 'white', minHeight: "97vh" }}>
                     <div className="container">
                         <div className="content">
                             <header className="flex jcsb aic">
-                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                                <Link to="/">
+                                    <img className="logo__img" src="/images/logo.svg" alt="" />
+                                </Link>
                                 <Link to="/register">
                                     <a href="#" className="h4">Join us</a>
                                 </Link>
@@ -117,7 +119,7 @@ class ActiveListing extends React.Component {
                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                         </div>
                                         <button style={{ cursor: "pointer" }} onClick={debounce(this.getToggleFilterFunc(), 10)}>
-                                        <img style={{width: 25, transform: this.state.onFilter ? "rotate(90deg)" : ""}} src="/images/tools-and-utensils.png"/></button>
+                                        <img style={{ width: 25 }} src="/images/tools-and-utensils.png"/></button>
                                         <br />
                                     </div>
                                     <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" : "")}>

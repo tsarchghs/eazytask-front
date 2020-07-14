@@ -2,20 +2,14 @@ import React from "react";
 import WebSidebar from "./WebSidebar";
 import MobileNav from "../../components/MobileNav";
 import { Link } from "react-router-dom";
+import WebHeader from "../../components/WebHeader";
 
 const AboutSettings = props => (
     <div className=" edit-task__wrapper">
         <section className="landing-info panel edit-task__section">
             <div className="container">
                 <div className="content ">
-                    <header className="flex jcsb aic hide-on-mobile">
-                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                        <div className="header-nav-web">
-                            <a href="#" className="h4 active">Home <div /></a>
-                            <a href="#" className="h4">New Task</a>
-                            <a href="#" className="h4">Profile</a>
-                        </div>
-                    </header>
+                    <WebHeader/>
                     <section className="profile__article hide-on-mobile">
                         <WebSidebar/>
                         <div className="profile__article--content">

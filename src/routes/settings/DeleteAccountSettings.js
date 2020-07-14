@@ -5,6 +5,7 @@ import DeleteAccount from "../delete_account";
 
 import { connect } from "react-redux";
 import { patchUser } from "../../actions/user";
+import WebHeader from "../../components/WebHeader";
 
 class DeleteAccountSettings extends React.Component {
     constructor(props) {
@@ -37,19 +38,12 @@ class DeleteAccountSettings extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <header className="flex jcsb aic hide-on-mobile">
-                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                <div className="header-nav-web">
-                                    <a href="#" className="h4 active">Home <div /></a>
-                                    <a href="#" className="h4">New Task</a>
-                                    <a href="#" className="h4">Profile</a>
-                                </div>
-                            </header>
+                            <WebHeader/>
                             <section className="profile__article hide-on-mobile">
                                 <WebSidebar/>
                                 <div className="profile__article--content">
                                     <h3>Delete Account</h3>
-                                    <h4>Hi, <span className="sp-g">Senat</span> <br />
+                                    <h4>Hi, <span className="sp-g">{this.props.currentUserName}</span> <br />
                     We're sorry to hear you'd like to delete your account. <br />
                     Please tell us why you made this decision so in that way we will try to improve
                   </h4>
@@ -103,7 +97,8 @@ class DeleteAccountSettings extends React.Component {
 }
 
 let mapStateToProps = state => ({
-    currentUserId: state.auth.profile.id
+    currentUserId: state.auth.profile.id,
+    currentUserName: state.auth.profile.first_name
 })
 
 export default connect(mapStateToProps, { patchUser })(DeleteAccountSettings);

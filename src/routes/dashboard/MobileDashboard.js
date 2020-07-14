@@ -42,12 +42,12 @@ class MobileDashboard extends React.Component {
                             <section className="home">
                                 <div className="home__title">
                                     <h3>Howdy, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
-                                    <img src="/images/search.png" alt="" />
+                                    <img src="/images/noti.png" alt="" />
                                 </div>
                                 <div className="home__cards">
                                     <div className="home__card gradient">
                                         <h5>View “Yard Work” <br /><span>new offers</span></h5>
-                                        <img src="/images/super_man.png" alt="" />
+                                        <img src="/images/succ.png" alt="" />
                                     </div>
                                     <div className="home__tabs">
                                         <Link to="?tab=my_tasks">

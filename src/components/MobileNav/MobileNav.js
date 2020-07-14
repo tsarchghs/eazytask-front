@@ -12,6 +12,7 @@ export default () => (
         <Link to="/create-task">
             <div className="mob-nav ">
                 <img src="/images/nav-plus.png" alt="" />
+                <p>New</p>
             </div>
         </Link>
         <Link to="/my_profile_edit">

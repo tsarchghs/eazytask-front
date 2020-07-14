@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { patchUser } from "../../actions/user";
 import { compose } from "recompose";
+import WebHeader from "../../components/WebHeader";
 
 class NotificationSettings extends React.Component {
     constructor(props){
@@ -42,14 +43,7 @@ class NotificationSettings extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <header className="flex jcsb aic hide-on-mobile">
-                                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                <div className="header-nav-web">
-                                    <a href="#" className="h4 active">Home <div /></a>
-                                    <a href="#" className="h4">New Task</a>
-                                    <a href="#" className="h4">Profile</a>
-                                </div>
-                            </header>
+                            <WebHeader/>
                             <section className="profile__article hide-on-mobile">
                                 <WebSidebar/>
                                 <div className="profile__article--content">

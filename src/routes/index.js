@@ -225,7 +225,7 @@ const Routes = props => {
                         <ProtectedRoute to="/register" Component={Setup} allowLoggedIn={true} />
                     </Route>
 
-                    {/* <Route path="/" component={E404} /> */}
+                    <Route path="/" component={E404} />
                 </Switch>
             </Suspense>
         </React.Fragment>

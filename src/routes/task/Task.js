@@ -6,6 +6,11 @@ import { patchTasks } from "../../actions/task";
 import Loading from "../../components/loading";
 import { Link } from "react-router-dom";
 import E404 from "../E404";
+import { ModalContainer } from 'minimal-react-modal';
+import Modal from "../../components/Modal";
+
+import SelfPromote from "./SelfPromote.view";
+import { mobileModel } from "react-device-detect";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -16,18 +21,106 @@ const format_number = val => {
 class Task extends React.Component {
     constructor(props){
         super(props)
+        let belowUI = "DEFAULT";
+        if (props.location && props.location.state && props.location.state.belowUI) {
+            belowUI = props.location.state.belowUI;
+        }
         this.state = {
             amount: 0,
             step: "TASK_PROFILE", // or SELF_PROMOTE, OFFER_SENT,
             self_promote: "",
             clickedMakeOffer: false,
             showAllOffersUI: false,
-            belowUI: "DEFAULT"
+            belowUI: belowUI
         }
     }
+    toggle = () => {
+        let { opened } = this.state;
+        return () => this.setState({ opened: !opened })
+    }
+    closeModal = () => this.setState({ onModal: "" })
     componentDidMount(){
-        console.log(55555,`this.props.getTask(this.props.match.params.taskId,"fields=question,user,offers,category")`)
         this.props.getTask(this.props.match.params.taskId,"fields=question,user,offers,category")
+    }
+    getOfferPictureButtons = () => {
+        return (
+            <div className="offer-picture__buttons">
+                <div onClick={e => {
+                    this.props.history.push("/dashboard")
+                    // try {
+                    //     this.props.history.goBack();
+                    // } catch (e) {
+                    //     this.props.history.push("/dashboard")
+                    // }
+                }} className="offer-picture__back">
+                    <img  src="/images/arrow.jpeg" alt="" />
+                </div>
+                <div className={`offer-picture__edit ${!(this.props.own_user && this.props.own_user.id == this.props.task.UserId) ? "hide" : ""}`}>
+                    <img onClick={this.toggle()} className="img-rot" src="/images/more.png" alt="" />
+                    <article className={`touchable__content arts ${this.state.opened ? "" : "hide"}`}>
+                        {this.props.own_user && this.props.own_user.id == this.props.task.UserId &&
+                            <React.Fragment>
+                                <article onClick={() => this.setState({ onModal: "DELETE_MODAL" })} className="flex aic jcsb">
+                                    <p>Delete</p>
+                                    <img src="/images/trash.png" alt="" />
+                                </article>
+
+                                {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "ACTIVE" &&
+                                    <article onClick={() => this.setState({onModal: "DEACTIVATE_MODAL"})} className="flex aic jcsb">
+                                        <p>Deactivate</p>
+                                        <img src="/images/sleep.png" alt="" />
+                                    </article>
+                                }
+
+                                {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "DEACTIVATED" && 
+                                    <article onClick={() => this.setState({ onModal: "REACTIVATE_MODAL" })} className="flex aic jcsb">
+                                        <p>Re-Activate</p>
+                                        <img src="/images/sleep.png" alt="" />
+                                    </article>
+                                }
+                            </React.Fragment>
+                        }
+                    </article>
+                </div>
+            </div>
+        )
+    }
+    getOffersCard = () => {
+        return (
+            <div className="offers__card">
+                <div className="offers__card--top">
+                    <h4>{this.props.task.title}</h4>
+                    <p className="special">{this.props.task.description}</p>
+                    <div className="offers__profile">
+                        <div className="offers__profile--img" />
+                        <h4 className="flex aic jcc">
+                            <div className="img-circle">
+                                <Link to={"/profile/" + this.props.task.UserId}>
+                                    <img
+                                        src={this.props.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__}
+                                        alt=""
+                                    />
+                                </Link>
+                            </div> {this.props.task.User.first_name} {this.props.task.User.last_name[0]}.</h4>
+                    </div>
+                </div>
+                <div className="offers__card--bottom">
+                    <div>
+                        <p><img src="/images/inter.png" alt="" />
+                            {this.props.task.status == "ACTIVE"
+                                ? new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")
+                                : "Deactive"
+                            }
+                        </p>
+                        <p><img src="/images/pins.png" alt="" /> {this.props.task.zipCode}, {this.props.task.city}</p>
+                    </div>
+                    <div>
+                        <p><img src="/images/shop.png" alt="" />CHF {this.props.task.expected_price}.-</p>
+                        <p><img src="/images/flags.png" alt="" /> {this.props.task.Category.name}</p>
+                    </div>
+                </div>
+            </div>
+        )
     }
     setStep = step => () => this.setState({ step })
     onChange = key => e => this.setState({ [key]: e.target.value })
@@ -74,76 +167,144 @@ class Task extends React.Component {
         })
         this.props.history.push("/dashboard")
     }
-    getAllOffersUI = () => <React.Fragment>
-        <div className="other-offers__list">
-            <p className="offers-images__title">Other offers</p>
-            {
-                this.props.task.Offers.map(offer => (
-                    <div className="other-offer">
-                        <div className="offers__profile">
-                            <div className="offers__profile--img" />
-                            <h4 className="flex aic jcc"> <div className="img-circle">
-                            <Link to={"/profile/" + offer.Tasker.UserId}>
-                                <img 
-                                    src={offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} 
-                                    alt="" 
-                                />
-                            </Link>
-                            </div>{offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.</h4>
+    getAllOffersUI = () => {
+        if (this.props.own_user.id !== this.props.task.UserId) return null;
+        return (
+            <React.Fragment>
+                <div className="other-offers__list">
+                    <p className="offers-images__title">Other offers</p>
+                    {
+                        this.props.task.Offers.map(offer => (
+                            <div onClick={() => this.props.history.push(`/task/${this.props.task.id}/edit/offers/${offer.id}?from_task=t`)} className="other-offer">
+                                <div className="offers__profile">
+                                    <div className="offers__profile--img" />
+                                    <h4 className="flex aic jcc"> <div className="img-circle">
+                                        <Link to={"/profile/" + offer.Tasker.UserId}>
+                                            <img
+                                                src={offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__}
+                                                alt=""
+                                            />
+                                        </Link>
+                                    </div>{offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.</h4>
+                                </div>
+                                <h3>CHF {offer.amount}</h3>
+                            </div>
+                        ))
+                    }
+                </div>
+                <center>
+                    {
+                        !this.props.task.Offers.length && "No offers to show"
+                    }
+                </center>
+                {/* { this.showOfferUI() && this.getOfferUI() } */}
+            </React.Fragment>
+        )
+    }
+    getTaskOffersUI = () => {
+        return (
+            <div>
+                <div className=" edit-task__wrapper hide-on-web">
+                    <section className="landing-info panel edit-task__section">
+                        <div className="container">
+                            <div className="content">
+                                <header className="logo-text">
+                                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                    <h4 className="hide-on-desktop logo-title">
+                                        Offers
+                  </h4>
+                                </header>
+                                <section className="vertical-cards">
+                                    <div className="vertical-card">
+                                        <div className="offers__profile">
+                                            <div className="offers__profile--img" />
+                                            <div className="img-circle"><img src="/images/ustah.jpeg" alt="" /></div>
+                                        </div>
+                                        <div className="vertical-card__info">
+                                            <h4>Lester V.</h4>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
+                                        </div>
+                                        <img src="/images/arr-right.png" alt="" style={{ width: '25px' }} />
+                                    </div>
+                                    <div className="vertical-card">
+                                        <div className="offers__profile">
+                                            <div className="offers__profile--img" />
+                                            <div className="img-circle"><img src="/images/ustah.jpeg" alt="" /></div>
+                                        </div>
+                                        <div className="vertical-card__info">
+                                            <h4>Lester V.</h4>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
+                                        </div>
+                                        <img src="/images/arr-right.png" alt="" style={{ width: '25px' }} />
+                                    </div>
+                                    <div className="vertical-card">
+                                        <div className="offers__profile">
+                                            <div className="offers__profile--img" />
+                                            <div className="img-circle"><img src="/images/ustah.jpeg" alt="" /></div>
+                                        </div>
+                                        <div className="vertical-card__info">
+                                            <h4>Lester V.</h4>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
+                                        </div>
+                                        <img src="/images/arr-right.png" alt="" style={{ width: '25px' }} />
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                        <h3>CHF {offer.amount}</h3>
+                    </section>
+                </div>
+                <section className="offers-layout hide-on-mobile">
+                    <div className="offers-picture" style={{
+                        backgroundImage: `url(${this.props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__})`
+                    }}>
+                        {this.getOfferPictureButtons()}
+
                     </div>
-                ))
-            }
-        </div>
-        <center>
-            {
-                !this.props.task.Offers.length && "No offers to show"
-            }
-        </center>
-        {/* { this.showOfferUI() && this.getOfferUI() } */}
-    </React.Fragment>
+                    <div className="offers-content">
+                        <div className="offers__cards">
+                            {this.getOffersCard()}
+                            <div className="offers-images tasker-card__about view__card-offers">
+                            {
+                                this.props.task.Offers.map(offer => (
+                                    <Link to={`/task/${this.props.task.id}/edit/offers/${offer.id}`}>
+                                        <div className="offers-image">
+                                            <h4 className="flex aic jcc"> 
+                                            <div className="img-circle">
+                                            <img src={offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                            </div> {offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.</h4>
+                                            <p>{offer.description} </p>
+                                        </div>
+
+                                    </Link>
+                                ))
+                            }
+                            </div>
+                            <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length} offers given</p>
+                            <div className="offers-buttons">
+                                <a href="#" className="button">Q&amp;A</a>
+                                <a onClick={e => {
+                                    e.preventDefault();
+                                    this.setState({ step: "TASK_PROFILE"})
+                                }} className="button fill">Go back</a>
+                            </div>
+                        </div>
+                    </div></section>
+            </div>
+
+        )
+    }
     getTaskProfileUI = () => {
         return (
             <section className="offers-layout">
                 <div className="offers-picture" style={{
                     backgroundImage: `url(${this.props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__})`
-                }}/>
+                }}>
+                    {this.getOfferPictureButtons()}
+
+                </div>
                 <div className="offers-content">
                     <div className="offers__cards">
-                        <div className="offers__card">
-                            <div className="offers__card--top">
-                                <h4>{this.props.task.title}</h4>
-                                <p className="special">{this.props.task.description}</p>
-                                <div className="offers__profile">
-                                    <div className="offers__profile--img" />
-                                    <h4 className="flex aic jcc"> 
-                                    <div className="img-circle">
-                                    <Link to={"/profile/" + this.props.task.UserId}>
-                                        <img 
-                                            src={this.props.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} 
-                                            alt="" 
-                                        />
-                                    </Link>
-                                    </div> {this.props.task.User.first_name} {this.props.task.User.last_name[0]}.</h4>
-                                </div>
-                            </div>
-                            <div className="offers__card--bottom">
-                                <div>
-                                    <p><img src="/images/inter.png" alt="" />
-                                     {this.props.task.status == "ACTIVE" 
-                                            ? new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")
-                                            : "Deactive"
-                                     }
-                                    </p>
-                                    <p><img src="/images/pins.png" alt="" /> {this.props.task.zipCode}, {this.props.task.city}</p>
-                                </div>
-                                <div>
-                                    <p><img src="/images/shop.png" alt="" />CHF {this.props.task.expected_price}.-</p>
-                                    <p><img src="/images/flags.png" alt="" /> {this.props.task.Category.name}</p>
-                                </div>
-                            </div>
-                        </div>
+                        {this.getOffersCard()}
                         {this.state.belowUI === "SHOW_OFFERS" && this.getAllOffersUI()}
                         <div className="offers-images">
                             { this.state.belowUI === "DEFAULT" && <React.Fragment>
@@ -154,9 +315,10 @@ class Task extends React.Component {
                                 ))}
                                 {this.props.task.gallery == null && "No gallery images to show"}
                             </React.Fragment>}
-
                         </div>
-                        {this.props.task.Offers.length ? `${this.props.task.Offers.length} offers given` : null}
+                        {this.props.task.Offers && this.props.task.Offers.length ? 
+                            <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length} offers given</p>
+                        : null}
                         <div className="offers-buttons">
                             {
                                 this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.state.belowUI === "DEFAULT"
@@ -181,25 +343,47 @@ class Task extends React.Component {
                                             ? 
                                             <a
                                                 button
-                                                onClick={() => this.setState({ belowUI: "SHOW_OFFERS" })}
+                                                onClick={() => this.setState({ step: "TASK_OFFERS" })}
                                                 className="button fill">
-                                                Go to offers
+                                                View offers
                                             </a>
                                             :
-                                            <a
-                                                button
-                                                onClick={() => {
-                                                    let { own_user } = this.props;
-                                                    console.log("this.showOfferUI()", this.showOfferUI())
-                                                    if (own_user) this.setState({ belowUI: "NONE", clickedMakeOffer: true });
-                                                    else this.props.history.push("/register?to=/task/" + this.props.task.id);
-                                                }}
-                                                className="button fill">
-                                                Make offer
-                                            </a>
+                                            (
+                                                this.props.task.Offers.find(offer => offer.Tasker.User.id === this.props.own_user.id) 
+                                                ? null
+                                                :
+                                                <ModalContainer>
+                                                    {(openModal, closeModal, isActive) => (
+                                                        <React.Fragment>
+                                                            <a
+                                                                button
+                                                                onClick={() => {
+                                                                    let { own_user } = this.props;
+                                                                    console.log("this.showOfferUI()", this.showOfferUI())
+                                                                    if (own_user) {
+                                                                        if (!own_user.Tasker) openModal()
+                                                                        else this.setState({ belowUI: "NONE", clickedMakeOffer: true });
+                                                                    }
+                                                                    else this.props.history.push("/register?to=/task/" + this.props.task.id);
+                                                                }}
+                                                                className="button fill">
+                                                                Make offer
+                                                            </a>
+                                                            <Modal
+                                                                isActive={isActive}     // required
+                                                                closeModal={closeModal} // required
+                                                                title="Action not allowed"
+                                                                description="You cannot make an offer, to make an account, register as a Tasker."
+                                                                hide_buttons={true}
+                                                            />
+                                                        </React.Fragment>
+                                                    )}
+                                                </ModalContainer>
+                                            )
                                         )
                                         : ""
                                     }
+
                                     {
                                         this.showOfferUI() && this.state.belowUI === "DEFAULT" && !this.props.task.Offers.length ?
                                         <a
@@ -232,68 +416,36 @@ class Task extends React.Component {
                                 </a>
                             }
                             {
-                                this.showOfferUI() && 
-                                <div className="register__form" style={{ paddingBottom: 50, maxWidth: "800px", margin: "0 auto"}}>
-                                        {
-                                            this.state.clickedMakeOffer &&
-                                            <input 
-                                                className="input" 
-                                                placeholder="Amount"
-                                                onChange={this.amountOnChange}
-                                                value={this.state.amount}
-                                            />
-                                        }
-                                        {
-                                            this.state.clickedMakeOffer && 
-                                            <a
-                                                button
-                                                style={{ width: "120px", margin: "0 auto" }}
-                                                onClick={this.state.amount ? () => this.setState({ step: "SELF_PROMOTE" }) : undefined}
-                                                className={`button ${this.state.amount ? "fill" : "no-fill"}`}>
-                                                Next
-                                            </a>
-                                        }
-                                    </div>
+                                this.showOfferUI() && this.state.clickedMakeOffer && (
+                                    <div className="register__form" style={{ paddingBottom: 50, maxWidth: "800px", margin: "0 auto"}}>
+                                        Amount
+                                        <input 
+                                            className="input" 
+                                            style={{
+                                                width: 130,
+                                                margin: "0 auto",
+                                                borderRadius: 20,
+                                                border: "1px solid #1f4732",
+                                                marginBottom: "3%"
+                                            }}
+                                            placeholder="Amount"
+                                            onChange={this.amountOnChange}
+                                            value={this.state.amount}
+                                        />
+                                        <a
+                                            button
+                                            style={{ width: "120px", margin: "0 auto" }}
+                                            onClick={this.state.amount ? () => this.setState({ step: "SELF_PROMOTE" }) : undefined}
+                                            className={`button ${this.state.amount ? "fill" : "no-fill"}`}>
+                                            Next
+                                        </a>
+                                </div>
+                                )
                             }
                         </div>
                     </div>
                 </div>
-                {this.props.own_user && this.props.own_user.id == this.props.task.UserId &&
-                    <button onClick={this.delete}>Delete</button>
-                }
-                {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "ACTIVE" &&
-                    <button onClick={this.deactivate}>Deactivate</button>
-                }
-
-                {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "DEACTIVATED" &&
-                    <button onClick={this.reActivate}>Re-Activate</button>
-                }
             </section>
-        )
-        return (
-            <div>
-                <br />
-                {/* {JSON.stringify(this.props.task)} <br /><br /> */}
-                Title -  {this.props.task.title} <br />
-                Description -{this.props.task.description}<br /> <br />
-                Asker - {this.props.task.User.first_name} {this.props.task.User.last_name[0]}<br /> <br />
-                Due date -  { new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g,".") } <br /> <br />
-                Location - { this.props.task.zipCode}, { this.props.task.city} <br /> <br />
-                Price - { this.props.task.expected_price} CH <br /> <br />
-                Category -  { this.props.task.Category.name} <br /> <br/>
-
-                {this.state.belowUI === "SHOW_OFFERS" && this.getAllOffersUI()} <br/>
-                { this.state.belowUI === "DEFAULT" && <React.Fragment>
-                    Thumbnail - { this.props.task.thumbnail ? <img width={100} src={this.props.task.thumbnail} /> : "None"} <br /> <br />
-                    Gallery - { this.props.task.gallery && this.props.task.gallery.split(",").map(src => (
-                        <img src={src} width={100} />
-                    ))}<br />
-                    <center>
-                        <button onClick={() => this.setState({ belowUI: "SHOW_OFFERS" })}>Go to offers</button>
-                    </center>
-                </React.Fragment>}<br/>
-                
-            </div> 
         )
     }
     sendOffer = () => {
@@ -307,56 +459,18 @@ class Task extends React.Component {
             this.sendOffer()
         }
         if (!this.state.self_promote) buttonOnClick = undefined
-        let className = "button__style"
-        if (!buttonOnClick) className += " no-fill"
-        return (
-            <div className="container">
-                <div className="content">
-                    <header className="logo-text">
-                        <span onClick={() => this.setState({ step: "TASK_PROFILE" })} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                        <h4 className="hide-on-desktop logo-title">Self <span> Promote</span></h4>
-                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                    </header>
-                    <section className="two-column__layout setup__mobile create-task">
-                        <div className="two-column__info flex flex-column">
-                            <div className="background-title mb30">
-                                <h1>Describe</h1>
-                                <h3>task</h3>
-                                <p className="shadow__title no-contain">create a task on eazytask easy </p>
-                            </div>
-                            <h4 className="show__mobile">
-                                <p className="show__mobile--subtitle">Please write why do you think you are the right person to do this task</p>
-                            </h4>
-                            <form action className="register__form flex-grow" style={{ marginTop: 0 }}>
-                                <textarea value={this.state.self_promote} onChange={e => this.setState({ self_promote: e.target.value })} className="textarea" name id placeholder="Promote yourself..." defaultValue={""} />
-                            </form>
-                            <div className="buttons__group">
-                                <button 
-                                    onClick={buttonOnClick}
-                                    className={className}
-                                >Send</button>
-                            </div>
-                        </div>
-                        <div className="two-column__img">
-                            <div className="two-column__image">
-                                <img src="/images/ct/startup.png" alt="" />
-                            </div>
-                            <div className="dots__group">
-                                <span className="dot active" />
-                                <span className="dot" />
-                                <span className="dot" />
-                            </div>
-                        </div>
-                    </section>
-                </div></div>
-
-        )
-        return (
-            <React.Fragment>
-                Self promote: <input value={this.state.self_promote} onChange={this.onChange("self_promote")}/>
-                <button onClick={buttonOnClick}>Next</button>
-            </React.Fragment>
-        )
+        let buttonStyle = { backgroundColor: undefined }
+        if (!buttonOnClick) buttonStyle = { backgroundColor: "darkgrey" }
+        return <SelfPromote
+            thumbnail={this.props.task.thumbnail}
+            goBack={() => this.setState({step: "TASK_PROFILE" })}
+            onLogoClick={() => this.setState({ step: "TASK_PROFILE" })} 
+            value={this.state.self_promote}
+            onChange={e => this.setState({ self_promote: e.target.value })} 
+            offersCard={this.getOffersCard()}
+            buttonOnClick={buttonOnClick} 
+            buttonStyle={buttonStyle}    
+        />
     }
     getOfferSentUI = () => <div className="container">
         <div className="content setup-ready">
@@ -374,7 +488,7 @@ class Task extends React.Component {
                         <img src="/images/reminder.png" style={{ minWidth: '190px', width: '20%', margin: '0 auto 40px' }} alt="" />
                     </div>
                     <h4 className="show__mobile">Ready to go</h4>
-                    <p className="mb30 flex-grow" style={{ fontSize: '18px', maxWidth: '240px' }}>You will be notified if the asker accept it or not</p>
+                    <p className="mb30 flex-grow" style={{ fontSize: '18px', maxWidth: '240px', marginTop: "2%", margin: "0 auto" }}>You will be notified if the asker accept it or not</p>
                     <div className="buttons__group">
                         <button onClick={() => {
                             this.setState({
@@ -402,11 +516,54 @@ class Task extends React.Component {
             if (this.props.task.errorResponse.response.status === 404) 
                 return <E404/>
         if (this.props.loading) return <Loading/>
+        let children;
         switch (this.state.step) {
-            case "TASK_PROFILE": return this.getTaskProfileUI()
-            case "SELF_PROMOTE": return this.getSelfPromoteUI()
-            case "OFFER_SENT": return this.getOfferSentUI()
+            case "TASK_PROFILE": { children = this.getTaskProfileUI(); break }
+            case "TASK_OFFERS": { children = this.getTaskOffersUI(); break }
+            case "SELF_PROMOTE": { children = this.getSelfPromoteUI(); break }
+            case "OFFER_SENT": { children = this.getOfferSentUI(); break }
         }
+        return (
+            <React.Fragment>
+                <Modal
+                    isActive={this.state.onModal == "DELETE_MODAL"}     // required
+                    closeModal={this.closeModal} // required
+                    title="Are you sure?"
+                    description="Are you pretty sure?"
+                    acceptText="Delete"
+                    acceptOnClick={() => {
+                        this.delete()
+                        this.closeModal()
+                        this.setState({ opened: false })
+                    }}
+                />
+                <Modal
+                    isActive={this.state.onModal == "DEACTIVATE_MODAL"}     // required
+                    closeModal={this.closeModal} // required
+                    title="Are you sure?"
+                    description="Are you pretty sure?"
+                    acceptText="Deactivate"
+                    acceptOnClick={() => {
+                        this.deactivate()
+                        this.closeModal()
+                        this.setState({ opened: false })
+                    }}
+                />
+                <Modal
+                    isActive={this.state.onModal == "REACTIVATE_MODAL"}     // required
+                    closeModal={this.closeModal} // required
+                    title="Are you sure react?"
+                    description="Are you pretty sure?"
+                    acceptText="Re-Activate"
+                    acceptOnClick={() => {
+                        this.reActivate()
+                        this.closeModal()
+                        this.setState({ opened: false })
+                    }}
+                />
+                {children}
+            </React.Fragment>
+        )
     }
 }
 
