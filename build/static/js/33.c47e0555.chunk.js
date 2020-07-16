@@ -1,2 +1,0 @@
-(this["webpackJsonpreact-project"]=this["webpackJsonpreact-project"]||[]).push([[33],{113:function(t,e,r){"use strict";r.r(e);var n=r(0),a=r.n(n);e.default=function(){return a.a.createElement(a.a.Fragment,null,"Error 404 - Not Found")}}}]);
-//# sourceMappingURL=33.c47e0555.chunk.js.map
