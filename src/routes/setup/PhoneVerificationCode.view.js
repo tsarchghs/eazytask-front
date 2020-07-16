@@ -76,18 +76,20 @@ class PhoneVerificationCode extends React.Component {
         return (
             <React.Fragment>
                 <div className="background-title mb5">
-                    <h1>Verification code</h1>
-                    <p className="shadow__title">Type your verification code</p>
+                    <h1>{this.props.getTrans(this.props.translations.text_20)}</h1>
+                    <p className="shadow__title">{this.props.getTrans(this.props.translations.text_21)}</p>
                 </div>
-                <h5 className="show__mobile"><img src="/images/Vector.png" alt="" style={{ width: '20px', marginRight: '10px' }} />Location</h5>
+                <h5 className="show__mobile"><img src="/images/sign.png" alt="" style={{ width: '20px', marginRight: '10px' }} />
+                    {this.props.getTrans(this.props.translations.text_21)}
+                </h5>
                 <div className="mobile__dots">
                     <span className="dot active"></span>
                     <span className="dot active"></span>
-                    <span className="dot" />
+                    <span className="dot active" />
                 </div>
-                <h4 className="mb30">Type your verification code</h4>
+                <h4 className="mb30">{this.props.getTrans(this.props.translations.text_21)}</h4>
                 {
-                    error && "Invalid code"
+                    error && this.props.getTrans(this.props.translations.text_22)
                 }
                 <div className="flex-grow input__group" style={{ display: "block" }}>
                     <div className="small-input">

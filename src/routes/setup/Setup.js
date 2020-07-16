@@ -42,7 +42,7 @@ class Setup extends React.Component {
                 skills: [],
                 languages: [],
                 cities: [],
-                phone_number:"+43"
+                phone_number:"+41"
             },
             setupTasker: false,
             steps: [
@@ -130,16 +130,18 @@ class Setup extends React.Component {
         }
     }
     showCurrentStep = () => {
+        let { translations, app_lang, common } = this.props;
+        let commonProps = { translations, app_lang, common, getTrans: this.getTrans }
         switch (this.state.step) {
-            case 0: return <WelcomeUser first_name={this.props.first_name} />
-            case 1: return <ProfilePicture onChange={this.onFileChange("profile_image")} />
-            case 2: return <CoverPicture onChange={this.onFileChange("cover_image")} />
-            case 3: return <Location
+            case 0: return <WelcomeUser {...commonProps} first_name={this.props.first_name} />
+            case 1: return <ProfilePicture {...commonProps} onChange={this.onFileChange("profile_image")} />
+            case 2: return <CoverPicture {...commonProps} onChange={this.onFileChange("cover_image")} />
+            case 3: return <Location {...commonProps}
                 onZipCodeChange={this.onChange("zipCode")} zipCode={this.state.data.zipCode}
                 onAddressChange={this.onChange("address")} address={this.state.data.address}
                 onCityChange={this.onChange("city")} city={this.state.data.city}
             />
-            case 4: return <NotificationOption 
+            case 4: return <NotificationOption {...commonProps} 
                 email={this.state.data.email}
                 emailOnchange={this.onChange("email")}
                 phone={this.onChange("phone")}
@@ -149,28 +151,28 @@ class Setup extends React.Component {
                 setSMS={this.getDataPropertyValueOnChange("notification_option", "SMS")}
                 setEMAIL={this.getDataPropertyValueOnChange("notification_option","EMAIL")}
             />
-            case 4.1: return <PhoneInput 
+            case 4.1: return <PhoneInput {...commonProps} 
                 value={this.state.data.phone_number} 
                 onChange={value => this.onChange("phone_number")({ target: { value } })}
             />
-            case 4.2: return <PhoneVerificationCode mainButtonClick={this.getButtonOnClick()} phone_number={this.state.data.phone_number}/>
-            case 5: return <BecomeTasker />
-            case 6: return <MySkills
+            case 4.2: return <PhoneVerificationCode {...commonProps} mainButtonClick={this.getButtonOnClick()} phone_number={this.state.data.phone_number}/>
+            case 5: return <BecomeTasker {...commonProps} />
+            case 6: return <MySkills {...commonProps}
                 skills={this.state.data.skills}
                 addSkill={this.onListAdd("skills")}
                 removeSkill={this.onListRemove("skills")}
             />
-            case 7: return <MyCities
+            case 7: return <MyCities {...commonProps}
                 cities={this.state.data.cities}
                 addCity={this.onListAdd("cities")}
                 removeCity={this.onListRemove("cities")}
             />
-            case 8: return <MyLanguages
+            case 8: return <MyLanguages {...commonProps}
                 languages={this.state.data.languages}
                 addLanguage={this.onListAdd("languages")}
                 removeLanguage={this.onListRemove("languages")}
             />
-            case 9: return <ReadyToGo />
+            case 9: return <ReadyToGo {...commonProps} />
         }
     }
     getStepImage = () => {
@@ -203,17 +205,17 @@ class Setup extends React.Component {
         this.state.step <= 5
     getSkipForNowInfo = () => {
         if (this.state.step === 0) 
-            return { onClick: this.setupAccount, show: "Skip for now" }
+            return { onClick: this.setupAccount, show: this.getTrans(this.props.translations.text_36) }
         else if (this.state.steps[this.state.step] === "BECOME_TASKER") 
-            return { onClick: this.nextStep(this.lastStepIndex), show: "No, thanks" }
-        else return { onClick: this.nextStep(this.state.step + 1), show: "Skip for now" }
+            return { onClick: this.nextStep(this.lastStepIndex), show: this.getTrans(this.props.translations.text_41) }
+        else return { onClick: this.nextStep(this.state.step + 1), show: this.getTrans(this.props.translations.text_36) }
     }
     getButtonText = () => {
-        if (this.state.step === 0) return "Setup"
-        if (this.state.step === this.lastStepIndex - 1) return "Finish"
-        if (this.state.step === 4) return "Finish"
-        if (this.state.step !== this.lastStepIndex) return "Next"
-        else return "Go"
+        if (this.state.step === 0) return this.getTrans(this.props.translations.text_40)
+        if (this.state.step === this.lastStepIndex - 1) return this.getTrans(this.props.translations.text_37)
+        if (this.state.step === 4) return this.getTrans(this.props.translations.text_37)
+        if (this.state.step !== this.lastStepIndex) return this.getTrans(this.props.translations.text_35)
+        else return this.getTrans(this.props.translations.text_34)
     }
     getButtonOnClick = () => {
         if (this.state.step === this.lastStepIndex) return this.setupAccount
@@ -251,9 +253,9 @@ class Setup extends React.Component {
     }
     getHeader = () => {
         let show = {
-            "MY_SKILLS": "My skills",
-            "MY_LANGUAGES": "My languages",
-            "MY_CITIES": "My area of activity"
+            "MY_SKILLS": this.getTrans(this.props.translations.text_26),
+            "MY_LANGUAGES": this.getTrans(this.props.translations.text_30),
+            "MY_CITIES": this.getTrans(this.props.translations.text_28)
         }
         let step_name = this.state.steps[this.state.step] 
         let Header1 = (
@@ -314,6 +316,7 @@ class Setup extends React.Component {
             </React.Fragment>
         )
     }
+    getTrans = obj => obj[this.props.app_lang]
     render(){
         console.log(this.state, "this.state")
         if (this.props.setupCompleted) return <Redirect to="/" />
@@ -351,7 +354,10 @@ class Setup extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    ...state.auth.profile
+    ...state.auth.profile,
+    translations: state.app_lang.data["/setup"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
 })
 
 export default compose(withRouter,connect(mapStateToProps, { patchUser, postTasker }))(Setup);

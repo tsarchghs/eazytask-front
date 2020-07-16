@@ -8,6 +8,7 @@ import MyTasks from "./MyTasks.view";
 import Discover from "./Discover.view";
 import MyActiveOffers from "./MyActiveOffers.view";
 import More from "./More.view";
+import MobileNav from "../../components/MobileNav";
 
 class MobileDashboard extends React.Component {
     constructor(props){
@@ -24,6 +25,7 @@ class MobileDashboard extends React.Component {
             case "more": return <More/>
         }
     }
+    getTrans = obj => obj[this.props.app_lang]
     render(){
         let { search } = this.props.location;
         let params = queryString.parse(search);
@@ -41,26 +43,29 @@ class MobileDashboard extends React.Component {
                             </header>
                             <section className="home">
                                 <div className="home__title">
-                                    <h3>Howdy, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
+                                    <h3>{this.getTrans(this.props.translations.text_1)}, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
                                     <img src="/images/noti.png" alt="" />
                                 </div>
                                 <div className="home__cards">
                                     <div className="home__card gradient">
-                                        <h5>View “Yard Work” <br /><span>new offers</span></h5>
+                                        <h5>{this.getTrans(this.props.translations.text_2)} “Yard Work” <br /><span>{this.getTrans(this.props.translations.text_23)}</span></h5>
                                         <img src="/images/succ.png" alt="" />
                                     </div>
                                     <div className="home__tabs">
                                         <Link to="?tab=my_tasks">
-                                            <div className={`home__tab ${tab == "my_tasks" && "active"}`}>My tasks</div>
+                                            <div className={`home__tab ${tab == "my_tasks" && "active"}`}>{this.getTrans(this.props.translations.text_3)}</div>
                                         </Link>
                                         <Link to="?tab=discover">
-                                            <div className={`home__tab ${tab == "discover" && "active"}`}>Discover</div>
+                                            <div className={`home__tab ${tab == "discover" && "active"}`}>{this.getTrans(this.props.translations.text_4)}</div>
                                         </Link>
-                                        <Link to="?tab=offers">
-                                            <div className={`home__tab ${tab == "offers" && "active"}`}>Offers</div>
-                                        </Link>
+                                        {
+                                            this.props.own_profile.Tasker &&
+                                            <Link to="?tab=offers">
+                                                <div className={`home__tab ${tab == "offers" && "active"}`}>{this.getTrans(this.props.translations.text_5)}</div>
+                                            </Link>
+                                        }
                                         <Link to="?tab=more">
-                                            <div className={`home__tab ${tab == "more" && "active"}`}>More</div>
+                                            <div className={`home__tab ${tab == "more" && "active"}`}>{this.getTrans(this.props.translations.text_6)}</div>
                                         </Link>
                                     </div>
                                     <div className="home__card--content">
@@ -68,24 +73,7 @@ class MobileDashboard extends React.Component {
                                     </div>
                                 </div>
                             </section>
-                            <div className="mobile-nav">
-                                <Link to="/dashboard">
-                                    <div className="mob-nav active">
-                                        <img src="/images/nav-home.png" alt="" />
-                                        <p>Home</p>
-                                    </div>
-                                </Link>
-                                <Link to="/create-task">
-                                    <div className="mob-nav ">
-                                        <img src="/images/nav-plus.png" alt="" />
-                                    </div>
-                                </Link>
-                                <Link to="/my_profile_edit">
-                                    <div className="mob-nav"><img src="/images/nav-profile.png" alt="" />
-                                        <p>Profile</p>
-                                    </div>
-                                </Link>
-                            </div>
+                            <MobileNav/>
                         </div>
                     </div>
                 </section>
@@ -96,7 +84,10 @@ class MobileDashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    own_profile: state.auth.profile
+    own_profile: state.auth.profile,
+    translations: state.app_lang.data["/dashboard"].mobile,
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
 })
 
 export default compose(withRouter,connect(mapStateToProps,{ }))(MobileDashboard);

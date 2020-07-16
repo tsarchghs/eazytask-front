@@ -57,7 +57,7 @@ class MyCities extends React.Component {
         return (
             <React.Fragment>
                 <div className="background-title mb5">
-                    <h1>My area of activity</h1>
+                    <h1>{this.props.getTrans(this.props.translations.text_28)}</h1>
                     <p className="shadow__title">setup your account</p>
                 </div>
                 <div className="flex-grow input__group skills__input-group">
@@ -65,7 +65,7 @@ class MyCities extends React.Component {
                         <span><img src="/images/new/search.png" alt="" /></span>
                         <input
                             type="text"
-                            placeholder="Search or add a custom one"
+                            placeholder={this.props.getTrans(this.props.translations.text_29)}
                             value={this.state.query}
                             onChange={e => this.setState({ query: e.target.value })}
                             onKeyDown={this.searchOnKeyDown}

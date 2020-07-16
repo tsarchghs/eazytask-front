@@ -47,12 +47,13 @@ class Discover extends React.Component {
         }
         return content;
     }
+    getTrans = obj => obj[this.props.app_lang]
     showTasks = () => {
         return this.props.tasks.map(task => (
             <Link to={`/task/${task.id}`}>
                 <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                     <div className="home__card--mask" />
-                    <h5>View “{task.title}”</h5>
+                    <h5>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
                     <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                 </div>           
             </Link>
@@ -62,7 +63,7 @@ class Discover extends React.Component {
         let { loading } = this.props;
         return (
             <div>
-                { loading && <div>Loading...<br/></div>}
+                {loading && <div>{this.getTrans(this.props.common.loading)}<br/></div>}
                 { !loading && this.showTasks() }
                 { !loading && this.getPages() }
             </div>
@@ -77,7 +78,10 @@ const mapStateToProps = state => {
     let { loading } = state.app.activeListing3;
     console.log({tasksss:tasks})
     return {
-        loading, tasks, tasks_count: state.tasks.tasks_count
+        loading, tasks, tasks_count: state.tasks.tasks_count,
+        translations: state.app_lang.data["/dashboard"].mobile,
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common
     }
 }
 

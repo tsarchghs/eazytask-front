@@ -25,11 +25,12 @@ class WebDashboard extends React.Component {
         });
     }
     getActiveTasks = () => {
-        if (this.props.myActiveTasks_info.loading) return "Loading..."
+        let translations = this.props.translations;
+        if (this.props.myActiveTasks_info.loading) return this.getTrans(this.props.common.loading)
         if (!this.props.myActiveTasks_info.tasks.length) return (
             <div className="home__card--lonely" style={{width:"60%", margin: "0 auto"}}>
-                <h4>It's lonely here!</h4>
-                <p>You don't have any active task yet.</p>
+                <h4>{this.getTrans(translations.text_5)}</h4>
+                <p>{this.getTrans(translations.text_6)}</p>
                 <img src="/images/super_man.png" alt="" style={{ width: '35%' }} />
                 <img src="/images/lonely.jpeg" alt="" />
             </div>
@@ -41,7 +42,7 @@ class WebDashboard extends React.Component {
                     this.props.myActiveTasks_info.tasks.map(task => (
                         <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
-                            <h5 style={{ textAlign: "center" }}>View “{task.title}”</h5>
+                            <h5 style={{ textAlign: "center" }}>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
                             <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                         </div>
                     ))
@@ -50,15 +51,15 @@ class WebDashboard extends React.Component {
         )
     }
     getOffers = () => {
-        if (this.props.offers_info.loading) return "Loading..."
-        if (!this.props.offers_info.offers.length) return "No offers to show"
+        if (this.props.offers_info.loading) return this.getTrans(this.props.common.loading)
+        if (!this.props.offers_info.offers.length) return this.getTrans(this.props.translations.text_25)
         return (
             <div className="home__card--content">
                 {
                     this.props.offers_info.offers.map(({ Task }) => (
                         <div className="home__card" style={{ backgroundImage: `url("${Task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
-                            <h5>View “{Task.title}”</h5>
+                            <h5>{this.getTrans(this.props.translations.text_2)} “{Task.title}”</h5>
                             <p>{new Date(Task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                         </div>
                     ))
@@ -66,60 +67,15 @@ class WebDashboard extends React.Component {
             </div>
         )
     }
+    getTrans = obj => obj[this.props.app_lang]
     render(){
+        let translations = this.props.translations;
         return (
             <React.Fragment>
                 <div className=" edit-task__wrapper">
                     <section className="home-web landing-info panel edit-task__section">
                         <div className="container">
                             <div className="content pb50">
-                                <header className="logo-text hide-on-web">
-                                    {/* <span class="show__mobile"><img src="/images/arrow.jpeg" alt=""></span> */}
-                                    <h4 className="hide-on-desktop logo-title">
-                                    </h4>
-                                </header>
-                                <section className="home hide-on-web">
-                                    <div className="home__title">
-                                        <h3>Active <br /> <span>Tasks</span></h3>
-                                        <img src="/images/search.png" alt="" />
-                                    </div>
-                                    <div className="home__cards">
-                                        <div className="home__tabs">
-                                            <div className="home__tab ">My tasks</div>
-                                            <div className="home__tab active">Discover</div>
-                                            <div className="home__tab">More</div>
-                                        </div>
-                                        <div className="home__card--content">
-                                            <div className="home__card home__card--discover" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                <div className="home__card--mask" />
-                                                <div className="home__card--divide">
-                                                    <h5>View “Yard Work” <br /><p>Nicole W.</p></h5>
-                                                    <div>
-                                                        <h6>23.05.2020</h6>
-                                                        <h6>1029 Bern</h6>
-                                                        <h6>CHF 49.-</h6>
-                                                        <h6>Household</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="home__card" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                <div className="home__card--mask" />
-                                                <h5>View “Yard Work”</h5>
-                                                <p>26.07.2020</p>
-                                            </div>
-                                            <div className="home__card" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                <div className="home__card--mask" />
-                                                <h5>View “Yard Work”</h5>
-                                                <p>26.07.2020</p>
-                                            </div>
-                                            <div className="home__card" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                <div className="home__card--mask" />
-                                                <h5>View “Yard Work”</h5>
-                                                <p>26.07.2020</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
                                 <section className="home-web hide-on-mobile">
                                     <div className="container">
                                         <div className="content">
@@ -127,20 +83,24 @@ class WebDashboard extends React.Component {
                                             <div className="hero flex jcsb" style={{ height: 'calc(100vh - 165px)', paddingTop: 80 }}>
                                                 <div className="home">
                                                     <div className="home__title">
-                                                        <h3>Howdy, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
-                                                        {/* <img src="/images/noti.png" alt=""> */}
+                                                        <h3>{this.getTrans(translations.text_1)}, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
                                                     </div>
                                                     <div className="home__cards">
                                                         <div className="home__card gradient">
-                                                            <h5>View “Yard Work” <br /><span>new offers</span></h5>
+                                                            <h5>{this.getTrans(translations.text_2)} “Yard Work” <br /><span>{this.getTrans(translations.text_3)}</span></h5>
                                                             <img src="/images/succ.png" alt="" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="hero-home__cards">
                                                     <div className="home__tabs" style={{ justifyContent: 'initial' }}>
-                                                        <div onClick={() => this.setState({ onTab: "my_tasks"})} className={`home__tab ${this.state.onTab == "my_tasks" && "active"}`}>My tasks</div>
-                                                        <div onClick={() => this.setState({ onTab: "offers" })} className={`home__tab ${this.state.onTab == "offers" && "active"}`}>Offer</div>
+                                                        <div onClick={() => this.setState({ onTab: "my_tasks"})} className={`home__tab ${this.state.onTab == "my_tasks" && "active"}`}>
+                                                            {this.getTrans(translations.text_4)}
+                                                        </div>
+                                                        {
+                                                            this.props.own_profile.Tasker && 
+                                                            <div onClick={() => this.setState({ onTab: "offers" })} className={`home__tab ${this.state.onTab == "offers" && "active"}`}>{this.getTrans(translations.text_26)}</div>
+                                                        }
                                                     </div>
                                                     {
                                                         this.state.onTab == "my_tasks" && this.getActiveTasks()
@@ -148,48 +108,26 @@ class WebDashboard extends React.Component {
                                                     {
                                                         this.state.onTab == "offers" && this.getOffers()
                                                     }
-                                                    {/* <div className="home__card--content">
-                                                        <div className="home__card" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                            <div className="home__card--mask" />
-                                                            <h5>View “Yard Work”</h5>
-                                                            <p>26.07.2020</p>
-                                                        </div>
-                                                        <div className="home__card" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                            <div className="home__card--mask" />
-                                                            <h5>View “Yard Work”</h5>
-                                                            <p>26.07.2020</p>
-                                                        </div>
-                                                        <div className="home__card" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                            <div className="home__card--mask" />
-                                                            <h5>View “Yard Work”</h5>
-                                                            <p>26.07.2020</p>
-                                                        </div>
-                                                        <div className="home__card" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }}>
-                                                            <div className="home__card--mask" />
-                                                            <h5>View “Yard Work”</h5>
-                                                            <p>26.07.2020</p>
-                                                        </div>
-                                                    </div> */}
                                                 </div>
                                             </div>
                                             <section className="profile__cover " style={{ height: '100vh' }}>
                                                 <div className="two-column__info flex flex-column">
                                                     <div className=" flex jcsb aic w100">
                                                         <div className="background-title mb5 flex1">
-                                                            <h3>Active tasks</h3>
-                                                            <h4>Discover active listings</h4>
-                                                            <p className="shadow__title hide__mobile">some active listings on eazytask</p>
+                                                            <h3>{this.getTrans(translations.text_7)}</h3>
+                                                            <h4>{this.getTrans(translations.text_8)}</h4>
+                                                            <p className="shadow__title hide__mobile">{this.getTrans(translations.text_23)}</p>
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
                                                         <Link to="/active_listing">
-                                                            <h4>View all</h4>
+                                                            <h4>{this.getTrans(translations.text_9)}</h4>
                                                         </Link>
                                                     </div>
                                                     <div className="listing-cards ">
                                                         { this.props.activeListing2_info.loading && "Loading.." }
                                                         {
                                                             !this.props.activeListing2_info.loading && !this.props.activeListing2_info.tasks.length 
-                                                            && "No tasks to show.."
+                                                            && this.getTrans(translations.text_27)
                                                         }
                                                         {
                                                             !this.props.activeListing2_info.loading &&
@@ -283,13 +221,13 @@ class WebDashboard extends React.Component {
                                                 <div className="two-column__info flex flex-column">
                                                     <div className=" flex jcsb aic w100">
                                                         <div className="background-title mb5 flex1">
-                                                            <h3>Read our Blog</h3>
-                                                            <h4>Get inspired by reading our latest articles on our blog</h4>
-                                                            <p className="shadow__title hide__mobile">some active listings on eazytask</p>
+                                                            <h3>{this.getTrans(translations.text_10)}</h3>
+                                                            <h4>{this.getTrans(translations.text_24)}</h4>
+                                                            <p className="shadow__title hide__mobile">{this.getTrans(translations.text_24)}</p>
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
                                                         <Link to="/blog">
-                                                            <h4>View all</h4>
+                                                            <h4>{this.getTrans(translations.text_9)}</h4>
                                                         </Link>
                                                     </div>
                                                     <section className="blog-cards" style={{ marginTop: '50px' }}>
@@ -321,8 +259,8 @@ class WebDashboard extends React.Component {
                                                 <div className="two-column__info flex flex-column">
                                                     <div className=" flex jcsb aic w100">
                                                         <div className="background-title mb5 flex1">
-                                                            <h3>Explore more</h3>
-                                                            <p className="shadow__title hide__mobile">some active listings on eazytask</p>
+                                                            <h3>{this.getTrans(translations.text_12)}</h3>
+                                                            <p className="shadow__title hide__mobile">{this.getTrans(translations.text_23)}</p>
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
                                                     </div>
@@ -332,8 +270,8 @@ class WebDashboard extends React.Component {
                                                         <div className="more__card">
                                                             <img src="/images/clock_.png" alt="" />
                                                             <div>
-                                                                <h4>History</h4>
-                                                                <p>View history of <br />your activity</p>
+                                                                <h4>{this.getTrans(translations.text_13)}</h4>
+                                                                <p>{this.getTrans(translations.text_14)} <br />{this.getTrans(translations.text_15)}</p>
                                                             </div>
                                                         </div>
                                                     </Link>
@@ -341,8 +279,8 @@ class WebDashboard extends React.Component {
                                                         <div className="more__card">
                                                             <img src="/images/landing_.png" alt="" />
                                                             <div>
-                                                                <h4>Landing</h4>
-                                                                <p>View <br />landing page</p>
+                                                                <h4>{this.getTrans(translations.text_16)}</h4>
+                                                                <p>{this.getTrans(translations.text_17)} <br />{this.getTrans(translations.text_18)}</p>
                                                             </div>
                                                         </div>
                                                     </Link>
@@ -350,8 +288,8 @@ class WebDashboard extends React.Component {
                                                         <div className="more__card">
                                                             <img src="/images/question_.png" alt="" />
                                                             <div>
-                                                                <h4>Faq</h4>
-                                                                <p>Discover <br />Frequently Asked <br />Questions</p>
+                                                                <h4>{this.getTrans(translations.text_19)}</h4>
+                                                                <p>{this.getTrans(translations.text_20)} <br />{this.getTrans(translations.text_21)} <br />{this.getTrans(translations.text_22)}</p>
                                                             </div>
                                                         </div>
                                                     </Link>
@@ -360,18 +298,6 @@ class WebDashboard extends React.Component {
                                         </div>
                                     </div>
                                 </section>
-                                <div className="hide-on-web mobile-nav ">
-                                    <div className="mob-nav ">
-                                        <img src="/images/nav-home.png" alt="" />
-                                        <p>Home</p>
-                                    </div>
-                                    <div className="mob-nav ">
-                                        <img src="/images/nav-plus.png" alt="" />
-                                    </div>
-                                    <div className="mob-nav active"><img src="/images/nav-profile.png" alt="" />
-                                        <p>Profile</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </section>
@@ -415,7 +341,10 @@ const mapStateToProps = state => {
             posts: state.posts.allIds.map(id => state.posts.byIds[id]),
             loading: state.posts.loading
         },
-        own_profile: state.auth.profile
+        own_profile: state.auth.profile,
+        translations: state.app_lang.data["/dashboard"].web,
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common
     }
 }
 export default compose(withRouter, connect(mapStateToProps, { getMyActiveTasks, getMyActiveOffers, getActiveListing2, getPosts }))(WebDashboard);

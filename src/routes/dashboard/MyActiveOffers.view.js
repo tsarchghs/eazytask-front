@@ -7,21 +7,22 @@ class MyActiveOffers extends React.Component {
     componentDidMount(){
         this.props.getMyActiveOffers();
     }
+    getTrans = obj => obj[this.props.app_lang]
     render(){
         let { loading, offers } = this.props;
         return (
             <div>
-                { loading &&  "Loading" }
+                {loading && this.getTrans(this.props.common.loading) }
                 { !loading && offers.map(({ Task }) => (
                     <Link to={`/task/${Task.id}/edit`}>
                         <div className="home__card" style={{ backgroundImage: `url("${Task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
-                            <h5>View “{Task.title}”</h5>
+                            <h5>{this.getTrans(this.props.translations.text_2)} “{Task.title}”</h5>
                             <p>{new Date(Task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                         </div>
                     </Link>
                 )) }
-                { !loading && !offers.length && "No offers to show"}
+                {!loading && !offers.length && this.getTrans(this.props.translations.text_9)}
             </div>
 
         )
@@ -34,7 +35,10 @@ const mapStateToProps = state => {
     )
     return {
         loading: state.app.myActiveOffers.loading,
-        offers
+        offers,
+        translations: state.app_lang.data["/dashboard"].mobile,
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common
     }
 }
 

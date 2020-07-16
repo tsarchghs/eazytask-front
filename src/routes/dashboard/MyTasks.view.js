@@ -39,25 +39,26 @@ class MyTasks extends React.Component {
         }
         return content;
     }
+    getTrans = obj => obj[this.props.app_lang]
     render() {
         let { loading, tasks } = this.props;
         loading = loading || this.props.tasks_count.loading;
         return (
             <div>
-                { loading &&  "Loading" }
+                {loading && this.getTrans(this.props.common.loading) }
                 { !loading && tasks.map(task => (
                     <Link to={`/task/${task.id}`}>
                         <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
-                            <h5>View “{task.title}”</h5>
+                            <h5>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
                             <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                         </div>
                     </Link>
                 )) }
                 { !loading && !tasks.length && 
                     <div className="home__card--lonely">
-                        <h4>It's lonely here!</h4>
-                        <p>You don't have any active task yet.</p>
+                        <h4>{this.getTrans(this.props.translations.text_7)}</h4>
+                        <p>{this.getTrans(this.props.translations.text_8)}</p>
                         <img src="/images/super_man.png" alt="" style={{ width: '35%' }} />
                         <img src="/images/lonely.jpeg" alt="" />
                     </div>
@@ -73,7 +74,12 @@ const mapStateToProps = state => {
         x => state.tasks.byIds[x]
     )
     let { loading } = state.app.myActiveTasks;
-    return { loading, tasks, tasks_count: state.tasks.tasks_count, currentUserId: state.auth.profile.id }
+    return { 
+        loading, tasks, tasks_count: state.tasks.tasks_count, currentUserId: state.auth.profile.id,
+        translations: state.app_lang.data["/dashboard"].mobile,
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common
+    }
 }
 
 export default compose(withRouter,connect(mapStateToProps, { getMyActiveTasks, getTasksCount }))(MyTasks);

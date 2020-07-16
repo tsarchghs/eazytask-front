@@ -14,6 +14,7 @@ import categoriesGroupsReducer from "./reducers/categories_groups";
 import categoriesReducer from "./reducers/categories";
 import messagesReducer from "./reducers/messages";
 import postsReducer from "./reducers/posts";
+import app_lang_reducer from "./reducers/app_lang";
 
 const reduceReducers = (...reducers) => {
   return (previous, current) =>
@@ -37,6 +38,7 @@ export default createStore(
       categories: categoriesReducer,
       messages: messagesReducer,
       posts: postsReducer,
+      app_lang: app_lang_reducer
     }),
     applyMiddleware(thunk, logger)
 )
