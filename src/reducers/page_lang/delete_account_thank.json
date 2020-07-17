@@ -1,0 +1,24 @@
+{
+    "text_1": {
+        "en": "Ready to go",
+        "de": "None"
+    },
+    "text_3": {
+        "en": "Thanks for your feedback",
+        "de": "None"
+    },
+    "text_4": {
+        "en": [
+            "We will try hard to make users ",
+            " experience better "
+        ],
+        "de": [
+            "de: We will try hard to make users ",
+            "de:  experience better "
+        ]
+    },
+    "text_5": {
+        "en": "Go",
+        "de": "Goen"
+    }
+}

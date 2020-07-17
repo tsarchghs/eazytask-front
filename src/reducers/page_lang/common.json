@@ -1,0 +1,28 @@
+{
+    "loading": {
+        "en": "Loading...",
+        "de": "Noneing.."
+    },
+    "settings": {
+        "text_1": {
+            "en": "Notifications",
+            "de": "None"
+        },
+        "text_2": {
+            "en": "Change Password",
+            "de": "None"
+        },
+        "text_3": {
+            "en": "Change Preferences",
+            "de": "None"
+        },
+        "text_4": {
+            "en": "Delete account",
+            "de": "None"
+        },
+        "text_5": {
+            "en": "About",
+            "de": "None"
+        }
+    }
+}

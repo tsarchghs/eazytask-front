@@ -10,14 +10,18 @@ import { v4 } from "uuid";
 import { baseURL_WS } from "../../configs"
 import WebHeader from "../../components/WebHeader";
 import { compose } from "recompose";
+import detectPhoneNumberInside from "../../algorithms/detect_phone_numbers";
+import Modal from "../../components/Modal";
 
 class TaskChat extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            messages: []
+            messages: [],
+            onModal: ""
         }
     }
+    closeModal = () => this.setState({ onModal: "" })
     componentDidMount(){
         let { taskId } = this.props.match.params;
         this.props.getTask(taskId, "fields=question,user,offers,category")
@@ -54,6 +58,9 @@ class TaskChat extends React.Component {
         e.preventDefault();
         if (!this.state.content) return;
         if (!this.props.currentUserId) return this.props.history.push("/register")
+        if (detectPhoneNumberInside(this.state.content)) return this.setState({
+            onModal: "PHONE_NUMBER_DETECTED"
+        })
         let { taskId } = this.props.match.params;
         let message = {
             taskId: Number(taskId),
@@ -82,6 +89,13 @@ class TaskChat extends React.Component {
         console.log(this.state,this.props.messages);
         return (
             <div className=" edit-task__wrapper">
+                <Modal
+                    isActive={this.state.onModal === "PHONE_NUMBER_DETECTED"}     // required
+                    closeModal={this.closeModal} // required
+                    title="Phone number detected"
+                    description="Sharing contact informations outside Eazytask is not allowed."
+                    hide_buttons={true}
+                />
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">

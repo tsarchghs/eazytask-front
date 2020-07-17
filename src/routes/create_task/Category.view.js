@@ -26,6 +26,7 @@ class CategoryGroup extends React.Component {
             let { search } = this.props.location;
             let { step } = queryString.parse(search);
             console.log("ERROR: ", `?step=${Number(step) - 1}`)
+            this.props.push("?step=",step - 1)
             // return <Redirect to={`?step=${Number(step) - 1}`}/>
             return "!this.props.categoryGroupName"
         }

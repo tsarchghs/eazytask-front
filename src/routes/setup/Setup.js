@@ -24,16 +24,18 @@ import { compose } from "recompose";
 import queryString from "query-string";
 import axios from "../../utils/axios";
 
+import * as Yup from "yup";
 
 class Setup extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            valid: true,
             step: 0,
             prevStep: 0,
             data: {
-                profile_picture_file: undefined,
-                cover_picture_file: undefined,
+                profile_image: {},
+                cover_image: {},
                 zipCode: "", 
                 address: "",
                 city: "",
@@ -57,6 +59,19 @@ class Setup extends React.Component {
                 "MY_LANGUAGES",
                 "READY_TO_GO"
             ]
+        }
+        this.validations = {
+            "PROFILE_PICTURE": {
+                isValid: async () => this.state.data.profile_image && this.state.data.profile_image.type
+            },
+            "COVER_PICTURE": {
+                isValid: () => this.state.data.cover_image && this.state.data.cover_image.type
+            },
+            "LOCATION": Yup.object().shape({ 
+                zipCode: Yup.string().required(this.getTrans(props.translations.text_42)),
+                address: Yup.string().required(this.getTrans(props.translations.text_43)),
+                city: Yup.string().required(this.getTrans(props.translations.text_44))
+            }),
         }
         this.lastStepIndex = this.state.steps.length - 1
     }
@@ -82,6 +97,11 @@ class Setup extends React.Component {
                 }
             }
             return prevState;
+        }, async () => {
+            let stepKey = this.state.steps[this.state.step]
+            let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
+            console.log("this.validations[stepKey]",this.validations[stepKey],valid)
+            this.setState({ valid })    
         })
     }
     componentDidUpdate(prevProps){
@@ -97,11 +117,15 @@ class Setup extends React.Component {
             })
         }
     }
-    onChange = key => e => {
+    onChange = key => async e => {
         if (e.persist) e.persist()
         this.setState(prevState => {
             prevState.data[key] = e.target.value;
             return prevState;
+        }, async () => {
+            let stepKey = this.state.steps[this.state.step]
+            let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
+            this.setState({ valid })    
         })
     }
     onListChange = (type,key,value) => this.setState(prevState => {
@@ -191,9 +215,14 @@ class Setup extends React.Component {
             case "READY_TO_GO": return ""
         }
     }
-    nextStep = step => () => {
+    nextStep = step => async () => {
         this.props.history.push("?step=" + step)
-        if (step == 1 && this.state.step == 0) this.setState({ step: 1})
+        if (step == 1 && this.state.step == 0) this.setState({ step: 1 })
+        
+        let stepKey = this.state.steps[step]
+        let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
+        this.setState({ valid })
+
         // this.setState(prevState => {
         //     prevState.prevStep = step - 1;
         //     prevState.step = step;
@@ -291,17 +320,8 @@ class Setup extends React.Component {
         }
     }
     getInsideButtonGroup(){
-        if (this.state.step == 4.2){
-            return null;
-            return (
-                <button
-                    className={`button__style ${true ? "not-filled" : ""}`}>
-                    Next
-                </button>
-            )
-        }
         let displaySkip = this.showSkipBool() && this.getSkipForNowInfo();
-        let buttonDisabled = this.state.step == 4.1 && !isValidPhoneNumber(this.state.data.phone_number);
+        let buttonDisabled = this.state.step == 4.1 && !isValidPhoneNumber(this.state.data.phone_number) || !this.state.valid;
         return (
             <React.Fragment>
                 {   

@@ -63,7 +63,9 @@ class ChangePasswordSettings extends React.Component {
         let bool_ = old_password && new_password && confirm_new_password
         let style = !bool_ ? {backgroundColor: "darkgrey"} : {};
         let onClick = bool_ ? this.update : undefined;
-        return <button style={style} onClick={onClick} className="button__style">Confirm</button>
+        return <button style={style} onClick={onClick} className="button__style">
+            {this.getTrans(this.props.translations.text_6)}
+        </button>
     }
     getInput = (key, placeholder) => (
         <div className="profile__password">
@@ -71,6 +73,15 @@ class ChangePasswordSettings extends React.Component {
             <img src="/images/shield-b.png" alt="" />
         </div>
     )
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof(data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br/>
+            </React.Fragment>)
+        }
+    }
     render(){
         return (
             <div className=" edit-task__wrapper">
@@ -81,16 +92,14 @@ class ChangePasswordSettings extends React.Component {
                             <section className="profile__article hide-on-mobile">
                                 <WebSidebar/>
                                 <div className="profile__article--content">
-                                    <h3>Change Password</h3>
-                                    <h4>Choose a strong password and don’t reuse it from somewhere else. <br />
-                    Use at least 8 characters. Don’t use a password from another site, <br />
-                    or something too obvious like your pet’s name. </h4>
+                                    <h3>{this.getTrans(this.props.translations.text_1)}</h3>
+                                    <h4>{this.getTrans(this.props.translations.text_2)} </h4>
                                     { this.state.error2 || this.state.error }
                                     { this.state.info }
                                     <div className="profile__passwords flex-grow">
-                                        { this.getInput("old_password", "Old password") }
-                                        { this.getInput("new_password", "New password") }
-                                        { this.getInput("confirm_new_password", "Confirm new password") }
+                                        {this.getInput("old_password", this.getTrans(this.props.translations.text_3))}
+                                        {this.getInput("new_password", this.getTrans(this.props.translations.text_4))}
+                                        {this.getInput("confirm_new_password", this.getTrans(this.props.translations.text_5))}
                                     </div>
                                     <div className="buttons__group">
                                         { this.getConfirmButton() }
@@ -107,18 +116,18 @@ class ChangePasswordSettings extends React.Component {
                                                         <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                                     </Link>
                                                     <h4 className="logo-title ">
-                                                        Change Password
+                                                        {this.getTrans(this.props.translations.text_1)}
                           </h4>
                                                 </header>
                                                 <div className="pa--mobile pb50 max-vh">
-                                                    <h4 className="pa-mobile__st">Choose a strong password and don’t reuse it from somewhere else. <br /> Use at least 8 characters. Don’t use a password from another site, <br /> or something too obvious like your pet’s name. </h4>
+                                                    <h4 className="pa-mobile__st">{this.getTrans(this.props.translations.text_2)}</h4>
                                                     { this.state.error2 || this.state.error }
                                                     { this.state.info }
 
                                                     <div className="profile__passwords flex-grow">
-                                                        {this.getInput("old_password", "Old password")}
-                                                        {this.getInput("new_password", "New password")}
-                                                        {this.getInput("confirm_new_password", "Confirm new password")}
+                                                        {this.getInput("old_password", this.getTrans(this.props.translations.text_3))}
+                                                        {this.getInput("new_password", this.getTrans(this.props.translations.text_4))}
+                                                        {this.getInput("confirm_new_password", this.getTrans(this.props.translations.text_5))}
                                                     </div>
                                                     <div className="buttons__group">
                                                         { this.getConfirmButton() }
@@ -140,7 +149,10 @@ class ChangePasswordSettings extends React.Component {
 }
 
 let mapStateToProps = state => ({
-    currentUserId: state.auth.profile.id
+    currentUserId: state.auth.profile.id,
+    translations: state.app_lang.data["/settings"].change_password,
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
 })
 
 export default compose(withRouter,connect(mapStateToProps, { patchUser }))(ChangePasswordSettings)

@@ -3,11 +3,15 @@ import { withRouter, Link } from "react-router-dom";
 import { compose } from "recompose";
 import WebSidebar from "./WebSidebar";
 import MobileNav from "../../components/MobileNav";
+import { connect } from "react-redux";
 
 const redirectTo = (history, path) => () => history.push(path)
+let getTrans = (app_lang,obj) => obj[app_lang]
 
 const MobileSettings = props => {
     let { history } = props;
+    let { app_lang, common } = props
+    let { settings } = common;
     return (
         <div className=" edit-task__wrapper">
             <section className="landing-info panel edit-task__section">
@@ -45,11 +49,21 @@ const MobileSettings = props => {
                                             </header>
                                             <div className="pa--mobile pb50 max-vh nopadding">
                                                 <div className="mobile-account__menu">
-                                                    <div onClick={redirectTo(history,"/settings/notifications")} className="active"><img src="/images/noti-b.png" alt="" />Notifications</div>
-                                                    <div onClick={redirectTo(history,"/settings/change_password")}><img src="/images/shield-b.png" alt="" />Change Password</div>
-                                                    <div onClick={redirectTo(history,"/settings/change_preferences")}><img src="/images/info-b.png" alt="" />Change Preferences</div>
-                                                    <div onClick={redirectTo(history,"/settings/delete_account")}><img src="/images/exit-b.png" alt="" />Delete Account</div>
-                                                    <div onClick={redirectTo(history,"/settings/about")}><img src="/images/info-b.png" alt="" />About</div>
+                                                    <div onClick={redirectTo(history,"/settings/notifications")} className="active"><img src="/images/noti-b.png" alt="" />
+                                                        {getTrans(app_lang,settings.text_1)}
+                                                    </div>
+                                                    <div onClick={redirectTo(history,"/settings/change_password")}><img src="/images/shield-b.png" alt="" />
+                                                        {getTrans(app_lang,settings.text_2)}
+                                                    </div>
+                                                    <div onClick={redirectTo(history,"/settings/change_preferences")}><img src="/images/info-b.png" alt="" />
+                                                        {getTrans(app_lang,settings.text_3)}
+                                                    </div>
+                                                    <div onClick={redirectTo(history,"/settings/delete_account")}><img src="/images/exit-b.png" alt="" />
+                                                        {getTrans(app_lang,settings.text_4)}
+                                                    </div>
+                                                    <div onClick={redirectTo(history,"/settings/about")}><img src="/images/info-b.png" alt="" />
+                                                        {getTrans(app_lang,settings.text_5)}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -66,4 +80,9 @@ const MobileSettings = props => {
     )
 }
 
-export default withRouter(MobileSettings);
+let mapStateToProps = state => ({
+    common: state.app_lang.common,
+    app_lang: state.app_lang.app_lang
+})
+
+export default compose(withRouter,connect(mapStateToProps))(MobileSettings);

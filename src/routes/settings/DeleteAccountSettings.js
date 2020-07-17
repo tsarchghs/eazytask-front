@@ -14,11 +14,11 @@ class DeleteAccountSettings extends React.Component {
             "reason": ""
         }
         this.inputs = [
-            { value: "Hard to use" },
-            { value: "It has a lot of problems" },
-            { value: "I don't need it" },
-            { value: "I have a better platform" },
-            { value: "It's not available in my country" },
+            { value: "Hard to use", show: this.getTrans(props.translations.text_5) },
+            { value: "It has a lot of problems", show: this.getTrans(props.translations.text_6) },
+            { value: "I don't need it", show: this.getTrans(props.translations.text_7) },
+            { value: "I have a better platform", show: this.getTrans(props.translations.text_8) },
+            { value: "It's not available in my country", show: this.getTrans(props.translations.text_9) },
         ]
     }
     delete = () => {
@@ -32,6 +32,15 @@ class DeleteAccountSettings extends React.Component {
         })
         this.setState({ loading: true })
     }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof(data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br/>
+            </React.Fragment>)
+        }
+    }
     render() {
         return (
             <div className=" edit-task__wrapper">
@@ -42,12 +51,11 @@ class DeleteAccountSettings extends React.Component {
                             <section className="profile__article hide-on-mobile">
                                 <WebSidebar/>
                                 <div className="profile__article--content">
-                                    <h3>Delete Account</h3>
-                                    <h4>Hi, <span className="sp-g">{this.props.currentUserName}</span> <br />
-                    We're sorry to hear you'd like to delete your account. <br />
-                    Please tell us why you made this decision so in that way we will try to improve
+                                    <h3>{this.getTrans(this.props.translations.text_1)}</h3>
+                                    <h4>{this.getTrans(this.props.translations.text_2)}, <span className="sp-g">{this.props.currentUserName}</span> <br />
+                                    {this.getTrans(this.props.translations.text_3)}
                   </h4>
-                                    <h4 className="mt20">Please tell us why you decided to delete your account.
+                                    <h4 className="mt20">{this.getTrans(this.props.translations.text_4)}
                   </h4>
                                     <div className="profile__delete flex-grow">
                                         <div className="filters-card delete-inputs">
@@ -57,7 +65,7 @@ class DeleteAccountSettings extends React.Component {
                                                         <div onClick={() => this.setState({ reason: input.value })} className="filters-list">
                                                             <div className="filter-input filter-slide">
                                                             <span className={`filter-input__check ${this.state.reason == input.value ? "active" :""}`} />
-                                                            <p>{input.value}</p></div>
+                                                            <p>{input.show}</p></div>
                                                         </div>
 
                                                     ))
@@ -72,7 +80,7 @@ class DeleteAccountSettings extends React.Component {
                                                 <button 
                                                 style={!this.state.reason ? { backgroundColor: "darkgray"} : {}} 
                                                 className="button__style">
-                                                Deleting...</button>
+                                                {this.getTrans(this.props.translations.text_11)}</button>
                                         }
                                         {
                                             !this.state.loading && 
@@ -80,7 +88,7 @@ class DeleteAccountSettings extends React.Component {
                                                 onClick={this.state.reason ? this.delete : undefined} 
                                                 style={!this.state.reason ? { backgroundColor: "darkgray"} : {}} 
                                                 className="button__style">
-                                            Delete</button>
+                                            {this.getTrans(this.props.translations.text_10)}</button>
                                         }
                                     </div>
                                 </div>
@@ -98,7 +106,10 @@ class DeleteAccountSettings extends React.Component {
 
 let mapStateToProps = state => ({
     currentUserId: state.auth.profile.id,
-    currentUserName: state.auth.profile.first_name
+    currentUserName: state.auth.profile.first_name,
+    translations: state.app_lang.data["/settings"].delete_account.web,
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
 })
 
 export default connect(mapStateToProps, { patchUser })(DeleteAccountSettings);

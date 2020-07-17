@@ -73,7 +73,7 @@ class MobileDashboard extends React.Component {
                                     </div>
                                 </div>
                             </section>
-                            <MobileNav/>
+                            <MobileNav active="home"/>
                         </div>
                     </div>
                 </section>

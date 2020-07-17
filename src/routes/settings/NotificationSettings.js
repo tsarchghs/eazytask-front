@@ -11,9 +11,11 @@ import WebHeader from "../../components/WebHeader";
 class NotificationSettings extends React.Component {
     constructor(props){
         super(props);
+        let { notification_option } = props.currentUser;
         this.state = {
             opened: false,
-            notification_option: props.currentUser.notification_option
+            notification_option,
+            show: notification_option === "SMS" ? this.getTrans(this.props.translations.text_5) : this.getTrans(this.props.translations.text_4)
         }
     }
     toggle = opened => () => {
@@ -22,11 +24,15 @@ class NotificationSettings extends React.Component {
     }
     GetNotificationOptions = () => (
         <div className="styled-select">
-            <p>{this.state.notification_option}</p>
+            <p>{this.state.show}</p>
             <img onClick={this.toggle(this.state.opened)} src="/images/arr-right.png" alt="" />
             <div className={`styled-select__open ${this.state.opened ? "opened" : ""}`}>
-                <div onClick={e => this.setState({ notification_option: "SMS", opened: false })} className="styled-select__item">SMS</div>
-                <div onClick={e => this.setState({ notification_option: "EMAIL", opened: false })} className="styled-select__item">EMAIL</div>
+                <div onClick={e => this.setState({ notification_option: "SMS", show: this.getTrans(this.props.translations.text_5), opened: false })} className="styled-select__item">
+                {this.getTrans(this.props.translations.text_5)}
+                </div>
+                <div onClick={e => this.setState({ notification_option: "EMAIL", show: this.getTrans(this.props.translations.text_4), opened: false })} className="styled-select__item">
+                {this.getTrans(this.props.translations.text_5)}
+                </div>
             </div>
         </div>    
     )
@@ -36,6 +42,15 @@ class NotificationSettings extends React.Component {
             userId: this.props.currentUser.id, data: { notification_option },
             callUpdateAuthProfile: true
         });
+    }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof(data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br/>
+            </React.Fragment>)
+        }
     }
     render(){
         return (
@@ -47,11 +62,10 @@ class NotificationSettings extends React.Component {
                             <section className="profile__article hide-on-mobile">
                                 <WebSidebar/>
                                 <div className="profile__article--content">
-                                    <h3>Notifications</h3>
-                                    <h4>Choose how do you want to be notified across platform about: <br />
-                        New offers, updates and more.</h4>
+                                    <h3>{this.getTrans(this.props.translations.text_1)}</h3>
+                                    <h4>{this.getTrans(this.props.translations.text_2)}</h4>
                                     <div className="profile__select">
-                                        <h4>I want to be notified with:</h4>
+                                        <h4>{this.getTrans(this.props.translations.text_3)}</h4>
                                         {this.GetNotificationOptions()}
                                         { 
                                             this.props.currentUser.notification_option != this.state.notification_option && 
@@ -59,39 +73,10 @@ class NotificationSettings extends React.Component {
                                                 onClick={this.update}
                                                 classNmae="button__style" 
                                                 style={{backgroundColor:"darkgray"}}>
-                                                Save
+                                                {this.getTrans(this.props.translations.text_6)}
                                             </button>
                                         }
                                     </div>
-                                    {/* <div class="profile__passwords">
-                                <div class="profile__password">	
-                                    <input type="password" placeholder="Old password">
-                                    <img src="/images/noti.png" alt="">
-                                </div>
-                                <div class="profile__password">	
-                                    <input type="password" placeholder="New password">
-                                    <img src="/images/noti.png" alt="">
-                                </div>
-                                <div class="profile__password">	
-                                    <input type="password" placeholder="Confirm new password">
-                                    <img src="/images/noti.png" alt="">
-                                </div>
-                            </div> */}
-                                    {/* <div class="profile__delete">
-                                <div class="filters-card delete-inputs">
-                                    <div class="filters-lists">
-                                        <div class="filters-list">
-                                            <div class="filter-input filter-slide"><span class="filter-input__check"></span><p>It has a lot of problems</p></div>
-                                        </div>
-                                        <div class="filters-list">
-                                            <div class="filter-input filter-slide"><span class="filter-input__check active"></span><p>Hard to use</p></div>
-                                        </div>
-                                        <div class="filters-list">
-                                            <div class="filter-input filter-slide " style="justify-content: space-between;"><p>Other</p><span><img src="/images/arr-right.png" alt=""></span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
                                     <div className="profile__delete">
                                     </div>
                                 </div>
@@ -108,13 +93,13 @@ class NotificationSettings extends React.Component {
                                                         </Link>
                                                     </span>
                                                     <h4 className="logo-title ">
-                                                        Notifications
+                                                    {this.getTrans(this.props.translations.text_1)}
                               </h4>
                                                 </header>
                                                 <div className="pa--mobile pb50 max-vh">
-                                                    <h4 className="pa-mobile__st">Choose how do you want to be notified across platform about: <br /> New offers, updates and more.</h4>
+                                                    <h4 className="pa-mobile__st">{this.getTrans(this.props.translations.text_2)}</h4>
                                                     <div className="profile__select flex-grow">
-                                                        <h4 style={{ color: '#808080' }}>I want to be notified with:</h4>
+                                                        <h4 style={{ color: '#808080' }}>{this.getTrans(this.props.translations.text_3)}</h4>
                                                         {this.GetNotificationOptions()}
                                                         { 
                                                             this.props.currentUser.notification_option != this.state.notification_option && 
@@ -122,7 +107,7 @@ class NotificationSettings extends React.Component {
                                                                 onClick={this.update}
                                                                 classNmae="button__style" 
                                                                 style={{backgroundColor:"darkgray"}}>
-                                                                Save
+                                                                {this.getTrans(this.props.translations.text_6)}
                                                             </button>
                                                         }
                                                     </div>
@@ -147,7 +132,10 @@ class NotificationSettings extends React.Component {
 
 let mapStateToProps = state => {
     return {
-        currentUser: state.auth.profile
+        currentUser: state.auth.profile,
+        translations: state.app_lang.data["/settings"].notifications,
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common
     }
 }
 

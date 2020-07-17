@@ -16,9 +16,10 @@ class MyProfileEdit extends React.Component {
             onEdit: ""
         }
         this.displayKey = {
-            "first_name": "First name",
-            "last_name": "Last name",
-            "zipCode": "Zip"
+            "first_name": this.getTrans(props.translations.text_1),
+            "last_name": this.getTrans(props.translations.text_2),
+            "zipCode": this.getTrans(props.translations.text_4),
+            "address": this.getTrans(this.props.translations.text_6)
         }
     }
     handleOnChange = key => e => e.persist() || this.setState(prevState => {
@@ -138,6 +139,7 @@ class MyProfileEdit extends React.Component {
         let defaultCover = window.location.protocol + "//" + window.location.host + "/" + window.__USER_COVER_DEFAULT_PICTURE__
         return { backgroundImage: `url("${currentUser.cover_image || defaultCover }")`}
     }
+    getTrans = obj => obj[this.props.app_lang]
     render(){
         let { currentUser } = this.props;
         console.log(this.state.data)
@@ -162,7 +164,7 @@ class MyProfileEdit extends React.Component {
                             onClick={e => {
                                 e.preventDefault()
                                 if (this.coverImageInputRef) this.coverImageInputRef.click()
-                        }}>Edit Cover</a>
+                        }}>{this.getTrans(this.props.translations.text_10)}</a>
                     </div>
                     <input ref={ref => this.coverImageInputRef = ref} onChange={this.onFileChange("cover_image")} type="file" style={{ display: "none" }} />
                 </div>
@@ -185,7 +187,7 @@ class MyProfileEdit extends React.Component {
                                 <p className>{currentUser.email}</p>
                                 <div className="offers-buttons hide-on-web">
                                     <Link to="/settings">
-                                        <a href="#" className="button hollow">Account Settings</a>
+                                        <a href="#" className="button hollow">{this.getTrans(this.props.translations.text_7)}</a>
                                     </Link>
                                 </div>
                             </div>
@@ -203,7 +205,7 @@ class MyProfileEdit extends React.Component {
                                 </div> */}
 
                                 <div className="account-profile__input">
-                                    <p>Phone</p>
+                                    <p>{this.getTrans(this.props.translations.text_3)}</p>
                                     <div className="ap__input">
                                         <h5>{this.props.currentUser.phone_number}</h5>
                                         {/* <img src="/images/edit-pen.png" alt="" /> */}
@@ -219,17 +221,17 @@ class MyProfileEdit extends React.Component {
                         {
                             this.showUpdateButton() && 
                             <div className="offers-buttons">
-                                <div onClick={this.update} className="button hollow">Save</div>
+                                <div onClick={this.update} className="button hollow">{this.getTrans(this.props.translations.text_9)}</div>
                             </div>
                         }
                         <div className="offers-buttons hide-on-mobile">
                             <Link to="/settings">
-                                <a href="#" className="button hollow">Account Settings</a>
+                                <a href="#" className="button hollow">{this.getTrans(this.props.translations.text_7)}</a>
                             </Link>
                             <a onClick={e => {
                                 e.preventDefault();
                                 this.props.history.push("/logout")
-                            }} className="button hollow red">Log Out</a>
+                            }} className="button hollow red">{this.getTrans(this.props.translations.text_8)}</a>
                         </div>
                     </div>
                     <div className="mobile-nav  hide-on-web">
@@ -253,48 +255,15 @@ class MyProfileEdit extends React.Component {
                 </div></section>
 
         )
-        return (
-            <React.Fragment>
-                <Link to="/my_profile">Go back <br /><br /></Link>
-                My profile:<br /><br />
-
-                <label style={{ display: "flex" }}>
-                    <img 
-                        id="profileImage"
-                        src={this.getProfileImage()} 
-                        style={{ border: "1px solid black", minWidth: 100, maxWidth: 100 }}
-                    />
-                    <input onChange={this.onFileChange} type="file" style={{ display: "none" }}/>
-                    <div>Edit</div>
-                </label>
-                { this.getStaticOrInput("first_name") }
-                { this.getStaticOrInput("last_name") }
-                <label>
-                    Notification option:
-                    <select 
-                        value={this.getInputValue("notification_option")} 
-                        onChange={this.handleOnChange("notification_option")}
-                    >
-                        <option value="SMS">SMS</option>
-                        <option value="EMAIL">Email</option>
-                    </select>
-                </label>
-                { this.getStaticOrInput("city") }
-                { this.getStaticOrInput("address") }
-                { this.getStaticOrInput("zipCode") }
-                <Link to="/delete_account">
-                    <div>Delete account</div>
-                </Link>
-                <div onClick={this.decline}>Decline</div>
-                <button onClick={this.update}>Update</button>
-            </React.Fragment>
-        )
     }
 }
 
 let mapStateToProps = state => {
     return {
-        currentUser: state.auth.profile
+        currentUser: state.auth.profile,
+        translations: state.app_lang.data["/my_profile_edit"],
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common
     }
 }
 

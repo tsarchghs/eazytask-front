@@ -1,0 +1,42 @@
+{
+    "text_1": {
+        "en": "First name",
+        "de": "None"
+    },
+    "text_2": {
+        "en": "Last name",
+        "de": "None"
+    },
+    "text_3": {
+        "en": "Phone",
+        "de": "None"
+    },
+    "text_4": {
+        "en": "Zip",
+        "de": "None"
+    },
+    "text_5": {
+        "en": "City",
+        "de": "None"
+    },
+    "text_6": {
+        "en": "Address",
+        "de": "None"
+    },
+    "text_7": {
+        "en": "Account settings",
+        "de": "None"
+    },
+    "text_8": {
+        "en": "Log out",
+        "de": "None"
+    },
+    "text_9": {
+        "en": "Save",
+        "de": "None"
+    },
+    "text_10": {
+        "en": "Edit cover",
+        "de": "None"
+    }
+}

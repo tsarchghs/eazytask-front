@@ -1,0 +1,184 @@
+{
+    "notifications": {
+        "text_1": {
+            "en": "Notifications",
+            "de": "None"
+        },
+        "text_2": {
+            "en": [
+                "Choose how do you want to be notified across platform about:",
+                "New offers, updates and more."
+            ],
+            "de": [
+                "DE: Choose how do you want to be notified across platform about:",
+                "DE: New offers, updates and more."
+            ]
+        },
+        "text_3": {
+            "en": "I want to be notified with:",
+            "de": "None"
+        },
+        "text_4": {
+            "en": "Email",
+            "de": "None"
+        },
+        "text_5": {
+            "en": "SMS",
+            "de": "None"
+        },
+        "text_6": {
+            "en": "Save",
+            "de": "None"
+        }
+    },
+    "change_password": {
+        "text_1": {
+            "en": "Change Password",
+            "de": "None"
+        },
+        "text_2": {
+            "en": [
+                "Choose a strong password and don’t reuse it from somewhere else.",
+                "Use at least 8 characters. Don’t use a password from another site,","Choose how do you want to be notified across platform about:",
+                "or something too obvious like your pet’s name."
+            ],
+            "de": [
+                "de: Choose a strong password and don’t reuse it from somewhere else.",
+                "de: Use at least 8 characters. Don’t use a password from another site,","Choose how do you want to be notified across platform about:",
+                "de: or something too obvious like your pet’s name."
+            ]
+        },
+        "text_3": {
+            "en": "Old password",
+            "de": "None"
+        },
+        "text_4": {
+            "en": "New password",
+            "de": "None"
+        },
+        "text_5": {
+            "en": "Confirm new password",
+            "de": "None"
+        },
+        "text_6": {
+            "en": "Confirm",
+            "de": "None"
+        }
+    },
+    "delete_account": {
+        "web": {
+            "text_1": {
+                "en": "Delete account",
+                "de": "None"
+            },
+            "text_2": {
+                "en": "Hi,",
+                "de": "None"
+            },
+            "text_3": {
+                "en": [
+                    "We're sorry to hear you'd like to delete your account.",
+                    "Please tell us why you made this decision so in that way we will try to",
+                    "improve"
+                ],
+                "de": [
+                    "de: We're sorry to hear you'd like to delete your account.",
+                    "de: Please tell us why you made this decision so in that way we will try to",
+                    "de: improve"
+                ]
+            },
+            "text_4": {
+                "en": "Please tell us why you decided to delete your account.",
+                "de": "None"
+            },
+            "text_5": {
+                "en": "Hard to use",
+                "de": "None"
+            },
+            "text_6": {
+                "en": "It has a lot of problems",
+                "de": "None"
+            },
+            "text_7": {
+                "en": "I don't need it",
+                "de": "None"
+            },
+            "text_8": {
+                "en": "I have a better platform",
+                "de": "None"
+            },
+            "text_9": {
+                "en": "It's not available in my country",
+                "de": "None"
+            },
+            "text_10": {
+                "en": "Delete",
+                "de": "None"
+            },
+            "text_11": {
+                "en": "Deleting..",
+                "de": "Neininig.."
+            }
+        },
+        "mobile": {
+            "text_1": {
+                "en": [
+                    "We are sorry to see you",
+                    "go"
+                ],
+                "de": [
+                    "de: We are sorry to see you",
+                    "de: go"
+                ]
+            },
+            "text_2": {
+                "en": "Please tell us why you decided to delete your account.",
+                "de": "None"
+            },
+            "text_3": {
+                "en": "Hard to use",
+                "de": "None"
+            },
+            "text_4": {
+                "en": "It has a lot of problems",
+                "de": "None"
+            },
+            "text_5": {
+                "en": "I don't need it",
+                "de": "None"
+            },
+            "text_6": {
+                "en": "I have a better platform",
+                "de": "None"
+            },
+            "text_7": {
+                "en": "It's not available in my country",
+                "de": "None"
+            },
+            "text_8": {
+                "en": "Delete",
+                "de": "None"
+            }
+        }
+    },
+    "about": {
+        "text_1": {
+            "en": "Eazytask",
+            "de": "Eazytask"
+        },
+        "text_2": {
+            "en": [
+                "en: Eazytask verbinden Privatpersonen für die Erledigung von Kleinaufträgen.",
+                "en: Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei."
+            ],
+            "de": [
+                "Eazytask verbinden Privatpersonen für die Erledigung von Kleinaufträgen.",
+                "Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei."
+            ]
+        },
+        "text_3": {
+            "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi netus placerat magna iaculis sit lorem. Suspendisse in faucibus ut neque egestas. Consectetur a mattis vel commodo arcu malesuada turpis dolor duis. Enim elit pellentesque orci, porttitor nulla sit pretium. Sit purus, risus, iaculis neque proin non felis, ac. Laoreet mauris blandit praesent enim sed. Viverra non convallis sed blandit faucibus consectetur. Egestas posuere id eu scelerisque tristique at odio nisl. Sed eu enim molestie mauris risus, nullam pretium ut semper. Viverra nulla est, maecenas nibh. Felis, odio amet nam et lacus vitae, ornare. Hac proin mattis et sagittis rhoncus aliquam. Diam diam arcu lorem pharetra facilisis urna sit. Cras praesent est ac lorem morbi suspendisse aliquam vel.",
+            "de": "None"
+        }
+    }
+}

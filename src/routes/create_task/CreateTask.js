@@ -166,16 +166,20 @@ class CreateTask extends React.Component {
             return prevState;
         })
     }
-    onChange = key => e => {
+    onChange = key => async e => {
         e.persist()
+        let { value } = e.target;
         this.setState(prevState => {
-            let val = e.target.value;
-            if (key === "day") val = format_day_or_month(val,31);
-            else if (key === "month") val = format_day_or_month(val,12);
-            else if (key === "year") val = format_year(val);
-            else if (key === "expected_price") val = Number(val);
-            prevState.data[key] = val;
+            if (key === "day") value = format_day_or_month(value,31);
+            else if (key === "month") value = format_day_or_month(value,12);
+            else if (key === "year") value = format_year(value);
+            else if (key === "expected_price") value = Number(value);
+            prevState.data[key] = value;
             return prevState;
+        }, async () => {
+            let stepKey = this.state.steps[this.state.step]
+            let valid = await this.validations[stepKey].isValid(this.state.data);
+            this.setState({ valid })
         })
     }
     onChangeWithVal = (key, val) => () => this.setState(prevState => {
@@ -247,9 +251,14 @@ class CreateTask extends React.Component {
             />
         }
     }
-    nextStep = step => () => {
+    nextStep = step => async () => {
         this.props.history.push("?step=" + step)
+        if (step == 1 && this.state.step == 0) this.setState({ step: 1 })
         document.body.classList.remove("overflow-hidden")
+        let stepKey = this.state.steps[step]
+        let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
+        console.log(step,stepKey,valid,91919)
+        this.setState({ valid, errors: [] })
     }
     showButtonCondition = () => {
         let currentStep = this.getCurrentStepName();
@@ -365,7 +374,12 @@ class CreateTask extends React.Component {
                             {
                                 this.showButtonCondition() &&
                                 <div className="buttons__group">
-                                    <button onClick={this.getButtonOnClick()} className="button__style">{this.getButtonText()}</button>
+                                    <button 
+                                        onClick={this.getButtonOnClick()} 
+                                        className={"button__style " + (!this.state.valid ? "not-filled" : "")}
+                                    >
+                                        {this.getButtonText()}
+                                    </button>
                                 </div>
                             }
                         </div>

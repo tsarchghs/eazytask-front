@@ -10,7 +10,6 @@ import { ModalContainer } from 'minimal-react-modal';
 import Modal from "../../components/Modal";
 
 import SelfPromote from "./SelfPromote.view";
-import { mobileModel } from "react-device-detect";
 
 const format_number = val => {
     let num_val = Number(val)

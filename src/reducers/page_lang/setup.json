@@ -172,5 +172,17 @@
     "text_41": {
       "en": "No, thanks.",
       "de": "None"
+    },
+    "text_42": {
+        "en": "Zip code required",
+        "de": "None"
+    },
+    "text_43": {
+        "en": "Address required",
+        "de": "None"
+    },
+    "text_44": {
+        "en": "City required",
+        "de": "None"
     }
-  }
+}
