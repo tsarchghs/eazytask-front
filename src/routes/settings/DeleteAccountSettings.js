@@ -52,7 +52,7 @@ class DeleteAccountSettings extends React.Component {
                                 <WebSidebar/>
                                 <div className="profile__article--content">
                                     <h3>{this.getTrans(this.props.translations.text_1)}</h3>
-                                    <h4>{this.getTrans(this.props.translations.text_2)}, <span className="sp-g">{this.props.currentUserName}</span> <br />
+                                    <h4 style={{ fontWeight: "initial" }}>{this.getTrans(this.props.translations.text_2)} <span className="sp-g">{this.props.currentUserName}</span> <br />
                                     {this.getTrans(this.props.translations.text_3)}
                   </h4>
                                     <h4 className="mt20">{this.getTrans(this.props.translations.text_4)}

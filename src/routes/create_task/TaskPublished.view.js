@@ -12,7 +12,7 @@ export default props => {
             <h4 className="show__mobile mb30">{props.getTrans(props.translations.text_46)}</h4>
             <p className="mb30 ">{props.getTrans(props.translations.text_47)}</p>
             <div className="flex-grow">
-                <img src="/images/www.png" style={{ minWidth: '190px', width: '20%', margin: '0 auto' }} alt="" />
+                <img src="/images/computer_display_monochromatic_1.png" style={{ minWidth: '190px', width: '20%', margin: '0 auto' }} alt="" />
             </div>
         </React.Fragment>
     )

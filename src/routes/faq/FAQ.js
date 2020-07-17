@@ -53,8 +53,8 @@ class FAQ extends React.Component {
         let className = "faq-item__content ";
         if (selected) className += "open";
         return (
-            <div onClick={this.toggleQuestion(i)} className="faq-item open">
-                <h4>{q_a.title} <img src={src} alt="" /></h4>
+            <div className="faq-item open">
+                <h4 onClick={this.toggleQuestion(i)} style={{ cursor: "pointer" }}>{q_a.title} <img src={src} alt="" /></h4>
                 <div className={className}>
                     <p>
                         {q_a.description} <br />

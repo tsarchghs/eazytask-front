@@ -14,6 +14,7 @@ class MyLanguages extends React.Component {
     }
     componentDidMount() {
         this.props.getLanguages()
+        this.searchRef.focus()
     }
     getFilteredLanguages = () => {
         let languages = this.props.allIds.map(id => this.props.byIds[id])
@@ -65,6 +66,7 @@ class MyLanguages extends React.Component {
                         <span><img src="/images/new/search.png" alt="" /></span>
                         <input
                             type="text"
+                            ref={ref => this.searchRef = ref}
                             placeholder={this.props.getTrans(this.props.translations.text_31)}
                             value={this.state.query}
                             onChange={e => this.setState({ query: e.target.value })}

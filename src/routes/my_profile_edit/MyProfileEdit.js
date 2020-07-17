@@ -31,7 +31,7 @@ class MyProfileEdit extends React.Component {
     getStatic = key => (
         <div className="account-profile__input">
             <p>{this.getKeyDisplay(key)}</p>
-            <div className="ap__input">
+            <div style={{minHeight: 42}} className="ap__input">
                 <h5>{this.getInputValue(key)}</h5>
                 <img onClick={() => this.setState({ onEdit: key })} src="/images/edit-pen.png" alt="" />
             </div>
@@ -41,7 +41,15 @@ class MyProfileEdit extends React.Component {
         <React.Fragment>
             <input
                 className="input register__form_input"
-                style={{width: width || "100%", marginBottom: "-3%"}}
+                style={{
+                    width: "50%",
+                    marginBottom: "-3%",
+                    padding: "10px 20px",
+                    borderRadius: 13,
+                    backgroundColor: "#ececec",
+                    border: "none",
+                    height: 42
+                }}
                 placeholder={this.getKeyDisplay(key)}
                 onChange={this.handleOnChange(key)}
                 value={this.getInputValue(key)}

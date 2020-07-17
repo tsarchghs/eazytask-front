@@ -14,10 +14,10 @@ let showError = {
   "requestBody.email must be a valid email": "Email must be a valid email",
   "requestBody.first_name is a required field": "First name is a required field",
   "requestBody.last_name is a required field": "Last name is a required field",
-  "requestBody.password must be at least 6 characters": "Passowrd must be at least 6 characters",
+  "requestBody.password must be at least 6 characters": "Password must be at least 6 characters",
   "users.email must be unique": "Email is already taken",
   "requestBody.first_name must be at least 2 characters": "First name must be at least 2 characters",
-  "requestBody.last_name  must be at least 2 characters": "Last name must be at least 2 characters",
+  "requestBody.last_name must be at least 2 characters": "Last name must be at least 2 characters",
 }
 
 class Register extends React.Component {
@@ -44,6 +44,11 @@ class Register extends React.Component {
       return errors.map(x => showError[x] || x);
     return [];
   };
+  handleInputKeyDown = e => {
+    if (e.key == "Enter") {
+      this.onSubmit(e)
+    }
+  }
   render() {
     return (
       <React.Fragment>
@@ -61,6 +66,7 @@ class Register extends React.Component {
               </div>
               <div className="grid-container register__layout">
                 <RegisterForm
+                  handleInputKeyDown={this.handleInputKeyDown}
                   first_name={{
                     value: this.state.first_name,
                     onChange: this.onChange("first_name"),
@@ -92,7 +98,6 @@ class Register extends React.Component {
 
 const mapStateToProps = (state) => {
   if (!state) return state;
-  console.log({ state });
   return {
     ...state.auth[POST_USER],
     isAuthenticated: state.auth.isAuthenticated,

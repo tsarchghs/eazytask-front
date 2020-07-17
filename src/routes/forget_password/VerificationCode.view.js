@@ -34,6 +34,9 @@ class VerificationCode extends React.Component {
             valid: false
         }
         this.valuesSchema = Yup.array(Yup.string().required().min(1).max(1)).test("len", "Unspecified", val => val.length == 6)
+        this.showError = {
+            "requestBody.email must be a valid email": "Invalid code"
+        }
     }
     onChange = x => async e => {
         let { value } = e.target;
@@ -71,7 +74,9 @@ class VerificationCode extends React.Component {
                         <Link to="?">
                             <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                         </Link>
-                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                        <Link to="/">
+                            <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                        </Link>
                         <p className="show__mobile">Reset account</p>
                     </header>
                     <section className="two-column__layout setup__mobile create-task reset-password">
@@ -91,7 +96,7 @@ class VerificationCode extends React.Component {
                                         this.props.app_validateVerificationCode.err.response &&
                                         this.props.app_validateVerificationCode.err.response.data &&
                                         this.props.app_validateVerificationCode.err.response.data.errors &&
-                                        this.props.app_validateVerificationCode.err.response.data.errors.map(err => <div>{err}</div>)
+                                        this.props.app_validateVerificationCode.err.response.data.errors.map(err => <div>{this.showError[err] || err}</div>)
 
                                     }
                                     <div className="small-input">

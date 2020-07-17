@@ -91,7 +91,9 @@ class Home extends React.Component {
         return (
             <React.Fragment>
                 <div className="wrapper">
-                    <section className="background-img panel" id="fixed">
+                    <section className="background-img panel" style={{
+                        backgroundImage: `url("../images/ustah.png")`
+                    }} id="fixed">
                         <div className="container">
                             <div className="content setup-ready">
                                 <header>

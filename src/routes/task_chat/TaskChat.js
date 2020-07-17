@@ -75,9 +75,17 @@ class TaskChat extends React.Component {
         this.socket.emit(`send_message`, message)
         this.setState({ content: "" })
     }
+    handleOnKeyDown = e => {
+        if (e.key == "Enter"){
+            e.preventDefault();
+            if (this.state.content){
+                this.handleOnSubmit(e);
+            }
+        }
+    }
     inputAndButton = () => (
         <div className="qanda-textarea">
-            <textarea value={this.state.content} onChange={e => this.setState({ content: e.target.value })} name placeholder="Type your question here..." id cols={30} rows={1} />
+            <textarea onKeyDown={this.handleOnKeyDown} value={this.state.content} onChange={e => this.setState({ content: e.target.value })} name placeholder="Type your question here..." id cols={30} rows={1} />
             <img onClick={this.handleOnSubmit} src={this.state.content ? "/images/send-b.png" : "/images/send-g.png"} alt="" />
             {/* <img src="/images/send-b.png" alt="" /> */}
         </div>

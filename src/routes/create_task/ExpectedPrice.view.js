@@ -17,6 +17,7 @@ export default props => {
                 <div className="input-price flex aic jcc">
                     <input 
                         type="number"
+                        onKeyDown={props.handleInputKeyDown}  
                         value={props.expected_price}
                         onChange={e => { props.onExpectedPriceChange(e); console.log(e, "SDAADSASD") }}
                      />

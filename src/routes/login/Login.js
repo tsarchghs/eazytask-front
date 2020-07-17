@@ -10,7 +10,8 @@ import { NavLink } from "react-router-dom";
 let showError = {
   "requestBody.email is a required field": "Email is a required field",
   "requestBody.password is a required field": "Password is a required field",
-  "requestBody.email must be a valid email": "Email must be a valid email"
+  "requestBody.email must be a valid email": "The email address or password is incorrect. Please try again.",
+  "requestBody.password must be at least 6 characters": "The email address or password is incorrect. Please try again."
 }
 
 class Login extends React.Component {
@@ -33,9 +34,15 @@ class Login extends React.Component {
   getErrors = () => {
     let { errors } = this.props[POST_AUTH];
     if (errors && errors.length)
-      return errors.map(x => showError[x] || x);
+      return ["The email address or password is incorrect. Please try again."]
+      // return errors.filter((value,i) => errors.indexOf(value) === i).map(x => showError[x] || x);
     return [];
   };
+  handleInputKeyDown = e => {
+    if (e.key == "Enter") {
+      this.onSubmit(e)
+    }
+  }
   render() {
     return (
       <React.Fragment>
@@ -53,6 +60,7 @@ class Login extends React.Component {
             </div>
             <div className="grid-container register__layout">
                 <LoginForm
+                  handleInputKeyDown={this.handleInputKeyDown}
                   email={{
                     value: this.state.email,
                     onChange: this.onChange("email"),

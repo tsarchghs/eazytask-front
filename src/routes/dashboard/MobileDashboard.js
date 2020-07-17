@@ -13,6 +13,7 @@ import MobileNav from "../../components/MobileNav";
 class MobileDashboard extends React.Component {
     constructor(props){
         super(props);
+        this.state = { clicked: false }
     }
     getActiveTabUI = () => {
         let { search } = this.props.location;
@@ -46,8 +47,8 @@ class MobileDashboard extends React.Component {
                                     <h3>{this.getTrans(this.props.translations.text_1)}, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
                                     <img src="/images/noti.png" alt="" />
                                 </div>
-                                <div className="home__cards">
-                                    <div className="home__card gradient">
+                                <div className={"home__cards " + (tab != "my_tasks" ? "animation" : "ddd")}>
+                                    <div className={"home__card gradient "}>
                                         <h5>{this.getTrans(this.props.translations.text_2)} “Yard Work” <br /><span>{this.getTrans(this.props.translations.text_23)}</span></h5>
                                         <img src="/images/succ.png" alt="" />
                                     </div>
@@ -55,9 +56,12 @@ class MobileDashboard extends React.Component {
                                         <Link to="?tab=my_tasks">
                                             <div className={`home__tab ${tab == "my_tasks" && "active"}`}>{this.getTrans(this.props.translations.text_3)}</div>
                                         </Link>
-                                        <Link to="?tab=discover">
-                                            <div className={`home__tab ${tab == "discover" && "active"}`}>{this.getTrans(this.props.translations.text_4)}</div>
-                                        </Link>
+                                        <div onClick={() => console.log("123")}>
+                                            <Link to="?tab=discover">
+                                                <div className={`home__tab ${tab == "discover" && "active"}`}>{this.getTrans(this.props.translations.text_4)}</div>
+                                            </Link>
+                                        </div>
+                                        
                                         {
                                             this.props.own_profile.Tasker &&
                                             <Link to="?tab=offers">

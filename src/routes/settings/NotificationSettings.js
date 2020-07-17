@@ -31,7 +31,7 @@ class NotificationSettings extends React.Component {
                 {this.getTrans(this.props.translations.text_5)}
                 </div>
                 <div onClick={e => this.setState({ notification_option: "EMAIL", show: this.getTrans(this.props.translations.text_4), opened: false })} className="styled-select__item">
-                {this.getTrans(this.props.translations.text_5)}
+                {this.getTrans(this.props.translations.text_4)}
                 </div>
             </div>
         </div>    
@@ -63,7 +63,7 @@ class NotificationSettings extends React.Component {
                                 <WebSidebar/>
                                 <div className="profile__article--content">
                                     <h3>{this.getTrans(this.props.translations.text_1)}</h3>
-                                    <h4>{this.getTrans(this.props.translations.text_2)}</h4>
+                                    <h4 style={{fontWeight: "initial"}}>{this.getTrans(this.props.translations.text_2)}</h4>
                                     <div className="profile__select">
                                         <h4>{this.getTrans(this.props.translations.text_3)}</h4>
                                         {this.GetNotificationOptions()}

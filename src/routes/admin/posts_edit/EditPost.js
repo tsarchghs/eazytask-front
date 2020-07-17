@@ -31,9 +31,9 @@ const CreateForm = props => {
     return (
         <form onSubmit={props.onSubmit}>
             <div className="row">
-                <div className="col-md-8">
+                <div className="col-12" style={{ marginRight: "24%", marginLeft: "-28%", marginTop: "10%" }}>
                     <center />
-                    <div className="card">
+                    <div className="card" style={{ width: "150% " }}>
                         <div className="card-header">
                             <h4 className="mb-0">Update post: {props.originalData.title}</h4>
                         </div>
@@ -51,7 +51,7 @@ const CreateForm = props => {
                             </label>
 
                             <div>
-                                <label>Title</label>
+                                <label>Title22</label>
                                 <input
                                     type="text"
                                     className="form-control"

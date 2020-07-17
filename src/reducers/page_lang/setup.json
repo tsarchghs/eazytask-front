@@ -20,7 +20,7 @@
       "de": "None"
     },
     "text_5_1": {
-      "en": "Profile cover",
+      "en": "Cover",
       "de": "None"
     },
     "text_6": {
@@ -182,7 +182,11 @@
         "de": "None"
     },
     "text_44": {
-        "en": "City required",
-        "de": "None"
+      "en": "City required",
+      "de": "None"
+    },
+    "text_45": {
+      "en": "Yes",
+      "de": "None"
     }
 }

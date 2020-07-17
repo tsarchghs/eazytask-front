@@ -44,7 +44,7 @@ class Task extends React.Component {
     getOfferPictureButtons = () => {
         return (
             <div className="offer-picture__buttons">
-                <div onClick={e => {
+                <div style={{ cursor: "pointer" }} onClick={e => {
                     this.props.history.push("/dashboard")
                     // try {
                     //     this.props.history.goBack();
@@ -54,7 +54,7 @@ class Task extends React.Component {
                 }} className="offer-picture__back">
                     <img  src="/images/arrow.jpeg" alt="" />
                 </div>
-                <div className={`offer-picture__edit ${!(this.props.own_user && this.props.own_user.id == this.props.task.UserId) ? "hide" : ""}`}>
+                <div style={{ cursor: "pointer" }} className={`offer-picture__edit ${!(this.props.own_user && this.props.own_user.id == this.props.task.UserId) ? "hide" : ""}`}>
                     <img onClick={this.toggle()} className="img-rot" src="/images/more.png" alt="" />
                     <article className={`touchable__content arts ${this.state.opened ? "" : "hide"}`}>
                         {this.props.own_user && this.props.own_user.id == this.props.task.UserId &&
@@ -184,7 +184,7 @@ class Task extends React.Component {
                                                 alt=""
                                             />
                                         </Link>
-                                    </div>{offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.</h4>
+                                    </div>{offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.{offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.</h4>
                                 </div>
                                 <h3>CHF {offer.amount}</h3>
                             </div>
@@ -214,39 +214,26 @@ class Task extends React.Component {
                   </h4>
                                 </header>
                                 <section className="vertical-cards">
-                                    <div className="vertical-card">
-                                        <div className="offers__profile">
-                                            <div className="offers__profile--img" />
-                                            <div className="img-circle"><img src="/images/ustah.jpeg" alt="" /></div>
-                                        </div>
-                                        <div className="vertical-card__info">
-                                            <h4>Lester V.</h4>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
-                                        </div>
-                                        <img src="/images/arr-right.png" alt="" style={{ width: '25px' }} />
-                                    </div>
-                                    <div className="vertical-card">
-                                        <div className="offers__profile">
-                                            <div className="offers__profile--img" />
-                                            <div className="img-circle"><img src="/images/ustah.jpeg" alt="" /></div>
-                                        </div>
-                                        <div className="vertical-card__info">
-                                            <h4>Lester V.</h4>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
-                                        </div>
-                                        <img src="/images/arr-right.png" alt="" style={{ width: '25px' }} />
-                                    </div>
-                                    <div className="vertical-card">
-                                        <div className="offers__profile">
-                                            <div className="offers__profile--img" />
-                                            <div className="img-circle"><img src="/images/ustah.jpeg" alt="" /></div>
-                                        </div>
-                                        <div className="vertical-card__info">
-                                            <h4>Lester V.</h4>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
-                                        </div>
-                                        <img src="/images/arr-right.png" alt="" style={{ width: '25px' }} />
-                                    </div>
+                                {
+                                    this.props.task.Offers && 
+                                        this.props.task.Offers.map(offer => (
+                                            <div className="vertical-card">
+                                                <div className="offers__profile">
+                                                    <div className="offers__profile--img" />
+                                                    <div className="img-circle"><img src={
+                                                        offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__
+                                                    } alt="" /></div>
+                                                </div>
+                                                <div className="vertical-card__info">
+                                                    <h4>{offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.</h4>
+                                                    <p>{offer.description}</p>
+                                                </div>
+                                                <Link to={"/task/" + this.props.task.id + "/edit/offers/" + offer.id}>
+                                                    <img src="/images/arr-right.png" alt="" style={{ width: '25px' }} />
+                                                </Link>
+                                            </div>
+                                        ))
+                                }
                                 </section>
                             </div>
                         </div>

@@ -14,6 +14,7 @@ class MyCities extends React.Component {
     }
     componentDidMount() {
         this.props.getCities()
+        this.searchRef.focus()
     }
     getFilteredCities = () => {
         let cities = this.props.allIds.map(id => this.props.byIds[id])
@@ -65,6 +66,7 @@ class MyCities extends React.Component {
                         <span><img src="/images/new/search.png" alt="" /></span>
                         <input
                             type="text"
+                            ref={ref => this.searchRef = ref}
                             placeholder={this.props.getTrans(this.props.translations.text_29)}
                             value={this.state.query}
                             onChange={e => this.setState({ query: e.target.value })}

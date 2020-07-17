@@ -39,12 +39,12 @@
         "text_2": {
             "en": [
                 "Choose a strong password and don’t reuse it from somewhere else.",
-                "Use at least 8 characters. Don’t use a password from another site,","Choose how do you want to be notified across platform about:",
+                "Use at least 8 characters. Don’t use a password from another site,",
                 "or something too obvious like your pet’s name."
             ],
             "de": [
                 "de: Choose a strong password and don’t reuse it from somewhere else.",
-                "de: Use at least 8 characters. Don’t use a password from another site,","Choose how do you want to be notified across platform about:",
+                "de: Use at least 8 characters. Don’t use a password from another site,",
                 "de: or something too obvious like your pet’s name."
             ]
         },

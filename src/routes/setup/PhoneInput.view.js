@@ -18,7 +18,7 @@ export default props => {
             </div>
             <h4 className="mb30">{props.getTrans(props.translations.text_19)}</h4>
             <div className="flex-grow input__group" style={{ display: "block" }}>
-                <PhoneInput value={props.value} onChange={props.onChange} />
+                <PhoneInput defaultCountry="CH" value={props.value} onChange={props.onChange} />
             </div>
         </React.Fragment>
     )

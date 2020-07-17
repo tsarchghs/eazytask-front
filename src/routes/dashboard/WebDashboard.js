@@ -20,7 +20,7 @@ class WebDashboard extends React.Component {
         this.props.getMyActiveTasks({ limit: 4, offset: 0 });
         this.props.getPosts()
         this.props.getActiveListing2({
-            limit: 4,
+            limit: 6,
             offset: 0
         });
     }
@@ -40,10 +40,10 @@ class WebDashboard extends React.Component {
             <div className="home__card--content">
             {
                     this.props.myActiveTasks_info.tasks.map(task => (
-                        <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
+                        <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ cursor: "pointer", backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
                             <h5 style={{ textAlign: "center" }}>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
-                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
+                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}111</p>
                         </div>
                     ))
             }
@@ -83,23 +83,24 @@ class WebDashboard extends React.Component {
                                             <div className="hero flex jcsb" style={{ height: 'calc(100vh - 165px)', paddingTop: 80 }}>
                                                 <div className="home">
                                                     <div className="home__title">
-                                                        <h3>{this.getTrans(translations.text_1)}, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
+                                                        <h3 style={{fontWeight: "initial"}}>{this.getTrans(translations.text_1)}, <span style={{ fontWeight: "bold" }}>{this.props.own_profile.first_name}!</span></h3>
                                                     </div>
                                                     <div className="home__cards">
                                                         <div className="home__card gradient">
-                                                            <h5>{this.getTrans(translations.text_2)} “Yard Work” <br /><span>{this.getTrans(translations.text_3)}</span></h5>
+                                                            <h5>{this.getTrans(translations.text_2)} “Yard Work” 
+                                                            <br /><span style={{fontWeight: "bold"}}>{this.getTrans(translations.text_3)}</span></h5>
                                                             <img src="/images/succ.png" alt="" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="hero-home__cards">
                                                     <div className="home__tabs" style={{ justifyContent: 'initial' }}>
-                                                        <div onClick={() => this.setState({ onTab: "my_tasks"})} className={`home__tab ${this.state.onTab == "my_tasks" && "active"}`}>
+                                                        <div style={{ cursor: "pointer" }} onClick={() => this.setState({ onTab: "my_tasks"})} className={`home__tab ${this.state.onTab == "my_tasks" && "active"}`}>
                                                             {this.getTrans(translations.text_4)}
                                                         </div>
                                                         {
                                                             this.props.own_profile.Tasker && 
-                                                            <div onClick={() => this.setState({ onTab: "offers" })} className={`home__tab ${this.state.onTab == "offers" && "active"}`}>{this.getTrans(translations.text_26)}</div>
+                                                            <div style={{ cursor: "pointer" }} onClick={() => this.setState({ onTab: "offers" })} className={`home__tab ${this.state.onTab == "offers" && "active"}`}>{this.getTrans(translations.text_26)}</div>
                                                         }
                                                     </div>
                                                     {
@@ -120,7 +121,8 @@ class WebDashboard extends React.Component {
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
                                                         <Link to="/active_listing">
-                                                            <h4>{this.getTrans(translations.text_9)}</h4>
+                                                            <h4 style={{ fontWeight: "initial" }}>{this.getTrans(translations.text_9)}</h4>
+                                                            <img src="/images/up-arrow.png"/>
                                                         </Link>
                                                     </div>
                                                     <div className="listing-cards ">
@@ -132,7 +134,7 @@ class WebDashboard extends React.Component {
                                                         {
                                                             !this.props.activeListing2_info.loading &&
                                                             this.props.activeListing2_info.tasks.map(task => (
-                                                                <div className="listing-card">
+                                                                <div className="listing-card" style={{borderRadius: 21}}>
                                                                     <Link to={"/task/" + task.id}>
                                                                         <div className="listing-card__img">
                                                                             <div className="lc-img" style={{
@@ -236,7 +238,7 @@ class WebDashboard extends React.Component {
                                                         {!this.props.posts_info.loading && this.props.posts_info.posts.map(post => (
                                                             <div className="blog-card">
                                                                 <Link to={"/blog/" + post.id}>
-                                                                    <div className="blog-card__img">
+                                                                    <div className="blog-card__img" style={{borderRadius: 22}}>
                                                                         <img src={post.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                                                                     </div>
                                                                 </Link>
@@ -265,7 +267,7 @@ class WebDashboard extends React.Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="more__cards--content">
+                                                <div className="more__cards--content mt40">
                                                     <Link to="/history">
                                                         <div className="more__card">
                                                             <img src="/images/clock_.png" alt="" />

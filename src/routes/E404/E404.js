@@ -10,7 +10,7 @@ export default () => {
                 <section className="two-column__layout setup__mobile create-task reset-password text-center">
                     <div className="two-column__info flex flex-column">
                         <div className="flex-grow img-wrapper flex aic jcc one-section-show">
-                            <img className="img__mobile " src="/images/smile.png" alt="" />
+                            <img className="img__mobile " src="/images/404_not_found.png" alt="" />
                         </div>
                         <div className="background-title mb30">
                             <h1 style={{ color: '#000', fontSize: '28px', marginTop: '30px', marginBottom: '50px' }}>Sorry, we don’t know what you’re looking for</h1>
@@ -23,7 +23,7 @@ export default () => {
                     </div>
                     <div className="two-column__img hide-on-desktop">
                         <div className="two-column__image">
-                            <img src="/images/smile.png" alt="" />
+                            <img src="/images/404_not_found.png" alt="" />
                         </div>
                         {/* 	<div class="dots__group">
 					<span class="dot active"></span>

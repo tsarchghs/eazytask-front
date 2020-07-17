@@ -83,7 +83,7 @@ body {
   flex-direction: column;
   input {
     font-family: "FiraSans";
-    border-radius: 8px;
+    border-radius: 21px;
     height: initial;
     border: solid 1.4px #828282;
     background-color: transparent;
@@ -99,7 +99,7 @@ body {
     }
     &::placeholder {
       font-family: "FiraSans";
-      color: #828282;
+      color: #909090;
     }
   }
 }
@@ -127,12 +127,12 @@ body {
 
 .register__button {
   display: flex;
-  align-items: center;
+  align-items: initial !important;
   flex-direction: column;
   position:initial!important;
   transform: initial!important;
   margin-bottom: 15px;  
-  text-align: center;
+  text-align: left !important;
   p {
     font-size: 16px;
     color: #aaaaaa;
@@ -238,7 +238,7 @@ body {
       outline: none;
       border: none;
       border-bottom: 1px solid #828282;
-      border-radius: 0;
+      border-radius: 21px;
       padding: 0 0 10px 0;
       &:focus,
       &:active {
@@ -322,3 +322,28 @@ body {
         }
       }
     }
+
+
+    .animation {
+     
+      .gradient  {
+          position: relative;
+          transform: translatex(-500px);
+          height: 0px!important;
+          line-height: 0px!important;
+          margin: 0!important;
+          padding: 0!important;
+          opacity: 0;
+          }
+        }
+    .home__card {
+      transition: 0.4s ease all!important;
+    }
+
+    .home__cards {
+      transition: 1s ease all;
+    }
+
+.input__group .input {
+  border-radius: 21px !important;
+}

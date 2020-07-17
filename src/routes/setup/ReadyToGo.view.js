@@ -14,7 +14,7 @@ export default props => {
                 ))}
             </p>
             <div className="flex-grow">
-                <img src="/images/computer_display_monochromatic.png" style={{ minWidth: '190px', width: '20%', margin: '0 auto' }} alt="" />
+                <img src="/images/computer_display_monochromatic.png" style={{ minWidth: '190px', width: '25%', margin: '0 auto' }} alt="" />
             </div>
         </React.Fragment>
     )

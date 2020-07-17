@@ -26,7 +26,7 @@ const AboutSettings = props => (
                         <div className="profile__article--content">
                             <h3>{getTrans(props.app_lang,props.translations.text_1)}</h3>
                             <h4 className="text-green">{getTrans(props.app_lang,props.translations.text_2)}</h4>
-                            <h4>{getTrans(props.app_lang,props.translations.text_3)}</h4>
+                            <h4 style={{ fontWeight: "initial" }}>{getTrans(props.app_lang,props.translations.text_3)}</h4>
                         </div>
                     </section>
                     <section className="profile__article--mobile hide-on-web">

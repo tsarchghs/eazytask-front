@@ -93,7 +93,7 @@ class ChangePasswordSettings extends React.Component {
                                 <WebSidebar/>
                                 <div className="profile__article--content">
                                     <h3>{this.getTrans(this.props.translations.text_1)}</h3>
-                                    <h4>{this.getTrans(this.props.translations.text_2)} </h4>
+                                    <h4 style={{ fontWeight: "initial" }}>{this.getTrans(this.props.translations.text_2)} </h4>
                                     { this.state.error2 || this.state.error }
                                     { this.state.info }
                                     <div className="profile__passwords flex-grow">

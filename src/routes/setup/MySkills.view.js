@@ -14,6 +14,7 @@ class MySkills extends React.Component {
     }
     componentDidMount(){
         this.props.getSkills()
+        this.searchRef.focus()
     }
     getFilteredSkills = () => {
         let skills = this.props.allIds.map(id => this.props.byIds[id])
@@ -52,6 +53,7 @@ class MySkills extends React.Component {
             }
         }
     }
+    
     render(){
         console.log({props: this.props})
         return (
@@ -65,6 +67,7 @@ class MySkills extends React.Component {
                         <span><img src="/images/new/search.png" alt="" /></span>
                         <input 
                             type="text" 
+                            ref={ref => this.searchRef = ref}
                             placeholder={this.props.getTrans(this.props.translations.text_27)}
                             value={this.state.query}
                             onChange={e => this.setState({ query: e.target.value })}

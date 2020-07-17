@@ -4,6 +4,9 @@ import { Redirect, withRouter } from "react-router-dom";
 import * as Yup from "yup";
 
 class CodeInputs extends React.Component {
+    componentDidMount(){
+        this["input_0"].focus();
+    }
     render(){
         let inputs = []
         for (let x=0;x<6;x++) inputs.push(

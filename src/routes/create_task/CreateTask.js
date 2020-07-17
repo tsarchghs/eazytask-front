@@ -21,12 +21,14 @@ import * as Yup from "yup";
 
 import queryString from "query-string";
 import MobileNav from "../../components/MobileNav";
+import WebHeader from "../../components/WebHeader";
 
 const currentYear = new Date().getFullYear()
 
 const format_number = val => {
     let num_val = Number(val)
-    if (num_val < 0) return "0";
+    if (num_val < 0) return 0;
+    return num_val;
 }
 
 const format_day_or_month = (val,max) => {
@@ -173,12 +175,12 @@ class CreateTask extends React.Component {
             if (key === "day") value = format_day_or_month(value,31);
             else if (key === "month") value = format_day_or_month(value,12);
             else if (key === "year") value = format_year(value);
-            else if (key === "expected_price") value = Number(value);
+            else if (key === "expected_price") value = format_number(value);
             prevState.data[key] = value;
             return prevState;
         }, async () => {
             let stepKey = this.state.steps[this.state.step]
-            let valid = await this.validations[stepKey].isValid(this.state.data);
+            let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
             this.setState({ valid })
         })
     }
@@ -188,7 +190,7 @@ class CreateTask extends React.Component {
     })
     showCurrentStep = () => {
         let { translations, app_lang, common } = this.props;
-        let commonProps = { translations, app_lang, common, getTrans: this.getTrans }
+        let commonProps = { handleInputKeyDown: this.handleInputKeyDown, translations, app_lang, common, getTrans: this.getTrans }
         switch (this.state.step) {
             case 0: return <Name {...commonProps} 
                 onNameChange={this.onChange("name")} name={this.state.data.name}
@@ -268,6 +270,7 @@ class CreateTask extends React.Component {
         else return false
     }
     getButtonText = () => {
+        if (this.state.step == 8) return this.getTrans(this.props.translations.text_51)
         if (this.state.step === this.lastStepIndex - 2) return this.getTrans(this.props.translations.text_49)
         if (this.state.step === this.lastStepIndex - 1) return this.getTrans(this.props.translations.text_50)
         else if (this.state.step === 0) return this.getTrans(this.props.translations.text_51)
@@ -304,8 +307,9 @@ class CreateTask extends React.Component {
     //     })
     // }
     getDots = () => {
-        if (this.state.step === this.state.steps.length-1) return [];
-        return this.state.steps.slice(0, this.state.steps.length).map((x, i) => {
+        if (this.state.step === this.state.steps.length - 1) return [];
+        if (this.state.step === this.state.steps.length - 2) return [];
+        return this.state.steps.slice(0, this.state.steps.length - 2).map((x, i) => {
             let getOnClick = () => {
                 console.log(this.state.step, index)
                 if (this.state.step <= index) return () => { }
@@ -327,9 +331,9 @@ class CreateTask extends React.Component {
             case "CATEGORY_GROUP": return "/images/stand2.png"
             case "CATEGORY": return "/images/Group.png"
             case "OTHER_CATEGORY": return "/images/Group.png"
-            case "TASK_GALLERY": return "/images/startup_monochromatic 1.png"
+            case "TASK_GALLERY": return "/images/camera_1.png"
             case "TASK_REVIEW": return "/images/mind-map.png"
-            case "TASK_PUBLISHED": return "/images/www.png"
+            case "TASK_PUBLISHED": return "/images/computer_display_monochromatic_1.png"
             default: return "/images/Group.png"
         }
     }
@@ -340,6 +344,11 @@ class CreateTask extends React.Component {
             return data.map(str => <React.Fragment>
                 {str}<br/>
             </React.Fragment>)
+        }
+    }
+    handleInputKeyDown = e => {
+        if (e.key == "Enter"){
+            this.getButtonOnClick()()
         }
     }
     render() {
@@ -361,10 +370,7 @@ class CreateTask extends React.Component {
         return (
             <div className="container">
                 <div className={"content" + (headerClassName ? " setup-ready" : "")}>
-                    <header className={headerClassName}>
-                        <span onClick={this.nextStep(this.state.step - 1)} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                        <Link to="/"><img className="logo__img" src="/images/logo.svg" alt="" /></Link>
-                    </header>
+                    <WebHeader active="new_task"/>
                     <section className={"two-column__layout setup__mobile create-task " + extra}>
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }

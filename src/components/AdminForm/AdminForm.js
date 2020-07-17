@@ -31,7 +31,7 @@ class AdminForm extends React.Component {
                 <div className="row">
                     <div className="col-md-8">
                         <center />
-                        <div className="card">
+                        <div className="card" style={{ width: "169% !important"}}>
                             <div className="card-header">
                                 <h4 className="mb-0">{h4_content}</h4>
                             </div>

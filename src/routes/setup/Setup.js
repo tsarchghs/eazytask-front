@@ -120,6 +120,8 @@ class Setup extends React.Component {
     onChange = key => async e => {
         if (e.persist) e.persist()
         this.setState(prevState => {
+            console.log(e)
+            if (key === "phone_number" && e.target.value.length === 3) return prevState
             prevState.data[key] = e.target.value;
             return prevState;
         }, async () => {
@@ -153,9 +155,15 @@ class Setup extends React.Component {
             this.props.postTasker(this.state.data);
         }
     }
+    handleInputKeyDown = e => {
+        if (e.key == "Enter") {
+            let buttonDisabled = this.state.step == 4.1 && !isValidPhoneNumber(this.state.data.phone_number) || !this.state.valid;
+            if (!buttonDisabled) this.getButtonOnClick()()
+        }
+    }
     showCurrentStep = () => {
         let { translations, app_lang, common } = this.props;
-        let commonProps = { translations, app_lang, common, getTrans: this.getTrans }
+        let commonProps = { handleInputKeyDown: this.handleInputKeyDown, translations, app_lang, common, getTrans: this.getTrans }
         switch (this.state.step) {
             case 0: return <WelcomeUser {...commonProps} first_name={this.props.first_name} />
             case 1: return <ProfilePicture {...commonProps} onChange={this.onFileChange("profile_image")} />
@@ -177,7 +185,7 @@ class Setup extends React.Component {
             />
             case 4.1: return <PhoneInput {...commonProps} 
                 value={this.state.data.phone_number} 
-                onChange={value => this.onChange("phone_number")({ target: { value } })}
+                onChange={value => {}}
             />
             case 4.2: return <PhoneVerificationCode {...commonProps} mainButtonClick={this.getButtonOnClick()} phone_number={this.state.data.phone_number}/>
             case 5: return <BecomeTasker {...commonProps} />
@@ -204,7 +212,7 @@ class Setup extends React.Component {
         if (this.state.step == 4.2) return "/images/world_connection.png"
         switch (this.state.steps[this.state.step]){
             case "WELCOME_USER": return "/images/Group.png"
-            case "NOTIFICATION_OPTION": return "/images/checklist.png"
+            case "NOTIFICATION_OPTION": return "/images/notifications_1.png"
             case "PROFILE_PICTURE": return "/images/user_profile.png"
             case "COVER_PICTURE": return "/images/user_profile.png"
             case "LOCATION": return "/images/world_connection.png"
@@ -237,12 +245,26 @@ class Setup extends React.Component {
             return { onClick: this.setupAccount, show: this.getTrans(this.props.translations.text_36) }
         else if (this.state.steps[this.state.step] === "BECOME_TASKER") 
             return { onClick: this.nextStep(this.lastStepIndex), show: this.getTrans(this.props.translations.text_41) }
+        else if (this.state.step == 4.1) 
+            return { onClick: () => {
+                this.nextStep(5)()
+                this.setState(prevState => {
+                    prevState.data.notification_option = "EMAIL"
+                    return { ...prevState, data: { ...prevState.data } }
+                })
+            } 
+                , show: this.getTrans(this.props.translations.text_36) } 
         else return { onClick: this.nextStep(this.state.step + 1), show: this.getTrans(this.props.translations.text_36) }
     }
     getButtonText = () => {
+        if (this.state.step === 4) return this.getTrans(this.props.translations.text_35)
+        if (this.state.step === 5) return this.getTrans(this.props.translations.text_45)
         if (this.state.step === 0) return this.getTrans(this.props.translations.text_40)
         if (this.state.step === this.lastStepIndex - 1) return this.getTrans(this.props.translations.text_37)
-        if (this.state.step === 4) return this.getTrans(this.props.translations.text_37)
+        if (this.state.step === 4) {
+            if (this.state.data.notification_option == "EMAIL") return this.getTrans(this.props.translations.text_37)
+            else if (this.state.data.notification_option == "SMS") return this.getTrans(this.props.translations.text_35)
+        }
         if (this.state.step !== this.lastStepIndex) return this.getTrans(this.props.translations.text_35)
         else return this.getTrans(this.props.translations.text_34)
     }
@@ -320,8 +342,13 @@ class Setup extends React.Component {
         }
     }
     getInsideButtonGroup(){
+        if (this.state.step == 4.2) return null;
+
         let displaySkip = this.showSkipBool() && this.getSkipForNowInfo();
-        let buttonDisabled = this.state.step == 4.1 && !isValidPhoneNumber(this.state.data.phone_number) || !this.state.valid;
+        let buttonDisabled = (this.state.step == 4.1 && (
+                !isValidPhoneNumber(this.state.data.phone_number) ||
+                this.state.data.phone_number.indexOf("+41") === -1
+            )) || !this.state.valid;
         return (
             <React.Fragment>
                 {   
@@ -358,7 +385,19 @@ class Setup extends React.Component {
                             this.state.step !== this.lastStepIndex &&
                             <div className="two-column__img">
                                 <div className="two-column__image">
-                                    <img src={this.getStepImage()} alt="" />
+                                    <img 
+                                        style={
+                                            this.getStepImage() === "/images/notifications_1.png" ||
+                                            this.getStepImage() === "/images/checklist.png" || 
+                                            this.getStepImage() === "/images/super_man.png" ||
+                                            this.getStepImage() === "/images/map.png"
+                                             ? { width: "70%" } : (
+                                                 this.getStepImage() === "/images/conversation.png" 
+                                                 ? { width: "85%" }
+                                                 : { }
+                                             )
+                                        }
+                                    src={this.getStepImage()} alt="" />
                                 </div>
                                 <div className="dots__group">
                                     { this.getDots() }
