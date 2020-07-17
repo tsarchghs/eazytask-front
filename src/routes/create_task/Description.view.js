@@ -4,20 +4,20 @@ export default props => {
     return (
         <React.Fragment>
             <div className="background-title mb30">
-                <h1>Describe</h1>
-                <h3>task</h3>
+                <h1>{props.getTrans(props.translations.text_4)}</h1>
+                <h3>{props.getTrans(props.translations.text_4_1)}</h3>
                 <p className="shadow__title no-contain">create a task on eazytask easy </p>
             </div>
             <h4 className="show__mobile">
-                Describe <br />
-                <span>task</span>
-                <p className="show__mobile--subtitle">Please add relevant information about trasnport, equipment and all other information that the taskers may need</p>
+            {props.getTrans(props.translations.text_4)} <br />
+                <span>{props.getTrans(props.translations.text_4_1)}</span>
+                <p className="show__mobile--subtitle">{props.getTrans(props.translations.text_5_1)}</p>
             </h4>
 
             <div className="register__form">
                 <input
                     type="text"
-                    placeholder="Description..."
+                    placeholder={props.getTrans(props.translations.text_5)}
                     class="input"
                     value={props.description}
                     onChange={props.onDescriptionChange}

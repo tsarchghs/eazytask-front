@@ -3,18 +3,16 @@ import React from "react";
 class CategoryGroup extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            categoriesGroups: [
-                {
-                    id: 1,
-                    name: "Household"
-                },
-                {
-                    id: 2,
-                    name: "Technical"
-                }
-            ]
-        }
+        let categoriesGroups = []
+        this.props.translations.categories.map((category,id) => {
+            categoriesGroups.push({
+                id,
+                name: category.en,
+                show: props.getTrans(category),
+                description: category.description
+            })
+        })
+        this.state = { categoriesGroups }
     }
     render(){
         let { categoriesGroups } = this.state;
@@ -44,8 +42,8 @@ class CategoryGroup extends React.Component {
                                         <img src={src} alt="" />
                                     </div>
                                     <div className="card-task__text">
-                                        <h5>{name}</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetu</p>
+                                        <h5>{obj.show}</h5>
+                                        <p>{this.props.getTrans(obj.description)}</p>
                                     </div>
                                 </div>
                             )
@@ -53,11 +51,11 @@ class CategoryGroup extends React.Component {
                     }
                     <div className="card-task" onClick={this.props.onOtherClick}>
                         <div className="card-task__img">
-                            <img src="/images/cursor.png" alt="" />
+                            <img src="/images/house.png" alt="" />
                         </div>
-                        <div className="card-task__text" onClick={this.props.onOtherClick}>
-                            <h5>Other</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetu</p>
+                        <div className="card-task__text">
+                            <h5>{this.props.getTrans(this.props.translations.text_31)}</h5>
+                            <p>{this.props.getTrans(this.props.translations.text_31.description)}</p>
                         </div>
                     </div>
                 </div>

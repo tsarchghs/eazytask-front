@@ -81,15 +81,15 @@ class CreateTask extends React.Component {
             ]
         }
         this.validations = {
-            "NAME": Yup.object().shape({ name: Yup.string().required("Name is required") }),
-            "DESCRIPTION": Yup.object().shape({ description: Yup.string().required("Description is required")}),
+            "NAME": Yup.object().shape({ name: Yup.string().required(this.getTrans(props.translations.text_3)) }),
+            "DESCRIPTION": Yup.object().shape({ description: Yup.string().required(this.getTrans(props.translations.text_6))}),
             "TASK_LOCATION": Yup.object().shape({ 
-                zipCode: Yup.string().required("Zip Code is required"),
-                address: Yup.string().required("Address is required"),
-                city: Yup.string().required("Town is required")
+                zipCode: Yup.string().required(this.getTrans(props.translations.text_15)),
+                address: Yup.string().required(this.getTrans(props.translations.text_16)),
+                city: Yup.string().required(this.getTrans(props.translations.text_17))
             }),
             "OTHER_CATEGORY": Yup.object().shape({
-                category: Yup.string().required("Category name is required")
+                category: Yup.string().required(this.getTrans(props.translations.text_30))
             })
         }
         this.lastStepIndex = this.state.steps.length - 1
@@ -183,16 +183,18 @@ class CreateTask extends React.Component {
         return prevState;
     })
     showCurrentStep = () => {
+        let { translations, app_lang, common } = this.props;
+        let commonProps = { translations, app_lang, common, getTrans: this.getTrans }
         switch (this.state.step) {
-            case 0: return <Name 
+            case 0: return <Name {...commonProps} 
                 onNameChange={this.onChange("name")} name={this.state.data.name}
                 errors={this.state.errors}
             />
-            case 1: return <Description
+            case 1: return <Description {...commonProps}
                 onDescriptionChange={this.onChange("description")} description={this.state.data.description}
                 errors={this.state.errors}
             />
-            case 2: return <PickDate 
+            case 2: return <PickDate {...commonProps} 
                 date_type={this.state.data.date_type}
                 fixedOnClick={this.onChangeWithVal("date_type","FIXED_DATE")}
                 untilOnClick={this.onChangeWithVal("date_type","UNTIL_DATE")}
@@ -201,24 +203,24 @@ class CreateTask extends React.Component {
                 onYearChange={this.onChange("year")} year={this.state.data.year}
 
             />
-            case 3: return <Location
+            case 3: return <Location {...commonProps}
                 onZipCodeChange={this.onChange("zipCode")} zipCode={this.state.data.zipCode}
                 onAddressChange={this.onChange("address")} address={this.state.data.address}
                 onCityChange={this.onChange("city")} city={this.state.data.city}
                 errors={this.state.errors}
             />
-            case 4: return <ExpectedPrice
+            case 4: return <ExpectedPrice {...commonProps}
                 onExpectedPriceChange={this.onChange("expected_price")} 
                 expected_price={this.state.data.expected_price}
             />
-            case 5: return <CategoryGroup
+            case 5: return <CategoryGroup {...commonProps}
                 onCategoryGroupClick={(id,name) => {
                     this.setState({ categoryGroupId: id, categoryGroupName: name })
                     this.setState({ step: 6 })
                 }}
                 onOtherClick={this.nextStep(7)}
             />
-            case 6: return <Category 
+            case 6: return <Category {...commonProps} 
                 categoryGroupId={this.state.categoryGroupId} 
                 categoryGroupName={this.state.categoryGroupName}
                 onCategoryClick={name => {
@@ -227,20 +229,20 @@ class CreateTask extends React.Component {
                 }}
                 onOtherClick={this.nextStep(7)}
             />
-            case 7: return <OtherCategory
+            case 7: return <OtherCategory {...commonProps} 
                 category={this.state.data.category}
                 onCategoryChange={this.onChange("category")}
                 errors={this.state.errors}
             />
-            case 8: return <TaskGallery
+            case 8: return <TaskGallery {...commonProps} 
                 gallery={this.state.data.gallery}
                 onFileChange={this.onFileChange}
                 onThumbnailChange={this.onThumbnailChange}
                 thumbnail={this.state.data.thumbnail}
                 onGalleryImageRemove={this.onGalleryImageRemove}
             />
-            case 9: return <TaskReview {...this.state.data} categoryGroupName={this.state.categoryGroupName}/>
-            case 10: return <TaskPublished
+            case 9: return <TaskReview {...commonProps}  {...this.state.data} categoryGroupName={this.state.categoryGroupName}/>
+            case 10: return <TaskPublished {...commonProps} 
                 loading={this.props.app_createTask.loading}
             />
         }
@@ -257,11 +259,11 @@ class CreateTask extends React.Component {
         else return false
     }
     getButtonText = () => {
-        if (this.state.step === this.lastStepIndex - 2) return "Finish"
-        if (this.state.step === this.lastStepIndex - 1) return "Confirm"
-        else if (this.state.step === 0) return "Next"
-        else if (this.state.step !== this.lastStepIndex) return "Next"
-        else return "Back home"
+        if (this.state.step === this.lastStepIndex - 2) return this.getTrans(this.props.translations.text_49)
+        if (this.state.step === this.lastStepIndex - 1) return this.getTrans(this.props.translations.text_50)
+        else if (this.state.step === 0) return this.getTrans(this.props.translations.text_51)
+        else if (this.state.step !== this.lastStepIndex) return this.getTrans(this.props.translations.text_51)
+        else return this.getTrans(this.props.translations.text_52)
     }
     getButtonOnClick = () => {
         let nextStep = this.state.step + 1;
@@ -320,6 +322,15 @@ class CreateTask extends React.Component {
             case "TASK_REVIEW": return "/images/mind-map.png"
             case "TASK_PUBLISHED": return "/images/www.png"
             default: return "/images/Group.png"
+        }
+    }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof(data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br/>
+            </React.Fragment>)
         }
     }
     render() {
@@ -397,7 +408,11 @@ class CreateTask extends React.Component {
 
 const mapStateToProps = state => ({
     auth_profile: state.auth.profile,
-    app_createTask: state.app.createTask
+    app_createTask: state.app.createTask,
+    translations: state.app_lang.data["/create-task"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+
 })
 
 const enhance = compose(

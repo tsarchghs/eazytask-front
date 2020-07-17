@@ -1,0 +1,336 @@
+{
+    "text_1": {
+      "en": "Create",
+      "de": "None"
+    },
+    "text_1_1": {
+      "en": " a task",
+      "de": "None"
+    },
+    "text_2": {
+      "en": "Name your task",
+      "de": "None"
+    },
+    "text_3": {
+      "en": "Name is required",
+      "de": "Die name is required"
+    },
+    "text_4": {
+      "en": "Describe",
+      "de": "None"
+    },
+    "text_4_1": {
+      "en": "task",
+      "de": "None"
+    },
+    "text_5": {
+      "en": "Description..",
+      "de": "None"
+    },
+    "text_5_1": {
+        "en": "Please add relevant information about trasnport, equipment and all other information that the taskers may need",
+        "de": "None"
+    },
+    "text_6": {
+      "en": "Description is required",
+      "de": "Desc required None"
+    },
+    "text_7": {
+      "en": "Pick",
+      "de": "None pick"
+    },
+    "text_7_1": {
+      "en": " a date",
+      "de": "None"
+    },
+    "text_8": {
+      "en": "Fixed",
+      "de": "None"
+    },
+    "text_9": {
+      "en": "Until",
+      "de": "None"
+    },
+    "text_10": {
+      "en": "Locate",
+      "de": "None"
+    },
+    "text_11": {
+      "en": "your task",
+      "de": "None"
+    },
+    "text_12": {
+      "en": "Address",
+      "de": "None"
+    },
+    "text_13": {
+      "en": "ZIP",
+      "de": "None"
+    },
+    "text_14": {
+      "en": "Town",
+      "de": "None"
+    },
+    "text_15": {
+      "en": "Zip Code is required",
+      "de": "None"
+    },
+    "text_16": {
+      "en": "Address is required",
+      "de": "None"
+    },
+    "text_17": {
+      "en": "Town is required",
+      "de": "None"
+    },
+    "text_18": {
+      "en": "Expected",
+      "de": "None"
+    },
+    "text_18_1": {
+      "en": "price",
+      "de": "None"
+    },
+    "text_19": {
+      "en": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Ut aliquam, malesuada velit a tristique phasellus ultrices et."
+      ],
+      "de": [
+        "DE: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "DE: Ut aliquam, malesuada velit a tristique phasellus ultrices et."
+      ]
+    },
+    "text_20": {
+      "en": "Task",
+      "de": "None"
+    },
+    "text_21": {
+      "en": "category",
+      "de": "None"
+    },
+    "text_28": {
+      "en": "Category name",
+      "de": "None"
+    },
+    "text_29": {
+      "en": "Category..",
+      "de": "None.."
+    },
+    "text_30": {
+      "en": "Category name is required",
+      "de": "None"
+    },
+    "categories": [
+      {
+        "en": "Household",
+        "de": "None",
+        "description": {
+          "en": [
+            "Lorem ipsum dolor sit",
+            "amet, consectetu"
+          ],
+          "de": [
+            "de: Lorem ipsum dolor sit",
+            "de: amet, consectetu"
+          ]
+        },
+        "sub_categories": [
+          {
+            "en": "Handicraft work",
+            "de": "None",
+            "description": {
+              "en": [
+                "Lorem ipsum dolor sit",
+                "amet, consectetu"
+              ],
+              "de": [
+                "de: Lorem ipsum dolor sit",
+                "de: amet, consectetu"
+              ]
+            }
+          },
+          {
+            "en": "Gardening work",
+            "de": "None",
+            "description": {
+              "en": [
+                "Lorem ipsum dolor sit",
+                "amet, consectetu"
+              ],
+              "de": [
+                "de: Lorem ipsum dolor sit",
+                "de: amet, consectetu"
+              ]
+            }
+          },
+          {
+            "en": "Moving & Cleaning",
+            "de": "None",
+            "description": {
+              "en": [
+                "Lorem ipsum dolor sit",
+                "amet, consectetu"
+              ],
+              "de": [
+                "de: Lorem ipsum dolor sit",
+                "de: amet, consectetu"
+              ]
+            }
+          },
+          {
+            "en": "Furniture",
+            "de": "None",
+            "description": {
+              "en": [
+                "Lorem ipsum dolor sit",
+                "amet, consectetu"
+              ],
+              "de": [
+                "de: Lorem ipsum dolor sit",
+                "de: amet, consectetu"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "en": "Technical",
+        "de": "None",
+        "description": {
+          "en": [
+            "Lorem ipsum dolor sit",
+            "amet, consectetu"
+          ],
+          "de": [
+            "de: Lorem ipsum dolor sit",
+            "de: amet, consectetu"
+          ]
+        },
+        "sub_categories": [
+            {
+                "en": "Repair tolet",
+                "de": "None",
+                "description": {
+                  "en": [
+                    "Lorem ipsum dolor sit",
+                    "amet, consectetu"
+                  ],
+                  "de": [
+                    "de: Lorem ipsum dolor sit",
+                    "de: amet, consectetu"
+                  ]
+                }
+            }
+        ]
+      }
+    ],
+    "text_31": {
+      "en": "Other",
+      "de": "None",
+      "description": {
+        "en": [
+          "Lorem ipsum dolor sit",
+          "amet, consectetu"
+        ],
+        "de": [
+          "de: Lorem ipsum dolor sit",
+          "de: amet, consectetu"
+        ]
+      }
+    },
+    "text_32": {
+      "en": "Almost there",
+      "de": "None"
+    },
+    "text_33": {
+      "en": "Upload",
+      "de": "None"
+    },
+    "text_34": {
+      "en": "photos",
+      "de": "None"
+    },
+    "text_35": {
+      "en": "Click one picture to set as thumbnail",
+      "de": "None"
+    },
+    "text_35_1": {
+        "en": "Thumbnail",
+        "de": "None"
+    },
+    "text_35_2": {
+        "en": "Set thumbnail",
+        "de": "None"
+    },
+    "text_36": {
+      "en": "Task",
+      "de": "None"
+    },
+    "text_37": {
+      "en": "review",
+      "de": "None"
+    },
+    "text_38": {
+      "en": "Title:",
+      "de": "None"
+    },
+    "text_39": {
+      "en": "Description:",
+      "de": "None"
+    },
+    "text_40": {
+      "en": "Date (Fixed):",
+      "de": "None"
+    },
+    "text_41": {
+      "en": "Date (Until):",
+      "de": "None"
+    },
+    "text_42": {
+      "en": "Location: ",
+      "de": "None"
+    },
+    "text_43": {
+      "en": "Category: ",
+      "de": "None"
+    },
+    "text_44": {
+      "en": "Sub: ",
+      "de": "None"
+    },
+    "text_45": {
+      "en": "Your task is",
+      "de": "None"
+    },
+    "text_46": {
+      "en": "published",
+      "de": "None"
+    },
+    "text_47": {
+      "en": [
+        "You will be notified when a",
+        "tasker makes you an offer"
+      ],
+      "de": [
+        "de: You will be notified when a",
+        "de: tasker makes you an offer"
+      ]
+    },
+    "text_49": {
+        "en": "Finish",
+        "de": "None"
+    },
+    "text_50": {
+        "en": "Confirm",
+        "de": "None"
+    },
+    "text_51": {
+        "en": "Next",
+        "de": "None"
+    },
+    "text_52": {
+        "en": "Back home",
+        "de": "None"
+    }
+  }

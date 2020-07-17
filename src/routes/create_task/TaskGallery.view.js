@@ -7,16 +7,16 @@ export default class Picture extends React.Component {
         return (
             <React.Fragment>
                 <div className="background-title mb30">
-                    <h1>Upload</h1>
-                    <h3>photos</h3>
+                    <h1>{this.props.getTrans(this.props.translations.text_33)}</h1>
+                    <h3>{this.props.getTrans(this.props.translations.text_34)}</h3>
                     <p className="shadow__title no-contain">create a task on eazytask easy </p>
                 </div>
                 <h4 className="show__mobile">
-                    Upload <br />
-                    <span>photos</span>
+                {this.props.getTrans(this.props.translations.text_33)} <br />
+                    <span>{this.props.getTrans(this.props.translations.text_34)}</span>
                 </h4>
                 <div className="picture-section flex-grow ">
-                    <p>Click one picture to set as thumbnail</p>
+                    <p>{this.props.getTrans(this.props.translations.text_35)}</p>
                     <div className="flex image-uploads">
                         <div className="image-upload__style flex  flex-column">
                             <label htmlFor="file-upload" className="custom-file-upload"><img src="/images/plus.png" className="plus-img" alt="" /></label>
@@ -25,64 +25,24 @@ export default class Picture extends React.Component {
                         {
                             Object.keys(this.props.gallery).map(file_key => (
                                 <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__style flex flex-column">
-                                    {this.props.thumbnail == file_key && <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__mask"><h2>Thumbnail</h2></div>}
-                                    {this.props.thumbnail != file_key && <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__mask"><h2>Set thumbnail</h2></div>}
+                                    {this.props.thumbnail == file_key && <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__mask"><h2>{this.props.getTrans(this.props.translations.text_35_1)}</h2></div>}
+                                    {this.props.thumbnail != file_key && <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__mask"><h2>{this.props.getTrans(this.props.translations.text_35_2)}</h2></div>}
                                     <div 
                                         onClick={this.props.onGalleryImageRemove(file_key)} 
                                         className="image-upload__close"
                                         style={{zIndex: 1000000}}
                                     >X</div>
-                                    {this.props.thumbnail == file_key && <div className="image-upload__label">Thumbnail</div>}
+                                    {this.props.thumbnail == file_key && <div className="image-upload__label">
+                                        {this.props.getTrans(this.props.translations.text_35_1)}
+                                    </div>}
                                     <img src={this.props.gallery[file_key].src} alt="" />
                                     {/* <div onClick={this.props.onGalleryImageRemove(file_key)}>X</div> */}
                                 </div>
                             ))
                         }
-                        {/* <div>
-                            <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__style flex  flex-column" style={{ width: "10%" }}>
-                                <label className="custom-file-upload">
-                                    <img src={this.props.gallery[file_key].src} className="plus-img" alt="" /></label>
-                                {this.props.thumbnail == file_key && "Thumbnail"}
-                            </div>
-                            <div onClick={this.props.onGalleryImageRemove(file_key)}>X</div>
-                        </div> */}
                     </div>
                 </div>
 
-            </React.Fragment>
-        )
-        return (
-            <React.Fragment>
-                <div className="background-title mb30">
-                    <h1>Upload</h1>
-                    <h3>photos</h3>
-                    <p className="shadow__title no-contain">create a task on eazytask easy </p>
-                </div>
-                <h4 className="show__mobile">
-                    Upload <br />
-                    <span>photos</span>
-                </h4>
-
-                <div className="picture-section flex-grow ">
-                    <div className="image-upload__style flex  flex-column">
-                        <p>Upload pictures of your task</p>
-                        <label htmlFor="file-upload" className="custom-file-upload">
-                            <img src="/images/plus.png" className="plus-img" alt="" /></label>
-                        <input onChange={this.props.onFileChange(v1())} id="file-upload" type="file" />
-                    </div>
-                {
-                    Object.keys(this.props.gallery).map(file_key => (
-                        <div>
-                            <div onClick={this.props.onThumbnailChange(file_key)} className="image-upload__style flex  flex-column" style={{ width: "10%" }}>
-                                <label className="custom-file-upload">
-                                <img src={this.props.gallery[file_key].src} className="plus-img" alt="" /></label>
-                                {this.props.thumbnail == file_key && "Thumbnail"}
-                            </div>
-                            <div onClick={this.props.onGalleryImageRemove(file_key)}>X</div>
-                        </div>
-                    ))
-                }
-                </div>
             </React.Fragment>
         )
     }

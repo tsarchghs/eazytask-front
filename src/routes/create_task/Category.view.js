@@ -5,37 +5,21 @@ import queryString from "query-string";
 class CategoryGroup extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            "Household": [
-                {
-                    id: 1,
-                    name: "Handicraft work"
-                },
-                {
-                    id: 2,
-                    name: "Gradening work"
-                },
-                {
-                    id: 3,
-                    name: "Moving & Cleaning"
-                },
-                {
-                    id: 4,
-                    name: "Furniture"
-                },
-                {
-                    id: 5,
-                    name: "Handicraft work"
+        let state = {}
+        props.translations.categories.map((category,category_id) => {
+            if (category.en === this.props.categoryGroupName) state.current_category_id = category_id
+            state[category.en] = category.sub_categories.map((sub_category,id) => {
+                return {
+                    id,
+                    category_id,
+                    categoryShowName: props.getTrans(category),
+                    name: sub_category.en, 
+                    show: props.getTrans(sub_category)
                 }
-
-            ],
-            "Technical": [
-                {
-                    id: 1,
-                    name: "Repair toilet"
-                },
-            ]
-        }
+            })
+        })
+        this.state = state;
+        console.log("categorycategory",this.state,this.props.translations.categories,this.state.current_category_id)
     }
     render(){
         if (!this.props.categoryGroupName) {
@@ -49,15 +33,15 @@ class CategoryGroup extends React.Component {
         return (
             <React.Fragment>
                 <div className="background-title mb30">
-                    <h1>Almost there</h1>
+                    <h1>{this.props.getTrans(this.props.translations.text_32)}</h1>
                     <p className="shadow__title no-contain">create a task on eazytask easy </p>
                 </div>
                 <h4 className="show__mobile">
-                    Almost there <br />
+                {this.props.getTrans(this.props.translations.text_32)} <br />
                 </h4>
 
                 <h4 className="show__mobile">
-                    Household <br />
+                    {this.state[this.props.categoryGroupName].categoryShowName} <br />
                     <span>Category</span>
                 </h4>
                 <div className="cards-section ">
@@ -69,8 +53,13 @@ class CategoryGroup extends React.Component {
                                         <img src="/images/house.png" alt="" />
                                     </div>
                                     <div className="card-task__text">
-                                        <h5>{category.name}</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetu</p>
+                                        <h5>{category.show}</h5>
+                                        <p>{
+                                            this.props.getTrans(
+                                                this.props.translations.categories[
+                                                    this.state.current_category_id
+                                                ].description
+                                            )}</p>
                                     </div>
                                 </div>
                             )
@@ -81,8 +70,8 @@ class CategoryGroup extends React.Component {
                             <img src="/images/house.png" alt="" />
                         </div>
                         <div className="card-task__text">
-                            <h5>Other</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetu</p>
+                            <h5>{this.props.getTrans(this.props.translations.text_31)}</h5>
+                            <p>{this.props.getTrans(this.props.translations.text_31.description)}</p>
                         </div>
                     </div>
                 </div>

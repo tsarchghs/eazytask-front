@@ -12,19 +12,19 @@ export default props => {
     return (
         <React.Fragment>
             <div className="background-title ">
-                <h1>Pick</h1>
-                <h3>a date</h3>
+                <h1>{props.getTrans(props.translations.text_7)}</h1>
+                <h3>{props.getTrans(props.translations.text_7_1)}</h3>
                 <p className="shadow__title no-contain">create a task on eazytask easy </p>
             </div>
             <h4 className="show__mobile">
-                Pick a <br />
-                <span>date</span>
+                {props.getTrans(props.translations.text_7)}<br />
+                <span>{props.getTrans(props.translations.text_7_1)}</span>
             </h4>
 
             <div className="date-section">
                 <div className="date-section__tabs flex jcc aic">
-                    <h3 className={fixedClassNames} onClick={props.fixedOnClick}>Fixed</h3>
-                    <h3 className={untilClassNames} onClick={props.untilOnClick}>Until</h3>
+                    <h3 className={fixedClassNames} onClick={props.fixedOnClick}>{props.getTrans(props.translations.text_8)}</h3>
+                    <h3 className={untilClassNames} onClick={props.untilOnClick}>{props.getTrans(props.translations.text_9)}</h3>
                 </div>
                 <div className="date-section__select flex jcc aic ">
                      <input
