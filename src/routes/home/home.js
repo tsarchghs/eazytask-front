@@ -145,7 +145,7 @@ class Home extends React.Component {
                                             </div>
                                             <div className="video">
                                                 <div className="video__content">
-                                                    <iframe src="https://www.youtube.com/embed/GyM2njSbH00" frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                                                    <iframe src="https://www.youtube.com/embed/YKg9ZQ0-bo4" frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                                                 </div>
                                             </div>
                                         </div>
