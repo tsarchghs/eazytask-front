@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default props => (
-    <div className="mobile-nav">
+    <div className="mobile-nav hide-on-web">
         <Link to="/dashboard">
             <div className={"mob-nav " + (props.active == "home" ? "active" : "")}>
                 <img src="/images/nav-home.png" alt="" />

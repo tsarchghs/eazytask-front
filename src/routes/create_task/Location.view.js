@@ -39,9 +39,9 @@ export default class Location extends React.Component {
                             <div class="register__form--error">{x}</div>
                         ))}
                     </div>
-                    <div className="flex-grow img-wrapper flex aic jcc">
-                        <img className="img__mobile " src="/images/stand.png" alt="" />
-                    </div>
+                </div>
+                <div className="flex-grow img-wrapper flex aic jcc">
+                    <img className="img__mobile " src="/images/stand.png" alt="" />
                 </div>
             </React.Fragment>
         )

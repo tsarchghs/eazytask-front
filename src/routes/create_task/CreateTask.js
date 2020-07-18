@@ -321,6 +321,12 @@ class CreateTask extends React.Component {
             return <span onClick={getOnClick()} className={`dot ${active ? "active" : ""}`} />
         }).filter((el, step) => step != 6 && step != 7)
     }
+    getGoBack = () => {
+        let { step } = this.state;
+        if (step == 7) return this.nextStep(5)
+        if (step == 8) return this.nextStep(5)
+        return this.nextStep(step - 1)
+    }
     getStepImage = () => {
         switch (this.state.steps[this.state.step]) {
             case "NAME": return "/images/startup.png"
@@ -371,6 +377,11 @@ class CreateTask extends React.Component {
             <div className="container">
                 <div className={"content" + (headerClassName ? " setup-ready" : "")}>
                     <WebHeader active="new_task"/>
+                    <header className="hide-on-web">
+                        <span onClick={this.getGoBack()} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                    </header>
+
                     <section className={"two-column__layout setup__mobile create-task " + extra}>
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }
@@ -402,25 +413,7 @@ class CreateTask extends React.Component {
                         }
                     </section>
                 </div>
-                {/* <div className="mobile-nav">
-                    <Link to="/dashboard">
-                        <div className="mob-nav ">
-                            <img src="/images/nav-home.png" alt="" />
-                            <p>Home</p>
-                        </div>
-                    </Link>
-                    <Link to="/create-task">
-                        <div className="mob-nav active">
-                            <img src="/images/nav-plus.png" alt="" />
-                            <p>New</p>
-                        </div>
-                    </Link>
-                    <Link to="/my_profile_edit">
-                        <div className="mob-nav"><img src="/images/nav-profile.png" alt="" />
-                            <p>Profile</p>
-                        </div>
-                    </Link>
-                </div> */}
+                <MobileNav active="create-task"/>
             </div>
         )
     }

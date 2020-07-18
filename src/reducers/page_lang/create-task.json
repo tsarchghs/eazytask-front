@@ -139,6 +139,7 @@
           {
             "en": "Handicraft work",
             "de": "None",
+            "img_url": "/images/disco.png",
             "description": {
               "en": [
                 "Lorem ipsum dolor sit",
@@ -153,6 +154,7 @@
           {
             "en": "Gardening work",
             "de": "None",
+            "img_url": "/images/rake.png",
             "description": {
               "en": [
                 "Lorem ipsum dolor sit",
@@ -167,6 +169,7 @@
           {
             "en": "Moving & Cleaning",
             "de": "None",
+            "img_url": "/images/sofa2.png",
             "description": {
               "en": [
                 "Lorem ipsum dolor sit",
@@ -181,6 +184,22 @@
           {
             "en": "Furniture",
             "de": "None",
+            "img_url": "/images/sofa.png",
+            "description": {
+              "en": [
+                "Lorem ipsum dolor sit",
+                "amet, consectetu"
+              ],
+              "de": [
+                "de: Lorem ipsum dolor sit",
+                "de: amet, consectetu"
+              ]
+            }
+          },
+          {
+            "en": "Household appliances",
+            "de": "None",
+            "img_url": "/images/downd.png",
             "description": {
               "en": [
                 "Lorem ipsum dolor sit",
@@ -208,20 +227,36 @@
           ]
         },
         "sub_categories": [
-            {
-                "en": "Repair tolet",
-                "de": "None",
-                "description": {
-                  "en": [
-                    "Lorem ipsum dolor sit",
-                    "amet, consectetu"
-                  ],
-                  "de": [
-                    "de: Lorem ipsum dolor sit",
-                    "de: amet, consectetu"
-                  ]
-                }
+          {
+            "en": "Installation",
+            "de": "None",
+            "img_url": "/images/comp.png",
+            "description": {
+              "en": [
+                "Lorem ipsum dolor sit",
+                "amet, consectetu"
+              ],
+              "de": [
+                "de: Lorem ipsum dolor sit",
+                "de: amet, consectetu"
+              ]
             }
+          },
+          {
+            "en": "Repair of used equipment",
+            "de": "None",
+            "img_url": "/images/ska.png",
+            "description": {
+              "en": [
+                "Lorem ipsum dolor sit",
+                "amet, consectetu"
+              ],
+              "de": [
+                "de: Lorem ipsum dolor sit",
+                "de: amet, consectetu"
+              ]
+            }
+          }
         ]
       }
     ],

@@ -98,7 +98,7 @@ class MyLanguages extends React.Component {
                                 )
                             })}
                         {
-                            !this.props.loading && !this.getFilteredLanguages().length &&
+                            !this.props.loading && !this.getFilteredLanguages().length && this.state.query &&
                             this.createCustomLanguage()
                         }
                     </div>

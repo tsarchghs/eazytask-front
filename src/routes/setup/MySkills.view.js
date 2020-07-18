@@ -99,7 +99,7 @@ class MySkills extends React.Component {
                             )
                         })}
                         {
-                            !this.props.loading && !this.getFilteredSkills().length &&
+                            !this.props.loading && !this.getFilteredSkills().length && this.state.query &&
                             this.createCustomSkill()
                         }
                     </div>

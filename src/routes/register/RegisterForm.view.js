@@ -12,6 +12,10 @@ class RegisterForm extends React.Component {
     return (
       <React.Fragment>
         <form className="register__form" onSubmit={clicklable ? this.props.onSubmit : e => e.preventDefault()}>
+        <div className="mobile__welcome">
+          <h5>Welcome to eazytask</h5>
+          <p>Please fill the information</p>
+        </div> 
          <div className="flex-grow">
           <div className="register__form--flex">
             <input
@@ -51,7 +55,7 @@ class RegisterForm extends React.Component {
           <div className="register__button">
             <p style={{ fontSize: 20 }} onClick={e => e.preventDefault()}>
               By joining on platform I confirm that I read and <br/>
-              understood all the <Link to="/terms">Terms&Conditions</Link> of eazytask
+              understood all the <Link to="/terms_and_conditions">Terms&Conditions</Link> of eazytask
             </p>
             {this.props.loading && "Loading"}
             {!this.props.loading && <button className={

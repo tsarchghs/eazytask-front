@@ -120,8 +120,6 @@ class Setup extends React.Component {
     onChange = key => async e => {
         if (e.persist) e.persist()
         this.setState(prevState => {
-            console.log(e)
-            if (key === "phone_number" && e.target.value.length === 3) return prevState
             prevState.data[key] = e.target.value;
             return prevState;
         }, async () => {
@@ -185,7 +183,7 @@ class Setup extends React.Component {
             />
             case 4.1: return <PhoneInput {...commonProps} 
                 value={this.state.data.phone_number} 
-                onChange={value => {}}
+                onChange={value => this.onChange("phone_number")({ target: { value }})}
             />
             case 4.2: return <PhoneVerificationCode {...commonProps} mainButtonClick={this.getButtonOnClick()} phone_number={this.state.data.phone_number}/>
             case 5: return <BecomeTasker {...commonProps} />

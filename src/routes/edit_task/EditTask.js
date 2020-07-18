@@ -12,6 +12,8 @@ import E404 from "../E404";
 import { compose } from "recompose";
 import {ModalContainer, Modal} from 'minimal-react-modal';
 
+import WebEditTask from "./WebEditTask";
+
 const format_number = val => {
     let num_val = Number(val)
     if (num_val < 0) return "0";
@@ -182,7 +184,28 @@ class EditTask extends React.Component {
         if (!this.executed_fillGalleryThumbnailState) this.fillGalleryThumbnailState()
         console.log("this.stateee",this.state)
         return (
-            <div>
+            <React.Fragment>
+                <WebEditTask 
+                    onEdit={this.state.onEdit}
+                    onChange={key => e => {
+                        e.persist()
+                        this.setState(prevState => {
+                            prevState.data[key] = e.target.value;
+                            return { ...prevState, data: { ...prevState.data } }
+                        })
+                    }}
+                    data={this.state.data}
+                    task={this.props.task}
+                    changeOnEdit={val => () => this.setState({ onEdit: val })}
+                    onThumbnailChange={this.onThumbnailChange}
+                    onGalleryImageRemove={this.onGalleryImageRemove}
+                    onFileChange={this.onFileChange}
+                    showUpdateButton={this.showUpdateButton}
+                    loading={this.state.loading}
+                    updateTask={this.updateTask}
+                />
+
+            <div class="hide-on-web">
                 {/* Hello world */}
                 <div className="awesome">	
                     <div className="edit-task__wrapper">
@@ -192,13 +215,6 @@ class EditTask extends React.Component {
                                 <span onClick={() => this.props.history.push("/task/" + this.props.task.id)} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="hide-on-desktop logo-title">
                                     Edit task
-                                    <div className="touchable">
-                                        <img onClick={debounce(this.toggleOptions(),10)} src="/images/more.png" style={{ width: '18px' }} alt="" />
-                                        <div className={"touchable__content " + (this.state.settingsOpen ? "show" : "")}>
-                                            <div className="flex aic jcsb"><p>Delete</p> <img src="/images/trash.png" alt="" /></div>
-                                            <div className="flex aic jcsb"><p>Deactivate</p> <img src="/images/sleep.png" alt="" /></div>
-                                        </div>
-                                    </div>
                                 </h4>
                             </header>
                             <section className="tasker-profile">
@@ -238,11 +254,11 @@ class EditTask extends React.Component {
                                             </span>
                                         </React.Fragment>
                                         :
-                                        <h3>{this.state.data.description || this.props.task.description}
+                                        <p>{this.state.data.description || this.props.task.description}
                                             <span onClick={e => this.setState({ onEdit: "DESCRIPTION" })} className="edit-pen">
                                                 <img src="/images/edit-pen.png" alt="" />
                                             </span>
-                                        </h3>
+                                        </p>
                                 }
                                     {/* <img src="/images/edit-pen.png" alt="" /></span></p> */}
                                 </div>
@@ -250,7 +266,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={openModal} className="big-icon">
+                                        <div onClick={undefined && openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/inter.png" alt="" />
                                             </div>
@@ -269,7 +285,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={openModal} className="big-icon">
+                                        <div onClick={undefined && openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/pins.png" alt="" />
                                             </div>
@@ -288,7 +304,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={openModal} className="big-icon">
+                                        <div onClick={undefined && openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/shop.png" alt="" />
                                             </div>
@@ -307,7 +323,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={openModal} className="big-icon">
+                                        <div onClick={undefined && openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/house.png" alt="" />
                                             </div>
@@ -342,41 +358,12 @@ class EditTask extends React.Component {
                                             <img onClick={() => this.fileInputRef.click()} src="/images/plus.png" alt="" />
                                             <input ref={ref => this.fileInputRef = ref} onChange={this.onFileChange} id="file-upload-2" type="file" />
                                         </div>
-                                                    {/* <React.Fragment>
-                                                        <div>
-                                                            {this.state.data.thumbnail.value == obj.value && <div onClick={this.onThumbnailChange(obj.value)}><h2>Thumbnail</h2></div>}
-                                                            {this.state.data.thumbnail.value != obj.value && <div onClick={this.onThumbnailChange(obj.value)}><h2>Set thumbnail</h2></div>}
-                                                            <img width={50} src={obj.value} alt="" />
-                                                        </div>
-                                                        <div
-                                                            onClick={this.onGalleryImageRemove(obj.value)}
-                                                            style={{ zIndex: 1000000 }}
-                                                        >X</div>
-                                                    </React.Fragment> */}
-                                        {/* <div className="offers-image image-uploads active">
-                                            <img src="/images/ustah.jpeg" alt="" />
-                                            <h4>Thumbnail</h4>
-                                            <span className="remove-th">X</span>
-                                        </div>
-                                        <div className="offers-image image-uploads ">
-                                            <img src="/images/ustah.jpeg" alt="" />
-                                            <h4>Thumbnail</h4>
-                                            <span className="remove-th">X</span>
-                                        </div>
-                                        <div className="offers-image image-uploads ">
-                                            <img src="/images/ustah.jpeg" alt="" />
-                                            <h4>Thumbnail</h4>
-                                            <span className="remove-th">X</span>
-                                        </div>
-                                        <div className="offers-image image-uploads empty">
-                                            <img src="/images/plus.png" alt="" />
-                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="text-center edit-task__btngroup">
-                                    <Link to={`/task/${this.props.match.params.taskId}/edit/offers`}>
+                                    {/* <Link to={`/task/${this.props.match.params.taskId}/edit/offers`}>
                                         <p>View offers for this task</p>
-                                    </Link>
+                                    </Link> */}
                                     {
                                         this.showUpdateButton() ?
                                             (
@@ -391,62 +378,10 @@ class EditTask extends React.Component {
                         </div>
                     </div>
                 </div>
-                    {/* <label htmlFor="name">Enter your name: </label>
-                    <input type="text" id="name" /> */}
                 </div>
-                {/* <p>Enter your HTML here</p> */}
             </div>
+            </React.Fragment>
 
-        )
-        return (
-            <div>
-                <br />
-                {/* {JSON.stringify(this.props.task)} <br /><br /> */}
-                Title - {this.getValueOrInput("title")} <br />
-                Description - {this.getValueOrInput("description")}<br /> <br />
-
-                Location - { this.props.task.zipCode}, { this.props.task.city} <br />
-                Price - { this.props.task.expected_price} CH <br />
-                Category -  { this.props.task.Category.name} <br /> <br />
-
-                {/* Thumbnail - {this.props.task.thumbnail ? <img width={100} src={this.props.task.thumbnail} /> : "None"} <br /> <br /> */}
-                {/* Gallery - {this.props.task.gallery && this.props.task.gallery.split(",").map(src => (
-                    <img src={src} width={100} />
-                ))}<br/> */}
-                {
-                    this.state.data.gallery && this.state.data.gallery.map(obj => {
-                        return (
-                            <React.Fragment>
-                                <div>
-                                    {this.state.data.thumbnail.value == obj.value && <div onClick={this.onThumbnailChange(obj.value)}><h2>Thumbnail</h2></div>}
-                                    {this.state.data.thumbnail.value != obj.value && <div onClick={this.onThumbnailChange(obj.value)}><h2>Set thumbnail</h2></div>}
-                                    <img width={50} src={obj.value} alt="" />
-                                </div>
-                                <div
-                                    onClick={this.onGalleryImageRemove(obj.value)}
-                                    style={{ zIndex: 1000000 }}
-                                >X</div>
-                            </React.Fragment>
-                        )
-                    })
-                }<br />
-                <label>
-                    Add image: <input onChange={this.onFileChange} type="file"/>
-                </label>
-                <br /><br />
-                <Link to={`/task/${this.props.match.params.taskId}/edit/offers`}>
-                    <h6>View offers for this task</h6>
-                </Link>
-                { 
-                    this.showUpdateButton() ? 
-                    (
-                        this.props.updateTask.loading ? "Loading" :
-                        <button onClick={this.updateTask}>Update</button> 
-                    )
-                    : null
-                }
-
-            </div>
         )
     }
 }

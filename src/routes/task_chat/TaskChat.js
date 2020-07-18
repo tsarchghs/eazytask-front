@@ -20,6 +20,7 @@ class TaskChat extends React.Component {
             messages: [],
             onModal: ""
         }
+        this.map = {}
     }
     closeModal = () => this.setState({ onModal: "" })
     componentDidMount(){
@@ -56,7 +57,7 @@ class TaskChat extends React.Component {
     }
     handleOnSubmit = e => {
         e.preventDefault();
-        if (!this.state.content) return;
+        if (!this.state.content || !this.state.content.replace(/\n/g,"")) return;
         if (!this.props.currentUserId) return this.props.history.push("/register")
         if (detectPhoneNumberInside(this.state.content)) return this.setState({
             onModal: "PHONE_NUMBER_DETECTED"
@@ -76,16 +77,24 @@ class TaskChat extends React.Component {
         this.setState({ content: "" })
     }
     handleOnKeyDown = e => {
-        if (e.key == "Enter"){
+        console.log(this.map)
+        this.map[e.key] = true;
+        if (this.map["Shift"] && this.map["Enter"]){
+            if (!this.state.content) e.preventDefault();
+        } else if (this.map["Enter"]) {
             e.preventDefault();
             if (this.state.content){
                 this.handleOnSubmit(e);
             }
         }
     }
+    handleOnKeyUp = e => {
+        console.log(this.map)
+        this.map[e.key] = false
+    }
     inputAndButton = () => (
         <div className="qanda-textarea">
-            <textarea onKeyDown={this.handleOnKeyDown} value={this.state.content} onChange={e => this.setState({ content: e.target.value })} name placeholder="Type your question here..." id cols={30} rows={1} />
+            <textarea onKeyDown={this.handleOnKeyDown} onKeyUp={this.handleOnKeyUp} value={this.state.content} onChange={e => this.setState({ content: e.target.value })} name placeholder="Type your question here..." id cols={30} rows={1} />
             <img onClick={this.handleOnSubmit} src={this.state.content ? "/images/send-b.png" : "/images/send-g.png"} alt="" />
             {/* <img src="/images/send-b.png" alt="" /> */}
         </div>
@@ -110,10 +119,12 @@ class TaskChat extends React.Component {
                             <WebHeader/>
                             <section className="qanda-web hide-on-mobile">
                                 <div className="qanda-web__top">
-                                    <div className="img-circle with-hover">
-                                        <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                        <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
-                                    </div>
+                                    <Link to={"/profile/" + this.props.taskInfo.task.User.id}>
+                                        <div className="img-circle with-hover">
+                                            {/* <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div> */}
+                                            <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                        </div>
+                                    </Link>
                                     <div className="name-info">
                                         <h5>{this.props.taskInfo.task.title} Q&amp;A</h5>
                                         <p>{this.props.taskInfo.task.User.first_name} {this.props.taskInfo.task.User.last_name[0]}.</p>
@@ -125,12 +136,13 @@ class TaskChat extends React.Component {
                                             if (msg.UserId == this.props.taskInfo.task.User.id){
                                                 return (
                                                     <div className="qanda-item">
-                                                        <div className="img-circle with-hover">
-                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
-                                                        </div>
+                                                        <Link to={"/profile/" + this.props.taskInfo.task.User.id}>
+                                                            <div className="img-circle with-hover">
+                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                            </div>
+                                                        </Link>
                                                         <div className>
-                                                            <h4 className="active">{msg.content}</h4>
+                                                            <h4 className="active" style={{whiteSpace: "pre-line"}}>{msg.content}</h4>
                                                         </div>
                                                     </div>
 
@@ -139,10 +151,11 @@ class TaskChat extends React.Component {
                                             else {
                                                 return (
                                                     <div className="qanda-item">
-                                                        <div className="img-circle with-hover">
-                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
-                                                        </div>
+                                                        <Link to={"/profile/" +  msg.User.id}>
+                                                            <div className="img-circle with-hover">
+                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                            </div>
+                                                        </Link>
                                                         <div className>
                                                             <h4>{msg.content}</h4>
                                                         </div>

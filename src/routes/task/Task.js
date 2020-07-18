@@ -59,6 +59,10 @@ class Task extends React.Component {
                     <article className={`touchable__content arts ${this.state.opened ? "" : "hide"}`}>
                         {this.props.own_user && this.props.own_user.id == this.props.task.UserId &&
                             <React.Fragment>
+                                <article onClick={() => this.props.history.push("/task/" + this.props.match.params.taskId + "/edit")} className="flex aic jcsb">
+                                    <p>Edit</p>
+                                    <img src="/images/cursor.png" alt="" />
+                                </article>
                                 <article onClick={() => this.setState({ onModal: "DELETE_MODAL" })} className="flex aic jcsb">
                                     <p>Delete</p>
                                     <img src="/images/trash.png" alt="" />
@@ -73,7 +77,7 @@ class Task extends React.Component {
 
                                 {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "DEACTIVATED" && 
                                     <article onClick={() => this.setState({ onModal: "REACTIVATE_MODAL" })} className="flex aic jcsb">
-                                        <p>Re-Activate</p>
+                                        <p>Re-activate</p>
                                         <img src="/images/sleep.png" alt="" />
                                     </article>
                                 }
@@ -109,7 +113,7 @@ class Task extends React.Component {
                             {this.props.task.status == "ACTIVE"
                                 ? new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")
                                 : "Deactive"
-                            }
+                            }                                                                                                   
                         </p>
                         <p><img src="/images/pins.png" alt="" /> {this.props.task.zipCode}, {this.props.task.city}</p>
                     </div>
@@ -208,7 +212,7 @@ class Task extends React.Component {
                         <div className="container">
                             <div className="content">
                                 <header className="logo-text">
-                                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                    <span onClick={() => this.setState({ step: "TASK_PROFILE" })} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                     <h4 className="hide-on-desktop logo-title">
                                         Offers
                   </h4>
@@ -233,6 +237,10 @@ class Task extends React.Component {
                                                 </Link>
                                             </div>
                                         ))
+                                }
+                                {
+                                    this.props.task.Offers && !this.props.task.Offers.length &&
+                                    <p className="special text-center" style={{ marginTop: '20px' }}>No offers to show</p>
                                 }
                                 </section>
                             </div>
@@ -271,7 +279,7 @@ class Task extends React.Component {
                                 <a onClick={e => {
                                     e.preventDefault();
                                     this.setState({ step: "TASK_PROFILE"})
-                                }} className="button fill">Go back</a>
+                                }} className="button fill">View Gallery</a>
                             </div>
                         </div>
                     </div></section>
@@ -292,6 +300,9 @@ class Task extends React.Component {
                     <div className="offers__cards">
                         {this.getOffersCard()}
                         {this.state.belowUI === "SHOW_OFFERS" && this.getAllOffersUI()}
+                        {this.props.task.gallery == null && 
+                            <p class="special text-center" style={{ marginTop: 20 }}>No gallery images to show</p>
+                        }
                         <div className="offers-images">
                             { this.state.belowUI === "DEFAULT" && <React.Fragment>
                                 { this.props.task.gallery && this.props.task.gallery.split(",").map(src => (
@@ -299,20 +310,13 @@ class Task extends React.Component {
                                         <img src={src} alt="" />
                                     </div>
                                 ))}
-                                {this.props.task.gallery == null && "No gallery images to show"}
+
                             </React.Fragment>}
                         </div>
                         {this.props.task.Offers && this.props.task.Offers.length ? 
                             <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length} offers given</p>
                         : null}
                         <div className="offers-buttons">
-                            {
-                                this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.state.belowUI === "DEFAULT"
-                                && 
-                                <Link to={`/task/${this.props.match.params.taskId}/edit`}>
-                                    <a href="#" className="button">Edit</a>
-                                </Link>
-                            }
                             {
                                 this.state.belowUI === "DEFAULT" &&
                                 <Link to={`/task/${this.props.match.params.taskId}/qa`}>
@@ -514,8 +518,8 @@ class Task extends React.Component {
                 <Modal
                     isActive={this.state.onModal == "DELETE_MODAL"}     // required
                     closeModal={this.closeModal} // required
-                    title="Are you sure?"
-                    description="Are you pretty sure?"
+                    title="Delete task"
+                    description="Are you sure you want to delete this task?"
                     acceptText="Delete"
                     acceptOnClick={() => {
                         this.delete()
@@ -526,8 +530,8 @@ class Task extends React.Component {
                 <Modal
                     isActive={this.state.onModal == "DEACTIVATE_MODAL"}     // required
                     closeModal={this.closeModal} // required
-                    title="Are you sure?"
-                    description="Are you pretty sure?"
+                    title="Deactivate task"
+                    description="Do you want to deactivate this task? You can always activate back."
                     acceptText="Deactivate"
                     acceptOnClick={() => {
                         this.deactivate()
@@ -540,7 +544,7 @@ class Task extends React.Component {
                     closeModal={this.closeModal} // required
                     title="Are you sure react?"
                     description="Are you pretty sure?"
-                    acceptText="Re-Activate"
+                    acceptText="Re-activate"
                     acceptOnClick={() => {
                         this.reActivate()
                         this.closeModal()

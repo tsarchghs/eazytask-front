@@ -41,6 +41,7 @@ const SingleBlog = lazy(() => import('./blog/single'));
 const ForgetPassword = lazy(() => import('./forget_password'));
 const FAQ = lazy(() => import('./faq'));
 const History = lazy(() => import('./history'));
+const TermsAndConditions = lazy(() => import('./terms_and_conditions'));
 const E404 = lazy(() => import('./E404'));
 
 // import Login from "./login";
@@ -142,6 +143,9 @@ const Routes = props => {
                     <Route exact path="/admin/dashboard" component={() =>
                         <AdminOnly to="/dashboard" Component={AdminDashboard} />
                     } />
+                    
+                    <Route exact path="/terms_and_conditions" component={TermsAndConditions}/>
+
                     <Route exact path="/admin/posts" component={() =>
                         <AdminOnly to="/dashboard" Component={AdminPosts} />
                     } />

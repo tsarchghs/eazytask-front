@@ -7,6 +7,7 @@ import { withRouter, Link } from "react-router-dom";
 import { compose } from "recompose";
 import E404 from "../E404";
 import MobileNav from "../../components/MobileNav";
+import { wrap } from "lodash";
 
 class MyProfileEdit extends React.Component {
     constructor(props){
@@ -22,6 +23,20 @@ class MyProfileEdit extends React.Component {
             "address": this.getTrans(this.props.translations.text_6)
         }
     }
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+    handleClickOutside = event => {
+        if (!this.state.onEdit) return;
+        let wrapperRef = this[this.state.onEdit + "_ref"]
+        console.log(event,wrapperRef)
+        if (wrapperRef && !wrapperRef.contains(event.target)) {
+            this.setState({ onEdit: "" })
+        }
+    }
     handleOnChange = key => e => e.persist() || this.setState(prevState => {
         prevState.data[key] = e.target.value;
         return prevState;
@@ -33,16 +48,17 @@ class MyProfileEdit extends React.Component {
             <p>{this.getKeyDisplay(key)}</p>
             <div style={{minHeight: 42}} className="ap__input">
                 <h5>{this.getInputValue(key)}</h5>
-                <img onClick={() => this.setState({ onEdit: key })} src="/images/edit-pen.png" alt="" />
+                <img onClick={() => this.setState({ onEdit: key }, () => this[key + "_ref"].focus())} src="/images/edit-pen.png" alt="" />
             </div>
         </div>
     )
     getInput = (key, width) => (
         <React.Fragment>
             <input
+                ref={input => this[key + "_ref"] = input}
                 className="input register__form_input"
                 style={{
-                    width: "50%",
+                    width: key == "address" ? "100%" : "50%",
                     marginBottom: "-3%",
                     padding: "10px 20px",
                     borderRadius: 13,
@@ -191,7 +207,7 @@ class MyProfileEdit extends React.Component {
 
                                     </div>
                                 </h4>
-                                <h4>{currentUser.first_name} {currentUser.last_name[0]}</h4>
+                                <h4>{currentUser.first_name} {currentUser.last_name}</h4>
                                 <p className>{currentUser.email}</p>
                                 <div className="offers-buttons hide-on-web">
                                     <Link to="/settings">

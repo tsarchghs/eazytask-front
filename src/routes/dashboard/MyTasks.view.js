@@ -59,7 +59,7 @@ class MyTasks extends React.Component {
                     <div className="home__card--lonely">
                         <h4>{this.getTrans(this.props.translations.text_7)}</h4>
                         <p>{this.getTrans(this.props.translations.text_8)}</p>
-                        <img src="/images/super_man.png" alt="" style={{ width: '35%' }} />
+                        <img className="mb30" src="/images/waiting_1.png" alt="" style={{ width: '35%' }} />
                         <img src="/images/lonely.jpeg" alt="" />
                     </div>
 

@@ -231,14 +231,14 @@ body {
 
   .register__form {
     padding: 0 30px;
-    padding-bottom: 130px;
+    padding-bottom: 30px;
     input {
+      border-radius: 0;
       box-shadow: none;
       width: 100%;
       outline: none;
       border: none;
       border-bottom: 1px solid #828282;
-      border-radius: 21px;
       padding: 0 0 10px 0;
       &:focus,
       &:active {
@@ -249,12 +249,14 @@ body {
     }
   }
   .register__button {
+    text-align: center !important;
+    align-items: center !important;
     width: 100%;
     padding: 0px 15px;
     p,
     a {
       margin-bottom: 0;
-      font-size: 13px;
+      font-size: 13px !important;
     }
     button {
       font-size: 16px;
@@ -347,3 +349,7 @@ body {
 .input__group .input {
   border-radius: 21px !important;
 }
+
+.button__style.not-filled {
+  background-color: #cdcdcd; }
+

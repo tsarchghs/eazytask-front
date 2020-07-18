@@ -90,7 +90,7 @@ class Home extends React.Component {
         console.log("this.props.loading", this.props.loading)
         return (
             <React.Fragment>
-                <div className="wrapper">
+                <div className="wrapper no-panel">
                     <section className="background-img panel" style={{
                         backgroundImage: `url("../images/ustah.png")`
                     }} id="fixed">

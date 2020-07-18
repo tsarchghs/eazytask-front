@@ -51,7 +51,7 @@ class CategoryGroup extends React.Component {
                     }
                     <div className="card-task" onClick={this.props.onOtherClick}>
                         <div className="card-task__img">
-                            <img src="/images/house.png" alt="" />
+                            <img src="/images/cursor.png" alt="" />
                         </div>
                         <div className="card-task__text">
                             <h5>{this.props.getTrans(this.props.translations.text_31)}</h5>

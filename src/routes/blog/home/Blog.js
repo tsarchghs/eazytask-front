@@ -14,7 +14,6 @@ class Blog extends React.Component {
     render(){
         let { loading, posts } = this.props;
         return (
-
             <div className=" edit-task__wrapper">
                 <section className="landing-info panel edit-task__section">
                     <div className="container">

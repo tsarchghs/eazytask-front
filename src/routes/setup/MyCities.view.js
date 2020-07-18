@@ -98,7 +98,7 @@ class MyCities extends React.Component {
                                 )
                             })}
                         {
-                            !this.props.loading && !this.getFilteredCities().length &&
+                            !this.props.loading && !this.getFilteredCities().length && this.state.query &&
                             this.createCustomCity()
                         }
                     </div>

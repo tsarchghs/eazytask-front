@@ -14,6 +14,7 @@ class CategoryGroup extends React.Component {
                     category_id,
                     categoryShowName: props.getTrans(category),
                     name: sub_category.en, 
+                    img_url: sub_category.img_url,
                     show: props.getTrans(sub_category)
                 }
             })
@@ -51,7 +52,7 @@ class CategoryGroup extends React.Component {
                             return (
                                 <div className="card-task" key={category.id} onClick={() => this.props.onCategoryClick(category.name)}>
                                     <div className="card-task__img">
-                                        <img src="/images/house.png" alt="" />
+                                        <img src={category.img_url} alt="" />
                                     </div>
                                     <div className="card-task__text">
                                         <h5>{category.show}</h5>
@@ -68,7 +69,7 @@ class CategoryGroup extends React.Component {
                     }
                     <div className="card-task" onClick={this.props.onOtherClick}>
                         <div className="card-task__img">
-                            <img src="/images/house.png" alt="" />
+                            <img src="/images/cursor.png" alt="" />
                         </div>
                         <div className="card-task__text">
                             <h5>{this.props.getTrans(this.props.translations.text_31)}</h5>

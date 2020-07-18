@@ -19,12 +19,12 @@ export default class Description extends React.Component {
                 </h4>
     
                 <div className="register__form">
-                    <input
+                    <textarea
                         ref={ref => this.descriptionRef = ref}
                         type="text"
                         placeholder={this.props.getTrans(this.props.translations.text_5)}
-                        onKeyDown={this.props.handleInputKeyDown}  
-                        class="input"
+                        // onKeyDown={this.props.handleInputKeyDown}  
+                        class="textarea"
                         value={this.props.description}
                         onChange={this.props.onDescriptionChange}
                     />

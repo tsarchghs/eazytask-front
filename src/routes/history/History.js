@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getMyHistory } from "../../actions/task";
+import { Link } from "react-router-dom";
 
 class History extends React.Component {
     constructor(props){
@@ -22,7 +23,94 @@ class History extends React.Component {
     }
     render(){
         let { loading, err, tasks } = this.props;
-
+        return (
+            <div>
+            <div className=" edit-task__wrapper hide-on-web">
+              <section className="landing-info panel edit-task__section">
+                <div className="container">
+                  <div className="content pb50">
+                    <header className="logo-text">
+                        <Link to="/dashboard?tab=more">
+                            <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                        </Link>
+                      <h4 className="hide-on-desktop logo-title">
+                        Task History
+                      </h4>
+                    </header>
+                    <section className="home">
+                      <div className="home__cards">
+                        <div className="home__card--content">
+                        { loading && "Loading.." }
+                        { err && err.name }
+                        { !loading && !err && tasks.map(task => (
+                            <div className="home__card" style={{backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`}}>
+                                <div className="home__card--mask" />
+                                <h5>View “{task.title}”</h5>
+                                <p>{this.getShow(task)}</p>
+                            </div>
+                        ))}
+                          {/* <div class="home__card--lonely">
+                                    <h4>It's lonely here!</h4>
+                                    <p>You don’t have any active task yet.</p>
+                                    <img src="/images/super_man.png" alt="" style="width: 35%;">
+                                    <img src="/images/lonely.jpeg" alt="">
+                                </div> */}
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <section className="offers-layout tasker-profile hide-on-mobile">
+              <div className="offers-picture">
+                <div className="offer-picture__buttons">
+                    <Link to="/dashboard?tab=more">
+                      <div className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
+                    </Link>
+                  <div className="offer-picture__edit hide">
+                    <img src="/images/more.png" alt="" />
+                  </div>	
+                </div>
+                {/* <div class="slice"></div> */}
+              </div>
+              <div className="offers-content modified">
+                <div className="offers__cards">
+                  <div className="offers__card ">
+                    <div className="offers__card--top">
+                      <div className="offers__profile">
+                        <div className="offers__profile--img" />
+                        <h4 className="flex aic jcc"> <div className="img-circle"><img src="/images/ustah.jpeg" alt="" />
+                        </div> {this.props.own_profile.first_name} {this.props.own_profile.last_name}</h4>
+                      </div>
+                      <p className="special">{this.props.own_profile.short_biography || "No short biography"}</p>
+                    </div>
+                  </div>
+                  <div className="offers-images__layout">
+                    <div className="faq-web__top  tabs-modified">
+                      <div className="home__tabs jcc">
+                        <div className="home__tab active">History</div>
+                      </div>
+                    </div>
+                    <div className="offers-images slide-cards">
+                        { loading && "Loading.." }
+                        { err && err.name }
+                        { !loading && !err && tasks.map(task => (
+                            <div className="offers-image">
+                                <img src={task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
+                                <div>
+                                    <h4>{task.title}</h4>
+                                    <p>{this.getShow(task)}</p>
+                                </div>
+                                </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+              </div></section>
+          </div>
+    
+        )
         return (
             <div>
                 { loading && "Loading.." }
@@ -40,7 +128,7 @@ class History extends React.Component {
 
 const mapStateToProps = state => {
     let tasks = state.tasks.my_history.ids.map(id => state.tasks.byIds[id]);
-    return { ...state.tasks.my_history, tasks }
+    return { ...state.tasks.my_history, tasks, own_profile: state.auth.profile }
 }
 
 export default connect(mapStateToProps, { getMyHistory })(History);

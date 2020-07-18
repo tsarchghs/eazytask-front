@@ -75,7 +75,11 @@ class TaskOffer extends React.Component {
                                 <div className="offers__profile">
                                     <div className="offers__profile--img" />
                                     <h4 className="flex aic jcc"> <div className="img-circle">
-                                    <img src={this.props.offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" /></div> Ivan T.</h4>
+                                    <Link to={"/profile/" + this.props.offer.Tasker.User.id}>
+                                        <img src={this.props.offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                    </Link>
+                                    </div> 
+                                    {this.props.offer.Tasker.User.first_name} {this.props.offer.Tasker.User.last_name[0]}.</h4>
                                 </div>
                                 <p className="special mb20">{this.props.offer.description || "No self-promote"}</p>
                                 <h4 className="flex aic jcc mt40"><img style={{ width: '20px', marginRight: '10px' }} src="/images/shop.png" alt="" />CHF {this.props.offer.amount}.-</h4>
@@ -83,7 +87,6 @@ class TaskOffer extends React.Component {
                         </div>
                         <div className="offers-buttons">
                             <Link to={"/profile/" + this.props.offer.Tasker.UserId}>
-
                                 <a href="#" className="button">View Profile</a>
                             </Link>
                             {this.getButton()}

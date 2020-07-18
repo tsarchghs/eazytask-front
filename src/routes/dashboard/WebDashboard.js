@@ -31,8 +31,9 @@ class WebDashboard extends React.Component {
             <div className="home__card--lonely" style={{width:"60%", margin: "0 auto"}}>
                 <h4>{this.getTrans(translations.text_5)}</h4>
                 <p>{this.getTrans(translations.text_6)}</p>
-                <img src="/images/super_man.png" alt="" style={{ width: '35%' }} />
-                <img src="/images/lonely.jpeg" alt="" />
+                <img src="/images/waiting_1.png" alt="" style={{ width: '35%' }} />
+                <img src="/images/lonely.jpeg" className="hide-on-web" alt="" />
+                <h4 className="mt15">Create a new task</h4>
             </div>
 
         )
@@ -43,7 +44,7 @@ class WebDashboard extends React.Component {
                         <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ cursor: "pointer", backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
                             <div className="home__card--mask" />
                             <h5 style={{ textAlign: "center" }}>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
-                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}111</p>
+                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
                         </div>
                     ))
             }
@@ -120,9 +121,9 @@ class WebDashboard extends React.Component {
                                                             <p className="shadow__title hide__mobile">{this.getTrans(translations.text_23)}</p>
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
-                                                        <Link to="/active_listing">
-                                                            <h4 style={{ fontWeight: "initial" }}>{this.getTrans(translations.text_9)}</h4>
-                                                            <img src="/images/up-arrow.png"/>
+                                                        <Link to="/active_listing" className="flex aic mb0">
+                                                            <h4 style={{ fontWeight: "initial", marginBottom: 0 }}>{this.getTrans(translations.text_9)}</h4>
+                                                            <img style={{ width: 20, transform: "rotate(95deg)", marginLeft: 8 }} src="/images/up-arrow.png"/>
                                                         </Link>
                                                     </div>
                                                     <div className="listing-cards ">

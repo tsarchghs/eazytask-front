@@ -12,7 +12,7 @@ class LoginForm extends React.Component{
       <React.Fragment>
         <div className="mobile__welcome">
           <h5>Welcome back</h5>
-          <p>Please fill the informations</p>
+          <p>Please fill the credentials</p>
         </div>
         <form className="register__form" onSubmit={Boolean(this.props.email.value) && Boolean(this.props.password.value) ? this.props.onSubmit : e => e.preventDefault()}>
           <div className="flex-grow"> 
