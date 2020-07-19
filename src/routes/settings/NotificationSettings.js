@@ -58,7 +58,7 @@ class NotificationSettings extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <WebHeader/>
+                            <WebHeader active="profile"/>
                             <section className="profile__article hide-on-mobile">
                                 <WebSidebar/>
                                 <div className="profile__article--content">

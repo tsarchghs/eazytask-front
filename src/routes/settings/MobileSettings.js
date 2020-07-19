@@ -26,7 +26,7 @@ const MobileSettings = props => {
                             </div>
                         </header>
                         <section className="profile__article hide-on-mobile">
-                            <WebSidebar/>
+                            <WebSidebar active="profile"/>
                             <div className="profile__article--content">
                                 {/* <h3>Eazytask</h3>
                                 <h4 className="text-green">Eazytask verbinden Privatpersonen für die Erledigung von Kleinaufträgen. Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei.</h4>

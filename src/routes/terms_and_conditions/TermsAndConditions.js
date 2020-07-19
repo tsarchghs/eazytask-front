@@ -1,14 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
 
-export default props => {
+const TermsAndConditions = props => {
     return (
         <div className=" edit-task__wrapper">
         <section className="landing-info panel edit-task__section">
             <div className="container">
                 <div className="content ">
-                    <WebHeader/>
+                    <header className="logo-text">
+                        <span style={{ cursor: "pointer" }} onClick={() => props.history.push("/register")} className="show__mobile">
+                        <img src="/images/arrow.jpeg" alt="" />
+                        </span>
+                        <h4 className="hide-on-desktop logo-title ">
+                        <span style={{ cursor: "pointer" }} onClick={() => props.history.push("/register")} className="arraw hide-on-mobile">
+                        <img src="/images/arrow.jpeg" alt="" />
+                        </span>Terms and Conditions</h4>
+                        </header>
+                    {/* <header>
+                      <span style={{width: 29, display: "flex", marginRight: 15}} onClick={() => props.history.push("/register")} class=""><img src="/images/arrow.jpeg" alt="" /></span>
+                      <img onClick={() => props.history.push("/")} style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
+                    </header> */}
                     <section className="blog-cards bg-inside">
                     <div style={{ width: "100%" }}>
   <div
@@ -1396,3 +1408,5 @@ export default props => {
 
     )
 }
+
+export default withRouter(TermsAndConditions);

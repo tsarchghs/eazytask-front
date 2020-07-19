@@ -7,6 +7,7 @@ import { getMyActiveOffers, getActiveListing2 } from "../../actions/app";
 import { getPosts } from "../../actions/posts";
 import { getMyActiveTasks } from "../../actions/app";
 import WebHeader from "../../components/WebHeader";
+import { Textfit } from 'react-textfit';
 
 class WebDashboard extends React.Component {
     constructor(props) {
@@ -146,7 +147,7 @@ class WebDashboard extends React.Component {
                                                                             <div className="listing-card__img--mask" />
                                                                         </div>
                                                                         <div className="listing-card__info">
-                                                                            <h3>{task.title}</h3>
+                                                                            <Textfit max={60} mode="single">{task.title}</Textfit>
                                                                             <h5>{task.User.first_name} {task.User.last_name[0]}</h5>
                                                                         </div>
                                                                         <div className="listing-card__hover flex aic">
@@ -154,7 +155,7 @@ class WebDashboard extends React.Component {
                                                                                 <h5>{task.city || "-"}</h5>
                                                                                 <h5>{task.due_date ? new Date(task.due_date).toLocaleDateString() : "-"}</h5>
                                                                             </div>
-                                                                            <div>
+                                                                            <div style={{marginRight: 0}}>
                                                                                 <h5>{task.Category.name}</h5>
                                                                                 <h5>CHF {task.expected_price}.-</h5>
                                                                             </div>

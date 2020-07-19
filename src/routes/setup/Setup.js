@@ -370,7 +370,7 @@ class Setup extends React.Component {
             <div className="container">
                 <div className={"content" + (this.state.step === this.lastStepIndex ? " setup-ready" : "") }>
                     { this.getHeader() }
-                    <section className={`two-column__layout setup__mobile ${coverPicture}`}>
+                    <section className={`two-column__layout setup__mobile ${coverPicture}`} style={{ height: "calc(99vh - 114.6px)"}}>
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }
                             <div className="buttons__group">

@@ -310,22 +310,31 @@ class CreateTask extends React.Component {
         if (this.state.step === this.state.steps.length - 1) return [];
         if (this.state.step === this.state.steps.length - 2) return [];
         return this.state.steps.slice(0, this.state.steps.length - 2).map((x, i) => {
+            let index = this.state.steps.indexOf(x)
             let getOnClick = () => {
-                console.log(this.state.step, index)
+                if (index == 6) return this.nextStep(5)
+                if (index == 7) return this.nextStep(5)
+                if (index == 8) return this.nextStep(5)
                 if (this.state.step <= index) return () => { }
                 else return this.nextStep(index);
             }
-            let index = this.state.steps.indexOf(x)
             let onStep = this.state.step + 1
             let active = onStep >= i + 1;
             return <span onClick={getOnClick()} className={`dot ${active ? "active" : ""}`} />
         }).filter((el, step) => step != 6 && step != 7)
     }
     getGoBack = () => {
-        let { step } = this.state;
-        if (step == 7) return this.nextStep(5)
-        if (step == 8) return this.nextStep(5)
-        return this.nextStep(step - 1)
+        console.log("getGoBackgetGoBack")
+        return async () => {
+            let stepKey = this.state.steps[this.state.step - 1]
+            let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
+
+            let { step } = this.state;
+            if (step == 7 || step == 8 || step == 6) step = 6
+
+            this.props.history.push("?step=" + ( step - 1 ))  
+            this.setState({ step: step - 1, valid })
+        }
     }
     getStepImage = () => {
         switch (this.state.steps[this.state.step]) {

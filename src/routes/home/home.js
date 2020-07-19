@@ -65,12 +65,12 @@ class Home extends React.Component {
         // this.setState({ onStep })
     }
     componentDidMount(){
-        const element = ReactDOM.findDOMNode(this);
-        if (element != null) {
-            this.scrollPosition = window.scrollY
-            console.log("this.scrollPosition", this.scrollPosition)
-        }
-        console.log(123444)
+        // const element = ReactDOM.findDOMNode(this);
+        // if (element != null) {
+        //     this.scrollPosition = window.scrollY
+        //     console.log("this.scrollPosition", this.scrollPosition)
+        // }
+        // console.log(123444)
         this.props.getActiveListing()
         // window.addEventListener('scroll', this.listenToScroll)
         // window.addEventListener('touchmove', this.listenToScroll)
@@ -115,7 +115,7 @@ class Home extends React.Component {
                                             <p className="special">Watch how it works</p>
                                         </div>
                                         <div className="buttons__group">
-                                            {/* <button class="button__style no-color">Skip <span class="show__mobile">for now</span></button> */}
+                                            {/* <button className="button__style no-color">Skip <span className="show__mobile">for now</span></button> */}
                                             <Link to="/register">
                                                 <button className="button__style button--smaller">Join us</button>
                                             </Link>
@@ -157,7 +157,7 @@ class Home extends React.Component {
                     <section className="landing-info panel" id="c" style={{ background: 'white' }}>
                         <div className="container">
                             <div className="content">
-                                <header class="flex jcsb aic"></header>
+                                <header className="flex jcsb aic"></header>
                                 <section className="two-column__layout profile__cover mission-section">
                                     <div className="two-column__info flex flex-column">
                                         <div className=" flex flex-column  w100">
@@ -195,7 +195,7 @@ class Home extends React.Component {
                                     >
                                         <div className="container">
                                             <div className="content">
-                                                <header class="flex jcsb aic"></header>
+                                                <header className="flex jcsb aic"></header>
                                                 <section ref={ref => this.stepsSectionRef = ref} className="two-column__layout steps__layout-toggle profile__cover steps__layout"> {/* two-column__layout steps__layout-toggle steps__layout profile__cover */ }
                                                     <div className="two-column__info flex flex-column">
                                                         <div className=" flex flex-column  w100">
