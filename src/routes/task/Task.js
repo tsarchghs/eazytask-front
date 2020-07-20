@@ -45,12 +45,12 @@ class Task extends React.Component {
         return (
             <div className="offer-picture__buttons">
                 <div style={{ cursor: "pointer" }} onClick={e => {
-                    this.props.history.push("/dashboard")
-                    // try {
-                    //     this.props.history.goBack();
-                    // } catch (e) {
-                    //     this.props.history.push("/dashboard")
-                    // }
+                    // this.props.history.push("/dashboard")
+                    try {
+                        this.props.history.goBack();
+                    } catch (e) {
+                        this.props.history.push("/")
+                    }
                 }} className="offer-picture__back">
                     <img  src="/images/arrow.jpeg" alt="" />
                 </div>
@@ -339,7 +339,7 @@ class Task extends React.Component {
                                             </a>
                                             :
                                             (
-                                                this.props.task.Offers.find(offer => offer.Tasker.User.id === this.props.own_user.id) 
+                                                this.props.task.Offers.find(offer => this.props.own_user && offer.Tasker.User.id === this.props.own_user.id) 
                                                 ? null
                                                 :
                                                 <ModalContainer>

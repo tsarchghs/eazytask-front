@@ -55,9 +55,9 @@ const MobileSettings = props => {
                                                     <div onClick={redirectTo(history,"/settings/change_password")}><img src="/images/shield-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_2)}
                                                     </div>
-                                                    <div onClick={redirectTo(history,"/settings/change_preferences")}><img src="/images/info-b.png" alt="" />
+                                                    {/* <div onClick={redirectTo(history,"/settings/change_preferences")}><img src="/images/info-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_3)}
-                                                    </div>
+                                                    </div> */}
                                                     <div onClick={redirectTo(history,"/settings/delete_account")}><img src="/images/exit-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_4)}
                                                     </div>

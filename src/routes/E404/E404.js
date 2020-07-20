@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default () => {
     return (
         <div className="container">
             <div className="content">
                 <header className="w-subtitle text-center">
-                    <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                    <Link to="/">
+                        <img className="logo__img" src="/images/logo.svg" alt="" />
+                    </Link>
                 </header>
                 <section className="two-column__layout setup__mobile create-task reset-password text-center">
                     <div className="two-column__info flex flex-column">

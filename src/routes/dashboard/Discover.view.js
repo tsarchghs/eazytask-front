@@ -5,10 +5,11 @@ import { getActiveListing3 } from "../../actions/app";
 import { getTasksCount } from "../../actions/task";
 import { connect } from "react-redux";
 import queryString from 'query-string';
+import SideTaskCard from "../../components/SideTaskCard";
 
 class Discover extends React.Component {
     state = {
-        limit: 6
+        limit: 5
     }
 
     componentDidMount() {
@@ -49,15 +50,9 @@ class Discover extends React.Component {
     }
     getTrans = obj => obj[this.props.app_lang]
     showTasks = () => {
-        return this.props.tasks.map(task => (
-            <Link to={`/task/${task.id}`}>
-                <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
-                    <div className="home__card--mask" />
-                    <h5>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
-                    <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
-                </div>           
-            </Link>
-        ))
+        return this.props.tasks.map(task => 
+            <SideTaskCard task={task} beforeTitleText={this.getTrans(this.props.translations.text_2)} />
+        )
     }
     render() {
         let { loading } = this.props;
@@ -65,7 +60,11 @@ class Discover extends React.Component {
             <div>
                 {loading && <div>{this.getTrans(this.props.common.loading)}<br/></div>}
                 { !loading && this.showTasks() }
-                { !loading && this.getPages() }
+                { 
+                    this.props.tasks_count.count > this.props.tasks.length && 
+                    <Link to="/active_listing" style={{ textAlign: "center", marginLeft: "41%" }}>View all</Link>
+                }
+                {/* { !loading && <div style={{ display: "flex" }}>{this.getPages()}</div> } */}
             </div>
         )
     }

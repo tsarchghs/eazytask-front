@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class WebEditTask extends React.Component {
     render(){
@@ -10,9 +10,13 @@ class WebEditTask extends React.Component {
                         backgroundImage: `url(${this.props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__})`
                     }} className="offers-picture">
                 <div className="offer-picture__buttons">
-                    <Link to={"/task/" + this.props.task.id}>
-                        <div className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
-                    </Link>
+                    <div style={{ cursor: "pointer"}} onClick={() => {
+                        try {
+                            this.props.history.goBack();
+                        } catch (e) {
+                            this.props.history.push("/dashboard")
+                        }
+                    }} className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
                     <div className="offer-picture__edit hide">
                     <img src="/images/more.png" alt="" />
                     </div>	
@@ -130,4 +134,4 @@ class WebEditTask extends React.Component {
     }
 }
 
-export default WebEditTask;
+export default withRouter(WebEditTask);

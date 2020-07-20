@@ -8,11 +8,12 @@ import ReactSlider from 'react-slider'
 import { compose, componentFromStream } from "recompose";
 import queryString from  'query-string';
 import { debounce } from "lodash";
+import MainTaskCard from "../../components/MainTaskCard";
 
 class ActiveListing extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        let state = {
             limit: 6,
             offset: 0,
             currentPage: Number(queryString.parse(this.props.location.search).page) || 1,
@@ -21,7 +22,30 @@ class ActiveListing extends React.Component {
                 min_expected_price: 0,
                 max_expected_price: 1000,
             },
-            onFilter: ""
+            onFilter: "",
+            allCategories: [],
+        }
+        props.translations.categories.map((category, category_id) => {
+            state.allCategories = state.allCategories.concat(category.sub_categories.map((sub_category, id) => {
+                return {
+                    id,
+                    category_id,
+                    categoryShowName: this.getTrans(category),
+                    name: sub_category.en,
+                    img_url: sub_category.img_url,
+                    show: this.getTrans(sub_category)
+                }
+            }))
+        })
+        this.state = state;
+    }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof (data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br />
+            </React.Fragment>)
         }
     }
     componentDidMount() {
@@ -91,9 +115,9 @@ class ActiveListing extends React.Component {
         console.log({body: this.state},"DASDAASD")
         let show_category_name_or_default;
         let { category_id } = this.state.filters
-        if (category_id){
+        if (category_id !== undefined){
             if (!this.props.categories.loading) 
-                show_category_name_or_default = this.props.categories.items.find(x => x.id == category_id).name
+                show_category_name_or_default = this.state.allCategories.find(x => x.id == category_id).show
         }
         if (!show_category_name_or_default) show_category_name_or_default = "Categories"
         return (
@@ -106,7 +130,7 @@ class ActiveListing extends React.Component {
                                     <img className="logo__img" src="/images/logo.svg" alt="" />
                                 </Link>
                                 <Link to="/register">
-                                    <a href="#" className="h4">Join us</a>
+                                    <a href="#" className="h4">{this.props.own_profile ? "Home" : "Join us"}</a>
                                 </Link>
                             </header>
                             <section className="profile__cover">
@@ -135,34 +159,7 @@ class ActiveListing extends React.Component {
                                         }
                                         {
                                             !loading &&
-                                            this.props.tasks.map(task => (
-                                                <div className="listing-card">
-                                                    <Link to={"/task/" + task.id}>
-                                                        <div className="listing-card__img">
-                                                            <div className="lc-img" style={{
-                                                                backgroundImage:
-                                                                    task.thumbnail ? `url("${task.thumbnail}")` : 'url("/images/ustah.jpeg")'
-                                                            }}
-                                                            />
-                                                            <div className="listing-card__img--mask" />
-                                                        </div>
-                                                        <div className="listing-card__info">
-                                                            <h3>{task.title}</h3>
-                                                            <h5>{task.User.first_name} {task.User.last_name[0]}</h5>
-                                                        </div>
-                                                        <div className="listing-card__hover flex aic">
-                                                            <div>
-                                                                <h5>{task.city || "-"}</h5>
-                                                                <h5>{task.due_date ? new Date(task.due_date).toLocaleDateString() : "-"}</h5>
-                                                            </div>
-                                                            <div>
-                                                                <h5>{task.Category.name}</h5>
-                                                                <h5>CHF {task.expected_price}.-</h5>
-                                                            </div>
-                                                        </div>
-                                                    </Link>
-                                                </div>
-                                            ))
+                                            this.props.tasks.map(task => <MainTaskCard task={task}/>)
                                         }
                                     </div>
                                 </div>
@@ -184,7 +181,7 @@ class ActiveListing extends React.Component {
                     <div className="filters-lists">
                         <div className="filters-list" onClick={() => this.setState({ onFilter: "CATEGORIES" })}>
                             {/* <input type="text" class="filter-input" placeholder="Category"> */}
-                            <div className="filter-input filter-slide"><p>{show_category_name_or_default}</p><span><img src="images/arr-right.png" alt="" /></span></div>
+                            <div style={{ cursor: "pointer" }} className="filter-input filter-slide"><p>{show_category_name_or_default}</p><span style={{ cursor: "pointer" }}><img src="images/arr-right.png" alt="" /></span></div>
                         </div>
                         <div className="filters-list">
                             <input
@@ -202,30 +199,38 @@ class ActiveListing extends React.Component {
                         </div>
                         <div className="filters-list" onClick={() => this.setState({ onFilter: "BUDGET_RANGE" })}>
                             {/* <input type="text" class="filter-input" placeholder="Category"> */}
-                            <div className="filter-input filter-slide"><p>Budget</p><span><img src="images/arr-right.png" alt="" /></span></div>
+                            <div style={{ cursor: "pointer" }} className="filter-input filter-slide"><p>Budget</p><span><img src="images/arr-right.png" alt="" /></span></div>
                         </div>
                     </div>
                     <div className={"filters-card__extra " + (this.state.onFilter === "CATEGORIES" ? "slide" : "")}>
-                        <h4 className="mb25 flex aic remove-extra"><img onClick={() => this.setState({ onFilter: "MAIN" })} style={{ transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
+                        <h4 
+                            className="mb25 flex aic remove-extra">
+                            <img 
+                                onClick={() => this.setState({ onFilter: "MAIN" })} 
+                                style={{ transform: 'rotate(180deg)', width: '20px', marginRight: '15px', cursor: "pointer" }} 
+                                src="images/arr-right.png" alt="" />
+                                 { this.state.onFilter === "BUDGET_RANGE" ? "Budget" : "" }
+                                 { this.state.onFilter === "CATEGORIES" ? "Type" : "" }
+                                </h4>
                         {
-                            this.props.categories.loading ? "Loading categories" :
-                                this.props.categories.items.map(x => (
-                                    <div className="filters-list" onClick={() => {
-                                        this.onFilterChange("category_id")({ target: { value: x.id } })
-                                        this.setState({ onFilter: "MAIN" })
-                                    }}>
-                                        <div className="filter-input filter-slide">
-                                            <span>
-                                                <img src="images/arr-right.png" alt="" />
-                                            </span>
-                                            <p>{x.name}</p>
-                                        </div>
+                            this.state.allCategories.map(category => (
+                                <div style={{ cursor: "pointer"}} className="filters-list" onClick={() => {
+                                    this.onFilterChange("category_id")({ target: { value: category.id } })
+                                    this.setState({ onFilter: "MAIN" })
+                                }}>
+                                    <div className="filter-input filter-slide">
+                                        <span>
+                                            <img src="images/arr-right.png" alt="" />
+                                        </span>
+                                        <p>{category.show}</p>
                                     </div>
-                                ))
+                                </div>
+                            ))
                         }
                     </div>
                     <div className={"filters-card__extra " + (this.state.onFilter === "BUDGET_RANGE" ? "slide" : "")}>
-                        <h4 className="mb25 flex aic remove-extra"><img onClick={() => this.setState({ onFilter: "MAIN" })} style={{ transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
+                        <h4 className="mb25 flex aic remove-extra">
+                        <img onClick={() => this.setState({ onFilter: "MAIN" })} style={{ cursor: "pointer", transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
                         Budget: 
                         {
                             this.state.filters.min_expected_price == this.state.filters.max_expected_price 
@@ -261,59 +266,6 @@ class ActiveListing extends React.Component {
 
             </React.Fragment>
         )
-        return (
-            <React.Fragment>
-                <div>Discover all</div>
-                {loading && "Loading"}
-                {/* { !loading && } */}
-                {
-                    this.props.categories.loading ? "Loading categories" :
-                        this.props.categories.items.map(x => (
-                            <label>{x.name}
-                                <input
-                                    type="radio"
-                                    name="categories"
-                                    value={x.id}
-                                    checked={this.state.filters.category_id == x.id}
-                                    onChange={this.onFilterChange("category_id")}
-                                />
-                            </label>
-                        ))
-                }
-                <input
-                    type="date"
-                    placeholder="Due date..."
-                    value={this.state.filters.due_date}
-                    onChange={this.onFilterChange("due_date", 300)}
-                />
-                <input
-                    type="text"
-                    placeholder="Town.."
-                    value={this.state.filters.city}
-                    onChange={this.onFilterChange("city")}
-                />
-                <input
-                    type="text"
-                    placeholder="Search for you task.."
-                    value={this.state.filters.title}
-                    onChange={this.onFilterChange("title")}
-                />
-                <label>
-                    Expire soon
-                        <input
-                        type="checkbox"
-                        value={this.state.filters.expire_soon}
-                        onChange={this.onFilterChange("expire_soon")}
-                    />
-                </label>
-                {!loading &&
-                    <ul>
-                        {this.showTasks()}
-                    </ul>
-                }
-
-            </React.Fragment>
-        )
     }
 }
 
@@ -327,7 +279,12 @@ const mapStateToProps = state => {
         categories: {
             loading: state.categories.loading,
             items: state.categories.allIds.map(x => state.categories.byIds[x])
-        } 
+        },
+        translations: state.app_lang.data["/create-task"],
+        app_lang: state.app_lang.app_lang,
+        own_profile: state.auth.profile,
+        common: state.app_lang.common
+ 
     }
 }
 

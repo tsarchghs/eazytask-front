@@ -119,24 +119,24 @@ const Routes = props => {
     ) return <Redirect to="/setup"/> 
     return (
         <React.Fragment>
-            <Route exact path="/settings" component={() =>
-                <ProtectedRoute to="/login" Component={MobileSettings} allowLoggedIn={true} />
-            } />
-            <Route exact path="/settings/notifications" component={() =>
-                <ProtectedRoute to="/login" Component={NotificationSettings} allowLoggedIn={true} />
-            } />
-            <Route exact path="/settings/change_password" component={() =>
-                <ProtectedRoute to="/login" Component={ChangePasswordSettings} allowLoggedIn={true} />
-            } />
-            <Route exact path="/settings/delete_account" component={() =>
-                <ProtectedRoute to="/login" Component={DeleteAccountSettings} allowLoggedIn={true} />
-            } />
-            <Route exact path="/settings/about" component={() =>
-                <ProtectedRoute to="/login" Component={AboutSettings} allowLoggedIn={true} />
-            } />
             <Suspense fallback={<div></div>}>
-
                 <Switch>
+                    <Route exact path="/settings" component={() =>
+                        <ProtectedRoute to="/login" Component={MobileSettings} allowLoggedIn={true} />
+                    } />
+                    <Route exact path="/settings/notifications" component={() =>
+                        <ProtectedRoute to="/login" Component={NotificationSettings} allowLoggedIn={true} />
+                    } />
+                    <Route exact path="/settings/change_password" component={() =>
+                        <ProtectedRoute to="/login" Component={ChangePasswordSettings} allowLoggedIn={true} />
+                    } />
+                    <Route exact path="/settings/delete_account" component={() =>
+                        <ProtectedRoute to="/login" Component={DeleteAccountSettings} allowLoggedIn={true} />
+                    } />
+                    <Route exact path="/settings/about" component={() =>
+                        <ProtectedRoute to="/login" Component={AboutSettings} allowLoggedIn={true} />
+                    } />
+
                     <Route exact path="/admin" component={
                         () => <Redirect to="/admin/dashboard"/>
                     }/>
@@ -228,7 +228,7 @@ const Routes = props => {
                     <Route path="/setup" exact>
                         <ProtectedRoute to="/register" Component={Setup} allowLoggedIn={true} />
                     </Route>
-
+                    
                     <Route path="/" component={E404} />
                 </Switch>
             </Suspense>

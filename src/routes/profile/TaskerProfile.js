@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import SideTaskCard2 from "../../components/SideTaskCard2/SideTaskCard2";
 
 class TaskerProfile extends React.Component {
     constructor(props){
@@ -67,17 +68,7 @@ class TaskerProfile extends React.Component {
         let tasks = this.getPreviousListings();
         if (tasks.length) return <div className="offers-images">
             {
-                tasks.map(task => (
-                    <Link to={"/task/" + task.id}>
-                        <div className="offers-image">
-                            <img src={task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} />
-                            <div>
-                                <h4>{task.title}</h4>
-                                <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
-                            </div>
-                        </div>
-                    </Link>
-                ))
+                tasks.map(task => <SideTaskCard2 task={task} />)
             }
         </div>
         return <center>No tasks to show</center>
@@ -95,7 +86,7 @@ class TaskerProfile extends React.Component {
                     backgroundImage: `url(${this.props.user.cover_image || window.__COVER_DEFAULT_PICTURE__})`
                 }}>
                     <div className="offer-picture__buttons">
-                        <div onClick={e => {
+                        <div style={{ cursor: "pointer" }} onClick={e => {
                             try {
                                 this.props.history.goBack();
                             } catch (e) {
@@ -127,7 +118,7 @@ class TaskerProfile extends React.Component {
                                 <div className="home__tabs">
                                     <div onClick={tabOnClick("PREVIOUS_LISTINGS")} className={`home__tab ${this.state.onTab === "PREVIOUS_LISTINGS" ? "active" : ""}`}>Previous Listings</div>
                                     <div onClick={undefined} className={`home__tab ${this.state.onTab === "RATINGS_IN_PROGRESS" ? "active" : ""}`}>Ratings</div>
-                                    <div onClick={tabOnClick("ABOUT")} className={`home__tab ${this.state.onTab === "ABOUT" ? "active" : ""}`}>Area of activity</div>
+                                    <div onClick={tabOnClick("ABOUT")} className={`home__tab ${this.state.onTab === "ABOUT" ? "active" : ""}`}>About</div>
                                 </div>
                             </div>
                             {

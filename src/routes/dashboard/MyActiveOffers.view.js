@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getMyActiveOffers } from "../../actions/app";
+import MainOfferCard from "../../components/MainOfferCard";
 
 class MyActiveOffers extends React.Component {
     componentDidMount(){
@@ -14,13 +15,7 @@ class MyActiveOffers extends React.Component {
             <div>
                 {loading && this.getTrans(this.props.common.loading) }
                 { !loading && offers.map(({ Task }) => (
-                    <Link to={`/task/${Task.id}/edit`}>
-                        <div className="home__card" style={{ backgroundImage: `url("${Task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
-                            <div className="home__card--mask" />
-                            <h5>{this.getTrans(this.props.translations.text_2)} “{Task.title}”</h5>
-                            <p>{new Date(Task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
-                        </div>
-                    </Link>
+                    <MainOfferCard task={Task} beforeTitleText={this.getTrans(this.props.translations.text_2)} />
                 )) }
                 {!loading && !offers.length && this.getTrans(this.props.translations.text_9)}
             </div>

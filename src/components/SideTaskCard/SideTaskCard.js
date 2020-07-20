@@ -1,0 +1,40 @@
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
+
+const SideTaskCard = props => {
+    let onClick = props.useWithRouter ? () => props.history.push(`/task/` + props.task.id) : undefined;
+    let child = (
+        <div 
+            onClick={onClick} 
+            className="home__card home__card--discover" 
+            style={{ 
+                backgroundImage: `url("${props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`,
+                cursor: "pointer" 
+        }}>
+            <div className="home__card--mask" />
+            {/* <h5 style={{ textAlign: "center" }}>{props.beforeTitleText} “{props.task.title}”</h5> */}
+            <div className="home__card--divide">
+                <h5 style={{
+                    textOverflow: "ellipsis",
+                    overflow: "hidden",
+                    width: 160,
+                    whiteSpace: "nowrap"
+                }}>{props.task.title} <br /><p>{props.task.User.first_name} {props.task.User.last_name[0]}.</p></h5>
+                <div>
+                    <h6>{props.task.due_date ? new Date(props.task.due_date).toLocaleDateString() : "-"}</h6>
+                    <h6>{props.task.zipCode} {props.task.city || "-"}</h6>
+                    <h6>CHF {props.task.expected_price}.-</h6>
+                    <h6 style={{ marginBottom: 0 }}>{props.task.Category.name}</h6>
+                </div>
+            </div>
+        </div>
+    )
+    if (props.useWithRouter) return child;
+    else return (
+        <Link to={`/task/` + props.task.id}>
+            {child}
+        </Link>
+    )
+}
+
+export default withRouter(SideTaskCard);

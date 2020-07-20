@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import { getTasksCount } from "../../actions/task";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
+import SideTaskCard from "../../components/SideTaskCard";
 
 class MyTasks extends React.Component {
     constructor(props) {
@@ -45,16 +46,8 @@ class MyTasks extends React.Component {
         loading = loading || this.props.tasks_count.loading;
         return (
             <div>
-                {loading && this.getTrans(this.props.common.loading) }
-                { !loading && tasks.map(task => (
-                    <Link to={`/task/${task.id}`}>
-                        <div className="home__card" style={{ backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
-                            <div className="home__card--mask" />
-                            <h5>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
-                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
-                        </div>
-                    </Link>
-                )) }
+                {loading && <p style={{ textAlign: "center" }}>{this.getTrans(this.props.common.loading)}</p> }
+                { !loading && tasks.map(task => <SideTaskCard task={task} beforeTitleText={this.getTrans(this.props.translations.text_2)} />) }
                 { !loading && !tasks.length && 
                     <div className="home__card--lonely">
                         <h4>{this.getTrans(this.props.translations.text_7)}</h4>

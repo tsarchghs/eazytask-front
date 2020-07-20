@@ -7,7 +7,9 @@ import { getMyActiveOffers, getActiveListing2 } from "../../actions/app";
 import { getPosts } from "../../actions/posts";
 import { getMyActiveTasks } from "../../actions/app";
 import WebHeader from "../../components/WebHeader";
-import { Textfit } from 'react-textfit';
+import MainTaskCard from "../../components/MainTaskCard";
+import SideTaskCard from "../../components/SideTaskCard";
+import MainOfferCard from "../../components/MainOfferCard";
 
 class WebDashboard extends React.Component {
     constructor(props) {
@@ -41,13 +43,13 @@ class WebDashboard extends React.Component {
         return (
             <div className="home__card--content">
             {
-                    this.props.myActiveTasks_info.tasks.map(task => (
-                        <div onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{ cursor: "pointer", backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
-                            <div className="home__card--mask" />
-                            <h5 style={{ textAlign: "center" }}>{this.getTrans(this.props.translations.text_2)} “{task.title}”</h5>
-                            <p>{new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
-                        </div>
-                    ))
+                    this.props.myActiveTasks_info.tasks.map(task => 
+                        <SideTaskCard 
+                            useWithRouter={true} 
+                            task={task} 
+                            beforeTitleText={this.getTrans(this.props.translations.text_2)}     
+                        />
+                    )
             }
             </div>
         )
@@ -59,11 +61,7 @@ class WebDashboard extends React.Component {
             <div className="home__card--content">
                 {
                     this.props.offers_info.offers.map(({ Task }) => (
-                        <div className="home__card" style={{ backgroundImage: `url("${Task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")` }}>
-                            <div className="home__card--mask" />
-                            <h5>{this.getTrans(this.props.translations.text_2)} “{Task.title}”</h5>
-                            <p>{new Date(Task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
-                        </div>
+                        <MainOfferCard task={Task} beforeTitleText={this.getTrans(this.props.translations.text_2)}/>
                     ))
                 }
             </div>
@@ -135,55 +133,8 @@ class WebDashboard extends React.Component {
                                                         }
                                                         {
                                                             !this.props.activeListing2_info.loading &&
-                                                            this.props.activeListing2_info.tasks.map(task => (
-                                                                <div className="listing-card" style={{borderRadius: 21}}>
-                                                                    <Link to={"/task/" + task.id}>
-                                                                        <div className="listing-card__img">
-                                                                            <div className="lc-img" style={{
-                                                                                backgroundImage:
-                                                                                    task.thumbnail ? `url("${task.thumbnail}")` : 'url("/images/ustah.jpeg")'
-                                                                            }}
-                                                                            />
-                                                                            <div className="listing-card__img--mask" />
-                                                                        </div>
-                                                                        <div className="listing-card__info">
-                                                                            <Textfit max={60} mode="single">{task.title}</Textfit>
-                                                                            <h5>{task.User.first_name} {task.User.last_name[0]}</h5>
-                                                                        </div>
-                                                                        <div className="listing-card__hover flex aic">
-                                                                            <div>
-                                                                                <h5>{task.city || "-"}</h5>
-                                                                                <h5>{task.due_date ? new Date(task.due_date).toLocaleDateString() : "-"}</h5>
-                                                                            </div>
-                                                                            <div style={{marginRight: 0}}>
-                                                                                <h5>{task.Category.name}</h5>
-                                                                                <h5>CHF {task.expected_price}.-</h5>
-                                                                            </div>
-                                                                        </div>
-                                                                    </Link>
-                                                                </div>
-                                                            ))
+                                                            this.props.activeListing2_info.tasks.map(task => <MainTaskCard task={task}/>)
                                                         }
-                                                        {/* <div className="listing-card">
-                                                            <div className="listing-card__img">
-                                                                <div className="lc-img" style={{ backgroundImage: 'url("/images/ustah.jpeg")' }} />
-                                                                <div className="listing-card__img--mask" />
-                                                            </div>
-                                                            <div className="listing-card__info">
-                                                                <h3>Yard Work</h3>
-                                                                <h5>Oven Thompson</h5>
-                                                            </div>
-                                                            <div className="listing-card__hover flex aic">
-                                                                <div>
-                                                                    <h5>Bern</h5>
-                                                                    <h5>23/05/2020</h5>
-                                                                </div>
-                                                                <div>
-                                                                    <h5>Household</h5>
-                                                                    <h5>CHF 75.-</h5>
-                                                                </div>
-                                                            </div>
-                                                        </div> */}
                                                     </div>
                                                 </div>
                                                 <div className="filters-card">

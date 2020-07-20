@@ -18,7 +18,7 @@ class LoginForm extends React.Component{
           <div className="flex-grow"> 
           <input
             ref={ref => this.emailRef = ref}
-              onKeyDown={this.props.handleInputKeyDown}
+            onKeyDown={this.props.handleInputKeyDown}
             placeholder="Email"
             type="email"
             value={this.props.email.value}
@@ -38,10 +38,6 @@ class LoginForm extends React.Component{
           <div className="register__button">
           
             <Link to="/forget_password" style={{ marginBottom: "10%", fontSize: 20}}>Trouble loging in?</Link>
-            <p style={{ fontSize: 20 }} onClick={e => e.preventDefault()}>
-              By joining on platform I confirm that I read and <br />
-              understood all the <Link to="/terms">Terms&Conditions</Link> of eazytask
-            </p>
             { this.props.loading && "Loading"}
             { !this.props.loading && 
                 <button

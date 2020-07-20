@@ -97,7 +97,8 @@ class CreateTask extends React.Component {
         this.lastStepIndex = this.state.steps.length - 1
         this.requestSent = false;
     }
-    createTask = () => {
+    createTask = async () => {
+        return null;
         console.log("CREATE_TASK", this.state.data, this.requestSent)
         if (!this.requestSent){
             let { name, date_type, day, month, year, thumbnail } = this.state.data;
@@ -231,13 +232,15 @@ class CreateTask extends React.Component {
                 categoryGroupName={this.state.categoryGroupName}
                 onCategoryClick={name => {
                     this.onChangeWithVal("category",name)()
-                    this.setState({ step: 8 })
+                    this.nextStep(8)();
                 }}
                 onOtherClick={this.nextStep(7)}
             />
             case 7: return <OtherCategory {...commonProps} 
                 category={this.state.data.category}
-                onCategoryChange={this.onChange("category")}
+                onCategoryChange={val => {
+                    this.onChange("category")(val);
+                }}
                 errors={this.state.errors}
             />
             case 8: return <TaskGallery {...commonProps} 
@@ -296,6 +299,7 @@ class CreateTask extends React.Component {
                         return;
                     }
                 }
+                console.log("this.nextStep(nextStep)()",nextStep)
                 return this.nextStep(nextStep)()
             }
         }
@@ -312,16 +316,20 @@ class CreateTask extends React.Component {
         return this.state.steps.slice(0, this.state.steps.length - 2).map((x, i) => {
             let index = this.state.steps.indexOf(x)
             let getOnClick = () => {
-                if (index == 6) return this.nextStep(5)
-                if (index == 7) return this.nextStep(5)
-                if (index == 8) return this.nextStep(5)
+                if (index == 6) return this.nextStep(8)
+                if (index == 7) return this.nextStep(8)
                 if (this.state.step <= index) return () => { }
-                else return this.nextStep(index);
+                else return async () => {
+                    this.nextStep(index)();
+                    let stepKey = index
+                    let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
+                    this.setState({ valid })
+                }
             }
             let onStep = this.state.step + 1
             let active = onStep >= i + 1;
-            return <span onClick={getOnClick()} className={`dot ${active ? "active" : ""}`} />
-        }).filter((el, step) => step != 6 && step != 7)
+            return <span onClick={getOnClick()} className={`dot ${active ? "active" : ""}` + ` ${i}`} />
+        }).filter((el, step) => step != 6 && step != 7 && step != 9)
     }
     getGoBack = () => {
         console.log("getGoBackgetGoBack")
@@ -400,6 +408,13 @@ class CreateTask extends React.Component {
                             {
                                 this.showButtonCondition() &&
                                 <div className="buttons__group">
+                                {
+                                    this.state.step == 9 && 
+                                        <p style={{ fontSize: 20 }}>
+                                            By joining on platform I confirm that I read and <br />
+                                            understood all the <a href="/terms_and_conditions?fromCreateTask" target="_blank">Terms&Conditions</a> of eazytask
+                                        </p>
+                                }
                                     <button 
                                         onClick={this.getButtonOnClick()} 
                                         className={"button__style " + (!this.state.valid ? "not-filled" : "")}

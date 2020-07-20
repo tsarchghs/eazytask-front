@@ -3,18 +3,31 @@ import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
 
 const TermsAndConditions = props => {
+    let goBack = () => {
+      let { state } = props.location;
+      console.log("backPathname",state)
+      if (!state || !state.backPathname) return props.history.push("/")
+      return props.history.push(state.backPathname)
+    }
+    let fromCreateTask = props.location.search.indexOf("fromCreateTask") !== -1
     return (
         <div className=" edit-task__wrapper">
         <section className="landing-info panel edit-task__section">
             <div className="container">
                 <div className="content ">
                     <header className="logo-text">
-                        <span style={{ cursor: "pointer" }} onClick={() => props.history.push("/register")} className="show__mobile">
-                        <img src="/images/arrow.jpeg" alt="" />
+                        <span style={{ cursor: "pointer" }} onClick={goBack} className="show__mobile">
+                        {
+                          !fromCreateTask &&
+                          <img src="/images/arrow.jpeg" alt="" />
+                        }
                         </span>
-                        <h4 className="hide-on-desktop logo-title ">
-                        <span style={{ cursor: "pointer" }} onClick={() => props.history.push("/register")} className="arraw hide-on-mobile">
-                        <img src="/images/arrow.jpeg" alt="" />
+                        <h4 style={ fromCreateTask ? { textAlign: "center" } : undefined } className="hide-on-desktop logo-title ">
+                        <span style={{ cursor: "pointer" }} onClick={goBack} className="arraw hide-on-mobile">
+                          {
+                            !fromCreateTask && 
+                          <img src="/images/arrow.jpeg" alt="" />
+                          }
                         </span>Terms and Conditions</h4>
                         </header>
                     {/* <header>

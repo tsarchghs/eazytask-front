@@ -59,7 +59,8 @@ class MyProfileEdit extends React.Component {
                 className="input register__form_input"
                 style={{
                     width: key == "address" ? "100%" : "50%",
-                    marginBottom: "-3%",
+                    marginBottom: key == "address" ? 10 : "-3%",
+                    marginTop: key == "address" ? 23 : undefined,
                     padding: "10px 20px",
                     borderRadius: 13,
                     backgroundColor: "#ececec",
@@ -192,7 +193,7 @@ class MyProfileEdit extends React.Component {
                     </div>
                     <input ref={ref => this.coverImageInputRef = ref} onChange={this.onFileChange("cover_image")} type="file" style={{ display: "none" }} />
                 </div>
-                <div className="offers-content">
+                <div className="offers-content pb50">
                     <div className="offers__cards">
                         <div className="offers__card">
                             <div className="offers__card--top">
@@ -235,11 +236,11 @@ class MyProfileEdit extends React.Component {
                                         {/* <img src="/images/edit-pen.png" alt="" /> */}
                                     </div>
                                 </div>
+                                {this.getStaticOrInput("address")}
                                 <div className="ap__input--double">
                                     {this.getStaticOrInput("zipCode", "50%")}
                                     {this.getStaticOrInput("city", "50%")}
                                 </div>
-                                {this.getStaticOrInput("address")}
                             </div>
                         </div>
                         {

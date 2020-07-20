@@ -10,6 +10,7 @@ instance.defaults.headers.post['Content-Type'] = 'application/json';
 instance.interceptors.request.use(
     config => {
         const token = localStorage.getItem("eazytask:token");
+        console.log("tokentokentokentoken",token)
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }

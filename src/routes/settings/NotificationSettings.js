@@ -71,8 +71,8 @@ class NotificationSettings extends React.Component {
                                             this.props.currentUser.notification_option != this.state.notification_option && 
                                             <button 
                                                 onClick={this.update}
-                                                classNmae="button__style" 
-                                                style={{backgroundColor:"darkgray"}}>
+                                                style={{ padding: 11, width: 147 }}
+                                                className="button__style">
                                                 {this.getTrans(this.props.translations.text_6)}
                                             </button>
                                         }
@@ -105,8 +105,9 @@ class NotificationSettings extends React.Component {
                                                             this.props.currentUser.notification_option != this.state.notification_option && 
                                                             <button 
                                                                 onClick={this.update}
-                                                                classNmae="button__style" 
-                                                                style={{backgroundColor:"darkgray"}}>
+                                                                className="button__style"
+                                                                style={{ padding: 11, width: 147}}
+                                                            >
                                                                 {this.getTrans(this.props.translations.text_6)}
                                                             </button>
                                                         }

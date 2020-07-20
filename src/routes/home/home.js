@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Controller, Scene } from 'react-scrollmagic';
-
+import { compose } from "recompose";
 import TaskList from "./TaskList.view"
 
 import { getActiveListing } from "../../actions/app";
 import { connect } from "react-redux";
+import MainTaskCard from "../../components/MainTaskCard";
 
 class Home extends React.Component {
     constructor(props) {
@@ -85,9 +86,42 @@ class Home extends React.Component {
             prevState.detailed = !prevState.detailed 
         })
     }
+    currentYPosition = el => {
+        // Firefox, Chrome, Opera, Safari
+        if (el.pageYOffset) return el.pageYOffset;
+        // Internet Explorer 6 - standards mode
+        if (document.documentElement && document.documentElement.scrollTop)
+            return document.documentElement.scrollTop;
+        // Internet Explorer 6, 7 and 8
+        if (document.body.scrollTop) return document.body.scrollTop;
+        return 0;
+    }
+    doScrolling = (elementY, duration) => {
+        console.log(elementY,duration)
+        var startingY = window.pageYOffset;
+        var diff = elementY - startingY;
+        var start;
+
+        // Bootstrap our animation - it will get called right before next frame shall be rendered.
+        window.requestAnimationFrame(function step(timestamp) {
+            if (!start) start = timestamp;
+            // Elapsed milliseconds since start of scrolling.
+            var time = timestamp - start;
+            // Get percent of completion in range [0, 1].
+            var percent = Math.min(time / duration, 1);
+
+            window.scrollTo(0, startingY + diff * percent);
+
+            // Proceed with animation as long as we wanted it to.
+            if (time < duration) {
+                window.requestAnimationFrame(step);
+            }
+        })
+    }
     render(){
         console.log("this.state.onStep",this.state.onStep)
         console.log("this.props.loading", this.props.loading)
+        let fromDashboardMore = this.props.location.pathname === "/landing_page"
         return (
             <React.Fragment>
                 <div className="wrapper no-panel">
@@ -97,7 +131,7 @@ class Home extends React.Component {
                         <div className="container">
                             <div className="content setup-ready">
                                 <header>
-                                    <a href="#"><img className="logo__img" src="/images/logo2.png" alt="" /></a>
+                                    <Link to={fromDashboardMore ? "/dashboard" : "/"}><img className="logo__img" src="/images/logo2.png" alt="" /></Link>
                                 </header>
                                 <section className="two-column__layout setup__mobile profile__cover">
                                     <div className="two-column__info flex flex-column">
@@ -110,14 +144,16 @@ class Home extends React.Component {
                                         </div>
                                         <div className="mb10">
                                             <img onClick={e => {
-                                                this.activeListingRef.scrollIntoView(true, { behavior: "smooth" });
+                                                // this.activeListingRef.scrollIntoView(true, { behavior: "smooth" });
+                                                let y = this.currentYPosition(this.activeListingRef);
+                                                this.doScrolling(y, 20);
                                             }} style={{cursor:"pointer"}} className="play-img" src="/images/play.png" alt="" />
                                             <p className="special">Watch how it works</p>
                                         </div>
                                         <div className="buttons__group">
                                             {/* <button className="button__style no-color">Skip <span className="show__mobile">for now</span></button> */}
-                                            <Link to="/register">
-                                                <button className="button__style button--smaller">Join us</button>
+                                            <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
+                                                <button className="button__style button--smaller">{ fromDashboardMore ? "Home" : "Join Us" }</button>
                                             </Link>
                                         </div>
                                     </div>
@@ -130,8 +166,8 @@ class Home extends React.Component {
                             <div className="content">
                                 <header className="flex jcsb aic">
                                     <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                    <Link to="/register">
-                                        <a href="#" className="h4">Join us</a>
+                                    <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
+                                        <a href="#" className="h4">{ fromDashboardMore ? "Home" : "Join Us" }</a>
                                     </Link>
                                 </header>
                                 <section className="two-column__layout profile__cover">
@@ -170,7 +206,7 @@ class Home extends React.Component {
                                         </div>
                                         <div className="flex jcsb aic two-content" style={{marginTop:60}}> 
                                             <p className="special">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget praesent tristique sed morbi massa porttitor risus posuere. Faucibus platea suspendisse pharetra lacinia ipsum. Hendrerit praesent sem mattis vitae mollis enim.</p>
-                                            <img src="/images/product.png" alt="" />
+                                            <img style={{ width: "35%" }} src="/images/product.png" alt="" />
                                         </div>
                                     </div>
                                 </section>
@@ -185,9 +221,7 @@ class Home extends React.Component {
                                 if (a < 0.3) onStep = 1
                                 else if (a < 0.5) onStep = 2
                                 else if (a > 0.5) onStep = 3
-
                                 let stepImage = `/images/step${onStep}.png`; 
-
                                 return (
                                     <section ref={ref => this.mainStepsSectionRef = ref} 
                                         className={"landing-info panel steps-section" + (a ? " stdeps__layout" : "")} id="d" 
@@ -213,8 +247,8 @@ class Home extends React.Component {
                                                                         <span className="landing-step__bullet" />
                                                                         <span className="landing-step__line" />
                                                                     </div>
-                                                                    <Link to="/register">
-                                                                        <h4>Join Us</h4>
+                                                                    <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
+                                                                        <h4>{ fromDashboardMore ? "Home" : "Join Us" }</h4>
                                                                     </Link>
                                                                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
                                                                 </div>
@@ -223,8 +257,8 @@ class Home extends React.Component {
                                                                         <span className="landing-step__bullet" />
                                                                         <span className="landing-step__line" />
                                                                     </div>
-                                                                    <Link to="/register">
-                                                                        <h4>Join Us</h4>
+                                                                    <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
+                                                                        <h4>{ fromDashboardMore ? "Home" : "Join Us" }</h4>
                                                                     </Link>                                                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
                                                                 </div>
                                                                 <div className={"landing-step" + (onStep >= 3 ? " active" : "")} id="st3">
@@ -232,8 +266,8 @@ class Home extends React.Component {
                                                                         <span className="landing-step__bullet" />
                                                                         <span className="landing-step__line" />
                                                                     </div>
-                                                                    <Link to="/register">
-                                                                        <h4>Join Us</h4>
+                                                                    <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
+                                                                        <h4>{ fromDashboardMore ? "Home" : "Join Us" }</h4>
                                                                     </Link>                                                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
                                                                 </div>
                                                             </div>
@@ -253,8 +287,8 @@ class Home extends React.Component {
                             <div className="content">
                                 <header className="flex jcsb aic">
                                     <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                    <Link to="/register">
-                                        <a href="#" className="h4">Join us</a>
+                                    <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
+                                        <a href="#" className="h4">{ fromDashboardMore ? "Home" : "Join Us" }</a>
                                     </Link>
                                 </header>
                                 <section className="profile__cover">
@@ -274,34 +308,7 @@ class Home extends React.Component {
                                             { this.props.loading && "Loading" }
                                             {
                                                 !this.props.loading && 
-                                                this.props.tasks.map(task => (
-                                                    <div className="listing-card">
-                                                        <Link to={"/task/" + task.id}>
-                                                            <div className="listing-card__img">
-                                                                <div className="lc-img" style={{ 
-                                                                    backgroundImage: 
-                                                                            task.thumbnail ? `url("${task.thumbnail}")` : 'url("/images/ustah.jpeg")' 
-                                                                    }}
-                                                                />
-                                                                <div className="listing-card__img--mask" />
-                                                            </div>
-                                                            <div className="listing-card__info">
-                                                                <h3>{task.title}</h3>
-                                                                <h5>{task.User.first_name} {task.User.last_name[0]}</h5>
-                                                            </div>
-                                                            <div className="listing-card__hover flex aic">
-                                                                <div>
-                                                                <h5>{task.city || "-"}</h5>
-                                                                <h5>{task.due_date ? new Date(task.due_date).toLocaleDateString() : "-"}</h5>
-                                                                </div>
-                                                                <div>
-                                                                    <h5>{task.Category.name}</h5>
-                                                                    <h5>CHF {task.expected_price}.-</h5>
-                                                                </div>
-                                                            </div>
-                                                        </Link>
-                                                    </div>
-                                                ))
+                                                this.props.tasks.map(task => <MainTaskCard task={task}/>)
                                             }
                                         </div>
                                     </div>
@@ -311,7 +318,7 @@ class Home extends React.Component {
                     </section>
                 </div>
 
-                {/* <Link to="/login">Login</Link> <Link to="/register">Register</Link> <Link to="/logout">Logout</Link>
+                {/* <Link to="/login">Login</Link> <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>Register</Link> <Link to="/logout">Logout</Link>
                 <TaskList/> */}
             </React.Fragment>
         )
@@ -327,4 +334,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { getActiveListing })(Home);
+export default compose(withRouter,connect(mapStateToProps, { getActiveListing }))(Home);
