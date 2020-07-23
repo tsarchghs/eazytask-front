@@ -52,10 +52,10 @@ class Login extends React.Component {
             <h4 className="shadow-text">join eazytask now</h4>
             <div className="grid-container register__tabs">
               <NavLink to="/login">
-                <button>Log In</button>
+                <button className="fs62 fwb">Log In</button>
               </NavLink>
               <NavLink to="/register" onClick={this.changeImg}>
-                <button>Register</button>
+                <button className="fs62">Register</button>
               </NavLink>
             </div>
             <div className="grid-container register__layout">

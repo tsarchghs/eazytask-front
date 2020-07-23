@@ -8,7 +8,7 @@ export default class CoverPicture extends React.Component {
                     <h1>{this.props.getTrans(this.props.translations.text_5_1)}</h1>
                     <p className="shadow__title">setup your account</p>
                 </div>
-                <h5 className="show__mobile"><img src="/images/Group.png" alt="" style={{ width: '20px', marginRight: '10px' }} />
+                <h5 className="show__mobile"><img src="/images/social.png" alt="" style={{ width: '20px', marginRight: '10px' }} />
                     {this.props.getTrans(this.props.translations.text_38)}
                 </h5>
                 <div className="mobile__dots">

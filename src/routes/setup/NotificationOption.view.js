@@ -15,7 +15,7 @@ export default props => {
                 <span className="dot active" />
                 <span className="dot active" />
             </div>
-            <h5 className>{props.getTrans(props.translations.text_14)} <br /> {props.getTrans(props.translations.text_15)}</h5>
+            <h5 className="fs24 fwb">{props.getTrans(props.translations.text_14)} {props.getTrans(props.translations.text_15)}</h5>
             {/* <img class="img__mobile" src="/images/checklist.png" alt=""/> */}
             <div className="flex-grow radio-buttons">
                 <label className={"radio-container " + (props.notification_option !== "EMAIL" ? "shadowed" : "")}>

@@ -353,3 +353,36 @@ body {
 .button__style.not-filled {
   background-color: #cdcdcd; }
 
+.dashboard-cards {  
+  .offers-content {
+    min-height: initial !important;
+    position: initial !important;
+    padding: initial !important;
+  }
+  h4 {
+    display: initial !important;
+    text-align: center !important;
+    position: initial !important;
+    transform: initial !important;
+  }
+.dashboard-offers {
+  
+    .offers-image {
+    div {
+      z-index: 11;
+    }
+    &:after {
+        content: '';
+
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+  }
+  }
+}
+
+  

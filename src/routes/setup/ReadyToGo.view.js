@@ -13,8 +13,8 @@ export default props => {
                     <React.Fragment>{str}<br/></React.Fragment>
                 ))}
             </p>
-            <div className="flex-grow">
-                <img src="/images/computer_display_monochromatic.png" style={{ minWidth: '190px', width: '25%', margin: '0 auto' }} alt="" />
+            <div className="flex-grow aic flex">
+                <img src="/images/computer_display_monochromatic.png" style={{ minWidth: '190px', width: '32%', margin: '0 auto' }} alt="" />
             </div>
         </React.Fragment>
     )

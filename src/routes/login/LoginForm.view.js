@@ -21,13 +21,15 @@ class LoginForm extends React.Component{
             onKeyDown={this.props.handleInputKeyDown}
             placeholder="Email"
             type="email"
-            value={this.props.email.value}
+              className="fs27"
+              value={this.props.email.value}
             onChange={this.props.email.onChange}
           />
           <input
             onKeyDown={this.props.handleInputKeyDown}
             placeholder="Password"
-            type="password"
+              className="fs27"
+              type="password"
             value={this.props.password.value}
             onChange={this.props.password.onChange}
           />
@@ -37,7 +39,7 @@ class LoginForm extends React.Component{
           </div>
           <div className="register__button">
           
-            <Link to="/forget_password" style={{ marginBottom: "10%", fontSize: 20}}>Trouble loging in?</Link>
+            <Link to="/forget_password" style={{ marginBottom: "10%", fontSize: 20}} className="roboto">Trouble loging in?</Link>
             { this.props.loading && "Loading"}
             { !this.props.loading && 
                 <button

@@ -137,10 +137,10 @@ class Home extends React.Component {
                                     <div className="two-column__info flex flex-column">
                                         <div className="flex-grow flex flex-column jcc m-jci w100">
                                             <div className="background-title mb5">
-                                                <h1>Your tasks</h1>
-                                                <h1 className="bold bigger">Made Easy!</h1>
+                                                <h1 className="fs62 fwn">Your tasks</h1>
+                                                <h1 className="bold bigger" style={{ fontSize: 86 }}>Made Easy!</h1>
                                             </div>
-                                            <p className="mb30 special ">Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr, sed diam. </p>
+                                            <p className="mb30 special fs19 fwl ">Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr, sed diam. </p>
                                         </div>
                                         <div className="mb10">
                                             <img onClick={e => {
@@ -148,7 +148,7 @@ class Home extends React.Component {
                                                 let y = this.currentYPosition(this.activeListingRef);
                                                 this.doScrolling(y, 20);
                                             }} style={{cursor:"pointer"}} className="play-img" src="/images/play.png" alt="" />
-                                            <p className="special">Watch how it works</p>
+                                            <p className="special fs19 fwn">Watch how it works</p>
                                         </div>
                                         <div className="buttons__group">
                                             {/* <button className="button__style no-color">Skip <span className="show__mobile">for now</span></button> */}
@@ -174,8 +174,8 @@ class Home extends React.Component {
                                     <div className="two-column__info flex flex-column">
                                         <div className="flex-grow flex flex-column  w100">
                                             <div className="background-title mb5">
-                                                <h3>Watch how it</h3>
-                                                <h4>Works</h4>
+                                                <h3 className="fs50 fwb lh08">Watch how it</h3>
+                                                <h4 className="fs45 fwn">works</h4>
                                                 <p className="shadow__title hide__mobile">wanna know how our app works?</p>
                                                 <p className="shadow__title show__mobile">COMMERCIAL</p>
                                             </div>
@@ -198,8 +198,8 @@ class Home extends React.Component {
                                     <div className="two-column__info flex flex-column">
                                         <div className=" flex flex-column  w100">
                                             <div className="background-title mb5">
-                                                <h3>Our Wonderful</h3>
-                                                <h4>mission</h4>
+                                                <h3 className="fs50 fwb lh08">Our Wonderful</h3>
+                                                <h4 className="fs45 fwn">mission</h4>
                                                 <p className="shadow__title hide__mobile">wanna know how our app works?</p>
                                                 <p className="shadow__title show__mobile">COMMERCIAL</p>
                                             </div>
@@ -234,8 +234,8 @@ class Home extends React.Component {
                                                     <div className="two-column__info flex flex-column">
                                                         <div className=" flex flex-column  w100">
                                                             <div className="background-title mb5">
-                                                                <h3>Steps to make</h3>
-                                                                <h4>an eazytask</h4>
+                                                                <h3 className="fs50 fwb lh08">Steps to make</h3>
+                                                                <h4 className="fs45 fwn">an eazytask</h4>
                                                                 <p className="shadow__title hide__mobile">checkout the steps to make an eazy</p>
                                                                 <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                             </div>
@@ -295,8 +295,8 @@ class Home extends React.Component {
                                     <div className="two-column__info flex flex-column">
                                         <div className=" flex jcsb aic w100">
                                             <div className="background-title mb5 flex1">
-                                                <h3>Active</h3>
-                                                <h4>listings</h4>
+                                                <h3 className="fs50 fwb lh08">Active</h3>
+                                                <h4 className="fs45 fwn">listings</h4>
                                                 <p className="shadow__title hide__mobile">some active listings on eazytask</p>
                                                 <p className="shadow__title show__mobile">COMMERCIAL</p>
                                             </div>

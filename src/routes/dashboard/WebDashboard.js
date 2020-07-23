@@ -8,7 +8,7 @@ import { getPosts } from "../../actions/posts";
 import { getMyActiveTasks } from "../../actions/app";
 import WebHeader from "../../components/WebHeader";
 import MainTaskCard from "../../components/MainTaskCard";
-import SideTaskCard from "../../components/SideTaskCard";
+import SideTaskCard2 from "../../components/SideTaskCard2";
 import MainOfferCard from "../../components/MainOfferCard";
 
 class WebDashboard extends React.Component {
@@ -23,7 +23,7 @@ class WebDashboard extends React.Component {
         this.props.getMyActiveTasks({ limit: 4, offset: 0 });
         this.props.getPosts()
         this.props.getActiveListing2({
-            limit: 6,
+            limit: 6,   
             offset: 0
         });
     }
@@ -41,16 +41,23 @@ class WebDashboard extends React.Component {
 
         )
         return (
-            <div className="home__card--content">
-            {
-                    this.props.myActiveTasks_info.tasks.map(task => 
-                        <SideTaskCard 
-                            useWithRouter={true} 
-                            task={task} 
-                            beforeTitleText={this.getTrans(this.props.translations.text_2)}     
-                        />
-                    )
-            }
+            <div className="tasker-profile dashboard-cards">
+                <div className="offers-content modified">
+
+                    <div className="offers-images__layout">
+                        <div className="offers-images dashboard-offers">
+                        {
+                                this.props.myActiveTasks_info.tasks.map(task => 
+                                    <SideTaskCard2 
+                                        useWithRouter={true} 
+                                        task={task} 
+                                        beforeTitleText={this.getTrans(this.props.translations.text_2)}     
+                                    />
+                                )
+                        }
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -58,12 +65,23 @@ class WebDashboard extends React.Component {
         if (this.props.offers_info.loading) return this.getTrans(this.props.common.loading)
         if (!this.props.offers_info.offers.length) return this.getTrans(this.props.translations.text_25)
         return (
-            <div className="home__card--content">
-                {
-                    this.props.offers_info.offers.map(({ Task }) => (
-                        <MainOfferCard task={Task} beforeTitleText={this.getTrans(this.props.translations.text_2)}/>
-                    ))
-                }
+            <div className="tasker-profile dashboard-cards">
+                <div className="offers-content modified">
+
+                    <div className="offers-images__layout">
+                        <div className="offers-images dashboard-offers">
+                            {
+                                this.props.offers_info.offers.map(({ Task }) => (
+                                    <SideTaskCard2
+                                        useWithRouter={true}
+                                        task={Task}
+                                        beforeTitleText={this.getTrans(this.props.translations.text_2)}
+                                    />                                
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -83,7 +101,8 @@ class WebDashboard extends React.Component {
                                             <div className="hero flex jcsb" style={{ height: 'calc(100vh - 165px)', paddingTop: 80 }}>
                                                 <div className="home">
                                                     <div className="home__title">
-                                                        <h3 style={{fontWeight: "initial"}}>{this.getTrans(translations.text_1)}, <span style={{ fontWeight: "bold" }}>{this.props.own_profile.first_name}!</span></h3>
+                                                        <h3 className="fs41" style={{fontWeight: "initial"}}>
+                                                        {this.getTrans(translations.text_1)}, <span style={{ fontWeight: "bold" }}>{this.props.own_profile.first_name}!</span></h3>
                                                     </div>
                                                     <div className="home__cards">
                                                         <div className="home__card gradient">

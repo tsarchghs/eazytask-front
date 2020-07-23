@@ -22,11 +22,13 @@ class RegisterForm extends React.Component {
               ref={ref => this.firstNameRef = ref}
               onKeyDown={this.props.handleInputKeyDown}
               placeholder="First name"
-                type="text"
+              className="fs27"
+              type="text"
               value={this.props.first_name.value}
               onChange={this.props.first_name.onChange}
             />
             <input
+                className="fs27"
                 onKeyDown={this.props.handleInputKeyDown}
               placeholder="Last name"
               type="text"
@@ -35,6 +37,7 @@ class RegisterForm extends React.Component {
             />
           </div>
           <input
+              className="fs27"
               onKeyDown={this.props.handleInputKeyDown}
             placeholder="Email"
             type="email"
@@ -43,6 +46,7 @@ class RegisterForm extends React.Component {
           />
           <input
               onKeyDown={this.props.handleInputKeyDown}
+              className="fs27"
             placeholder="Password"
             type="password"
             value={this.props.password.value}
@@ -53,9 +57,9 @@ class RegisterForm extends React.Component {
           ))} 
           </div>
           <div className="register__button">
-            <p style={{ fontSize: 20 }} onClick={e => e.preventDefault()}>
+            <p className="robot" style={{ fontSize: 20 }} onClick={e => e.preventDefault()}>
               By joining on platform I confirm that I read and <br />
-              understood all the <Link to={{ pathname: "/terms_and_conditions", state: { backPathname: "/register" } }}>Terms&Conditions</Link> of eazytask
+              understood all the <Link style={{ fontSize: 20, color: "#4068a3" }} to={{ pathname: "/terms_and_conditions", state: { backPathname: "/register" } }}>Terms&Conditions</Link> of eazytask
             </p>
             {this.props.loading && "Loading"}
             {!this.props.loading && <button className={

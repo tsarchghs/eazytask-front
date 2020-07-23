@@ -98,7 +98,6 @@ class CreateTask extends React.Component {
         this.requestSent = false;
     }
     createTask = async () => {
-        return null;
         console.log("CREATE_TASK", this.state.data, this.requestSent)
         if (!this.requestSent){
             let { name, date_type, day, month, year, thumbnail } = this.state.data;
