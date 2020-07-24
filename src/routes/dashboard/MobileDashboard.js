@@ -9,6 +9,7 @@ import Discover from "./Discover.view";
 import MyActiveOffers from "./MyActiveOffers.view";
 import More from "./More.view";
 import MobileNav from "../../components/MobileNav";
+import NewOfferNotificationCardView from "./NewOfferNotificationCard.view";
 
 class MobileDashboard extends React.Component {
     constructor(props){
@@ -48,10 +49,12 @@ class MobileDashboard extends React.Component {
                                     <img src="/images/noti.png" alt="" />
                                 </div>
                                 <div className={"home__cards " + (tab != "my_tasks" ? "animation" : "ddd")}>
-                                    <div className={"home__card gradient "}>
-                                        <h5>{this.getTrans(this.props.translations.text_2)} “Yard Work” <br /><span>{this.getTrans(this.props.translations.text_23)}</span></h5>
-                                        <img src="/images/succ.png" alt="" />
-                                    </div>
+                                    <NewOfferNotificationCardView
+                                        {...this.props.offer_notification_info} 
+                                        mobile={true} 
+                                        translations={this.props.translations} 
+                                        getTrans={this.getTrans}    
+                                    />
                                     <div className="home__tabs">
                                         <Link to="?tab=my_tasks">
                                             <div className={`home__tab ${tab == "my_tasks" && "active"}`}>{this.getTrans(this.props.translations.text_3)}</div>

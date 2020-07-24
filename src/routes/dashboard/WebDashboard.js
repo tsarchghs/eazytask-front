@@ -10,6 +10,7 @@ import WebHeader from "../../components/WebHeader";
 import MainTaskCard from "../../components/MainTaskCard";
 import SideTaskCard2 from "../../components/SideTaskCard2";
 import MainOfferCard from "../../components/MainOfferCard";
+import NewOfferNotificationCardView from "./NewOfferNotificationCard.view";
 
 class WebDashboard extends React.Component {
     constructor(props) {
@@ -105,11 +106,12 @@ class WebDashboard extends React.Component {
                                                         {this.getTrans(translations.text_1)}, <span style={{ fontWeight: "bold" }}>{this.props.own_profile.first_name}!</span></h3>
                                                     </div>
                                                     <div className="home__cards">
-                                                        <div className="home__card gradient">
-                                                            <h5>{this.getTrans(translations.text_2)} “Yard Work” 
-                                                            <br /><span style={{fontWeight: "bold"}}>{this.getTrans(translations.text_3)}</span></h5>
-                                                            <img src="/images/succ.png" alt="" />
-                                                        </div>
+                                                        <NewOfferNotificationCardView 
+                                                            {...this.props.offer_notification_info} 
+                                                            web={true} 
+                                                            translations={this.props.translations} 
+                                                            getTrans={this.getTrans}     
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="hero-home__cards">

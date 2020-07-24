@@ -365,6 +365,7 @@ body {
     position: initial !important;
     transform: initial !important;
   }
+
 .dashboard-offers {
   
     .offers-image {
@@ -385,4 +386,13 @@ body {
   }
 }
 
-  
+.home__card--mask.active::after {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}

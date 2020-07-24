@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import withNotificationsInfo from "../HOC/withNotificationsInfo";
 
 const SideTaskCard = props => {
     let onClick = props.useWithRouter ? () => props.history.push(`/task/` + props.task.id) : undefined;
@@ -11,7 +12,7 @@ const SideTaskCard = props => {
                 backgroundImage: `url("${props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`,
                 cursor: "pointer" 
         }}>
-            <div className="home__card--mask" />
+            <div className={`home__card--mask ${props.active && "active"}`} />
             {/* <h5 style={{ textAlign: "center" }}>{props.beforeTitleText} “{props.task.title}”</h5> */}
             <div className="home__card--divide">
                 <h5 style={{
@@ -37,4 +38,6 @@ const SideTaskCard = props => {
     )
 }
 
-export default withRouter(SideTaskCard);
+const SideTaskCard_ = withRouter(SideTaskCard)
+
+export default withNotificationsInfo(SideTaskCard_);
