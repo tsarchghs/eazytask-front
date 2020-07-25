@@ -1,0 +1,84 @@
+import React from "react";
+import axios from "../../utils/axios";
+import getNotificationInfo from "../../utils/getNotificationInfo";
+import { withRouter, Link } from "react-router-dom";
+
+class MobileNotifications extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            error: undefined,
+            payload: undefined
+        }
+    }
+    componentDidMount() {
+        this.setState({ loading: true })
+        axios.get("/notifications")
+            .then(({ data }) => this.setState({ payload: data.data, loading: false }))
+            .catch(error => this.setState({ error, loading: false }))
+    }
+    render() {
+        let { loading, error, payload } = this.state;
+        if (loading) return "Loading";
+        if (error) {
+            console.log(error)
+            return "Error";
+        }
+        console.log("this.props1", this.props, payload)
+        if (this.props.children) return this.props.children({ loading, error, payload })
+        return (
+            <React.Fragment>
+                <div className=" edit-task__wrapper hide-on-web">
+                    <section className="landing-info panel edit-task__section">
+                        <div className="container">
+                            <div className="content pb50">
+                                <header className="logo-text">
+                                    <span onClick={() => {
+                                        try {
+                                            this.props.history.goBack();
+                                        } catch (e) {
+                                            this.props.history.push("/")
+                                        }
+                                    }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                    <h4 className="hide-on-desktop logo-title">
+                                        What’s new?
+                                    </h4>
+                                </header>
+                                <section className="home">
+                                    <div className="home__notifications noti__mobile">
+                                        <div className="home__noti-cards">
+                                            {
+                                                payload.map(notifc => {
+                                                    let info = getNotificationInfo[notifc.type](notifc);
+                                                    console.log({ info }, this.props)
+                                                    return (
+                                                        <div
+                                                            onClick={e => this.props.history.push(info.pathname)}
+                                                            style={{ display: "inline-flex", cursor: "pointer" }}
+
+                                                            className="home__noti-card">
+                                                            <div className="img-circle" style={{ width: '43px', height: '43px', minWidth: '43px' }}><img src={
+                                                                notifc.user_2.profile_image || window.__PROFILE_DEFAULT_PICTURE__
+                                                            } alt="" /></div>
+                                                            <div clas="flex	aic">
+                                                                <h3 className="m-fs16 text-left fwb mb0">{notifc.user_2.first_name} {notifc.user_2.last_name[0]}.</h3>
+                                                                <p className="fs12 fwn mb0 special">{info.text}</p>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </React.Fragment>
+        )
+    }
+}
+
+export default withRouter(MobileNotifications)

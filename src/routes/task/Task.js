@@ -132,6 +132,7 @@ class Task extends React.Component {
         this.props.own_user &&
         this.props.own_user.id !== this.props.task.UserId &&
         this.props.own_user.Tasker &&
+        this.props.own_user.isTasker && 
         !this.props.loading && this.props.task.Offers && 
         !this.props.task.Offers.find(offer => offer.Tasker.User.id === this.props.own_user.id)
     )

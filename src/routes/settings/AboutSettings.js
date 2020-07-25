@@ -42,7 +42,7 @@ const AboutSettings = props => (
                                             </span>
                                             <h4 className="logo-title ">
                                                 About us
-                          </h4>
+                                            </h4>
                                         </header>
                                         <div className="pa--mobile pb50 max-vh">
                                             <h4 className="text-green">{getTrans(props.app_lang,props.translations.text_2)}</h4>

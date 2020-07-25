@@ -35,13 +35,13 @@ export const postAuthFailed = err => ({
     type: POST_AUTH_FAILED, err
 })
 
-export const getAuth = () => {
+export const getAuth = (query,successOnly) => {
     return dispatch => {
-        dispatch(getAuthRequest())
-        return axios.get("/auth")
+        if (!successOnly) dispatch(getAuthRequest())
+        return axios.get("/auth" + (query ? query : ""))
             .then(({ data }) => {
                 dispatch(getAuthSuccess(data));
-            }).catch(err => dispatch(getAuthFailed(err)));
+            }).catch(err => !successOnly && dispatch(getAuthFailed(err)));
     };
 }
 

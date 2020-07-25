@@ -23,11 +23,11 @@ const WebSidebar = props => {
                     {getTrans(app_lang,settings.text_2)}
                 </div>
             </Link>
-            {/* <Link to="/settings/change_preferences">
+            <Link to="/settings/change_preferences">
                 <div className={getClassName("change_preferences",param)}><img src="/images/info-b.png" alt="" />
                     {getTrans(app_lang,settings.text_3)}
                 </div>
-            </Link> */}
+            </Link>
             <Link to="/settings/delete_account">
                 <div className={getClassName("delete_account",param)}><img src="/images/exit-b.png" alt="" />
                     {getTrans(app_lang,settings.text_4)}

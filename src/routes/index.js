@@ -14,6 +14,7 @@ import ChangePasswordSettings from "./settings/ChangePasswordSettings"
 import DeleteAccountSettings from "./settings/DeleteAccountSettings"
 import AboutSettings from "./settings/AboutSettings"
 import AdminDashboard from "./admin/dashboard";
+import ChangePreferencesSettings from "./settings/ChangePreferencesSettings";
 
 const Home = lazy(() => import('./home'));
 const Login = lazy(() => import('./login'));
@@ -43,6 +44,12 @@ const FAQ = lazy(() => import('./faq'));
 const History = lazy(() => import('./history'));
 const TermsAndConditions = lazy(() => import('./terms_and_conditions'));
 const E404 = lazy(() => import('./E404'));
+const MobileNotifications = lazy(() => import("./mobile_notifications"))
+const ChangePhoneNumber = lazy(() => import("./change_phone_number"));
+
+const SettingsChangeSkills = lazy(() => import("./settings_change_skills"));
+const SettingsChangeLanguages = 0 // lazy(() => import("./settings_change_languages"));
+const SettingsChangeCities = 0 // lazy(() => import("./settings_change_cities"));
 
 // import Login from "./login";
 // import Register from "./register";
@@ -136,6 +143,21 @@ const Routes = props => {
                     <Route exact path="/settings/about" component={() =>
                         <ProtectedRoute to="/login" Component={AboutSettings} allowLoggedIn={true} />
                     } />
+                    <Route exact path="/settings/change_preferences" component={() =>
+                        <ProtectedRoute to="/login" Component={ChangePreferencesSettings} allowLoggedIn={true} />
+                    } />
+
+
+                    <Route exact path="/settings/change_skills" component={() =>
+                        <ProtectedRoute to="/login" Component={SettingsChangeSkills} allowLoggedIn={true} />
+                    } />
+                    <Route exact path="/settings/change_cities" component={() =>
+                        <ProtectedRoute to="/login" Component={SettingsChangeCities} allowLoggedIn={true} />
+                    } />
+                    <Route exact path="/settings/change_languages" component={() =>
+                        <ProtectedRoute to="/login" Component={SettingsChangeLanguages} allowLoggedIn={true} />
+                    } />
+
 
                     <Route exact path="/admin" component={
                         () => <Redirect to="/admin/dashboard"/>
@@ -168,9 +190,8 @@ const Routes = props => {
                         <ProtectedRoute to="/" Component={History} allowLoggedIn={true} />
                     } />
 
-                    <Route path="/faq" component={() =>
-                        <ProtectedRoute Component={FAQ} allowLoggedIn={true} />
-                    } />
+                    <Route path="/faq" component={FAQ} exact />
+
 
                     <Route path="/" component={Home} exact/>
                     <Route path="/task/:taskId" component={Task} exact />
@@ -188,6 +209,12 @@ const Routes = props => {
 
                     <Route path="/dashboard" component={() =>
                         <ProtectedRoute to="/login" Component={Dashboard} allowLoggedIn={true} />
+                    } />
+                    <Route path="/mobile_notifications" component={() =>
+                        <ProtectedRoute to="/login" Component={MobileNotifications} allowLoggedIn={true} />
+                    } />
+                    <Route path="/change_phone_number" component={() =>
+                        <ProtectedRoute to="/login" Component={ChangePhoneNumber} allowLoggedIn={true} />
                     } />
                     <Route path="/my_active_tasks" component={() =>
                         <ProtectedRoute to="/login" Component={MyActiveTasks} allowLoggedIn={true} />

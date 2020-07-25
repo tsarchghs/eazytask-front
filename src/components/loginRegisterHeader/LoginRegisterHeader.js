@@ -2,18 +2,16 @@ import React from "react";
 import { GridContainer } from "react-foundation";
 import styled from "styled-components";
 import arrow from "../../utils/images/arrow.jpeg";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default (props) => {
+const LoginRegisterHeader = props => {
   return (
-    <GridContainer>
-      <Header>
-        <Link to="/">
-          <Arrow alt="" src={arrow} />
-        </Link>
-        <Logo alt="" src="/images/logo.svg" />
-      </Header>
-    </GridContainer>
+    <header>
+      <span onClick={e => {
+        props.history.push("/")
+      }} class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+      <img style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
+    </header>
   );
 };
 
@@ -42,3 +40,5 @@ const Logo = styled.img`
      width: 100px;
    }
 `;
+
+export default withRouter(LoginRegisterHeader);

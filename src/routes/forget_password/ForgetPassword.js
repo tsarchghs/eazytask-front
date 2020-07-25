@@ -58,7 +58,6 @@ class ForgetPassword extends React.Component {
         
         let { search } = this.props.location;
         let params = queryString.parse(search);
-        console.log({params,state: this.state})
         if (params.success) return <Success/>
         if (params.valid_code && params.email) return <NewPasswordForm
             onSubmit={this.onNewPasswordSubmit}

@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getMyHistory } from "../../actions/task";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
 class History extends React.Component {
     constructor(props){
@@ -30,9 +31,13 @@ class History extends React.Component {
                 <div className="container">
                   <div className="content pb50">
                     <header className="logo-text">
-                        <Link to="/dashboard?tab=more">
-                            <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                        </Link>
+                      <span className="show__mobile"><img onClick={() => {
+                        try {
+                          this.props.history.goBack();
+                        } catch (e) {
+                          this.props.history.push("/")
+                        }
+                      }} src="/images/arrow.jpeg" alt="" /></span>
                       <h4 className="hide-on-desktop logo-title">
                         Task History
                       </h4>
@@ -65,9 +70,13 @@ class History extends React.Component {
             <section className="offers-layout tasker-profile hide-on-mobile">
               <div className="offers-picture">
                 <div className="offer-picture__buttons">
-                    <Link to="/dashboard?tab=more">
-                      <div className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
-                    </Link>
+                  <div className="offer-picture__back"><img onClick={() => {
+                    try {
+                      this.props.history.goBack();
+                    } catch (e) {
+                      this.props.history.push("/")
+                    }
+                  }} src="/images/arrow.jpeg" alt="" /></div>
                   <div className="offer-picture__edit hide">
                     <img src="/images/more.png" alt="" />
                   </div>	
@@ -109,19 +118,6 @@ class History extends React.Component {
                 </div>
               </div></section>
           </div>
-    
-        )
-        return (
-            <div>
-                { loading && "Loading.." }
-                { err && err.name }
-                { !loading && !err && tasks.map(task => (
-                    <div>
-                        Title: {task.title}<br/>
-                        Status: {this.getShow(task)}<br/><br/>
-                    </div>
-                ))}
-            </div>
         )
     }
 }
@@ -131,4 +127,4 @@ const mapStateToProps = state => {
     return { ...state.tasks.my_history, tasks, own_profile: state.auth.profile }
 }
 
-export default connect(mapStateToProps, { getMyHistory })(History);
+export default compose(withRouter,connect(mapStateToProps, { getMyHistory }))(History);

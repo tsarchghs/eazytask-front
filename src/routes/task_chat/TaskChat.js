@@ -173,16 +173,22 @@ class TaskChat extends React.Component {
                                         <div className="container">
                                             <div className="content ">
                                                 <header className="logo-text hide-on-desktop">
-                                                    <span className="show__mobile">
-                                                    <Link to={`/task/${this.props.taskInfo.task.id}`}>
+                                                    <span onClick={e => {
+                                                        try {
+                                                            this.props.history.goBack();
+                                                        } catch (e) {
+                                                            this.props.history.push("/")
+                                                        }
+                                                    }} className="show__mobile">
                                                         <img src="/images/arrow.jpeg" alt="" />
-                                                    </Link>
                                                     </span>
                                                     <h4 className="logo-title ">
-                                                        <div className="img-circle with-hover">
-                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                            <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
-                                                        </div>
+                                                        <Link to={"/profile/" + this.props.taskInfo.task.User.id}>
+                                                            <div className="img-circle with-hover">
+                                                                <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                                <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                            </div>
+                                                        </Link>
                                                         <div className="name-info">
                                                             <h5>{this.props.taskInfo.task.title} Q&amp;A</h5>
                                                             <p>{this.props.taskInfo.task.User.first_name} {this.props.taskInfo.task.User.last_name[0]}.</p>
@@ -195,10 +201,12 @@ class TaskChat extends React.Component {
                                                             if (msg.UserId == this.props.taskInfo.task.User.id) {
                                                                 return (
                                                                     <div className="qanda-item">
-                                                                        <div className="img-circle with-hover">
-                                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
-                                                                        </div>
+                                                                        <Link to={"/profile/" + msg.User.id}>
+                                                                            <div className="img-circle with-hover">
+                                                                                <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                            </div>
+                                                                        </Link>
                                                                         <div className>
                                                                             <h4 className="active">{msg.content}</h4>
                                                                         </div>
@@ -209,10 +217,12 @@ class TaskChat extends React.Component {
                                                             else {
                                                                 return (
                                                                     <div className="qanda-item">
-                                                                        <div className="img-circle with-hover">
-                                                                            <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                                            <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
-                                                                        </div>
+                                                                        <Link to={"/profile/" + msg.User.id}>
+                                                                            <div className="img-circle with-hover">
+                                                                                <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
+                                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                            </div>
+                                                                        </Link>
                                                                         <div className>
                                                                             <h4>{msg.content}</h4>
                                                                         </div>

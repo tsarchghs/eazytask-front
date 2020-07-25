@@ -46,7 +46,7 @@ class MobileDashboard extends React.Component {
                             <section className="home">
                                 <div className="home__title">
                                     <h3>{this.getTrans(this.props.translations.text_1)}, <br /> <span>{this.props.own_profile.first_name}!</span></h3>
-                                    <img src="/images/noti.png" alt="" />
+                                    <Link to="/mobile_notifications"><img src="/images/noti.png" alt="" /></Link>
                                 </div>
                                 <div className={"home__cards " + (tab != "my_tasks" ? "animation" : "ddd")}>
                                     <NewOfferNotificationCardView
@@ -66,7 +66,7 @@ class MobileDashboard extends React.Component {
                                         </div>
                                         
                                         {
-                                            this.props.own_profile.Tasker &&
+                                            this.props.own_profile.Tasker && this.props.own_profile.isTasker &&
                                             <Link to="?tab=offers">
                                                 <div className={`home__tab ${tab == "offers" && "active"}`}>{this.getTrans(this.props.translations.text_5)}</div>
                                             </Link>

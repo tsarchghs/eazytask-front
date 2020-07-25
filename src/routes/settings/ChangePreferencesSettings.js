@@ -1,17 +1,140 @@
 import React from "react";
 import WebSidebar from "./WebSidebar";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import MobileNav from "../../components/MobileNav";
+import WebHeader from "../../components/WebHeader";
+import { compose } from "recompose";
+import { connect } from "react-redux";
+import { patchUser } from "../../actions/user";
 
 class ChangePreferencesSettings extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+
+        }
+    }
+    toggle = opened => () => {
+        this.setState({ opened: !opened })
+    }
+    GetOptions = () => (
+        <div className="styled-select">
+            <p>{this.state.show || (!this.props.currentUser.isTasker ? "Asker" : "Asker and Tasker")}</p>
+            <img onClick={this.toggle(this.state.opened)} src="/images/arr-right.png" alt="" />
+            <div className={`styled-select__open ${this.state.opened ? "opened" : ""}`}>
+                <div onClick={e => this.setState({ isTasker: false, show: "Asker", opened: false })} className="styled-select__item">
+                    Asker
+                </div>
+                <div onClick={e => this.setState({ isTasker: true, show: "Asker and Tasker", opened: false })} className="styled-select__item">
+                    Asker and Tasker
+                </div>
+            </div>
+        </div>
+    )
+    changedRoleBool = () => this.state.isTasker === undefined || this.state.isTasker === this.props.currentUser.isTasker
+    update = () => {
+        this.props.patchUser({
+            userId: this.props.currentUser.id,
+            data: { isTasker: this.state.isTasker },
+            callUpdateAuthProfile: true
+        })
+        console.log("ON_UPDATE")
     }
     render(){
         return (
-            <div></div>
+            <div className=" edit-task__wrapper">
+                <section className="landing-info panel edit-task__section">
+                    <div className="container">
+                        <div className="content ">
+                            <WebHeader active="profile" />
+                            <section className="profile__article hide-on-mobile">
+                                <WebSidebar />
+                                <div className="profile__article--content">
+                                    <h3>Change preferences</h3>
+                                    <h4 style={{ fontWeight: "initial" }}>Choose how do you want to be notified across platform about:
+                                    New offers, updates and more.</h4>
+                                    <div className="profile__select">
+                                        <h4>You're currently an Asker</h4>
+                                        {this.GetOptions()}
+                                        {
+                                            !this.changedRoleBool() &&
+                                            <button
+                                                onClick={this.update}
+                                                style={{ 
+                                                    padding: 11, 
+                                                    width: 147,
+
+                                                }}
+                                                className="button__style">
+                                                Save
+                                            </button>
+                                        }
+                                    </div>
+                                    <br/><br/>
+                                    <div style={{ marginTop: 5 }} className="styled-select">
+                                        <p>Skills</p>
+                                        <img src="/images/arr-right.png" alt="" />
+                                        <div className={`styled-select__open`}>
+                                        </div>
+                                    </div>
+                                    <div style={{ marginTop: 5 }} className="styled-select">
+                                        <p>Languages</p>
+                                        <img src="/images/arr-right.png" alt="" />
+                                        <div className={`styled-select__open`}>
+                                        </div>
+                                    </div>
+                                    <div style={{ marginTop: 5 }} className="styled-select">
+                                        <p>Cities</p>
+                                        <img src="/images/arr-right.png" alt="" />
+                                        <div className={`styled-select__open`}>
+                                        </div>
+                                    </div>
+                                    <div className="profile__delete">
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* <section className="profile__article--mobile hide-on-web">
+                                <div className=" edit-task__wrapper">
+                                    <section className="landing-info panel edit-task__section">
+                                        <div className="container">
+                                            <div className="content ">
+                                                <header className="logo-text xn-br hide-on-desktop">
+                                                    <span className="show__mobile">
+                                                        <Link to="/settings">
+                                                            <img src="/images/arrow.jpeg" alt="" />
+                                                        </Link>
+                                                    </span>
+                                                    <h4 className="logo-title ">
+                                                        About us
+                                            </h4>
+                                                </header>
+                                                <div className="pa--mobile pb50 max-vh">
+                                                    <h4 className="text-green">asdsdsda</h4>
+                                                    <h4>asdsasda</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <MobileNav />
+                            </section> */}
+                        </div>
+                    </div>
+                </section>
+            </div>
+
         )
     }
 }
 
-export default ChangePreferencesSettings;
+let mapStateToProps = state => {
+    return {
+        currentUser: state.auth.profile,
+        translations: state.app_lang.data["/settings"].notifications,
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common
+    }
+}
+
+export default compose(withRouter, connect(mapStateToProps, { patchUser }))(ChangePreferencesSettings);

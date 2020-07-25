@@ -75,7 +75,9 @@ class Login extends React.Component {
                 />
             </div>
           </div>
-          <div className="layout__image"></div>
+          <div className="layout__image change" style={{
+            backgroundImage: `url(/static/media/register-img.b2fc2804.jpeg)`
+          }}></div>
         </div>
       </React.Fragment>
     );

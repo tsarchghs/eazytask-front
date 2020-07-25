@@ -11,6 +11,7 @@ import MainTaskCard from "../../components/MainTaskCard";
 import SideTaskCard2 from "../../components/SideTaskCard2";
 import MainOfferCard from "../../components/MainOfferCard";
 import NewOfferNotificationCardView from "./NewOfferNotificationCard.view";
+import Notifications from "./Notifications";
 
 class WebDashboard extends React.Component {
     constructor(props) {
@@ -113,6 +114,7 @@ class WebDashboard extends React.Component {
                                                             getTrans={this.getTrans}     
                                                         />
                                                     </div>
+                                                    <Notifications/>
                                                 </div>
                                                 <div className="hero-home__cards">
                                                     <div className="home__tabs" style={{ justifyContent: 'initial' }}>
@@ -120,7 +122,7 @@ class WebDashboard extends React.Component {
                                                             {this.getTrans(translations.text_4)}
                                                         </div>
                                                         {
-                                                            this.props.own_profile.Tasker && 
+                                                            this.props.own_profile.Tasker && this.props.own_profile.isTasker && 
                                                             <div style={{ cursor: "pointer" }} onClick={() => this.setState({ onTab: "offers" })} className={`home__tab ${this.state.onTab == "offers" && "active"}`}>{this.getTrans(translations.text_26)}</div>
                                                         }
                                                     </div>

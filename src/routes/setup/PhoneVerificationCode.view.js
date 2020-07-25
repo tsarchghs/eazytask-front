@@ -62,7 +62,6 @@ class PhoneVerificationCode extends React.Component {
             success: false,
             loading: false
         }))
-
     }
     onChange = x => async e => {
         let { value } = e.target;

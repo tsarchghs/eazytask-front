@@ -59,9 +59,13 @@ class TaskOffer extends React.Component {
                     backgroundImage: `url(${this.props.offer.Tasker.User.cover_image || window.__COVER_DEFAULT_PICTURE__})`
                 }}>
                     <div className="offer-picture__buttons">
-                    <Link to={"/task/" + this.props.offer.Task.id}>
-                        <div className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
-                    </Link>
+                        <div className="offer-picture__back"><img onClick={e => {
+                            try {
+                                this.props.history.goBack();
+                            } catch (e) {
+                                this.props.history.push("/")
+                            }
+                        }} src="/images/arrow.jpeg" alt="" /></div>
                         <div className="offer-picture__edit hide">
                             <img src="/images/more.png" alt="" />
                         </div>
@@ -94,76 +98,9 @@ class TaskOffer extends React.Component {
                     </div>
                 </div></section>
 
-        )
-        return (
-            <div className=" edit-task__wrapper">
-                <section className="landing-info panel edit-task__section">
-                    <div className="container">
-                        <div className="content">
-                            <header className="logo-text">
-                                <span onClick={() => {
-                                    let { search } = this.props.location;
-                                    let params = queryString.parse(search);
-                                    if (params.from_task){
-                                        this.props.history.push({
-                                            pathname: `/task/${this.props.match.params.taskId}`,
-                                            state: { belowUI: "SHOW_OFFERS" }
-                                        })
-                                    } else {
-                                        this.props.history.push(`/task/${this.props.match.params.taskId}/edit/offers`)
-                                    }
-                                }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                                <h4 className="hide-on-desktop logo-title">
-                                    Offers
-                </h4>
-                            </header>
-                            <section className="offers-fullcard">
-                                <div className="offers__card">
-                                    <div className="offers__card--top">
-                                        <h4>{this.props.offer.Task.title}</h4>
-                                        <p className="special">{this.props.offer.description || "No description"}</p>
-                                        <div className="offers__profile">
-                                            <div className="offers__profile--img" />
-                                            <h4>CHF {this.props.offer.amount}.-</h4>
-                                            <h4 className="flex aic jcc"> <div className="img-circle">
-                                            <img onClick={() => this.props.history.push("/profile/" + this.props.offer.Tasker.UserId)} src={this.props.offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" /></div> {this.props.offer.Tasker.User.first_name} {this.props.offer.Tasker.User.last_name[0]}.</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <div className="buttons__group">
-                                <Link to={"/profile/" + this.props.offer.Tasker.UserId}>
-                                    <button className="button__style no-color">View Profile</button>
-                                </Link>
-                                {this.getButton()}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-        )
-        return (
-            <React.Fragment>
-                <Link to={`/task/${this.props.match.params.taskId}/edit/offers`}>
-                    <h4>{"<-"}</h4>
-                </Link>
-                <h4>Offer</h4>
-                {JSON.stringify(this.props.offer)}<br/>
-                <Link to={"/profile/" + this.props.offer.Tasker.UserId}><h5>View profile</h5></Link>
-                { this.getButton() }
-
-            </React.Fragment>
-        )
+        )    
     }
 }
-
-// const mapStateToProps = (state, ownProps) => {
-//     let { taskId } = ownProps.match.params
-//     let { error, loading, ...task } = state.tasks.byIds[taskId] || { loading: true }
-//     let own_user = state.auth.profile;
-//     return { error, loading, own_user, task: task || {} }
-// }
 
 const mapStateToProps = (state, ownProps) => {
     let { offerId } = ownProps.match.params

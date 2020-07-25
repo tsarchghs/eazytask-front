@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../../../actions/posts";
 import WebHeader from "../../../components/WebHeader";
+import { compose } from "recompose";
 
 class Blog extends React.Component {
     constructor(props){
@@ -20,9 +21,13 @@ class Blog extends React.Component {
                         <div className="content ">
                             <WebHeader/>
                             <header className="logo-text xn-br hide-on-desktop">
-                                <Link to="/dashboard?tab=more">
-                                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                                </Link>
+                                <span onClick={() => {
+                                    try {
+                                        this.props.history.goBack();
+                                    } catch (e) {
+                                        this.props.history.push("/")
+                                    }
+                                }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="logo-title ">
                                     Read Our <br /> <span>Blog</span>
                                 </h4>
@@ -85,4 +90,4 @@ const mapStateToProps = state => ({
     posts: state.posts.allIds.map(id => state.posts.byIds[id]),
     loading: state.posts.loading
 })
-export default connect(mapStateToProps, { getPosts })(Blog);
+export default compose(withRouter,connect(mapStateToProps, { getPosts }))(Blog);

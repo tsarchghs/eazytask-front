@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
 
 class FAQ extends React.Component {
@@ -77,7 +77,18 @@ class FAQ extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <WebHeader/>
+                            <header className="flex jcsb aic hide-on-mobile">
+                                <Link to="/">
+                                    <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                                </Link>
+                                <div className="header-nav-web">
+                                    <Link to="/">
+                                        <a href="#" className={`h4`}>
+                                            Home
+                                        </a>
+                                    </Link>
+                                </div>
+                            </header>
                             <section className="faq-web hide-on-mobile">
                                 <div className="faq-web__top">
                                     <h4>View <span>Faq</span></h4>
@@ -118,9 +129,13 @@ class FAQ extends React.Component {
                                                 <section className="home faq-mobile">
                                                     <div className="home__title">
                                                         <span className="show__mobile">
-                                                            <Link to="/dashboard?tab=more">
-                                                                <img src="/images/arrow.jpeg" />
-                                                            </Link>
+                                                            <img onClick={() => {
+                                                                try {
+                                                                    this.props.history.goBack();
+                                                                } catch (e) {
+                                                                    this.props.history.push("/")
+                                                                }
+                                                            }} src="/images/arrow.jpeg" />
                                                             <div className="flex jcsb aic" style={{ width: '100%', marginRight: 0 }}>
                                                                 <h3>Explore <br /> 
                                                                 <span>More</span></h3>			
@@ -146,4 +161,4 @@ class FAQ extends React.Component {
         )
     }
 }
-export default FAQ;
+export default withRouter(FAQ);

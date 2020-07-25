@@ -61,7 +61,13 @@ class TaskOffers extends React.Component {
                     <div className="container">
                         <div className="content">
                             <header className="logo-text">
-                                <span onClick={() => this.props.history.push(`/task/${this.props.match.params.taskId}/edit`)} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                <span onClick={e => {
+                                    try {
+                                        this.props.history.goBack();
+                                    } catch (e) {
+                                        this.props.history.push("/")
+                                    }
+                                }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="hide-on-desktop logo-title">
                                     Offers
                                 </h4>

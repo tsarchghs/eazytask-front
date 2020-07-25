@@ -8,6 +8,7 @@ import TaskList from "./TaskList.view"
 import { getActiveListing } from "../../actions/app";
 import { connect } from "react-redux";
 import MainTaskCard from "../../components/MainTaskCard";
+import Footer from "../../components/Footer/Footer";
 
 class Home extends React.Component {
     constructor(props) {
@@ -138,7 +139,7 @@ class Home extends React.Component {
                                         <div className="flex-grow flex flex-column jcc m-jci w100">
                                             <div className="background-title mb5">
                                                 <h1 className="fs62 fwn">Your tasks</h1>
-                                                <h1 className="bold bigger" style={{ fontSize: 86 }}>Made Easy!</h1>
+                                                <h1 className="bold bigger fs70">Made Easy!</h1>
                                             </div>
                                             <p className="mb30 special fs19 fwl ">Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr, sed diam. </p>
                                         </div>
@@ -316,6 +317,43 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </section>
+                    <section className="profile__cover web-more" style={{ position: "relative", zIndex: 99999999, background: "white" }}>
+                    <div className="container">
+                        <div className="content">
+                            <div className="two-column__info flex flex-column">
+                                <div className=" flex jcsb aic w100">
+                                    <div className="background-title mb5 flex1">
+                                        <h3>Explore more</h3>
+                                        <p className="shadow__title hide__mobile">asdas</p>
+                                        <p className="shadow__title show__mobile">COMMERCIAL</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="more__cards--content mt40">
+                                <Link to="/blog">
+                                    <div className="more__card">
+                                        <img src="/images/writer_1.png" alt="" />
+                                        <div>
+                                            <h4>Blog</h4>
+                                            <p>Keep updated by reading<br />our latest blog</p>
+                                        </div>
+                                    </div>
+                                </Link>
+                                <Link to="/faq">
+                                    <div className="more__card">
+                                        <img src="/images/question_.png" alt="" />
+                                        <div>
+                                            <h4>FAQ</h4>
+                                            <p>View Frequently <br />Asked <br />Question</p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                        <Footer/>
+                    </section>
+                    
                 </div>
 
                 {/* <Link to="/login">Login</Link> <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>Register</Link> <Link to="/logout">Logout</Link>

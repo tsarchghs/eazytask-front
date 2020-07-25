@@ -24,12 +24,18 @@ class SingleBlog extends React.Component {
                     <div className="container">
                         <div className="content ">
                             <header className="logo-text">
-                            <Link to="/blog">
-                                <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                                <h4 className="hide-on-desktop logo-title ">
-                                    <span className="arraw hide-on-mobile"><img src="/images/arrow.jpeg" alt="" /></span>Blogs
-                                </h4>
-                            </Link>
+                                <div onClick={() => {
+                                    try {
+                                        this.props.history.goBack();
+                                    } catch (e) {
+                                        this.props.history.push("/")
+                                    }
+                                }}>
+                                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                    <h4 className="hide-on-desktop logo-title ">
+                                        <span className="arraw hide-on-mobile"><img src="/images/arrow.jpeg" alt="" /></span>Blogs
+                                    </h4>
+                                </div>
                             </header>
                             <section className="blog-cards bg-inside">
                                 <div className="blog-card " style={{ width: "100%", wordBreak: "break-all" }}>

@@ -20,7 +20,8 @@ class MyProfileEdit extends React.Component {
             "first_name": this.getTrans(props.translations.text_1),
             "last_name": this.getTrans(props.translations.text_2),
             "zipCode": this.getTrans(props.translations.text_4),
-            "address": this.getTrans(this.props.translations.text_6)
+            "address": this.getTrans(this.props.translations.text_6),
+            "short_biography": this.getTrans(this.props.translations.text_6_1)
         }
     }
     componentDidMount() {
@@ -58,14 +59,14 @@ class MyProfileEdit extends React.Component {
                 ref={input => this[key + "_ref"] = input}
                 className="input register__form_input"
                 style={{
-                    width: key == "address" ? "100%" : "50%",
-                    marginBottom: key == "address" ? 10 : "-3%",
-                    marginTop: key == "address" ? 23 : undefined,
+                    width: key == "address" || key === "short_biography" ? "100%" : "50%",
+                    marginBottom: key == "address" || key === "short_biography" ? 10 : "-3%",
+                    marginTop: key == "address" || key === "short_biography" ? 23 : undefined,
                     padding: "10px 20px",
                     borderRadius: 13,
                     backgroundColor: "#ececec",
                     border: "none",
-                    height: 42
+                    height: 42,
                 }}
                 placeholder={this.getKeyDisplay(key)}
                 onChange={this.handleOnChange(key)}
@@ -221,6 +222,7 @@ class MyProfileEdit extends React.Component {
                                     {this.getStaticOrInput("first_name", "50%")}
                                     {this.getStaticOrInput("last_name", "50%")}
                                 </div>
+                                {this.getStaticOrInput("short_biography", "100%")}
                                 {/* <div className="account-profile__input">
                                     <p>Notification options</p>
                                     <div className="ap__input">
@@ -233,7 +235,9 @@ class MyProfileEdit extends React.Component {
                                     <p>{this.getTrans(this.props.translations.text_3)}</p>
                                     <div className="ap__input">
                                         <h5>{this.props.currentUser.phone_number}</h5>
-                                        {/* <img src="/images/edit-pen.png" alt="" /> */}
+                                        <Link to="/change_phone_number">
+                                            <img src="/images/edit-pen.png" alt="" />
+                                        </Link>
                                     </div>
                                 </div>
                                 {this.getStaticOrInput("address")}

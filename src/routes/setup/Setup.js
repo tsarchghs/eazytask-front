@@ -145,7 +145,7 @@ class Setup extends React.Component {
     setupAccount = () => {
         this.props.patchUser({
             userId: this.props.id,
-            data: { ...this.state.data, setupCompleted: true },
+            data: { ...this.state.data, setupCompleted: true, isTasker: this.state.setupTasker },
             callUpdateAuthProfile: true
         });
         if (this.state.setupTasker) {
