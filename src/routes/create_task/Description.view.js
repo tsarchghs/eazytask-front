@@ -18,7 +18,11 @@ export default class Description extends React.Component {
                     <p className="show__mobile--subtitle">{this.props.getTrans(this.props.translations.text_5_1)}</p>
                 </h4>
     
-                <div className="register__form">
+                <div className="register__form" style={{
+                    position: "relative",
+                    marginTop: 0,
+                    paddingBottom: 100
+                }}>
                     <textarea
                         ref={ref => this.descriptionRef = ref}
                         type="text"
@@ -32,9 +36,9 @@ export default class Description extends React.Component {
                         <div class="register__form--error">{x}</div>
                     ))}
                 </div>
-                <div className="flex-grow img-wrapper flex aic jcc">
+                {/* <div className="flex-grow img-wrapper flex aic jcc">
                     <img className="img__mobile " src="/images/startup.png" alt="" />
-                </div>
+                </div> */}
             </React.Fragment>
         )
     }

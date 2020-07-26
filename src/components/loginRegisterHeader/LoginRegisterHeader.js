@@ -10,7 +10,7 @@ const LoginRegisterHeader = props => {
       <span onClick={e => {
         props.history.push("/")
       }} class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-      <img style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
+      <img onClick={() => props.history.push("/")} style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
     </header>
   );
 };

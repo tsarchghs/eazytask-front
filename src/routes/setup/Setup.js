@@ -351,7 +351,7 @@ class Setup extends React.Component {
             <React.Fragment>
                 {   
                     displaySkip && 
-                    <button onClick={displaySkip.onClick} className="button__style no-color">{displaySkip.show}</button>
+                    <button onClick={displaySkip.onClick} className={`button__style no-color ${this.state.step == 0 ? "hollow" : ""}`}>{displaySkip.show}</button>
                 }
                 <button 
                     className={`button__style ${buttonDisabled ? "not-filled" : ""}`} 

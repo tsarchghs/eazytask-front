@@ -396,3 +396,39 @@ body {
     top: 15px;
     left: 15px;
 }
+
+@media only screen and (max-width: 1285px) {
+  .register__tabs {
+    button {
+      font-size: calc(25px + 1vw) !important;
+    }
+  }
+}
+
+.video {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden; }
+  @media screen and (max-width: 39.9375em) {
+    .video {
+      margin-top: 35px; } }
+
+.hollow {
+  background-color: transparent;
+  color: #5b5b5b;
+  border-color: #afafaf;
+  border: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

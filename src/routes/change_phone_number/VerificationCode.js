@@ -76,7 +76,13 @@ class VerificationCode extends React.Component {
             <div className="container">
                 <div className="content">
                     <header className="w-subtitle">
-                        <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                        <span onClick={e => {
+                            try {
+                                this.props.history.goBack()
+                            } catch (err) {
+                                this.props.history.push("/")
+                            }
+                        }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                         <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                         <p className="show__mobile">Reset account</p>
                     </header>
@@ -92,7 +98,7 @@ class VerificationCode extends React.Component {
                 <p className="text-center">A code has been to your phone number, please <br /> enter it here</p>
                             </h4>
                             {this.state.showError}
-                            <form onSubmit={this.onSubmit}>
+                            <form className="flex-grow" onSubmit={this.onSubmit}>
                                 <div className="small-input flex-grow" style={{ alignItems: 'baseline' }}>
                                     <CodeInputs values={this.state.values} onChange={this.onChange} />
                                 </div>

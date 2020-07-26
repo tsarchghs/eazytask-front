@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getSkills } from "../../actions/skill";
+import { getLanguages } from "../../actions/language";
 import { getAuth } from "../../actions/auth";
 import { filter } from "../../utils/search";
 import { getCustomItems } from "../setup/utils";
@@ -22,7 +22,7 @@ class MySkills extends React.Component {
     }
     componentDidMount() {
         if (!once){
-            this.props.getSkills()
+            this.props.getLanguages()
             this.props.getAuth("?fields=tasker")
             if (this.searchRef) this.searchRef.focus()
         }
@@ -30,7 +30,7 @@ class MySkills extends React.Component {
     }
     getFilteredSkills = () => {
         let skills = this.props.allIds.map(id => this.props.byIds[id])
-        console.log("this.props.own_user.Tasker.Skills", this.props.own_user.Tasker)
+        console.log("this.props.own_user.Tasker.Cities", this.props.own_user.Tasker)
         let customSkills = getCustomItems(this.state.skills, skills)
         let uniqueCustomSkills = customSkills
         console.log({uniqueCustomSkills})
@@ -84,7 +84,7 @@ class MySkills extends React.Component {
     getTrans = obj => obj[this.props.app_lang]
     update = () => {
         this.setState({ loading: true })
-        axios.patch("/taskers/" + this.props.own_user.Tasker.id, { skills: this.state.skills })
+        axios.patch("/taskers/" + this.props.own_user.Tasker.id, { cities: this.state.skills })
             .then(data => {
                 this.setState({ loading: false })
                 this.props.history.push("/settings/change_preferences")
@@ -94,11 +94,11 @@ class MySkills extends React.Component {
             })
     }
     render() {
-        if (!this.props.own_user || !this.props.own_user.Tasker || !this.props.own_user.Tasker.Skills) return null;
-        if (this.props.own_user.Tasker.Skills && !once2){
+        if (!this.props.own_user || !this.props.own_user.Tasker || !this.props.own_user.Tasker.Cities) return null;
+        if (this.props.own_user.Tasker.Cities && !once2){
             once2 = true;
             this.setState(prevState => {
-                prevState.skills = prevState.skills.concat(this.props.own_user.Tasker.Skills.map(x => x.name))
+                prevState.skills = prevState.skills.concat(this.props.own_user.Tasker.Cities.map(x => x.name))
                 return { ...prevState } 
             })
         }
@@ -108,13 +108,13 @@ class MySkills extends React.Component {
                     <div className={"content"}>
                         <header className="logo-text">
                             <span class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                            <h4 class="hide-on-desktop">{this.getTrans(this.props.translations.text_26)}</h4>
+                            <h4 class="hide-on-desktop">Area of activity</h4>
                             <img style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
                         </header>
                         <section className={`two-column__layout setup__mobile`} style={{ height: "calc(99vh - 114.6px)" }}>
                             <div className="two-column__info flex flex-column">
                                 <div className="background-title mb5">
-                                    <h1>{this.getTrans(this.props.translations.text_26)}</h1>
+                                    <h1>Area of activity</h1>
                                     <p className="shadow__title">setup your account</p>
                                 </div>
                                 <div className="flex-grow input__group skills__input-group">
@@ -123,7 +123,7 @@ class MySkills extends React.Component {
                                         <input
                                             type="text"
                                             ref={ref => this.searchRef = ref}
-                                            placeholder={this.getTrans(this.props.translations.text_27)}
+                                            placeholder={"Search for a city or add a custom one"}
                                             value={this.state.query}
                                             onChange={e => this.setState({ query: e.target.value })}
                                             onKeyDown={this.searchOnKeyDown}
@@ -196,12 +196,12 @@ class MySkills extends React.Component {
 
 const mapStateToProps = state => ({
     own_user: state.auth.profile,
-    byIds: state.skills.byIds,
-    allIds: state.skills.allIds,
-    loading: state.skills.loading,
+    byIds: state.languages.byIds,
+    allIds: state.languages.allIds,
+    loading: state.languages.loading,
     translations: state.app_lang.data["/setup"],
     app_lang: state.app_lang.app_lang,
     common: state.app_lang.common
 })
 
-export default compose(withRouter,connect(mapStateToProps, { getAuth, getSkills }))(MySkills);
+export default compose(withRouter,connect(mapStateToProps, { getAuth, getLanguages }))(MySkills);

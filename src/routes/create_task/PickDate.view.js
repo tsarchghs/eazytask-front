@@ -21,7 +21,7 @@ export default props => {
                 <span>{props.getTrans(props.translations.text_7_1)}</span>
             </h4>
 
-            <div className="date-section">
+            <div className="date-section flex-grow" style={{ minHeight: 132 }}>
                 <div className="date-section__tabs flex jcc aic">
                     <h3 className={fixedClassNames} onClick={props.fixedOnClick}>{props.getTrans(props.translations.text_8)}</h3>
                     <h3 className={untilClassNames} onClick={props.untilOnClick}>{props.getTrans(props.translations.text_9)}</h3>
@@ -46,34 +46,10 @@ export default props => {
                     />
                 </div>
             </div>
-            <div className="flex-grow img-wrapper flex aic jcc">
+            {/* <div className="flex-grow img-wrapper flex aic jcc">
                 <img className="img__mobile " src="/images/calendar.png" alt="" />
-            </div>
+            </div> */}
 
-        </React.Fragment>
-    )
-    return (
-        <React.Fragment>
-            Pick a date:<br />
-            <button className={fixedClassNames} onClick={props.fixedOnClick}>Fixed</button><br/>
-            <button className={untilClassNames} onClick={props.untilOnClick}>Until</button> <br/>
-            Day: <input 
-                type="number" 
-                placeholder="day" 
-                value={props.day} 
-                onChange={props.onDayChange}     
-            />
-            Month: <input 
-                type="number" 
-                placeholder="month" 
-                value={props.month} 
-                onChange={props.onMonthChange}
-            />
-            Year: <input 
-                type="number" 
-                value={props.year}
-                onChange={props.onYearChange}     
-            />
         </React.Fragment>
     )
 }

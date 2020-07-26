@@ -71,24 +71,30 @@ class ChangePreferencesSettings extends React.Component {
                                         }
                                     </div>
                                     <br/><br/>
-                                    <div style={{ marginTop: 5 }} className="styled-select">
-                                        <p>Skills</p>
-                                        <img src="/images/arr-right.png" alt="" />
-                                        <div className={`styled-select__open`}>
+                                    <a href="/settings/change_skills">
+                                        <div style={{ marginTop: 5 }} className="styled-select">
+                                            <p>Skills</p>
+                                            <img src="/images/arr-right.png" alt="" />
+                                            <div className={`styled-select__open`}>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div style={{ marginTop: 5 }} className="styled-select">
-                                        <p>Languages</p>
-                                        <img src="/images/arr-right.png" alt="" />
-                                        <div className={`styled-select__open`}>
+                                    </a>
+                                    <a href="/settings/change_languages">
+                                        <div style={{ marginTop: 5 }} className="styled-select">
+                                            <p>Languages</p>
+                                            <img src="/images/arr-right.png" alt="" />
+                                            <div className={`styled-select__open`}>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div style={{ marginTop: 5 }} className="styled-select">
-                                        <p>Cities</p>
-                                        <img src="/images/arr-right.png" alt="" />
-                                        <div className={`styled-select__open`}>
+                                    </a>
+                                    <a href="/settings/change_cities">
+                                        <div style={{ marginTop: 5 }} className="styled-select">
+                                            <p>Cities</p>
+                                            <img src="/images/arr-right.png" alt="" />
+                                            <div className={`styled-select__open`}>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div className="profile__delete">
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@ export default class Name extends React.Component {
                     {this.props.getTrans(this.props.translations.text_1)}<br />
                     <span>{this.props.getTrans(this.props.translations.text_1_1)}</span>
                 </h4>
-                <div className="register__form">
+                <div className="register__form" style={{ minHeight: 65 }}>
                     <input 
                         ref={ref => this.nameRef = ref}
                         type="text"
@@ -30,8 +30,8 @@ export default class Name extends React.Component {
                         <div class="register__form--error">{x}</div>
                     ))}
                 </div>
-                <div className="flex-grow img-wrapper flex aic jcc">
-                    <img className="img__mobile " src="/images/startup.png" alt="" />
+                <div className="flex-grow img-wrapper flex aic jcc ct-mob">
+                    <img style={{width: "80%"}} className="img__mobile " src="/images/startup.png" alt="" />
                 </div>
             </React.Fragment>
         )

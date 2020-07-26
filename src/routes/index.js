@@ -48,8 +48,8 @@ const MobileNotifications = lazy(() => import("./mobile_notifications"))
 const ChangePhoneNumber = lazy(() => import("./change_phone_number"));
 
 const SettingsChangeSkills = lazy(() => import("./settings_change_skills"));
-const SettingsChangeLanguages = 0 // lazy(() => import("./settings_change_languages"));
-const SettingsChangeCities = 0 // lazy(() => import("./settings_change_cities"));
+const SettingsChangeLanguages = lazy(() => import("./settings_change_languages"));
+const SettingsChangeCities = lazy(() => import("./settings_change_cities"));
 
 // import Login from "./login";
 // import Register from "./register";

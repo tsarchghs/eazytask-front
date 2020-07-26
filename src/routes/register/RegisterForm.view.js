@@ -58,7 +58,7 @@ class RegisterForm extends React.Component {
           </div>
           <div className="register__button">
             <p className="robot" style={{ fontSize: 20 }} onClick={e => e.preventDefault()}>
-              By joining on platform I confirm that I read and <br />
+              By joining on platform I confirm that I read and
               understood all the <Link style={{ fontSize: 20, color: "#4068a3" }} to={{ pathname: "/terms_and_conditions", state: { backPathname: "/register" } }}>Terms&Conditions</Link> of eazytask
             </p>
             {this.props.loading && "Loading"}

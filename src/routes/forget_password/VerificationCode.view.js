@@ -90,7 +90,7 @@ class VerificationCode extends React.Component {
                                     Verification code
                     <p className="text-center">A code has been to your email, please <br /> enter it here</p>
                                 </h4>
-                                <form onSubmit={this.onSubmit}>
+                                <form onSubmit={this.onSubmit} className="flex-grow">
                                     {
                                         this.props.app_validateVerificationCode.err &&
                                         this.props.app_validateVerificationCode.err.response &&
@@ -107,7 +107,7 @@ class VerificationCode extends React.Component {
                                         <button type="submit" style={{display:"none"}}/>
                                     </div>
                                 </form>
-                                <div className="flex-grow img-wrapper flex aic jcc">
+                                <div className="flex-grow img-wrapper flex aic jcc hide-on-mobile">
                                     <img className="img__mobile " src="/images/flymail.png" alt="" />
                                 </div>
                                 <div className="buttons__group">

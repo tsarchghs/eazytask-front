@@ -16,7 +16,7 @@ export default props => {
                 {props.getTrans(props.translations.text_36)}  <br />
                 <span>{props.getTrans(props.translations.text_37)}</span>
             </h4>
-            <div className="task-section">
+            <div className="task-section" style={{ width: "100%" }}>
                 <p><span>{props.getTrans(props.translations.text_38)}</span> {props.name}</p>
                 <p><span>{props.getTrans(props.translations.text_39)}</span>  {props.description}</p>
                 <p><span>{props.getTrans(props.translations.text_36)}

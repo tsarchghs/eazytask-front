@@ -30,10 +30,14 @@ class EmailForm extends React.Component {
                     <p>Enter your email</p>
                             </h4>
                             <h4 className="mt30 hide-on-mobile">Enter your email</h4>
-                            <form onSubmit={this.props.onSubmit} className="register__form">
+                            <form 
+                                onSubmit={this.props.onSubmit} 
+                                className="register__form flex-grow" 
+                                style={{ minHeight: 65}}
+                            >
                                 <input ref={ref => this.emailRef = ref} value={this.props.email} onChange={this.props.onChange} type="Email" placeholder="Email" className="input" />
                             </form>
-                            <div className="flex-grow img-wrapper flex aic jcc">
+                            <div className="flex-grow img-wrapper flex aic jcc hide-on-mobile">
                                 <img className="img__mobile " src="/images/auth.png" alt="" />
                             </div>
                             <div className="buttons__group">
