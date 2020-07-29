@@ -107,9 +107,15 @@ class MySkills extends React.Component {
                 <div className="container">
                     <div className={"content"}>
                         <header className="logo-text">
-                            <span class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                        <span onClick={e => {
+                            try {
+                                this.props.history.goBack()
+                            } catch (err) {
+                                this.props.history.push("/settings/change_preferences")
+                            }
+                        }} class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                             <h4 class="hide-on-desktop">{this.getTrans(this.props.translations.text_26)}</h4>
-                            <img style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
+                            <img onClick={e => this.props.history.push("/")} style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
                         </header>
                         <section className={`two-column__layout setup__mobile`} style={{ height: "calc(99vh - 114.6px)" }}>
                             <div className="two-column__info flex flex-column">

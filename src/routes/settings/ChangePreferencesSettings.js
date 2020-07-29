@@ -18,9 +18,9 @@ class ChangePreferencesSettings extends React.Component {
         this.setState({ opened: !opened })
     }
     GetOptions = () => (
-        <div className="styled-select">
+        <div className="styled-select" style={{ zIndex: 999 }}>
             <p>{this.state.show || (!this.props.currentUser.isTasker ? "Asker" : "Asker and Tasker")}</p>
-            <img onClick={this.toggle(this.state.opened)} src="/images/arr-right.png" alt="" />
+            <img style={{ cursor: "pointer" }} onClick={this.toggle(this.state.opened)} src="/images/arr-right.png" alt="" />
             <div className={`styled-select__open ${this.state.opened ? "opened" : ""}`}>
                 <div onClick={e => this.setState({ isTasker: false, show: "Asker", opened: false })} className="styled-select__item">
                     Asker
@@ -54,7 +54,7 @@ class ChangePreferencesSettings extends React.Component {
                                     <h4 style={{ fontWeight: "initial" }}>Choose how do you want to be notified across platform about:
                                     New offers, updates and more.</h4>
                                     <div className="profile__select">
-                                        <h4>You're currently an Asker</h4>
+                                        <h4>You're currently an:</h4>
                                         {this.GetOptions()}
                                         {
                                             !this.changedRoleBool() &&
@@ -100,7 +100,7 @@ class ChangePreferencesSettings extends React.Component {
                                 </div>
                             </section>
 
-                            {/* <section className="profile__article--mobile hide-on-web">
+                            <section className="profile__article--mobile hide-on-web">
                                 <div className=" edit-task__wrapper">
                                     <section className="landing-info panel edit-task__section">
                                         <div className="container">
@@ -116,15 +116,55 @@ class ChangePreferencesSettings extends React.Component {
                                             </h4>
                                                 </header>
                                                 <div className="pa--mobile pb50 max-vh">
-                                                    <h4 className="text-green">asdsdsda</h4>
-                                                    <h4>asdsasda</h4>
+                                                    <div className="profile__select">
+                                                        <h4>You're currently an:</h4>
+                                                        {this.GetOptions()}
+                                                        {
+                                                            !this.changedRoleBool() &&
+                                                            <button
+                                                                onClick={this.update}
+                                                                style={{
+                                                                    padding: 11,
+                                                                    width: 147,
+
+                                                                }}
+                                                                className="button__style">
+                                                                Save
+                                            </button>
+                                                        }
+                                                    </div>
+                                                    <br /><br />
+                                                    <a href="/settings/change_skills">
+                                                        <div style={{ marginTop: 5 }} className="styled-select">
+                                                            <p>Skills</p>
+                                                            <img src="/images/arr-right.png" alt="" />
+                                                            <div className={`styled-select__open`}>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a href="/settings/change_languages">
+                                                        <div style={{ marginTop: 5 }} className="styled-select">
+                                                            <p>Languages</p>
+                                                            <img src="/images/arr-right.png" alt="" />
+                                                            <div className={`styled-select__open`}>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a href="/settings/change_cities">
+                                                        <div style={{ marginTop: 5 }} className="styled-select">
+                                                            <p>Cities</p>
+                                                            <img src="/images/arr-right.png" alt="" />
+                                                            <div className={`styled-select__open`}>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </section>
                                 </div>
                                 <MobileNav />
-                            </section> */}
+                            </section>
                         </div>
                     </div>
                 </section>

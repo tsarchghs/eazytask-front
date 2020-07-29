@@ -96,6 +96,7 @@ class CreateTask extends React.Component {
         }
         this.lastStepIndex = this.state.steps.length - 1
         this.requestSent = false;
+        this.redirected = false;
     }
     createTask = async () => {
         console.log("CREATE_TASK", this.state.data, this.requestSent)
@@ -115,10 +116,14 @@ class CreateTask extends React.Component {
         }
     }
     componentDidUpdate(prevProps,prevState){
-        console.log("prevState,this.state.step,this.lastStepIndex",prevState.step,this.state.step,this.lastStepIndex)
-        if (this.state.step === this.lastStepIndex) {
-            this.createTask();
+        if (this.props.app_createTask.data && !this.redirected) {
+            this.redirected = true;
+            this.props.history.push("?step=" + this.lastStepIndex)
         }
+        console.log("prevState,this.state.step,this.lastStepIndex",prevState.step,this.state.step,this.lastStepIndex)
+        // if (this.state.step === this.lastStepIndex) {
+        //     this.createTask();
+        // }
         if (prevProps.location.search != this.props.location.search) {
             let { search } = this.props.location;
             let { step } = queryString.parse(search);
@@ -272,6 +277,7 @@ class CreateTask extends React.Component {
         else return false
     }
     getButtonText = () => {
+        if (this.props.app_createTask.loading) return "Publishing task..."
         if (this.state.step == 8) return this.getTrans(this.props.translations.text_51)
         if (this.state.step === this.lastStepIndex - 2) return this.getTrans(this.props.translations.text_49)
         if (this.state.step === this.lastStepIndex - 1) return this.getTrans(this.props.translations.text_50)
@@ -281,6 +287,12 @@ class CreateTask extends React.Component {
     }
     getButtonOnClick = () => {
         let nextStep = this.state.step + 1;
+        if (this.props.app_createTask.loading) return () => {}
+        if (this.state.step == this.lastStepIndex - 1){
+            return () => {
+                this.createTask();
+            }
+        }
         if (this.state.step === this.lastStepIndex) return () => {
             this.props.history.push("/");
             // this.props.history.push("/task/",this.props.app_createTask.data.id)
@@ -413,7 +425,7 @@ class CreateTask extends React.Component {
                                             By joining on platform I confirm that I read and <br />
                                             understood all the <a href="/terms_and_conditions?fromCreateTask" target="_blank">Terms&Conditions</a> of eazytask
                                         </p>
-                                }
+                                }        
                                     <button 
                                         onClick={this.getButtonOnClick()} 
                                         className={"button__style " + (!this.state.valid ? "not-filled " : "")}

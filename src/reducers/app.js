@@ -25,7 +25,7 @@ import {
 
 const INITIAL_STATE = {
     createTask: {
-        loading: true,
+        loading: false,
         task: undefined
     },
     myActiveTasks: {

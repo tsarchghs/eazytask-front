@@ -94,6 +94,7 @@ export const postTasks = (body,fromCreateTask, query) => {
     }
     return dispatch => {
         dispatch(postTasksRequest())
+        if (fromCreateTask) dispatch(setCreateTask({ loading: true, data: undefined }))
         return axios.post("/tasks?" + (query || ""), fd)
             .then(({ data }) => {
                 dispatch(postTasksSuccess(data.data));
