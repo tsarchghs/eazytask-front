@@ -230,13 +230,16 @@ class ActiveListing extends React.Component {
                     </div>
                     <div className={"filters-card__extra " + (this.state.onFilter === "BUDGET_RANGE" ? "slide" : "")}>
                         <h4 className="mb25 flex aic remove-extra">
-                        <img onClick={() => this.setState({ onFilter: "MAIN" })} style={{ cursor: "pointer", transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4>
-                        Budget: 
-                        {
-                            this.state.filters.min_expected_price == this.state.filters.max_expected_price 
-                            ? this.state.filters.min_expected_price
-                            : `${this.state.filters.min_expected_price} - ${this.state.filters.max_expected_price}`
-                        } CH
+                        <img onClick={() => this.setState({ onFilter: "MAIN" })} style={{ cursor: "pointer", transform: 'rotate(180deg)', width: '20px', marginRight: '15px' }} src="images/arr-right.png" alt="" /> Type</h4> 
+                        
+                        <h3 className="fs26">
+                            {
+                                this.state.filters.min_expected_price == this.state.filters.max_expected_price 
+                                ? this.state.filters.min_expected_price
+                                : `$${this.state.filters.min_expected_price} - $${this.state.filters.max_expected_price} /h`
+                            }
+                        </h3>
+                        <p className="special fs17">Slide handlers to adjust price range.</p>
                         <br/>
                         <ReactSlider
                             className="horizontal-slider"

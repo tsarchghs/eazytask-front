@@ -25,17 +25,17 @@ class Home extends React.Component {
         this.prevScrollY = 0;
     }
     listenToScroll = e => {
-        console.log(e);
+        // console.log(e);
         if (!this.stepsSectionRef) return;
         let fixedY = this.mainStepsSectionRef.offsetTop // 3738 // 4654 // this.stepsSectionRef.getBoundingClientRect
         let down = window.scrollY >= fixedY
         let up = window.scrollY <= fixedY && !down
-        console.log(up, down)
+        // console.log(up, down)
         if (up) this.stepsSectionRef.className = "landing-info panel steps-section"
         if (down) this.stepsSectionRef.className = "landing-info panel steps-section steps__layout"
         let stepHeight = (this.stepsSectionRef.scrollHeight + this.stepsSectionRef.offsetHeight) / 3;
         let onStep;
-        console.log(up, down)
+        // console.log(up, down)
         if (window.scrollY >= fixedY) onStep = 1
         if (window.scrollY >= (fixedY + (stepHeight * 0.5))) onStep = 2
         if (window.scrollY >= (fixedY + (stepHeight * 1))) onStep = 3
@@ -45,7 +45,7 @@ class Home extends React.Component {
         let val = document.documentElement.clientHeight
             ? document.documentElement.scrollTop
             : document.body.scrollTop;
-        console.log(val)
+        // console.log(val)
         // console.log(e);
         // if (!this.stepsSectionRef) return;
         // let fixedY = 517 // 3738 // 4654 // this.stepsSectionRef.getBoundingClientRect
@@ -98,7 +98,7 @@ class Home extends React.Component {
         return 0;
     }
     doScrolling = (elementY, duration) => {
-        console.log(elementY,duration)
+        // console.log(elementY,duration)
         var startingY = window.pageYOffset;
         var diff = elementY - startingY;
         var start;
@@ -120,14 +120,14 @@ class Home extends React.Component {
         })
     }
     render(){
-        console.log("this.state.onStep",this.state.onStep)
-        console.log("this.props.loading", this.props.loading)
+        // console.log("this.state.onStep",this.state.onStep)
+        // console.log("this.props.loading", this.props.loading)
         let fromDashboardMore = this.props.location.pathname === "/landing_page"
         return (
             <React.Fragment>
                 <div className="wrapper no-panel">
                     <section className="background-img panel" style={{
-                        backgroundImage: `url("../images/ustah.png")`
+                        backgroundImage: `url("../images/landing_page_s.png")`
                     }} id="fixed">
                         <div className="container">
                             <div className="content setup-ready">
@@ -217,7 +217,7 @@ class Home extends React.Component {
                     <Controller>
                         <Scene duration="100%">
                             { (a,b,c,d) => {
-                                console.log("propro",a,b,c,d)
+                                {/* console.log("propro",a,b,c,d) */}
                                 let onStep;
                                 if (a < 0.3) onStep = 1
                                 else if (a < 0.5) onStep = 2

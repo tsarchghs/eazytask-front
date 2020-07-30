@@ -366,6 +366,20 @@ body {
     transform: initial !important;
   }
 
+  
+  .example-thumb.example-thumb-0 {
+	z-index: 1000000!important;
+background-color: black!important;
+border-radius: 50%!important;
+}
+.example-track.example-track-2 {
+	height: 20px;
+  	background: aliceblue;
+}
+.example-track.example-track-0 {
+	height: 20px;
+    background: antiquewhite;
+}
 .dashboard-offers {
   
     .offers-image {
@@ -431,4 +445,53 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.example-thumb.example-thumb-0 {
+  z-index: 1000000 !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+    border: 2px solid #1f4732;
+    color: white;
+    font-size: 1px;
+    height: 26px;
+    width: 26px;
+      display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-track.example-track-0 {
+    background: #d2d2d2;
+    height: 2px;
+    top: 12px;
+}
+
+.example-track.example-track-1 {
+    position: absolute;
+    left: 154.725px;
+    right: 149.296px;
+    height: 2px;
+    background: #1f4732;
+    top: 12px;
+}
+
+.example-thumb.example-thumb-1  {
+  z-index: 1000000 !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+    border: 2px solid #1f4732;
+  color: white;
+  font-size: 1px;
+  height: 26px;
+  width: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-track.example-track-2 {
+    background: #d2d2d2;
+    height: 2px;
+    top: 12px;
 }
