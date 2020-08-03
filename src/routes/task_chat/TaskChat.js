@@ -11,6 +11,7 @@ import { baseURL_WS } from "../../configs"
 import WebHeader from "../../components/WebHeader";
 import { compose } from "recompose";
 import detectPhoneNumberInside from "../../algorithms/detect_phone_numbers";
+import detectEmails from "../../algorithms/detect_emails";
 import Modal from "../../components/Modal";
 
 class TaskChat extends React.Component {
@@ -59,7 +60,7 @@ class TaskChat extends React.Component {
         e.preventDefault();
         if (!this.state.content || !this.state.content.replace(/\n/g,"")) return;
         if (!this.props.currentUserId) return this.props.history.push("/register")
-        if (detectPhoneNumberInside(this.state.content)) return this.setState({
+        if (detectPhoneNumberInside(this.state.content) || detectEmails(this.state.content)) return this.setState({
             onModal: "PHONE_NUMBER_DETECTED"
         })
         let { taskId } = this.props.match.params;
@@ -109,7 +110,7 @@ class TaskChat extends React.Component {
                 <Modal
                     isActive={this.state.onModal === "PHONE_NUMBER_DETECTED"}     // required
                     closeModal={this.closeModal} // required
-                    title="Phone number detected"
+                    title="Phone number and/or Email detected"
                     description="Sharing contact informations outside Eazytask is not allowed."
                     hide_buttons={true}
                 />

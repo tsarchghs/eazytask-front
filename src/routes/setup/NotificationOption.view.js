@@ -21,7 +21,7 @@ export default props => {
                 <label className={"radio-container " + (props.notification_option !== "EMAIL" ? "shadowed" : "")}>
                     <img src="/images/message.png" style={{ marginBottom: '14px' }} alt="" />
                     <div>
-                        <h5>{props.getTrans(props.translations.text_16)}</h5>
+                        <h5 style={{marginBottom: 30}}>{props.getTrans(props.translations.text_16)}</h5>
                         <input 
                             checked={props.notification_option == "EMAIL"} 
                             type="radio" 
@@ -34,7 +34,7 @@ export default props => {
                 <label className={"radio-container " + (props.notification_option !== "SMS" ? "shadowed" : "")}>
                     <img src="/images/chat.png" alt="" />
                     <div>
-                        <h5>{props.getTrans(props.translations.text_17)}</h5>
+                        <h5 style={{marginBottom: 30}}>{props.getTrans(props.translations.text_17)}</h5>
                         <input 
                             checked={props.notification_option == "SMS"} 
                             type="radio" 

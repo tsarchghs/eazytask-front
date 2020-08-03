@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Modal extends React.Component {
     constructor(props){
@@ -31,6 +32,13 @@ class Modal extends React.Component {
                         <div class="pop-up__buttons">
                             <a onClick={this.props.cancelOnClick || this.props.closeModal}>{this.props.cancelText || "Cancel"}</a>
                             <a onClick={this.props.acceptOnClick}>{this.props.acceptText}</a>
+                        </div>
+                    }
+                    {
+                        this.props.accountSettingsButton && 
+                        <div class="pop-up__buttons">
+                            <a style={{ fontSize: 15 }} onClick={this.props.cancelOnClick || this.props.closeModal}>{this.props.cancelText || "Cancel"}</a>
+                            <Link style={{ fontSize: 15 }} to="/settings/change_preferences">Account settings</Link>
                         </div>
                     }
                 </div>

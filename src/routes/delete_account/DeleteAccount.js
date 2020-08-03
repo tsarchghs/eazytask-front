@@ -35,7 +35,8 @@ class DeleteAccount extends React.Component {
                 reason: this.state.reason, 
                 deleted: true
             }, 
-            callUpdateAuthProfile: true 
+            callUpdateAuthProfile: true,
+            refreshPage: true
         })
     }
     getTrans = obj => {

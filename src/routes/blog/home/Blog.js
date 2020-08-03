@@ -19,7 +19,18 @@ class Blog extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <WebHeader/>
+                            <header className="flex jcsb aic hide-on-mobile">
+                                <Link to="/">
+                                    <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                                </Link>
+                                <div className="header-nav-web">
+                                    <Link to="/">
+                                        <a href="#" className={`h4`}>
+                                            Home
+                                        </a>
+                                    </Link>
+                                </div>
+                            </header>
                             <header className="logo-text xn-br hide-on-desktop">
                                 <span onClick={() => {
                                     try {
@@ -59,6 +70,7 @@ class Blog extends React.Component {
                                         </div>
                                     </div>
                                 ))}
+                                {!loading && !posts.length && "No posts to show..."}
                             </section>
                         </div>
                     </div>

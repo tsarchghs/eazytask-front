@@ -24,8 +24,8 @@ export default props => {
                             <img className="img__mobile " src="/images/smile.png" alt="" />
                         </div>
                         <div className="buttons__group aic">
-                            <Link to="/dashboard">
-                                <button className="button__style">Home</button>
+                            <Link to="/my_profile_edit">
+                                <button className="button__style">Profile</button>
                             </Link>
                         </div>
                     </div>

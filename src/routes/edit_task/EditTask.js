@@ -183,6 +183,7 @@ class EditTask extends React.Component {
         ) return <Redirect to={"/task/" + this.props.task.id}/>
         if (!this.executed_fillGalleryThumbnailState) this.fillGalleryThumbnailState()
         console.log("this.stateee",this.state)
+        if (this.props.task.Offers && this.props.task.Offers.length) return <Redirect to={"/task/" + this.props.task.id}/>
         return (
             <React.Fragment>
                 <WebEditTask 

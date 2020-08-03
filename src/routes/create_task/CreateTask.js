@@ -419,13 +419,13 @@ class CreateTask extends React.Component {
                             {
                                 this.showButtonCondition() &&
                                 <div className={`buttons__group` +  ( [0,3].indexOf(this.state.step) !== -1  ? " fixed" : "")}>
-                                {
+                                {/* {
                                     this.state.step == 9 && 
                                         <p className="m-fs14" style={{ fontSize: 20 }}>
                                             By joining on platform I confirm that I read and <br />
                                             understood all the <a href="/terms_and_conditions?fromCreateTask" target="_blank">Terms&Conditions</a> of eazytask
                                         </p>
-                                }        
+                                }   */}
                                     <button 
                                         onClick={this.getButtonOnClick()} 
                                         className={"button__style " + (!this.state.valid ? "not-filled " : "")}

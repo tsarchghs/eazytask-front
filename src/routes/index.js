@@ -46,7 +46,7 @@ const TermsAndConditions = lazy(() => import('./terms_and_conditions'));
 const E404 = lazy(() => import('./E404'));
 const MobileNotifications = lazy(() => import("./mobile_notifications"))
 const ChangePhoneNumber = lazy(() => import("./change_phone_number"));
-
+const Impressum = lazy(() => import("./impressum"))
 const SettingsChangeSkills = lazy(() => import("./settings_change_skills"));
 const SettingsChangeLanguages = lazy(() => import("./settings_change_languages"));
 const SettingsChangeCities = lazy(() => import("./settings_change_cities"));
@@ -202,7 +202,8 @@ const Routes = props => {
                     <Route path="/active_listing" component={ActiveListing} exact />
                     <Route path="/profile/:userId" component={Profile} exact/>
                     <Route path="/delete_account/thank" component={DeleteAccountThank} exact/>
-
+                    <Route path="/impressum" component={Impressum} exact/>
+                    
                     <Route path="/blog" component={Blog} exact />
                     <Route path="/blog/:postId" component={SingleBlog} exact />
 

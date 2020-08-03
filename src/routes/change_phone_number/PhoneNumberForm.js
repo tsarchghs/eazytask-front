@@ -21,7 +21,7 @@ export default props => {
                         </h4>
                         <h4 className="mt30 hide-on-mobile">Enter your new phone number</h4>
                         <form onSubmit={props.onSubmit} className="register__form flex-grow" style={{ minHeight: '65px' }}>
-                            <PhoneInput onChange={props.onChange} value={props.value}/>
+                            <PhoneInput defaultCountry="CH" onChange={props.onChange} value={props.value}/>
                         </form>
                         <div className="flex-grow img-wrapper flex aic jcc ct-mob hide-on-mobile">
                             <img className="img__mobile " src="/images/auth.png" alt="" />

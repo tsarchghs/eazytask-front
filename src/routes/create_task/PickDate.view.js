@@ -23,8 +23,8 @@ export default props => {
 
             <div className="date-section flex-grow" style={{ minHeight: 132 }}>
                 <div className="date-section__tabs flex jcc aic">
-                    <h3 className={fixedClassNames} onClick={props.fixedOnClick}>{props.getTrans(props.translations.text_8)}</h3>
-                    <h3 className={untilClassNames} onClick={props.untilOnClick}>{props.getTrans(props.translations.text_9)}</h3>
+                    <h3 style={{ cursor: "pointer" }} className={fixedClassNames} onClick={props.fixedOnClick}>{props.getTrans(props.translations.text_8)}</h3>
+                    <h3 style={{ cursor: "pointer" }} className={untilClassNames} onClick={props.untilOnClick}>{props.getTrans(props.translations.text_9)}</h3>
                 </div>
                 <div className="date-section__select flex jcc aic ">
                      <input

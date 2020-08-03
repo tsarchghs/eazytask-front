@@ -9,7 +9,7 @@ const MainTaskCard = props => {
                 <div className="listing-card__img">
                     <div className="lc-img" style={{
                         backgroundImage:
-                            props.task.thumbnail ? `url("${props.task.thumbnail}")` : 'url("/images/ustah.jpeg")'
+                            props.task.thumbnail ? `url("${props.task.thumbnail}")` : `url("${window.__THUMBNAIL_DEFAULT_PICTURE__}")`
                     }}
                     />
                     <div className="listing-card__img--mask" />

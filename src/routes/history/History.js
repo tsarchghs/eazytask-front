@@ -48,7 +48,7 @@ class History extends React.Component {
                         { loading && "Loading.." }
                         { err && err.name }
                         { !loading && !err && tasks.map(task => (
-                            <div className="home__card" style={{backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`}}>
+                            <div style={{cursor: "pointer" }} onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`}}>
                                 <div className="home__card--mask" />
                                 <h5>View “{task.title}”</h5>
                                 <p>{this.getShow(task)}</p>
@@ -68,9 +68,12 @@ class History extends React.Component {
               </section>
             </div>
             <section className="offers-layout tasker-profile hide-on-mobile">
-              <div className="offers-picture">
+              <div style={{
+                backgroundImage: `url(${this.props.own_profile.cover_image || window.__COVER_DEFAULT_PICTURE__})`
+
+              }} className="offers-picture">
                 <div className="offer-picture__buttons">
-                  <div className="offer-picture__back"><img onClick={() => {
+                  <div style={{ cursor: "pointer" }} className="offer-picture__back"><img onClick={() => {
                     try {
                       this.props.history.goBack();
                     } catch (e) {
@@ -89,7 +92,7 @@ class History extends React.Component {
                     <div className="offers__card--top">
                       <div className="offers__profile">
                         <div className="offers__profile--img" />
-                        <h4 className="flex aic jcc"> <div className="img-circle"><img src="/images/ustah.jpeg" alt="" />
+                        <h4 className="flex aic jcc"> <div className="img-circle"><img src={this.props.own_profile.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                         </div> {this.props.own_profile.first_name} {this.props.own_profile.last_name}</h4>
                       </div>
                       <p className="special">{this.props.own_profile.short_biography || "No short biography"}</p>
@@ -105,7 +108,7 @@ class History extends React.Component {
                         { loading && "Loading.." }
                         { err && err.name }
                         { !loading && !err && tasks.map(task => (
-                            <div className="offers-image">
+                          <div style={{ cursor: "pointer" }} onClick={() => this.props.history.push("/task/" + task.id)} className="offers-image">
                                 <img src={task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                                 <div>
                                     <h4>{task.title}</h4>
@@ -113,6 +116,7 @@ class History extends React.Component {
                                 </div>
                                 </div>
                         ))}
+                        { !loading && !err && !tasks.length && "Nothing to show..." }
                     </div>
                   </div>
                 </div>

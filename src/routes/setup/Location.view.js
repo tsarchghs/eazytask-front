@@ -19,6 +19,11 @@ export default class Location extends React.Component {
                 </div>
                 <h4 className="mb30">{this.props.getTrans(this.props.translations.text_9)}</h4>
                 <div className="flex-grow input__group" style={{display:"block", marginTop: 55}}>
+                    <input 
+                        onKeyDown={this.props.handleInputKeyDown}
+
+                    value={this.props.address} onChange={this.props.onAddressChange} type="text" className="input gray" 
+                    placeholder={this.props.getTrans(this.props.translations.text_12)} />
                     <div className="two__inputs">
                         <input
                             onKeyDown={this.props.handleInputKeyDown}
@@ -31,11 +36,6 @@ export default class Location extends React.Component {
                         value={this.props.city} onChange={this.props.onCityChange} type="text" className="input gray" 
                         placeholder={this.props.getTrans(this.props.translations.text_11)} />
                     </div>
-                    <input 
-                        onKeyDown={this.props.handleInputKeyDown}
-
-                    value={this.props.address} onChange={this.props.onAddressChange} type="text" className="input gray" 
-                    placeholder={this.props.getTrans(this.props.translations.text_12)} />
     
                 </div>
             </React.Fragment>

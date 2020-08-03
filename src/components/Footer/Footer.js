@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -8,12 +9,13 @@ const Footer = () => {
                     <img className="footer__logo" src="/images/logo2.png" alt="" />
                     <div className="footer__social">
                         <div className="footer__icons">
-                            <a target="_blank" href="#"><img style={{ width: '16px' }} src="/images/fb-icon.png" alt="" /></a>
-                            <a target="_blank" href="#"><img src="/images/insta-icon.png" alt="" /></a>
-                            <a target="_blank" href="#"><img src="/images/linkedin-icon.png" alt="" /></a>
+                            <a target="_blank" href="https://www.facebook.com/eazytaskch/"><img style={{ width: '16px' }} src="/images/fb-icon.png" alt="" /></a>
+                            <a target="_blank" href="https://www.instagram.com/eazytask.ch/"><img src="/images/insta-icon.png" alt="" /></a>
+                            <a target="_blank" href="https://www.linkedin.com/company/eazytask/"><img src="/images/linkedin-icon.png" alt="" /></a>
                         </div>
                         <div className="footer__rights">
                             <h5 className="roboto">All rights reserved - eazytask 2020</h5>
+                            <Link to="/impressum" className="text-center">Impressum</Link>
                         </div>
                     </div>
                 </div>

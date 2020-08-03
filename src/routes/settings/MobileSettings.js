@@ -38,7 +38,7 @@ const MobileSettings = props => {
                                 <section className="landing-info panel edit-task__section">
                                     <div className="container">
                                         <div className="content ">
-                                            <header className="logo-text xn-br hide-on-desktop">
+                                            <header style={{ minHeight: 35 }} className="logo-text xn-br hide-on-desktop">
                                                 <span className="show__mobile">
                                                 <Link to="/my_profile_edit">
                                                     <img src="/images/arrow.jpeg" alt="" />

@@ -59,7 +59,10 @@ class Task extends React.Component {
                     <article className={`touchable__content arts ${this.state.opened ? "" : "hide"}`}>
                         {this.props.own_user && this.props.own_user.id == this.props.task.UserId &&
                             <React.Fragment>
-                                <article onClick={() => this.props.history.push("/task/" + this.props.match.params.taskId + "/edit")} className="flex aic jcsb">
+                                <article onClick={() => {
+                                    if (this.props.task.Offers && this.props.task.Offers.length) this.setState({ onModal: "CANNOT_EDIT"})
+                                    else this.props.history.push("/task/" + this.props.match.params.taskId + "/edit")
+                                }} className="flex aic jcsb">
                                     <p>Edit</p>
                                     <img src="/images/cursor.png" alt="" />
                                 </article>
@@ -279,7 +282,7 @@ class Task extends React.Component {
                                 <a href="#" className="button">Q&amp;A</a>
                                 <a onClick={e => {
                                     e.preventDefault();
-                                    this.setState({ step: "TASK_PROFILE"})
+                                    this.setState({ step: "TASK_PROFILE" })
                                 }} className="button fill">View Gallery</a>
                             </div>
                         </div>
@@ -352,7 +355,7 @@ class Task extends React.Component {
                                                                     let { own_user } = this.props;
                                                                     console.log("this.showOfferUI()", this.showOfferUI())
                                                                     if (own_user) {
-                                                                        if (!own_user.Tasker) openModal()
+                                                                        if (!own_user.Tasker || !own_user.isTasker) openModal()
                                                                         else this.setState({ belowUI: "NONE", clickedMakeOffer: true });
                                                                     }
                                                                     else this.props.history.push("/register?to=/task/" + this.props.task.id);
@@ -364,7 +367,8 @@ class Task extends React.Component {
                                                                 isActive={isActive}     // required
                                                                 closeModal={closeModal} // required
                                                                 title="Action not allowed"
-                                                                description="You cannot make an offer, to make an account, register as a Tasker."
+                                                                description="You cannot make an offer, to make an offer become a tasker by going to your account settings."
+                                                                accountSettingsButton={true}
                                                                 hide_buttons={true}
                                                             />
                                                         </React.Fragment>
@@ -417,7 +421,9 @@ class Task extends React.Component {
                                                 margin: "0 auto",
                                                 borderRadius: 20,
                                                 border: "1px solid #1f4732",
-                                                marginBottom: "3%"
+                                                marginBottom: "3%",
+                                                padding: 13,
+                                                fontSsize: 20
                                             }}
                                             placeholder="Amount"
                                             onChange={this.amountOnChange}
@@ -552,6 +558,13 @@ class Task extends React.Component {
                         this.setState({ opened: false })
                     }}
                 />
+                <Modal
+                    isActive={this.state.onModal == "CANNOT_EDIT"}     // required
+                    closeModal={this.closeModal} // required
+                    title="Action not allowed"
+                    description="You cannot edit this task since there are already offers made."
+                    hide_buttons={true}
+                />
                 {children}
             </React.Fragment>
         )
@@ -560,7 +573,7 @@ class Task extends React.Component {
 
 const mapStateToProps = (state,ownProps) => {
     let { taskId } = ownProps.match.params
-    let { error, loading, ...task } = state.tasks.byIds[taskId] || { loading: true }
+    let { error, loading, ...task } = (state.tasks.byIds[taskId] && state.tasks.byIds[taskId].User) && state.tasks.byIds[taskId] || { loading: true }
     let own_user = state.auth.profile;
     return { error, loading, own_user,task: task || {} }
 }

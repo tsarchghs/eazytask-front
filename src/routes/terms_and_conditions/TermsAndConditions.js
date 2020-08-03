@@ -262,7 +262,6 @@ const TermsAndConditions = props => {
       <p
         data-renderer-start-pos={603}
         style={{
-          margin: "1.143rem 0px 0px",
           padding: 0,
           fontSize: "1em",
           lineHeight: "1.714",
@@ -573,7 +572,6 @@ const TermsAndConditions = props => {
       <p
         data-renderer-start-pos={7243}
         style={{
-          margin: "1.143rem 0px 0px",
           padding: 0,
           fontSize: "1em",
           lineHeight: "1.714",
@@ -704,7 +702,6 @@ const TermsAndConditions = props => {
         </li>
       </ul>
     </li>
-    <li>
       <p
         data-renderer-start-pos={9810}
         style={{
@@ -727,7 +724,6 @@ const TermsAndConditions = props => {
         <br />
         <br />
       </p>
-    </li>
     <li style={{ marginTop: 4 }}>
       <p
         data-renderer-start-pos={10161}
@@ -747,7 +743,6 @@ const TermsAndConditions = props => {
       <p
         data-renderer-start-pos={10197}
         style={{
-          margin: "1.143rem 0px 0px",
           padding: 0,
           fontSize: "1em",
           lineHeight: "1.714",
@@ -1142,277 +1137,7 @@ const TermsAndConditions = props => {
       textDecorationStyle: "initial",
       textDecorationColor: "initial"
     }}
-  >
-    <div
-      style={{
-        margin: 0,
-        padding: 0,
-        position: "absolute",
-        width: 0,
-        height: "1.2em"
-      }}
-    >
-      <div
-        style={{
-          margin: 0,
-          padding: 0,
-          display: "flex",
-          position: "absolute",
-          WebkitBoxAlign: "center",
-          alignItems: "center",
-          overflow: "hidden",
-          right: 0,
-          width: 32,
-          height: "24.0156px"
-        }}
-      >
-        <div style={{ margin: 0, padding: 0 }}>
-          <br />
-        </div>
-      </div>
-    </div>
-    Impressum
-  </h2>
-  <p
-    data-renderer-start-pos={17880}
-    style={{
-      margin: "1.143rem 0px 0px",
-      padding: 0,
-      fontSize: 14,
-      lineHeight: "1.714",
-      fontWeight: 400,
-      letterSpacing: "-0.005em",
-      color: "rgb(23, 43, 77)",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif',
-      fontStyle: "normal",
-      fontVariantLigatures: "normal",
-      fontVariantCaps: "normal",
-      orphans: 2,
-      textAlign: "start",
-      textIndent: 0,
-      textTransform: "none",
-      whiteSpace: "pre-wrap",
-      widows: 2,
-      wordSpacing: 0,
-      WebkitTextStrokeWidth: 0,
-      backgroundColor: "rgb(255, 255, 255)",
-      textDecorationStyle: "initial",
-      textDecorationColor: "initial"
-    }}
-  >
-    Die Webseite{" "}
-    <a
-      data-renderer-mark="true"
-      href="http://eazytask.ch/"
-      style={{ color: "rgb(0, 82, 204)", textDecoration: "none" }}
-      title="http://eazytask.ch"
-    >
-      eazytask.ch
-    </a>{" "}
-    wird von pbits GmbH – Professional Business &amp; IT Solutions betrieben.
-  </p>
-  <p
-    data-renderer-start-pos={17976}
-    style={{
-      margin: "1.143rem 0px 0px",
-      padding: 0,
-      fontSize: 14,
-      lineHeight: "1.714",
-      fontWeight: 400,
-      letterSpacing: "-0.005em",
-      color: "rgb(23, 43, 77)",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif',
-      fontStyle: "normal",
-      fontVariantLigatures: "normal",
-      fontVariantCaps: "normal",
-      orphans: 2,
-      textAlign: "start",
-      textIndent: 0,
-      textTransform: "none",
-      whiteSpace: "pre-wrap",
-      widows: 2,
-      wordSpacing: 0,
-      WebkitTextStrokeWidth: 0,
-      backgroundColor: "rgb(255, 255, 255)",
-      textDecorationStyle: "initial",
-      textDecorationColor: "initial"
-    }}
-  >
-    <strong data-renderer-mark="true">Kontaktadresse:</strong>
-  </p>
-  <p
-    data-renderer-start-pos={17993}
-    style={{
-      margin: "1.143rem 0px 0px",
-      padding: 0,
-      fontSize: 14,
-      lineHeight: "1.714",
-      fontWeight: 400,
-      letterSpacing: "-0.005em",
-      color: "rgb(23, 43, 77)",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif',
-      fontStyle: "normal",
-      fontVariantLigatures: "normal",
-      fontVariantCaps: "normal",
-      orphans: 2,
-      textAlign: "start",
-      textIndent: 0,
-      textTransform: "none",
-      whiteSpace: "pre-wrap",
-      widows: 2,
-      wordSpacing: 0,
-      WebkitTextStrokeWidth: 0,
-      backgroundColor: "rgb(255, 255, 255)",
-      textDecorationStyle: "initial",
-      textDecorationColor: "initial"
-    }}
-  >
-    eazytask
-    <br />
-    c/o pbits GmbH
-    <br />
-    Colombstrasse&nbsp;30
-    <br />
-    CH-3027 Bern
-  </p>
-  <p
-    data-renderer-start-pos={18048}
-    style={{
-      margin: "1.143rem 0px 0px",
-      padding: 0,
-      fontSize: 14,
-      lineHeight: "1.714",
-      fontWeight: 400,
-      letterSpacing: "-0.005em",
-      color: "rgb(23, 43, 77)",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif',
-      fontStyle: "normal",
-      fontVariantLigatures: "normal",
-      fontVariantCaps: "normal",
-      orphans: 2,
-      textAlign: "start",
-      textIndent: 0,
-      textTransform: "none",
-      whiteSpace: "pre-wrap",
-      widows: 2,
-      wordSpacing: 0,
-      WebkitTextStrokeWidth: 0,
-      backgroundColor: "rgb(255, 255, 255)",
-      textDecorationStyle: "initial",
-      textDecorationColor: "initial"
-    }}
-  >
-    <strong data-renderer-mark="true">E-Mail:</strong>{" "}
-    <a
-      data-renderer-mark="true"
-      href="mailto:hello@eazytask.ch"
-      style={{ color: "rgb(0, 82, 204)", textDecoration: "none" }}
-      title="mailto:hello@eazytask.ch"
-    >
-      hello@eazytask.ch
-    </a>
-    &nbsp;
-  </p>
-  <p
-    data-renderer-start-pos={18076}
-    style={{
-      margin: "1.143rem 0px 0px",
-      padding: 0,
-      fontSize: 14,
-      lineHeight: "1.714",
-      fontWeight: 400,
-      letterSpacing: "-0.005em",
-      color: "rgb(23, 43, 77)",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif',
-      fontStyle: "normal",
-      fontVariantLigatures: "normal",
-      fontVariantCaps: "normal",
-      orphans: 2,
-      textAlign: "start",
-      textIndent: 0,
-      textTransform: "none",
-      whiteSpace: "pre-wrap",
-      widows: 2,
-      wordSpacing: 0,
-      WebkitTextStrokeWidth: 0,
-      backgroundColor: "rgb(255, 255, 255)",
-      textDecorationStyle: "initial",
-      textDecorationColor: "initial"
-    }}
-  >
-    <strong data-renderer-mark="true">Geschäftsleitung:</strong> Senat Mustafi
-    (Gesellschafter und Geschäftsführer)
-  </p>
-  <p
-    data-renderer-start-pos={18146}
-    style={{
-      margin: "1.143rem 0px 0px",
-      padding: 0,
-      fontSize: 14,
-      lineHeight: "1.714",
-      fontWeight: 400,
-      letterSpacing: "-0.005em",
-      color: "rgb(23, 43, 77)",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif',
-      fontStyle: "normal",
-      fontVariantLigatures: "normal",
-      fontVariantCaps: "normal",
-      orphans: 2,
-      textAlign: "start",
-      textIndent: 0,
-      textTransform: "none",
-      whiteSpace: "pre-wrap",
-      widows: 2,
-      wordSpacing: 0,
-      WebkitTextStrokeWidth: 0,
-      backgroundColor: "rgb(255, 255, 255)",
-      textDecorationStyle: "initial",
-      textDecorationColor: "initial"
-    }}
-  >
-    <strong data-renderer-mark="true">Handelsregistereintrag:</strong>{" "}
-    Handelsregister des Kantons Bern, CH-036.4.061.531-5
-  </p>
-  <p
-    data-renderer-start-pos={18224}
-    style={{
-      margin: "1.143rem 0px 0px",
-      padding: 0,
-      fontSize: 14,
-      lineHeight: "1.714",
-      fontWeight: 400,
-      letterSpacing: "-0.005em",
-      color: "rgb(23, 43, 77)",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, "Droid Sans", "Helvetica Neue", sans-serif',
-      fontStyle: "normal",
-      fontVariantLigatures: "normal",
-      fontVariantCaps: "normal",
-      orphans: 2,
-      textAlign: "start",
-      textIndent: 0,
-      textTransform: "none",
-      whiteSpace: "pre-wrap",
-      widows: 2,
-      wordSpacing: 0,
-      WebkitTextStrokeWidth: 0,
-      backgroundColor: "rgb(255, 255, 255)",
-      textDecorationStyle: "initial",
-      textDecorationColor: "initial"
-    }}
-  >
-    <strong data-renderer-mark="true">
-      Firmenidentifikationsnummer (UID):
-    </strong>{" "}
-    CH-178.994.229
-  </p>
-</div>
+  ></h2></div>
                     </section>
                 </div>
             </div>

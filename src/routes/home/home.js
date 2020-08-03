@@ -10,6 +10,9 @@ import { connect } from "react-redux";
 import MainTaskCard from "../../components/MainTaskCard";
 import Footer from "../../components/Footer/Footer";
 
+import { ScrollingProvider, SectionLink, Section } from 'react-scroll-section';
+
+
 class Home extends React.Component {
     constructor(props) {
         super(props)
@@ -124,7 +127,7 @@ class Home extends React.Component {
         // console.log("this.props.loading", this.props.loading)
         let fromDashboardMore = this.props.location.pathname === "/landing_page"
         return (
-            <React.Fragment>
+          <ScrollingProvider>
                 <div className="wrapper no-panel">
                     <section className="background-img panel" style={{
                         backgroundImage: `url("../images/landing_page_s.png")`
@@ -144,11 +147,11 @@ class Home extends React.Component {
                                             <p className="mb30 special fs19 fwl ">Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr, sed diam. </p>
                                         </div>
                                         <div className="mb10">
-                                            <img onClick={e => {
-                                                // this.activeListingRef.scrollIntoView(true, { behavior: "smooth" });
-                                                let y = this.currentYPosition(this.activeListingRef);
-                                                this.doScrolling(y, 20);
-                                            }} style={{cursor:"pointer"}} className="play-img" src="/images/play.png" alt="" />
+                                            <SectionLink section="watch_how_it_works">
+                                                {({ onClick, isSelected }) => (
+                                                    <img onClick={onClick} style={{cursor:"pointer"}} className="play-img" src="/images/play.png" alt="" />
+                                                ) }
+                                            </SectionLink>
                                             <p className="special fs19 fwn">Watch how it works</p>
                                         </div>
                                         <div className="buttons__group">
@@ -162,35 +165,37 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </section>
-                    <section className="landing-info panel" ref={ref => this.activeListingRef = ref} id="b">
-                        <div className="container">
-                            <div className="content">
-                                <header className="flex jcsb aic">
-                                    <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                                    <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                        <a href="#" className="h4">{ fromDashboardMore ? "Home" : "Join Us" }</a>
-                                    </Link>
-                                </header>
-                                <section className="two-column__layout profile__cover">
-                                    <div className="two-column__info flex flex-column">
-                                        <div className="flex-grow flex flex-column  w100">
-                                            <div className="background-title mb5">
-                                                <h3 className="fs50 fwb lh08">Watch how it</h3>
-                                                <h4 className="fs45 fwn">works</h4>
-                                                <p className="shadow__title hide__mobile">wanna know how our app works?</p>
-                                                <p className="shadow__title show__mobile">COMMERCIAL</p>
-                                            </div>
-                                            <div className="video">
-                                                <div className="video__content">
-                                                    <iframe src="https://www.youtube.com/embed/YKg9ZQ0-bo4" frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                    <Section id="watch_how_it_works">
+                        <section className="landing-info panel" ref={ref => this.activeListingRef = ref} id="b">
+                            <div className="container">
+                                <div className="content">
+                                    <header className="flex jcsb aic">
+                                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                                        <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
+                                            <a href="#" className="h4">{ fromDashboardMore ? "Home" : "Join Us" }</a>
+                                        </Link>
+                                    </header>
+                                    <section className="two-column__layout profile__cover">
+                                        <div className="two-column__info flex flex-column">
+                                            <div className="flex-grow flex flex-column  w100">
+                                                <div className="background-title mb5">
+                                                    <h3 className="fs50 fwb lh08">Watch how it</h3>
+                                                    <h4 className="fs45 fwn">works</h4>
+                                                    <p className="shadow__title hide__mobile">wanna know how our app works?</p>
+                                                    <p className="shadow__title show__mobile">COMMERCIAL</p>
+                                                </div>
+                                                <div className="video">
+                                                    <div className="video__content">
+                                                        <iframe src="https://www.youtube.com/embed/YKg9ZQ0-bo4" frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </Section>
                     <section className="landing-info panel" id="c" style={{ background: 'white' }}>
                         <div className="container">
                             <div className="content">
@@ -358,7 +363,8 @@ class Home extends React.Component {
 
                 {/* <Link to="/login">Login</Link> <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>Register</Link> <Link to="/logout">Logout</Link>
                 <TaskList/> */}
-            </React.Fragment>
+          </ScrollingProvider>
+
         )
     }
 }

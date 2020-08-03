@@ -29,6 +29,7 @@ class DeleteAccountSettings extends React.Component {
                 deleted: true
             },
             callUpdateAuthProfile: true,
+            redirectTo: "/"
         })
         this.setState({ loading: true })
     }

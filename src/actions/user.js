@@ -74,7 +74,7 @@ export const patchUserSuccess = (id,payload) => ({
     type: PATCH_USER_SUCCESS, payload, id
 })
 
-export const patchUser = ({userId, data,callUpdateAuthProfile, redirectTo, historyPush}) => {
+export const patchUser = ({ userId, data, callUpdateAuthProfile, redirectTo, historyPush, refreshPage}) => {
     return dispatch => {
         dispatch(patchUserRequest())
         if (historyPush) historyPush.push("?loading=true")
