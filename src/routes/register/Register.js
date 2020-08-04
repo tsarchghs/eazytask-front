@@ -6,7 +6,8 @@ import { POST_USER } from "../../actionTypes";
 import RegisterForm from "./RegisterForm.view";
 import Button from "../../components/button";
 import LoginRegisterHeader from "../../components/loginRegisterHeader";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter, Redirect } from "react-router-dom";
+import { compose } from "redux";
 
 let showError = {
   "requestBody.email is a required field": "Email is a required field",
@@ -36,6 +37,7 @@ class Register extends React.Component {
       last_name: this.state.last_name,
       email: this.state.email,
       password: this.state.password,
+      historyPush: this.props.history
     });
   };
   getErrors = () => {
@@ -50,6 +52,8 @@ class Register extends React.Component {
     }
   }
   render() {
+    if (window.location.search.indexOf("success") !== -1)
+      return <Redirect to="/login?from_register"/>
     return (
       <React.Fragment>
           <div className="layout">
@@ -105,4 +109,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { postUser, postAuth })(Register);
+export default compose(withRouter,connect(mapStateToProps, { postUser, postAuth }))(Register);

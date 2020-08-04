@@ -54,6 +54,7 @@ class CreateTask extends React.Component {
         this.state = {
             step: 0,
             errors: [],
+            description_limit: 250,
             data: {
                 name: "",
                 description:"",
@@ -181,6 +182,8 @@ class CreateTask extends React.Component {
             else if (key === "month") value = format_day_or_month(value,12);
             else if (key === "year") value = format_year(value);
             else if (key === "expected_price") value = format_number(value);
+            else if (key === "description") 
+                if (value.length > this.state.description_limit) return prevState
             prevState.data[key] = value;
             return prevState;
         }, async () => {
@@ -203,6 +206,7 @@ class CreateTask extends React.Component {
             />
             case 1: return <Description {...commonProps}
                 onDescriptionChange={this.onChange("description")} description={this.state.data.description}
+                description_limit={this.state.description_limit}
                 errors={this.state.errors}
             />
             case 2: return <PickDate {...commonProps} 

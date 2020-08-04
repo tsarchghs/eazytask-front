@@ -1,12 +1,11 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-// import { compose } from "recompose";
 import withNotificationsInfo from "../HOC/withNotificationsInfo";
 
 const SideTaskCard2 = props => {
     console.log("SideTaskCard2",props)
     return (
-        <Link to={"/task/" + props.task.id}>
+        <Link to={props.offer ? `/task/${props.task.id}/edit/offers/${props.offer.id}` : `/task/${props.task.id}`}>
             <div className={`offers-image ${props.active && "active"}`}>
                 <img src={props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} />
                 <div>

@@ -73,10 +73,11 @@ class WebDashboard extends React.Component {
                     <div className="offers-images__layout">
                         <div className="offers-images dashboard-offers">
                             {
-                                this.props.offers_info.offers.map(({ Task }) => (
+                                this.props.offers_info.offers.map(offer => (
                                     <SideTaskCard2
                                         useWithRouter={true}
-                                        task={Task}
+                                        task={offer.Task}
+                                        offer={offer}
                                         beforeTitleText={this.getTrans(this.props.translations.text_2)}
                                     />                                
                                 ))
@@ -100,7 +101,7 @@ class WebDashboard extends React.Component {
                                     <div className="container">
                                         <div className="content">
                                             <WebHeader active="home"/>
-                                            <div className="hero flex jcsb" style={{ height: 'calc(100vh - 165px)', paddingTop: 80 }}>
+                                            <div className="hero flex jcsb" style={{ paddingTop: 80 }}>
                                                 <div className="home">
                                                     <div className="home__title">
                                                         <h3 className="fs41" style={{fontWeight: "initial"}}>
@@ -134,7 +135,7 @@ class WebDashboard extends React.Component {
                                                     }
                                                 </div>
                                             </div>
-                                            <section className="profile__cover " style={{ height: '100vh' }}>
+                                            <section className="profile__cover ">
                                                 <div className="two-column__info flex flex-column">
                                                     <div className=" flex jcsb aic w100">
                                                         <div className="background-title mb5 flex1">
@@ -195,7 +196,7 @@ class WebDashboard extends React.Component {
                                                     </div>
                                                 </div>
                                             </section>
-                                            <section className="profile__cover " style={{ height: '80vh' }}>
+                                            <section className="profile__cover ">
                                                 <div className="two-column__info flex flex-column">
                                                     <div className=" flex jcsb aic w100">
                                                         <div className="background-title mb5 flex1">

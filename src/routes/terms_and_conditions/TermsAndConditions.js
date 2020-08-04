@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
+import Footer from "../../components/Footer";
 
 const TermsAndConditions = props => {
     let goBack = () => {
@@ -1141,6 +1142,7 @@ const TermsAndConditions = props => {
                     </section>
                 </div>
             </div>
+            <Footer/>
         </section>
     </div>
 

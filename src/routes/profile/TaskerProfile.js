@@ -24,6 +24,7 @@ class TaskerProfile extends React.Component {
             </div>
         </div>
     )
+    getRatingsUI = () => <p className="special text-center">Coming soon!</p>
     getAboutUI = () => {
         return (
             <div className="offers-images tasker-card__about">
@@ -71,12 +72,14 @@ class TaskerProfile extends React.Component {
                 tasks.map(task => <SideTaskCard2 task={task} />)
             }
         </div>
-        return <center>No tasks to show</center>
+        return <p className="special text-center">No tasks to show...</p>
     }
     getTabContent = () => {
         let { onTab } = this.state;
         if (onTab == "ABOUT") return this.getAboutUI();
         if (onTab == "PREVIOUS_LISTINGS") return this.getPreviousListingsUI();
+        if (onTab == "RATINGS_IN_PROGRESS") return this.getRatingsUI();
+
     }
     render() {
         let tabOnClick = this.tabOnClick
@@ -116,9 +119,9 @@ class TaskerProfile extends React.Component {
                         <div className="offers-images__layout">
                             <div className="faq-web__top tabs-modified">
                                 <div className="home__tabs">
-                                    <div onClick={tabOnClick("PREVIOUS_LISTINGS")} className={`home__tab ${this.state.onTab === "PREVIOUS_LISTINGS" ? "active" : ""}`}>Previous Listings</div>
-                                    <div onClick={undefined} className={`home__tab ${this.state.onTab === "RATINGS_IN_PROGRESS" ? "active" : ""}`}>Ratings</div>
-                                    <div onClick={tabOnClick("ABOUT")} className={`home__tab ${this.state.onTab === "ABOUT" ? "active" : ""}`}>About</div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("PREVIOUS_LISTINGS")} className={`home__tab ${this.state.onTab === "PREVIOUS_LISTINGS" ? "active" : ""}`}>Previous Listings</div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("RATINGS_IN_PROGRESS")} className={`home__tab ${this.state.onTab === "RATINGS_IN_PROGRESS" ? "active" : ""}`}>Ratings</div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("ABOUT")} className={`home__tab ${this.state.onTab === "ABOUT" ? "active" : ""}`}>About</div>
                                 </div>
                             </div>
                             {

@@ -7,6 +7,7 @@ import { Link, Redirect, withRouter } from "react-router-dom"
 import { compose } from "recompose";
 import E404 from "../E404";
 import queryString from "query-string";
+import Modal from "../../components/Modal";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -46,57 +47,98 @@ class TaskOffer extends React.Component {
             else return <a onClick={e => e.preventDefault()} className="button fill">Accepted</a>
         else return <a onClick={this.acceptOffer} href="#" className="button fill">Accept offer</a>
     }
+    closeModal = () => this.setState({ onModal: "" })
     render() {
         console.log("this.props.auth.isAuthenticated", this.props.auth.isAuthenticated)
         if (this.props.loading || this.props.auth.loading) return <Loading />
         if (
             (this.props.own_user && this.props.own_user.id !== this.props.offer.Task.UserId) ||
             this.props.auth.isAuthenticated === false
-        ) return <Redirect to={"/task/" + this.props.match.params.taskId} />
+        ) {
+            if (!(this.props.offer.Tasker.UserId === this.props.own_user.id)){
+                return <Redirect to={"/task/" + this.props.match.params.taskId} />
+            }
+        }
         return (
-            <section className="offers-layout tasker-profile">
-                <div className="offers-picture" style={{
-                    backgroundImage: `url(${this.props.offer.Tasker.User.cover_image || window.__COVER_DEFAULT_PICTURE__})`
-                }}>
-                    <div className="offer-picture__buttons">
-                        <div className="offer-picture__back"><img onClick={e => {
-                            try {
-                                this.props.history.goBack();
-                            } catch (e) {
-                                this.props.history.push("/")
-                            }
-                        }} src="/images/arrow.jpeg" alt="" /></div>
-                        <div className="offer-picture__edit hide">
-                            <img src="/images/more.png" alt="" />
-                        </div>
-                    </div>
-                    {/* <div class="slice"></div> */}
-                </div>
-                <div className="offers-content modified">
-                    <div className="offers__cards min-h__cards">
-                        <div className="offers__card " style={{ height: 'initial' }}>
-                            <div className="offers__card--top">
-                                <div className="offers__profile">
-                                    <div className="offers__profile--img" />
-                                    <h4 className="flex aic jcc"> <div className="img-circle">
-                                    <Link to={"/profile/" + this.props.offer.Tasker.User.id}>
-                                        <img src={this.props.offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
-                                    </Link>
-                                    </div> 
-                                    {this.props.offer.Tasker.User.first_name} {this.props.offer.Tasker.User.last_name[0]}.</h4>
-                                </div>
-                                <p className="special mb20">{this.props.offer.description || "No self-promote"}</p>
-                                <h4 className="flex aic jcc mt40"><img style={{ width: '20px', marginRight: '10px' }} src="/images/shop.png" alt="" />CHF {this.props.offer.amount}.-</h4>
+            <React.Fragment>
+                <Modal
+                    isActive={this.state.onModal == "EDIT_NOT_IMPLEMENTED"}     // required
+                    title="Coming soon!"
+                    description="Edit offer functionality will come soon!"
+                    acceptText="Okay"
+                    closeModal={this.closeModal} // required
+                    acceptOnClick={this.closeModal}
+                />
+                <Modal
+                    isActive={this.state.onModal == "DELETE_NOT_IMPLEMENTED"}     // required
+                    title="Coming soon!"
+                    description="Delete offer functionality will come soon!"
+                    acceptText="Okay"
+                    closeModal={this.closeModal} // required
+                    acceptOnClick={this.closeModal}
+                />
+                <section className="offers-layout tasker-profile">
+                    <div className="offers-picture" style={{
+                        backgroundImage: `url(${this.props.offer.Tasker.User.cover_image || window.__COVER_DEFAULT_PICTURE__})`
+                    }}>
+                        <div className="offer-picture__buttons">
+                            <div style={{ cursor: "pointer" }} className="offer-picture__back"><img onClick={e => {
+                                try {
+                                    this.props.history.goBack();
+                                } catch (e) {
+                                    this.props.history.push("/")
+                                }
+                            }} src="/images/arrow.jpeg" alt="" /></div>
+                            <div className="offer-picture__edit hide">
+                                <img src="/images/more.png" alt="" />
                             </div>
                         </div>
-                        <div className="offers-buttons">
-                            <Link to={"/profile/" + this.props.offer.Tasker.UserId}>
-                                <a href="#" className="button">View Profile</a>
-                            </Link>
-                            {this.getButton()}
-                        </div>
+                        {/* <div class="slice"></div> */}
                     </div>
-                </div></section>
+                    <div className="offers-content modified">
+                        <div className="offers__cards min-h__cards">
+                            <div className="offers__card " style={{ height: 'initial' }}>
+                                <div className="offers__card--top">
+                                    <div className="offers__profile">
+                                        <div className="offers__profile--img" />
+                                        <h4 className="flex aic jcc"> <div className="img-circle">
+                                        <Link to={"/profile/" + this.props.offer.Tasker.User.id}>
+                                            <img src={this.props.offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                        </Link>
+                                        </div> 
+                                        {this.props.offer.Tasker.User.first_name} {this.props.offer.Tasker.User.last_name[0]}.</h4>
+                                    </div>
+                                    <p className="special mb20">{this.props.offer.description || "No self-promote"}</p>
+                                    <h4 className="flex aic jcc mt40"><img style={{ width: '20px', marginRight: '10px' }} src="/images/shop.png" alt="" />CHF {this.props.offer.amount}.-</h4>
+                                </div>
+                            </div>
+                            <div className="offers-buttons">
+                                {
+                                    this.props.offer.Tasker.UserId !== this.props.own_user.id &&
+                                    <React.Fragment>
+                                        <Link to={"/profile/" + this.props.offer.Tasker.UserId}>
+                                            <a href="#" className="button">View Profile</a>
+                                        </Link>
+                                        {this.getButton()}
+                                    </React.Fragment>
+                                }
+                                {
+                                    this.props.offer.Tasker.UserId === this.props.own_user.id &&
+                                        <React.Fragment>
+                                            <a onClick={e => {
+                                                e.preventDefault();
+                                                this.setState({ onModal: "EDIT_NOT_IMPLEMENTED"})
+                                            }} href="#" className="button">Edit</a>
+                                            <a onClick={e => {
+                                                e.preventDefault();
+                                                this.setState({ onModal: "DELETE_NOT_IMPLEMENTED"})
+                                            }} style={{ backgroundColor: "#9a4945" }} className="button fill">Delete</a>
+                                        </React.Fragment>
+                                }
+                            </div>
+                        </div>
+                    </div></section>
+            </React.Fragment>
 
         )    
     }

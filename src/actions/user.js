@@ -49,14 +49,16 @@ export const getUser = (id,options) => {
     };
 }
 
-export const postUser = ({ first_name, last_name, email, password }) => {
+export const postUser = ({ first_name, last_name, email, password, historyPush }) => {
     return dispatch => {
         dispatch(postUserRequest())
+        if (historyPush) historyPush.push("?loading")
         return axios.post("/users", {
             first_name, last_name, email, password
         })
             .then(({ data }) => {
                 dispatch(postUserSuccess(data));
+                if (historyPush) historyPush.push("?success")
             }).catch(err => dispatch(postUserFailed(err)));
     };
 }

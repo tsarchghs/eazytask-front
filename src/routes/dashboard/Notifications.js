@@ -40,8 +40,11 @@ class Notifications extends React.Component {
                             console.log({ info }, this.props)
                             return (
                                 <div 
-                                    onClick={e => this.props.history.push(info.pathname)} 
-                                    className="home__noti-card"
+                                    onClick={e => {
+                                        axios.post("/read_notification/" + notifc.id)
+                                        this.props.history.push(info.pathname)
+                                    }} 
+                                    className={"home__noti-card " + (!notifc.read ? "highlighted" : "")}
                                     style={{ display: "inline-flex", cursor: "pointer" }}
                                 >
                                     <div className="img-circle" style={{ width: '43px', height: '43px', minWidth: '43px' }}><img src={

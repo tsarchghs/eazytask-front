@@ -72,7 +72,7 @@ class AskerProfile extends React.Component {
                 tasks.map(task => <SideTaskCard2 task={task} />)
             }
         </div>
-        return <center>No tasks to show</center>
+        return <p className="special text-center">No tasks to show...</p>
     }
     getActiveListingsUI = () => {
         let tasks = this.getCurrentListings();
@@ -82,7 +82,7 @@ class AskerProfile extends React.Component {
                 tasks.map(task => <SideTaskCard2 task={task}/>)
             }
         </div>
-        return <center>No tasks to show</center>
+        return <p className="special text-center">No tasks to show...</p>
     }
     getTabContent = () => {
         let { onTab } = this.state;
@@ -127,8 +127,8 @@ class AskerProfile extends React.Component {
                         <div className="offers-images__layout">
                             <div className="faq-web__top tabs-modified">
                                 <div className="home__tabs">
-                                    <div onClick={tabOnClick("ACTIVE_TASKS")} className={`home__tab ${this.state.onTab === "ACTIVE_TASKS" ? "active" : ""}`}>Active tasks</div>
-                                    <div onClick={tabOnClick("PREVIOUS_TASKS")} className={`home__tab ${this.state.onTab === "PREVIOUS_TASKS" ? "active" : ""}`}>Previous tasks</div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("ACTIVE_TASKS")} className={`home__tab ${this.state.onTab === "ACTIVE_TASKS" ? "active" : ""}`}>Active tasks</div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("PREVIOUS_TASKS")} className={`home__tab ${this.state.onTab === "PREVIOUS_TASKS" ? "active" : ""}`}>Previous tasks</div>
                                 </div>
                             </div>
                             {

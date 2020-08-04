@@ -185,8 +185,10 @@ class Home extends React.Component {
                                                     <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                 </div>
                                                 <div className="video">
-                                                    <div className="video__content">
-                                                        <iframe src="https://www.youtube.com/embed/YKg9ZQ0-bo4" frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                                                    <div className="video__content" style={{ height: "initial" }}>
+                                                        <iframe
+                                                            width="640" height="320"
+                                                        src="https://www.youtube.com/embed/YKg9ZQ0-bo4" frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                                                     </div>
                                                 </div>
                                             </div>

@@ -54,10 +54,13 @@ class MobileNotifications extends React.Component {
                                                     console.log({ info }, this.props)
                                                     return (
                                                         <div
-                                                            onClick={e => this.props.history.push(info.pathname)}
+                                                            onClick={e => {
+                                                                axios.post("/read_notification/" + notifc.id)
+                                                                this.props.history.push(info.pathname)
+                                                            }}
                                                             style={{ display: "inline-flex", cursor: "pointer" }}
 
-                                                            className="home__noti-card">
+                                                            className={"home__noti-card " + (!notifc.read ? "highlighted" : "") }>
                                                             <div className="img-circle" style={{ width: '43px', height: '43px', minWidth: '43px' }}><img src={
                                                                 notifc.user_2.profile_image || window.__PROFILE_DEFAULT_PICTURE__
                                                             } alt="" /></div>

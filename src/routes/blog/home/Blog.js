@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getPosts } from "../../../actions/posts";
 import WebHeader from "../../../components/WebHeader";
 import { compose } from "recompose";
+import Footer from "../../../components/Footer";
 
 class Blog extends React.Component {
     constructor(props){
@@ -70,10 +71,11 @@ class Blog extends React.Component {
                                         </div>
                                     </div>
                                 ))}
-                                {!loading && !posts.length && "No posts to show..."}
+                                {!loading && !posts.length && <p className="special">No posts to show...</p>}
                             </section>
                         </div>
                     </div>
+                    <Footer/>
                 </section>
             </div>
         )

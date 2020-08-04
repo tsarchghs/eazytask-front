@@ -9,6 +9,7 @@ import { compose, componentFromStream } from "recompose";
 import queryString from  'query-string';
 import { debounce } from "lodash";
 import MainTaskCard from "../../components/MainTaskCard";
+import Footer from "../../components/Footer";
 
 class ActiveListing extends React.Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class ActiveListing extends React.Component {
                 category_id: undefined,
                 min_expected_price: 0,
                 max_expected_price: 1000,
+                city: ""
             },
             onFilter: "",
             allCategories: [],
@@ -108,7 +110,7 @@ class ActiveListing extends React.Component {
             if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2)
             console.log("this.state.currentPage -2 ", this.state.currentPage-2)
             for (let x = start; x <= end;x++){
-                content.push(<Link to={`/active_listing?page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
+                content.push(<Link style={{ color: "#1f4733", minWidth: 22, marginRight: 7, fontSize: 20 }} to={`/active_listing?page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
             }
             return content;
         }
@@ -122,7 +124,7 @@ class ActiveListing extends React.Component {
         if (!show_category_name_or_default) show_category_name_or_default = "Categories"
         return (
             <React.Fragment>
-                <section className="landing-info panel card-section" id="c" style={{ background: 'white', minHeight: "97vh" }}>
+                <section className="landing-info panel card-section" id="c" style={{ background: 'white' }}>
                     <div className="container">
                         <div className="content">
                             <header className="flex jcsb aic">
@@ -169,7 +171,29 @@ class ActiveListing extends React.Component {
                 </section>
 
                 <div className="filters-card" style={{ zIndex: 1000000000000,display: (this.state.onFilter ? "block" : "none") }}>
-                    <h4 className="mb15">Filter</h4>
+                    <div className="flex aic jcsb">
+                        <h4 className="mb15">Filter</h4><p onClick={e => {
+                            this.setState(prevState => {
+                                let state = {
+                                    limit: 6,
+                                    offset: 0,
+                                    currentPage: Number(queryString.parse(this.props.location.search).page) || 1,
+                                    onFilter: "",    
+                                }
+                                prevState.filters = {
+                                    category_id: undefined,
+                                    min_expected_price: 0,
+                                    max_expected_price: 1000,
+                                    city: ""
+                                }
+                                prevState = { ...prevState, ...state }
+                                return prevState;
+                            }, () => {
+                                this.updateTasks(null, this.state.filters)
+                            })
+                        }} style={{ cursor: "pointer", marginBottom: 10, fontSize: 17 }} className="special">Clear Filters</p>
+
+                    </div>
                     <label htmlFor className="mb25">
                         <span><img src="images/search.png" alt="" /></span>
                         <input 
@@ -199,7 +223,11 @@ class ActiveListing extends React.Component {
                         </div>
                         <div className="filters-list" onClick={() => this.setState({ onFilter: "BUDGET_RANGE" })}>
                             {/* <input type="text" class="filter-input" placeholder="Category"> */}
-                            <div style={{ cursor: "pointer" }} className="filter-input filter-slide"><p>Budget</p><span><img src="images/arr-right.png" alt="" /></span></div>
+                            <div style={{ cursor: "pointer" }} className="filter-input filter-slide">
+                                <p>
+                                    {this.state.filters.min_expected_price - this.state.filters.max_expected_price !== -1000 
+                                    ? `${this.state.filters.min_expected_price}-${this.state.filters.max_expected_price}CH` : "Budget"}
+                                </p><span><img src="images/arr-right.png" alt="" /></span></div>
                         </div>
                     </div>
                     <div className={"filters-card__extra " + (this.state.onFilter === "CATEGORIES" ? "slide" : "")}>
@@ -263,10 +291,10 @@ class ActiveListing extends React.Component {
                         />
                     </div>
                 </div>
-                <center className="flex aic jcc">
+                <center className="flex aic jcc" style={{ marginBottom: 25 }}>
                     {!loading && this.state.currentPage && <Pages />}
                 </center>
-
+                <Footer/>
             </React.Fragment>
         )
     }

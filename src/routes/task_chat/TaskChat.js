@@ -8,7 +8,7 @@ import E404 from "../E404";
 import io from 'socket.io-client';
 import { v4 } from "uuid";
 import { baseURL_WS } from "../../configs"
-import WebHeader from "../../components/WebHeader";
+import WebHeader2 from "../../components/WebHeader2";
 import { compose } from "recompose";
 import detectPhoneNumberInside from "../../algorithms/detect_phone_numbers";
 import detectEmails from "../../algorithms/detect_emails";
@@ -117,7 +117,7 @@ class TaskChat extends React.Component {
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
-                            <WebHeader/>
+                            <WebHeader2/>
                             <section className="qanda-web hide-on-mobile">
                                 <div className="qanda-web__top">
                                     <Link to={"/profile/" + this.props.taskInfo.task.User.id}>

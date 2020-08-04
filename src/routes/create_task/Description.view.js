@@ -32,6 +32,7 @@ export default class Description extends React.Component {
                         value={this.props.description}
                         onChange={this.props.onDescriptionChange}
                     />
+                    <p className="special">{this.props.description_limit - this.props.description.length} characters left</p>
                     {this.props.errors.map(x => (
                         <div class="register__form--error">{x}</div>
                     ))}

@@ -97,7 +97,6 @@ class VerificationCode extends React.Component {
                                         this.props.app_validateVerificationCode.err.response.data &&
                                         this.props.app_validateVerificationCode.err.response.data.errors &&
                                         this.props.app_validateVerificationCode.err.response.data.errors.map(err => <div>{this.showError[err] || err}</div>)
-
                                     }
                                     <div className="small-input">
                                         <CodeInputs

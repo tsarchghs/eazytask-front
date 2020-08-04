@@ -50,6 +50,7 @@ const Impressum = lazy(() => import("./impressum"))
 const SettingsChangeSkills = lazy(() => import("./settings_change_skills"));
 const SettingsChangeLanguages = lazy(() => import("./settings_change_languages"));
 const SettingsChangeCities = lazy(() => import("./settings_change_cities"));
+const VerifyAccount = lazy(() => import("./verify_account"))
 
 // import Login from "./login";
 // import Register from "./register";
@@ -120,6 +121,7 @@ const AdminOnly = connect(mapStateToProps)(_AdminOnly)
 
 const Routes = props => {
     if (
+        props.auth.isAuthenticated && 
         props.auth.profile && 
         !props.auth.profile.setupCompleted && 
         props.location.pathname !== "/setup"
@@ -192,8 +194,8 @@ const Routes = props => {
 
                     <Route path="/faq" component={FAQ} exact />
 
-
                     <Route path="/" component={Home} exact/>
+                    <Route path="/verify_account/:token" component={VerifyAccount} exact/>
                     <Route path="/task/:taskId" component={Task} exact />
                     <Route path="/task/:taskId/qa" component={TaskChat} exact/>
                     <Route path="/task/:taskId/edit" component={EditTask} exact />

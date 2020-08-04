@@ -27,21 +27,29 @@ class WithNotificationsInfo extends React.Component  {
         axios.get("/get_latest_offer_received_notification/" + this.props.task.id)
             .then(({data}) => {
                 let payload = data.data;
-                this.setState({ data, loading: false, payload })
+                this.setState({ error: false, loading: false, payload })
             })
             .catch(error => {
-                this.setState({ error, loading: false })
+                this.setState({ error, loading: false, payload: undefined })
             })
     }
     getActive = () => {
         if (this.state.error) return false;
         if (this.state.loading) return false;
-        if (this.state.payload) return true;
+        if (this.state.payload && !this.state.payload.read) return true;
     }
     render(){
         let active = this.getActive();
         let WrappedComponent = this.props.children;
-        return <WrappedComponent task={this.props.task} active={active} />
+        return (
+            <div onClick={() => {
+                if (this.state.payload){
+                    axios.post("/read_notification/" + this.state.payload.id)
+                }
+            }}>
+                <WrappedComponent {...this.props} active={active} />
+            </div>
+        ) 
     }
 }
 

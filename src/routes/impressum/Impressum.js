@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
+import Footer from "../../components/Footer";
 
 const Impressum = props => {
     let goBack = () => {
@@ -43,6 +44,7 @@ const Impressum = props => {
                     </div>
 
                   </div>
+                  <Footer/>
                   
                 </section>
                 

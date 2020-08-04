@@ -16,6 +16,17 @@ class LoginForm extends React.Component{
         </div>
         <form className="register__form" onSubmit={Boolean(this.props.email.value) && Boolean(this.props.password.value) ? this.props.onSubmit : e => e.preventDefault()}>
           <div className="flex-grow"> 
+          {
+            window.location.search.indexOf("from_register") !== -1 &&
+            <p className="special">You have successfully registered, check your email to verify your account!</p>
+          }
+          {
+            window.location.search.indexOf("invalid_verification_link") !== -1
+            ?  <p className="special">The link is either invalid or has expired!</p>
+            : window.location.search.indexOf("valid_verification_link") !== -1 ? 
+            <p className="special">Account verified! You can now log in.</p> : ""
+          }
+
           <input
             ref={ref => this.emailRef = ref}
             onKeyDown={this.props.handleInputKeyDown}

@@ -34,7 +34,8 @@ class Login extends React.Component {
   getErrors = () => {
     let { errors } = this.props[POST_AUTH];
     if (errors && errors.length)
-      return ["The email address or password is incorrect. Please try again."]
+      if (errors[0] == "Please verify your email address.") return ["Please verify your email address."]
+      else return ["The email address or password is incorrect. Please try again."]
       // return errors.filter((value,i) => errors.indexOf(value) === i).map(x => showError[x] || x);
     return [];
   };
