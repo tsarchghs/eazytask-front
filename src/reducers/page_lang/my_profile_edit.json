@@ -1,46 +1,46 @@
 {
     "text_1": {
         "en": "First name",
-        "de": "None1"
+        "de": "Vorname"
     },
     "text_2": {
         "en": "Last name",
-        "de": "None2"
+        "de": "Name"
     },
     "text_3": {
         "en": "Phone",
-        "de": "None3"
+        "de": "Mobile"
     },
     "text_4": {
         "en": "Zip",
-        "de": "None4"
+        "de": "PLZ"
     },
     "text_5": {
         "en": "City",
-        "de": "None5"
+        "de": "Ort"
     },
     "text_6": {
         "en": "Address",
-        "de": "None6"
+        "de": "Adresse"
     },
     "text_6_1": {
         "en": "Short bio",
-        "de": "Shoten Bioen6_1"
+        "de": "Über dich"
     },
     "text_7": {
         "en": "Account settings",
-        "de": "None7"
+        "de": "Konto-Einstellungen"
     },
     "text_8": {
         "en": "Log out",
-        "de": "None8"
+        "de": "Abmelden"
     },
     "text_9": {
         "en": "Save",
-        "de": "None9"
+        "de": "Speichern"
     },
     "text_10": {
         "en": "Edit cover",
-        "de": "None10"
+        "de": "Hintergrund bearbeiten"
     }
 }

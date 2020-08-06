@@ -52,7 +52,7 @@ class Blog extends React.Component {
                                 <a href="#">Read All</a>
                             </div>
                             <section className="blog-cards">
-                                {loading && "Loading..."}
+                                {loading && <p className="special">Loading..</p>}
                                 {!loading && posts.map(post => (
                                     <div className="blog-card">
                                         <Link to={"/blog/" + post.id}>

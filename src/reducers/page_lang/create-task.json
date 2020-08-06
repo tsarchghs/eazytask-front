@@ -1,375 +1,375 @@
 {
-    "text_1": {
-      "en": "Create",
-      "de": "None1"
-    },
-    "text_1_1": {
-      "en": " a task",
-      "de": "None1_1"
-    },
-    "text_2": {
-      "en": "Name your task",
-      "de": "None2"
-    },
-    "text_3": {
-      "en": "Name is required",
-      "de": "Die name is required3"
-    },
-    "text_4": {
-      "en": "Describe",
-      "de": "None4"
-    },
-    "text_4_1": {
-      "en": "task",
-      "de": "None4_1"
-    },
-    "text_5": {
-      "en": "Description..",
-      "de": "None5"
-    },
-    "text_5_1": {
-        "en": "Please add relevant information about trasnport, equipment and all other information that the taskers may need",
-        "de": "None5_1"
-    },
-    "text_6": {
-      "en": "Description is required",
-      "de": "Desc required None6"
-    },
-    "text_7": {
-      "en": "Pick",
-      "de": "None pick7"
-    },
-    "text_7_1": {
-      "en": " a date",
-      "de": "Non7_1"
-    },
-    "text_8": {
-      "en": "Fixed",
-      "de": "None8"
-    },
-    "text_9": {
-      "en": "Until",
-      "de": "None9"
-    },
-    "text_10": {
-      "en": "Locate",
-      "de": "None10"
-    },
-    "text_11": {
-      "en": "your task",
-      "de": "None11"
-    },
-    "text_12": {
-      "en": "Address",
-      "de": "None12"
-    },
-    "text_13": {
-      "en": "ZIP",
-      "de": "None13"
-    },
-    "text_14": {
-      "en": "Town",
-      "de": "None14"
-    },
-    "text_15": {
-      "en": "Zip Code is required",
-      "de": "None15"
-    },
-    "text_16": {
-      "en": "Address is required",
-      "de": "None16"
-    },
-    "text_17": {
-      "en": "Town is required",
-      "de": "None17"
-    },
-    "text_18": {
-      "en": "Expected",
-      "de": "None18"
-    },
-    "text_18_1": {
-      "en": "price",
-      "de": "None18_1"
-    },
-    "text_19": {
-      "en": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "Ut aliquam, malesuada velit a tristique phasellus ultrices et."
-      ],
-      "de": [
-        "DE: Lorem ipsum dolor sit amet, consectetur adipiscing elit.19",
-        "DE: Ut aliquam, malesuada velit a tristique phasellus ultrices et.19"
-      ]
-    },
-    "text_20": {
-      "en": "Task",
-      "de": "None20"
-    },
-    "text_21": {
-      "en": "category",
-      "de": "None21"
-    },
-    "text_28": {
-      "en": "Category name",
-      "de": "None28"
-    },
-    "text_29": {
-      "en": "Category..",
-      "de": "None..29"
-    },
-    "text_30": {
-      "en": "Category name is required",
-      "de": "None30"
-    },
-    "categories": [
-      {
-        "en": "Household",
-        "de": "None",
-        "description": {
-          "en": [
-            "Lorem ipsum dolor sit: Household",
-            "amet, consectetu: Household"
-          ],
-          "de": [
-            "de: Lorem ipsum dolor sit: Household",
-            "de: amet, consectetu: Household"
-          ]
-        },
-        "sub_categories": [
-          {
-            "en": "Handicraft work",
-            "de": "None",
-            "img_url": "/images/disco.png",
-            "description": {
-              "en": [
-                "Lorem ipsum dolor sit Handicraft work",
-                "amet, consectetu Handicraft work"
-              ],
-              "de": [
-                "de: Lorem ipsum dolor sit Handicraft work",
-                "de: amet, consectetu Handicraft work"
-              ]
-            }
-          },
-          {
-            "en": "Gardening work",
-            "de": "None",
-            "img_url": "/images/rake.png",
-            "description": {
-              "en": [
-                "Lorem ipsum dolor sit Gardening work",
-                "amet, consectetu Gardening work"
-              ],
-              "de": [
-                "de: Lorem ipsum dolor sit Gardening work",
-                "de: amet, consectetu Gardening work"
-              ]
-            }
-          },
-          {
-            "en": "Moving & Cleaning",
-            "de": "None",
-            "img_url": "/images/sofa2.png",
-            "description": {
-              "en": [
-                "Lorem ipsum dolor sit Moving & Cleaning",
-                "amet, consectetu Moving & Cleaning"
-              ],
-              "de": [
-                "de: Lorem ipsum dolor sit Moving & Cleaning",
-                "de: amet, consectetu Moving & Cleaning"
-              ]
-            }
-          },
-          {
-            "en": "Furniture",
-            "de": "None",
-            "img_url": "/images/sofa.png",
-            "description": {
-              "en": [
-                "Lorem ipsum dolor sit Furniture",
-                "amet, consectetuFurniture"
-              ],
-              "de": [
-                "de: Lorem ipsum dolor sit Furniture",
-                "de: amet, consectetu Furniture"
-              ]
-            }
-          },
-          {
-            "en": "Household appliances",
-            "de": "None",
-            "img_url": "/images/downd.png",
-            "description": {
-              "en": [
-                "Lorem ipsum dolor sit Household appliances",
-                "amet, consectetu Household appliances"
-              ],
-              "de": [
-                "de: Lorem ipsum dolor sit Household appliances",
-                "de: amet, consectetu Household appliances"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "en": "Technical",
-        "de": "None",
-        "description": {
-          "en": [
-            "Lorem ipsum dolor sit Technical",
-            "amet, consectetu Technical"
-          ],
-          "de": [
-            "de: Lorem ipsum dolor sit Technical",
-            "de: amet, consectetu Technical"
-          ]
-        },
-        "sub_categories": [
-          {
-            "en": "Installation",
-            "de": "None",
-            "img_url": "/images/comp.png",
-            "description": {
-              "en": [
-                "Lorem ipsum dolor sit Installation",
-                "amet, consectetu Installation"
-              ],
-              "de": [
-                "de: Lorem ipsum dolor sit Installation",
-                "de: amet, consectetu Installation"
-              ]
-            }
-          },
-          {
-            "en": "Repair of used equipment",
-            "de": "None",
-            "img_url": "/images/ska.png",
-            "description": {
-              "en": [
-                "Lorem ipsum dolor sit Repair of used equipment",
-                "amet, consectetu Repair of used equipment"
-              ],
-              "de": [
-                "de: Lorem ipsum dolor sit Repair of used equipment",
-                "de: amet, consectetu Repair of used equipment"
-              ]
-            }
-          }
-        ]
-      }
+  "text_1": {
+    "en": "Create",
+    "de": "Erstelle"
+  },
+  "text_1_1": {
+    "en": " a task",
+    "de": " einen Task"
+  },
+  "text_2": {
+    "en": "Name your task",
+    "de": "Benenne deine Aufgabe"
+  },
+  "text_3": {
+    "en": "Name is required",
+    "de": "Name erforderlich"
+  },
+  "text_4": {
+    "en": "Describe",
+    "de": "Beschreibe"
+  },
+  "text_4_1": {
+    "en": "task",
+    "de": "deinen Task"
+  },
+  "text_5": {
+    "en": "Description..",
+    "de": "Beschreibung..."
+  },
+  "text_5_1": {
+      "en": "Please add relevant information about trasnport, equipment and all other information that the taskers may need",
+      "de": "Bitte gib alle nötigen Informationen über deinen Auftrag ein, welche für den Tasker hilfreich sein könnten, wie z.B. benötigte Werkzeuge, Transport etc."
+  },
+  "text_6": {
+    "en": "Description is required",
+    "de": "Beschreibung erforderlich"
+  },
+  "text_7": {
+    "en": "Pick",
+    "de": "Wähle"
+  },
+  "text_7_1": {
+    "en": " a date",
+    "de": " ein Datum"
+  },
+  "text_8": {
+    "en": "Fixed",
+    "de": "Fix"
+  },
+  "text_9": {
+    "en": "Until",
+    "de": "Bis"
+  },
+  "text_10": {
+    "en": "Locate",
+    "de": "Standort"
+  },
+  "text_11": {
+    "en": "your task",
+    "de": "der Tätigkeit"
+  },
+  "text_12": {
+    "en": "Address",
+    "de": "Adresse"
+  },
+  "text_13": {
+    "en": "ZIP",
+    "de": "PLZ"
+  },
+  "text_14": {
+    "en": "Town",
+    "de": "Ort"
+  },
+  "text_15": {
+    "en": "Zip Code is required",
+    "de": "PLZ is erforderlich"
+  },
+  "text_16": {
+    "en": "Address is required",
+    "de": "Adresse ist erforderlich"
+  },
+  "text_17": {
+    "en": "Town is required",
+    "de": "Ort ist erforderlich"
+  },
+  "text_18": {
+    "en": "Expected",
+    "de": "Erwarteter"
+  },
+  "text_18_1": {
+    "en": "price",
+    "de": "Preis"
+  },
+  "text_19": {
+    "en": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "Ut aliquam, malesuada velit a tristique phasellus ultrices et."
     ],
-    "text_31": {
-      "en": "Other",
-      "de": "None",
+    "de": [
+      "Dieser Preis dient als Massstab für Tasker,",
+      "welche ihre Angebote abgeben werden."
+    ]
+  },
+  "text_20": {
+    "en": "Task",
+    "de": "Task"
+  },
+  "text_21": {
+    "en": "category",
+    "de": "Kategorie"
+  },
+  "text_28": {
+    "en": "Category name",
+    "de": "Kategorie-Bezeichnung"
+  },
+  "text_29": {
+    "en": "Category..",
+    "de": "Kategorie..."
+  },
+  "text_30": {
+    "en": "Category name is required",
+    "de": "Kategorie-Bezeichnung erforderlich"
+  },
+  "categories": [
+    {
+      "en": "Household",
+      "de": "Haushalt",
       "description": {
         "en": [
-          "Lorem ipsum dolor sit Other",
-          "amet, consectetu Other"
+          "Lorem ipsum dolor sit: Household",
+          "amet, consectetu: Household"
         ],
         "de": [
-          "de: Lorem ipsum dolor sit Other",
-          "de: amet, consectetu Other"
+          "Alle Aufgaben rund um",
+          "deinen Haushalt."
         ]
-      }
-    },
-    "text_32": {
-      "en": "Almost there",
-      "de": "None32"
-    },
-    "text_33": {
-      "en": "Upload",
-      "de": "None33"
-    },
-    "text_34": {
-      "en": "photos",
-      "de": "None34"
-    },
-    "text_35": {
-      "en": "Click one picture to set as thumbnail",
-      "de": "None35"
-    },
-    "text_35_1": {
-        "en": "Thumbnail",
-        "de": "None35_1"
-    },
-    "text_35_2": {
-        "en": "Set thumbnail",
-        "de": "None35_2"
-    },
-    "text_36": {
-      "en": "Task",
-      "de": "None36"
-    },
-    "text_37": {
-      "en": "review",
-      "de": "None37"
-    },
-    "text_38": {
-      "en": "Title:",
-      "de": "None38"
-    },
-    "text_39": {
-      "en": "Description:",
-      "de": "None39"
-    },
-    "text_40": {
-      "en": "Date (Fixed):",
-      "de": "None40"
-    },
-    "text_41": {
-      "en": "Date (Until):",
-      "de": "None41"
-    },
-    "text_42": {
-      "en": "Location: ",
-      "de": "None42"
-    },
-    "text_43": {
-      "en": "Category: ",
-      "de": "None43"
-    },
-    "text_44": {
-      "en": "Sub: ",
-      "de": "None44"
-    },
-    "text_45": {
-      "en": "Your task is",
-      "de": "None45"
-    },
-    "text_46": {
-      "en": "published",
-      "de": "None46"
-    },
-    "text_47": {
-      "en": [
-        "You will be notified when a",
-        "tasker makes you an offer"
-      ],
-      "de": [
-        "de: You will be notified when a47",
-        "de: tasker makes you an offer47"
+      },
+      "sub_categories": [
+        {
+          "en": "Handicraft work",
+          "de": "Handwerksarbeit",
+          "img_url": "/images/disco.png",
+          "description": {
+            "en": [
+              "Lorem ipsum dolor sit Handicraft work",
+              "amet, consectetu Handicraft work"
+            ],
+            "de": [
+              "Zwei Linke Hände,",
+              "oder keine Zeit?"
+            ]
+          }
+        },
+        {
+          "en": "Gardening work",
+          "de": "Gartenarbeit",
+          "img_url": "/images/rake.png",
+          "description": {
+            "en": [
+              "Lorem ipsum dolor sit Gardening work",
+              "amet, consectetu Gardening work"
+            ],
+            "de": [
+              "Garten geniessen und",
+              "Unterhalt gesorgt geben"
+            ]
+          }
+        },
+        {
+          "en": "Moving & Cleaning",
+          "de": "Umzug & Reinigung",
+          "img_url": "/images/sofa2.png",
+          "description": {
+            "en": [
+              "Lorem ipsum dolor sit Moving & Cleaning",
+              "amet, consectetu Moving & Cleaning"
+            ],
+            "de": [
+              "Hilfe beim Umzug, oder",
+              "Frühlingsputz nötig?"
+            ]
+          }
+        },
+        {
+          "en": "Furniture",
+          "de": "Möbelmontage",
+          "img_url": "/images/sofa.png",
+          "description": {
+            "en": [
+              "Lorem ipsum dolor sit Furniture",
+              "amet, consectetuFurniture"
+            ],
+            "de": [
+              "Neue Möbel montieren lassen",
+              "und gewonnene Zeit geniessen."
+            ]
+          }
+        },
+        {
+          "en": "Household appliances",
+          "de": "Lade- und Entladehilfe",
+          "img_url": "/images/downd.png",
+          "description": {
+            "en": [
+              "Lorem ipsum dolor sit Household appliances",
+              "amet, consectetu Household appliances"
+            ],
+            "de": [
+              "Neue Möbel oder Elektrogeräte",
+              "müssen auch geladen und entladen werden."
+            ]
+          }
+        }
       ]
     },
-    "text_49": {
-        "en": "Finish",
-        "de": "None49"
-    },
-    "text_50": {
-        "en": "Confirm",
-        "de": "None50"
-    },
-    "text_51": {
-        "en": "Next",
-        "de": "None51"
-    },
-    "text_52": {
-        "en": "Back home",
-        "de": "None52"
-    },
-    "text_53": {
-        "en": "Publishing task...",
-        "de": "None...53"
+    {
+      "en": "Technical",
+      "de": "Technik",
+      "description": {
+        "en": [
+          "Lorem ipsum dolor sit Technical",
+          "amet, consectetu Technical"
+        ],
+        "de": [
+          "Tasks verbunden mit",
+          "Technik"
+        ]
+      },
+      "sub_categories": [
+        {
+          "en": "Installation",
+          "de": "Installation",
+          "img_url": "/images/comp.png",
+          "description": {
+            "en": [
+              "Lorem ipsum dolor sit Installation",
+              "amet, consectetu Installation"
+            ],
+            "de": [
+              "Installationen von PC, Laptop,",
+              "Fernseher und sonstigen Elektrogeräten"
+            ]
+          }
+        },
+        {
+          "en": "Repair of used equipment",
+          "de": "Reparatur",
+          "img_url": "/images/ska.png",
+          "description": {
+            "en": [
+              "Lorem ipsum dolor sit Repair of used equipment",
+              "amet, consectetu Repair of used equipment"
+            ],
+            "de": [
+              "Reparaturen von",
+              "gebrauchten Geräten"
+            ]
+          }
+        }
+      ]
     }
+  ],
+  "text_31": {
+    "en": "Other",
+    "de": "Andere Tätigkeiten",
+    "description": {
+      "en": [
+        "Lorem ipsum dolor sit Other",
+        "amet, consectetu Other"
+      ],
+      "de": [
+        "Definiere eine",
+        "beliebige Tätigkeit"
+      ]
+    }
+  },
+  "text_32": {
+    "en": "Almost there",
+    "de": "Fast fertig"
+  },
+  "text_33": {
+    "en": "Upload",
+    "de": "Hochladen"
+  },
+  "text_34": {
+    "en": "photos",
+    "de": "Bilder"
+  },
+  "text_35": {
+    "en": "Click one picture to set as thumbnail",
+    "de": "Klick auf ein Bild, um es als Vorschaubild festzulegen"
+  },
+  "text_35_1": {
+      "en": "Thumbnail",
+      "de": "Vorschaubild"
+  },
+  "text_35_2": {
+      "en": "Set thumbnail",
+      "de": "Vorschaubild festlegen"
+  },
+  "text_36": {
+    "en": "Task",
+    "de": "Task"
+  },
+  "text_37": {
+    "en": "review",
+    "de": "Zusammenfassung"
+  },
+  "text_38": {
+    "en": "Title:",
+    "de": "Titel:"
+  },
+  "text_39": {
+    "en": "Description:",
+    "de": "Beschreibung:"
+  },
+  "text_40": {
+    "en": "Date (Fixed):",
+    "de": "Datum (Fix):"
+  },
+  "text_41": {
+    "en": "Date (Until):",
+    "de": "Datum (Bis):"
+  },
+  "text_42": {
+    "en": "Location: ",
+    "de": "Standort"
+  },
+  "text_43": {
+    "en": "Category: ",
+    "de": "Kategorie: "
+  },
+  "text_44": {
+    "en": "Sub: ",
+    "de": "Unterkategorie: "
+  },
+  "text_45": {
+    "en": "Your task is",
+    "de": "Dein Task wurde"
+  },
+  "text_46": {
+    "en": "published",
+    "de": "veröffentlicht"
+  },
+  "text_47": {
+    "en": [
+      "You will be notified when a",
+      "tasker makes you an offer"
+    ],
+    "de": [
+      "Sobald du ein Angebot erhalten hast,",
+      "werden wir dich benachrichtigen."
+    ]
+  },
+  "text_49": {
+      "en": "Finish",
+      "de": "Fertigstellen"
+  },
+  "text_50": {
+      "en": "Confirm",
+      "de": "Bestätigen"
+  },
+  "text_51": {
+      "en": "Next",
+      "de": "Weiter"
+  },
+  "text_52": {
+      "en": "Back home",
+      "de": "Zurück zu Home"
+  },
+  "text_53": {
+      "en": "Publishing task...",
+      "de": "Task-Veröffentlichung..."
   }
+}

@@ -14,7 +14,31 @@ class SingleBlog extends React.Component {
     }
     render(){
         let { loading, post, error } = this.props;
-        if (loading) return "Loading..";
+        if (loading) return (
+            <div className=" edit-task__wrapper">
+                <section className="landing-info panel edit-task__section">
+                    <div className="container">
+                        <div className="content ">
+                            <header className="logo-text">
+                                <div style={{cursor:"pointer"}} onClick={() => {
+                                    try {
+                                        this.props.history.goBack();
+                                    } catch (e) {
+                                        this.props.history.push("/")
+                                    }
+                                }}>
+                                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                    <h4 className="hide-on-desktop logo-title ">
+                                        <span className="arraw hide-on-mobile"><img src="/images/arrow.jpeg" alt="" /></span>Blogs
+                                    </h4>
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+                <p className="text-center special">Loading...</p>
+                </section>
+            </div>
+        )
         if (error) return "Error...";
         if (!Object.keys(post).length) return <E404/>
         console.log("POSTPOST",post)
@@ -24,7 +48,7 @@ class SingleBlog extends React.Component {
                     <div className="container">
                         <div className="content ">
                             <header className="logo-text">
-                                <div onClick={() => {
+                                <div style={{cursor:"pointer"}} onClick={() => {
                                     try {
                                         this.props.history.goBack();
                                     } catch (e) {

@@ -46,7 +46,7 @@ class MyTasks extends React.Component {
         loading = loading || this.props.tasks_count.loading;
         return (
             <div>
-                {loading && <p style={{ textAlign: "center" }}>{this.getTrans(this.props.common.loading)}</p> }
+                {loading && <p className="special" style={{ textAlign: "center" }}>{this.getTrans(this.props.common.loading)}</p> }
                 { !loading && tasks.map(task => <SideTaskCard task={task} beforeTitleText={this.getTrans(this.props.translations.text_2)} />) }
                 { !loading && !tasks.length && 
                     <div className="home__card--lonely">

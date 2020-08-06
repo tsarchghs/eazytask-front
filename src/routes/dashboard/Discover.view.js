@@ -58,10 +58,10 @@ class Discover extends React.Component {
         let { loading } = this.props;
         return (
             <div>
-                {loading && <div>{this.getTrans(this.props.common.loading)}<br/></div>}
+                {loading && <p className="special">{this.getTrans(this.props.common.loading)}<br/></p>}
                 { !loading && this.showTasks() }
                 { 
-                    this.props.tasks_count.count > this.props.tasks.length && 
+                    !loading && this.props.tasks_count.count > this.props.tasks.length && 
                     <Link to="/active_listing" style={{ textAlign: "center", marginLeft: "41%" }}>View all</Link>
                 }
                 {/* { !loading && <div style={{ display: "flex" }}>{this.getPages()}</div> } */}

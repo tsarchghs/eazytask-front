@@ -16,7 +16,7 @@ export default props => {
     return (
         <div className={"home__card gradient "}>
             {
-                loading && "Loading"
+                loading && <h5>Loading...</h5>
             }
             {
                 !loading && error &&

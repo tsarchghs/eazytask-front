@@ -84,9 +84,11 @@ class AskerProfile extends React.Component {
         </div>
         return <p className="special text-center">No tasks to show...</p>
     }
+    getRatingsUI = () => <p className="special text-center">Coming soon!</p>
     getTabContent = () => {
         let { onTab } = this.state;
         if (onTab == "ACTIVE_TASKS") return this.getActiveListingsUI();
+        if (onTab == "RATINGS_IN_PROGRESS") return this.getRatingsUI();
         if (onTab == "PREVIOUS_TASKS") return this.getPreviousListingsUI();
     }
     render() {
@@ -128,6 +130,7 @@ class AskerProfile extends React.Component {
                             <div className="faq-web__top tabs-modified">
                                 <div className="home__tabs">
                                     <div style={{ cursor: "pointer" }} onClick={tabOnClick("ACTIVE_TASKS")} className={`home__tab ${this.state.onTab === "ACTIVE_TASKS" ? "active" : ""}`}>Active tasks</div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("RATINGS_IN_PROGRESS")} className={`home__tab ${this.state.onTab === "RATINGS_IN_PROGRESS" ? "active" : ""}`}>Ratings</div>
                                     <div style={{ cursor: "pointer" }} onClick={tabOnClick("PREVIOUS_TASKS")} className={`home__tab ${this.state.onTab === "PREVIOUS_TASKS" ? "active" : ""}`}>Previous tasks</div>
                                 </div>
                             </div>

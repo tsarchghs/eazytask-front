@@ -20,7 +20,18 @@ class Notifications extends React.Component {
     }
     render(){
         let { loading, error, payload } = this.state;
-        if (loading) return "Loading";
+        if (loading) return (
+            <div className="home__notifications">
+                <h3 className="flex aic fs28 fwn mb30">
+                    <img style={{ width: '32px', marginRight: '15px' }} src="/images/noti.png" alt="" />
+                    {this.props.web && this.props.translations.text_28 && this.props.getTrans(this.props.translations.text_28)}
+                    {this.props.mobile && this.props.translations.text_24 && this.props.getTrans(this.props.translations.text_24)}<br />
+                </h3>
+                <div className="home__noti-cards">
+                    <p className="special">Loading...</p>
+                </div>
+            </div>
+        )
         if (error) {
             console.log(error)
             return "Error";

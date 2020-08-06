@@ -1,11 +1,11 @@
 {
     "text_1": {
         "en": "Your tasks",
-        "de": "None1"
+        "de": "Deine Tasks,"
     },
     "text_2": {
         "en": "Made easy!",
-        "de": "None2"
+        "de": "einfach gemacht!"
     },
     "text_3": {
         "en": [
@@ -13,37 +13,37 @@
             "consetetur sadipscing elitr, sed diam."
         ],
         "de": [
-            "de: Lorem ipsum dolor sit amet,",
-            "de: consetetur sadipscing elitr, sed diam."
+            "Wir verbinden Privatpersonen für die Erledigung von Kleinaufträgen.",
+            "Gewinne jetzt Zeit und Flexibilität."
         ]
     },
     "text_4": {
         "en": "Watch how it works",
-        "de": "None4"
+        "de": "Wie es funktioniert"
     },
     "text_5": {
         "en": "Join us",
-        "de": "None5"
+        "de": "Mitmachen"
     },
     "text_6": {
         "en": "Home",
-        "de": "None6"
+        "de": "Home"
     },
     "text_7": {
         "en": "Watch how it",
-        "de": "None7"
+        "de": "Wie es"
     },
     "text_8": {
         "en": "works",
-        "de": "None8"
+        "de": "funktioniert"
     },
     "text_9": {
         "en": "Our Wonderful",
-        "de": "None9"
+        "de": "Unsere"
     },
     "text_10": {
         "en": "mission",
-        "de": "None10"
+        "de": "Mission"
     },
     "text_11": {
         "en": [
@@ -54,24 +54,24 @@
             "Lorem ipsum dolor sit amet,"
         ],
         "de": [
-            "de: Lorem ipsum dolor sit amet,",
-            "de: Lorem ipsum dolor sit amet,",
-            "de: Lorem ipsum dolor sit amet,",
-            "de: Lorem ipsum dolor sit amet,",
-            "de: Lorem ipsum dolor sit amet,"
+            "Wir helfen dort, wo Überqualifizierung kostenintensiv ist.",
+            "Wir helfen dabei, Kleinaufträge günstig",
+            "erledigen zu lassen und bieten Privatpersonen",
+            "eine Plattform, auf welche sie ihre Fähigkeiten",
+            "und Talent mit ihren Mitmenschen teilen können."
         ]
     },
     "text_12": {
         "en": "Steps to make",
-        "de": "None12"
+        "de": "So einfach"
     },
     "text_13": {
         "en": "an eazytask",
-        "de": "None13"
+        "de": "geht eazytask"
     },
     "text_14_step_1_title": {
         "en": "Step 1",
-        "de": "De: Step1"
+        "de": "Task erstellen"
     },
     "text_14_step_1": {
         "en": [
@@ -82,16 +82,14 @@
             "Lorem ipsum dorem amet alid"
         ],
         "de": [
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid"
+            "Erstelle einen aussagekräftigen Task",
+            "für deinen Kleinauftrag und",
+            "füge relevante Details hinzu."
         ]
     },
     "text_14_step_2_title": {
         "en": "Step 2",
-        "de": "De: Step2"
+        "de": "Tasker auswählen"
     },
     "text_14_step_2": {
         "en": [
@@ -102,16 +100,14 @@
             "Lorem ipsum dorem amet alid"
         ],
         "de": [
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid"
+            "Prüfe eingegange Angebote",
+            "und wähle den für dich",
+            "passenden Tasker aus."
         ]
     },
     "text_14_step_3_title": {
         "en": "Step 3",
-        "de": "De: Step3"
+        "de": "Kontakt"
     },
     "text_14_step_3": {
         "en": [
@@ -122,32 +118,30 @@
             "Lorem ipsum dorem amet alid"
         ],
         "de": [
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid",
-            "de: Lorem ipsum dorem amet alid"
+            "Kontaktiere den Tasker",
+            "und vereinbare die ",
+            "weiteren Details."
         ]
     },
     "text_15": {
         "en": "Activve",
-        "de": "None15"
+        "de": "Aktive"
     },
     "text_16": {
         "en": "listings",
-        "de": "None16"
+        "de": "Tasks"
     },
     "text_17": {
         "en": "Discover all",
-        "de": "None"
+        "de": "Alle Tasks"
     },
     "text_18": {
         "en": "Explore more",
-        "de": "None19"
+        "de": "Weitere Informationen"
     },
     "text_19": {
         "en": "Blog",
-        "de": "None20"
+        "de": "Blog"
     },
     "text_20": {
         "en": [
@@ -155,13 +149,13 @@
             "our latest blog"
         ],
         "de": [
-            "de: Keep updated by reading",
-            "de: our latest blog"
+            "Unsere neusten",
+            "Blogbeiträge"
         ]
     },
     "text_21": {
         "en": "FAQ",
-        "de": "None21"
+        "de": "FAQs"
     },
     "text_22": {
         "en": [
@@ -170,9 +164,9 @@
             "Questions"
         ],
         "de": [
-            "de: View frequently",
-            "de: Asked",
-            "de: Questions"
+            "Häufig",
+            "gestellte",
+            "Fragen"
         ]
     }
 }

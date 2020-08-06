@@ -1,226 +1,226 @@
 {
-    "web": {
-      "text_1": {
-        "en": "Howdy",
-        "de": "None1"
-      },
-      "text_2": {
-        "en": "View",
-        "de": "None2"
-      },
-      "text_3": {
-        "en": "new offers",
-        "de": "None3"
-      },
-      "text_4": {
-        "en": "My tasks",
-        "de": "None4"
-      },
-      "text_5": {
-        "en": "It's lonely here",
-        "de": "None5"
-      },
-      "text_6": {
-        "en": "You don't have any active tasks yet",
-        "de": "None6"
-      },
-      "text_7": {
-        "en": "Active tasks",
-        "de": "None7"
-      },
-      "text_8": {
-        "en": "Discover active listings",
-        "de": "None8"
-      },
-      "text_9": {
-        "en": "View all",
-        "de": "None9"
-      },
-      "text_9_1": {
-        "en": "View all",
-        "de": "None9_1"
-      },
-      "text_10": {
-        "en": "Read our Blog",
-        "de": "None10"
-      },
-      "text_12": {
-        "en": "Explore more",
-        "de": "None11"
-      },
-      "text_13": {
-        "en": "History",
-        "de": "None12"
-      },
-      "text_14": {
-        "en": "View history of",
-        "de": "None13"
-      },
-      "text_15": {
-        "en": "your activity",
-        "de": "None14"
-      },
-      "text_16": {
-        "en": "Landing",
-        "de": "None15"
-      },
-      "text_17": {
-        "en": "View",
-        "de": "None16"
-      },
-      "text_18": {
-        "en": "landing page",
-        "de": "None17"
-      },
-      "text_19": {
-        "en": "Faq",
-        "de": "None18"
-      },
-      "text_20": {
-        "en": "Discover",
-        "de": "None19"
-      },
-      "text_21": {
-        "en": "Frequently asked",
-        "de": "None20"
-      },
-      "text_22": {
-        "en": "Questions",
-        "de": "None21"
-      },
-      "text_23": {
-        "en": "some active listings on eazytask",
-        "de": "None22"
-      },
-      "text_24": {
-        "en": "Get inspired by reading our latest articles on our blog",
-        "de": "None23"
-      },
-      "text_25": {
-        "en": "No offers to show",
-        "de": "None24..."
-      },
-      "text_26": {
-        "en": "Offer",
-        "de": "None25"
-      },
-      "text_27": {
-        "en": "No tasks to show...",
-        "de": "Nein tasks to sein none 26"
-      },
-      "text_28": {
-        "en": "Notifications",
-        "de": "None27"
-      },
-      "text_29": {
-        "en": "No new offers",
-        "de": "None28"
-      },
-      "text_30": {
-        "en": "Create a new task",
-        "de": "None30"
-      }
+  "web": {
+    "text_1": {
+      "en": "Howdy",
+      "de": "Hallo"
     },
-    "mobile": {
-      "text_1": {
-        "en": "Howdy",
-        "de": "None1"
-      },
-      "text_2": {
-        "en": "View",
-        "de": "None2"
-      },
-      "text_3": {
-        "en": "My tasks",
-        "de": "None3"
-      },
-      "text_4": {
-        "en": "Discover",
-        "de": "None4"
-      },
-      "text_5": {
-        "en": "Offers",
-        "de": "None5"
-      },
-      "text_6": {
-        "en": "More",
-        "de": "None6"
-      },
-      "text_7": {
-        "en": "It's lonely here",
-        "de": "None7"
-      },
-      "text_8": {
-        "en": "You don't have any active task yet.",
-        "de": "None8"
-      },
-      "text_9": {
-        "en": "No offers to show...",
-        "de": "Nein offers to show non 9"
-      },
-      "text_10": {
-        "en": "Blog",
-        "de": "None10"
-      },
-      "text_11": {
-        "en": "Read our ",
-        "de": "None11"
-      },
-      "text_12": {
-        "en": "latest blog",
-        "de": "None12"
-      },
-      "text_13": {
-        "en": "History",
-        "de": "None13"
-      },
-      "text_14": {
-        "en": "View history of",
-        "de": "None14"
-      },
-      "text_15": {
-        "en": "your activity",
-        "de": "None15"
-      },
-      "text_16": {
-        "en": "Landing",
-        "de": "None16"
-      },
-      "text_17": {
-        "en": "View",
-        "de": "None17"
-      },
-      "text_18": {
-        "en": "landing page",
-        "de": "None18"
-      },
-      "text_19": {
-        "en": "Faq",
-        "de": "Defaq19"
-      },
-      "text_20": {
-        "en": "Discover",
-        "de": "None20"
-      },
-      "text_21": {
-        "en": "Frequently asked",
-        "de": "None21"
-      },
-      "text_22": {
-        "en": "Questions",
-        "de": "None22"
-      },
-      "text_23": {
-        "en": "new offers",
-        "de": "None23"
-      },
-      "text_24": {
-        "en": "Notifications",
-        "de": "None24"
-      },
-      "text_25": {
-        "en": "No new offers",
-        "de": "None25"
-      }
+    "text_2": {
+      "en": "View",
+      "de": "Neue"
+    },
+    "text_3": {
+      "en": "new offers",
+      "de": "Angebote ansehen"
+    },
+    "text_4": {
+      "en": "My tasks",
+      "de": "Meine Tasks"
+    },
+    "text_5": {
+      "en": "It's lonely here",
+      "de": "Es ist einsam hier."
+    },
+    "text_6": {
+      "en": "You don't have any active tasks yet",
+      "de": "Du hast keine aktiven Tasks."
+    },
+    "text_7": {
+      "en": "Active tasks",
+      "de": "Aktive Tasks"
+    },
+    "text_8": {
+      "en": "Discover active listings",
+      "de": "Aktive Tasks entdecken"
+    },
+    "text_9": {
+      "en": "View all",
+      "de": "Alle anzeigen"
+    },
+    "text_9_1": {
+      "en": "View all",
+      "de": "Alle anzeigen"
+    },
+    "text_10": {
+      "en": "Read our Blog",
+      "de": "Blog lesen"
+    },
+    "text_12": {
+      "en": "Explore more",
+      "de": "Entdecke mehr"
+    },
+    "text_13": {
+      "en": "History",
+      "de": "Verlauf"
+    },
+    "text_14": {
+      "en": "View history of",
+      "de": "Verlauf deiner"
+    },
+    "text_15": {
+      "en": "your activity",
+      "de": "Aktivitäten"
+    },
+    "text_16": {
+      "en": "Landing",
+      "de": "Startseite"
+    },
+    "text_17": {
+      "en": "View",
+      "de": "Gehe zur"
+    },
+    "text_18": {
+      "en": "landing page",
+      "de": "Startseite"
+    },
+    "text_19": {
+      "en": "Faq",
+      "de": "FAQ"
+    },
+    "text_20": {
+      "en": "Discover",
+      "de": "Durchsuche"
+    },
+    "text_21": {
+      "en": "Frequently asked",
+      "de": "häufig gestellte"
+    },
+    "text_22": {
+      "en": "Questions",
+      "de": "Fragen"
+    },
+    "text_23": {
+      "en": "some active listings on eazytask",
+      "de": "einige aktive Tasks auf eazytask"
+    },
+    "text_24": {
+      "en": "Get inspired by reading our latest articles on our blog",
+      "de": "Lass dich durch unsere neuesten Artikel in unserem Blog inspirieren"
+    },
+    "text_25": {
+      "en": "No offers to show",
+      "de": "Keine Angebote"
+    },
+    "text_26": {
+      "en": "Offer",
+      "de": "Angebot"
+    },
+    "text_27": {
+      "en": "No tasks to show...",
+      "de": "Keine Tasks..."
+    },
+    "text_28": {
+      "en": "Notifications",
+      "de": "Benachrichtigungen"
+    },
+    "text_29": {
+      "en": "No new offers",
+      "de": "Keine neuen Angebote"
+    },
+    "text_30": {
+      "en": "Create a new task",
+      "de": "Erstelle einen Task"
+    }
+  },
+  "mobile": {
+    "text_1": {
+      "en": "Howdy",
+      "de": "Hallo"
+    },
+    "text_2": {
+      "en": "View",
+      "de": "Anzeigen"
+    },
+    "text_3": {
+      "en": "My tasks",
+      "de": "Meine Tasks"
+    },
+    "text_4": {
+      "en": "Discover",
+      "de": "Entdecke"
+    },
+    "text_5": {
+      "en": "Offers",
+      "de": "Angebote"
+    },
+    "text_6": {
+      "en": "More",
+      "de": "Mehr"
+    },
+    "text_7": {
+      "en": "It's lonely here",
+      "de": "Es ist einsam hier."
+    },
+    "text_8": {
+      "en": "You don't have any active task yet.",
+      "de": "Du hast keine aktiven Tasks."
+    },
+    "text_9": {
+      "en": "No offers to show...",
+      "de": "Keine Angebote..."
+    },
+    "text_10": {
+      "en": "Blog",
+      "de": "Blog"
+    },
+    "text_11": {
+      "en": "Read our ",
+      "de": "Unsere"
+    },
+    "text_12": {
+      "en": "latest blog",
+      "de": "Blogs lesen"
+    },
+    "text_13": {
+      "en": "History",
+      "de": "Verlauf"
+    },
+    "text_14": {
+      "en": "View history of",
+      "de": "Verlauf deiner"
+    },
+    "text_15": {
+      "en": "your activity",
+      "de": "Aktivitäten"
+    },
+    "text_16": {
+      "en": "Landing",
+      "de": "Startseite"
+    },
+    "text_17": {
+      "en": "View",
+      "de": "Gehe zur"
+    },
+    "text_18": {
+      "en": "landing page",
+      "de": "Startseite"
+    },
+    "text_19": {
+      "en": "Faq",
+      "de": "FAQ"
+    },
+    "text_20": {
+      "en": "Discover",
+      "de": "Durchsuche"
+    },
+    "text_21": {
+      "en": "Frequently asked",
+      "de": "häufig gestellte"
+    },
+    "text_22": {
+      "en": "Questions",
+      "de": "Fragen"
+    },
+    "text_23": {
+      "en": "new offers",
+      "de": "neue Angebote"
+    },
+    "text_24": {
+      "en": "Notifications",
+      "de": "Benachrichtigungen"
+    },
+    "text_25": {
+      "en": "No new offers",
+      "de": "Keine neuen Angebote"
     }
   }
+}

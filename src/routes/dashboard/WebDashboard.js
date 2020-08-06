@@ -31,7 +31,7 @@ class WebDashboard extends React.Component {
     }
     getActiveTasks = () => {
         let translations = this.props.translations;
-        if (this.props.myActiveTasks_info.loading) return this.getTrans(this.props.common.loading)
+        if (this.props.myActiveTasks_info.loading) return <p className="special">{this.getTrans(this.props.common.loading)}</p>
         if (!this.props.myActiveTasks_info.tasks.length) return (
             <div className="home__card--lonely" style={{width:"60%", margin: "0 auto"}}>
                 <h4>{this.getTrans(translations.text_5)}</h4>
@@ -65,7 +65,7 @@ class WebDashboard extends React.Component {
     }
     getOffers = () => {
         if (this.props.offers_info.loading) return this.getTrans(this.props.common.loading)
-        if (!this.props.offers_info.offers.length) return this.getTrans(this.props.translations.text_25)
+        if (!this.props.offers_info.offers.length) return <p className="special">{this.getTrans(this.props.translations.text_25)}</p>
         return (
             <div className="tasker-profile dashboard-cards">
                 <div className="offers-content modified">
@@ -157,7 +157,7 @@ class WebDashboard extends React.Component {
                                                         { this.props.activeListing2_info.loading && "Loading.." }
                                                         {
                                                             !this.props.activeListing2_info.loading && !this.props.activeListing2_info.tasks.length 
-                                                            && this.getTrans(translations.text_27)
+                                                            && <p className="special">{this.getTrans(translations.text_27)}</p>
                                                         }
                                                         {
                                                             !this.props.activeListing2_info.loading &&
