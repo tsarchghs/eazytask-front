@@ -1,135 +1,135 @@
 {
     "text_1": {
       "en": "Account setup",
-      "de": "None"
+      "de": "None1"
     },
     "text_2": {
       "en": "Welcome",
-      "de": "None"
+      "de": "None2"
     },
     "text_3": {
       "en": "Do you want to",
-      "de": "None"
+      "de": "None3"
     },
     "text_4": {
       "en": "setup your account now?",
-      "de": "None"
+      "de": "None4"
     },
     "text_5": {
       "en": "Profile",
-      "de": "None"
+      "de": "None5"
     },
     "text_5_1": {
       "en": "Cover",
-      "de": "None"
+      "de": "None6"
     },
     "text_6": {
       "en": "Add your profile picture",
-      "de": "None"
+      "de": "None7"
     },
     "text_7": {
       "en": "Add your cover picture",
-      "de": "None"
+      "de": "None8"
     },
     "text_8": {
       "en": "Location",
-      "de": "None"
+      "de": "None9"
     },
     "text_9": {
       "en": "Please add your location",
-      "de": "None"
+      "de": "None10"
     },
     "text_10": {
       "en": "ZIP",
-      "de": "None"
+      "de": "None11"
     },
     "text_11": {
       "en": "Town",
-      "de": "None"
+      "de": "None12"
     },
     "text_12": {
       "en": "Address",
-      "de": "None"
+      "de": "None13"
     },
     "text_13": {
       "en": "Notifications",
-      "de": "None"
+      "de": "None14"
     },
     "text_14": {
       "en": "How do you want",
-      "de": "None"
+      "de": "None15"
     },
     "text_15": {
       "en": "to be notified?",
-      "de": "None"
+      "de": "None16"
     },
     "text_16": {
       "en": "Mail",
-      "de": "None"
+      "de": "None17"
     },
     "text_17": {
       "en": "SMS",
-      "de": "None"
+      "de": "None18"
     },
     "text_18": {
       "en": "Phone number",
-      "de": "None"
+      "de": "None19"
     },
     "text_19": {
       "en": "Type your phone number",
-      "de": "None"
+      "de": "None20"
     },
     "text_20": {
       "en": "Verification code",
-      "de": "None"
+      "de": "None21"
     },
     "text_21": {
       "en": "Type your verification code",
-      "de": "None"
+      "de": "None22"
     },
     "text_22": {
       "en": "Invalid code",
-      "de": "None"
+      "de": "None23"
     },
     "text_23": {
       "en": "Almost there",
-      "de": "None"
+      "de": "None24"
     },
     "text_24": {
       "en": "Do you want to join",
-      "de": "None"
+      "de": "None25"
     },
     "text_25": {
       "en": "also as a tasker?",
-      "de": "None"
+      "de": "None26"
     },
     "text_26": {
       "en": "My skills",
-      "de": "None"
+      "de": "None27"
     },
     "text_27": {
       "en": "Search for a skill or add a custom one",
-      "de": "None"
+      "de": "None28"
     },
     "text_28": {
       "en": "My area of activity",
-      "de": "None"
+      "de": "None29"
     },
     "text_29": {
       "en": "Search for a city or add a custom one",
-      "de": "None"
+      "de": "None30"
     },
     "text_30": {
       "en": "My languages",
-      "de": "None"
+      "de": "None31"
     },
     "text_31": {
       "en": "Search for a language or add a custom one",
-      "de": "None"
+      "de": "None32"
     },
     "text_32": {
       "en": "Ready to go",
-      "de": "None"
+      "de": "None33"
     },
     "text_33": {
       "en": [
@@ -137,56 +137,56 @@
         "consetetur sadipscing elitr, sed diam."
       ],
       "de": [
-        "DE: Lorem ipsum dolor sit amet,",
-        "DE: consetetur sadipscing elitr, sed diam."
+        "DE: Lorem ipsum dolor sit amet,34",
+        "DE: consetetur sadipscing elitr, sed diam.34"
       ]
     },
     "text_34": {
       "en": "Go",
-      "de": "None"
+      "de": "None35"
     },
     "text_35": {
       "en": "Next",
-      "de": "None"
+      "de": "None36"
     },
     "text_36": {
       "en": "Skip for now",
-      "de": "None"
+      "de": "None37"
     },
     "text_37": {
       "en": "Finish",
-      "de": "None"
+      "de": "None38"
     },
     "text_38": {
       "en": "Personal apperance",
-      "de": "None"
+      "de": "None39"
     },
     "text_39": {
       "en": "Last thing",
-      "de": "None"
+      "de": "None40"
     },
     "text_40": {
       "en": "Setup",
-      "de": "None"
+      "de": "None41"
     },
     "text_41": {
       "en": "No, thanks.",
-      "de": "None"
+      "de": "None42"
     },
     "text_42": {
         "en": "Zip code required",
-        "de": "None"
+        "de": "None43"
     },
     "text_43": {
         "en": "Address required",
-        "de": "None"
+        "de": "None44"
     },
     "text_44": {
       "en": "City required",
-      "de": "None"
+      "de": "None45"
     },
     "text_45": {
       "en": "Yes",
-      "de": "None"
+      "de": "None46"
     }
 }

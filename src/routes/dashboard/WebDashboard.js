@@ -38,7 +38,7 @@ class WebDashboard extends React.Component {
                 <p>{this.getTrans(translations.text_6)}</p>
                 <img src="/images/waiting_1.png" alt="" style={{ width: '35%' }} />
                 <img src="/images/lonely.jpeg" className="hide-on-web" alt="" />
-                <h4 className="mt15">Create a new task</h4>
+                <h4 className="mt15">{this.getTrans(this.props.translations.text_30)}</h4>
             </div>
 
         )
@@ -115,7 +115,11 @@ class WebDashboard extends React.Component {
                                                             getTrans={this.getTrans}     
                                                         />
                                                     </div>
-                                                    <Notifications/>
+                                                    <Notifications
+                                                        web={true}
+                                                        translations={this.props.translations} 
+                                                        getTrans={this.getTrans}     
+                                                    />
                                                 </div>
                                                 <div className="hero-home__cards">
                                                     <div className="home__tabs" style={{ justifyContent: 'initial' }}>
@@ -206,7 +210,7 @@ class WebDashboard extends React.Component {
                                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                         </div>
                                                         <Link to="/blog">
-                                                            <h4>{this.getTrans(translations.text_9)}</h4>
+                                                            <h4>{this.getTrans(translations.text_9_1)}</h4>
                                                         </Link>
                                                     </div>
                                                     <section className="blog-cards" style={{ marginTop: '50px' }}>

@@ -2,201 +2,225 @@
     "web": {
       "text_1": {
         "en": "Howdy",
-        "de": "None"
+        "de": "None1"
       },
       "text_2": {
         "en": "View",
-        "de": "None"
+        "de": "None2"
       },
       "text_3": {
         "en": "new offers",
-        "de": "None"
+        "de": "None3"
       },
       "text_4": {
         "en": "My tasks",
-        "de": "None"
+        "de": "None4"
       },
       "text_5": {
         "en": "It's lonely here",
-        "de": "None"
+        "de": "None5"
       },
       "text_6": {
         "en": "You don't have any active tasks yet",
-        "de": "None"
+        "de": "None6"
       },
       "text_7": {
         "en": "Active tasks",
-        "de": "None"
+        "de": "None7"
       },
       "text_8": {
         "en": "Discover active listings",
-        "de": "None"
+        "de": "None8"
       },
       "text_9": {
         "en": "View all",
-        "de": "None"
+        "de": "None9"
+      },
+      "text_9_1": {
+        "en": "View all",
+        "de": "None9_1"
       },
       "text_10": {
         "en": "Read our Blog",
-        "de": "None"
+        "de": "None10"
       },
       "text_12": {
         "en": "Explore more",
-        "de": "None"
+        "de": "None11"
       },
       "text_13": {
         "en": "History",
-        "de": "None"
+        "de": "None12"
       },
       "text_14": {
         "en": "View history of",
-        "de": "None"
+        "de": "None13"
       },
       "text_15": {
         "en": "your activity",
-        "de": "None"
+        "de": "None14"
       },
       "text_16": {
         "en": "Landing",
-        "de": "None"
+        "de": "None15"
       },
       "text_17": {
         "en": "View",
-        "de": "None"
+        "de": "None16"
       },
       "text_18": {
         "en": "landing page",
-        "de": "None"
+        "de": "None17"
       },
       "text_19": {
         "en": "Faq",
-        "de": "None"
+        "de": "None18"
       },
       "text_20": {
         "en": "Discover",
-        "de": "None"
+        "de": "None19"
       },
       "text_21": {
         "en": "Frequently asked",
-        "de": "None"
+        "de": "None20"
       },
       "text_22": {
         "en": "Questions",
-        "de": "None"
+        "de": "None21"
       },
       "text_23": {
         "en": "some active listings on eazytask",
-        "de": "None"
+        "de": "None22"
       },
       "text_24": {
         "en": "Get inspired by reading our latest articles on our blog",
-        "de": "None"
+        "de": "None23"
       },
       "text_25": {
         "en": "No offers to show",
-        "de": "Nein offerd to sein"
+        "de": "None24..."
       },
       "text_26": {
         "en": "Offer",
-        "de": "None"
+        "de": "None25"
       },
       "text_27": {
         "en": "No tasks to show...",
-        "de": "Nein tasks to sein"
+        "de": "Nein tasks to sein none 26"
+      },
+      "text_28": {
+        "en": "Notifications",
+        "de": "None27"
+      },
+      "text_29": {
+        "en": "No new offers",
+        "de": "None28"
+      },
+      "text_30": {
+        "en": "Create a new task",
+        "de": "None30"
       }
     },
     "mobile": {
       "text_1": {
         "en": "Howdy",
-        "de": "None"
+        "de": "None1"
       },
       "text_2": {
         "en": "View",
-        "de": "None"
+        "de": "None2"
       },
       "text_3": {
         "en": "My tasks",
-        "de": "None"
+        "de": "None3"
       },
       "text_4": {
         "en": "Discover",
-        "de": "None"
+        "de": "None4"
       },
       "text_5": {
         "en": "Offers",
-        "de": "None"
+        "de": "None5"
       },
       "text_6": {
         "en": "More",
-        "de": "None"
+        "de": "None6"
       },
       "text_7": {
         "en": "It's lonely here",
-        "de": "None"
+        "de": "None7"
       },
       "text_8": {
         "en": "You don't have any active task yet.",
-        "de": "None"
+        "de": "None8"
       },
       "text_9": {
         "en": "No offers to show...",
-        "de": "Nein offers to show"
+        "de": "Nein offers to show non 9"
       },
       "text_10": {
         "en": "Blog",
-        "de": "None"
+        "de": "None10"
       },
       "text_11": {
         "en": "Read our ",
-        "de": "None"
+        "de": "None11"
       },
       "text_12": {
         "en": "latest blog",
-        "de": "None"
+        "de": "None12"
       },
       "text_13": {
         "en": "History",
-        "de": "None"
+        "de": "None13"
       },
       "text_14": {
         "en": "View history of",
-        "de": "None"
+        "de": "None14"
       },
       "text_15": {
         "en": "your activity",
-        "de": "None"
+        "de": "None15"
       },
       "text_16": {
         "en": "Landing",
-        "de": "None"
+        "de": "None16"
       },
       "text_17": {
         "en": "View",
-        "de": "None"
+        "de": "None17"
       },
       "text_18": {
         "en": "landing page",
-        "de": "None"
+        "de": "None18"
       },
       "text_19": {
         "en": "Faq",
-        "de": "Defaq"
+        "de": "Defaq19"
       },
       "text_20": {
         "en": "Discover",
-        "de": "None"
+        "de": "None20"
       },
       "text_21": {
         "en": "Frequently asked",
-        "de": "None"
+        "de": "None21"
       },
       "text_22": {
         "en": "Questions",
-        "de": "None"
+        "de": "None22"
       },
       "text_23": {
         "en": "new offers",
-        "de": "None"
+        "de": "None23"
+      },
+      "text_24": {
+        "en": "Notifications",
+        "de": "None24"
+      },
+      "text_25": {
+        "en": "No new offers",
+        "de": "None25"
       }
     }
   }

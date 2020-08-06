@@ -13,20 +13,22 @@ class ChangePreferencesSettings extends React.Component {
         this.state = {
 
         }
+        this.asker = this.getTrans(this.props.translations.text_4)
+        this.askerAndTasker = this.getTrans(this.props.translations.text_5)
     }
     toggle = opened => () => {
         this.setState({ opened: !opened })
     }
     GetOptions = () => (
         <div className="styled-select" style={{ zIndex: 999 }}>
-            <p>{this.state.show || (!this.props.currentUser.isTasker ? "Asker" : "Asker and Tasker")}</p>
+            <p>{this.state.show || (!this.props.currentUser.isTasker ? this.asker : this.askerAndTasker)}</p>
             <img style={{ cursor: "pointer" }} onClick={this.toggle(this.state.opened)} src="/images/arr-right.png" alt="" />
             <div className={`styled-select__open ${this.state.opened ? "opened" : ""}`}>
-                <div onClick={e => this.setState({ isTasker: false, show: "Asker", opened: false })} className="styled-select__item">
-                    Asker
+                <div onClick={e => this.setState({ isTasker: false, show: this.asker, opened: false })} className="styled-select__item">
+                    {this.asker}
                 </div>
-                <div onClick={e => this.setState({ isTasker: true, show: "Asker and Tasker", opened: false })} className="styled-select__item">
-                    Asker and Tasker
+                <div onClick={e => this.setState({ isTasker: true, show: this.askerAndTasker, opened: false })} className="styled-select__item">
+                    {this.askerAndTasker}
                 </div>
             </div>
         </div>
@@ -40,6 +42,15 @@ class ChangePreferencesSettings extends React.Component {
         })
         console.log("ON_UPDATE")
     }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof(data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br/>
+            </React.Fragment>)
+        }
+    }
     render(){
         return (
             <div className=" edit-task__wrapper">
@@ -50,11 +61,10 @@ class ChangePreferencesSettings extends React.Component {
                             <section className="profile__article hide-on-mobile">
                                 <WebSidebar />
                                 <div className="profile__article--content">
-                                    <h3>Change preferences</h3>
-                                    <h4 style={{ fontWeight: "initial" }}>Choose how do you want to be notified across platform about:
-                                    New offers, updates and more.</h4>
+                                    <h3>{this.getTrans(this.props.translations.text_1)}</h3>
+                                    <h4 style={{ fontWeight: "initial" }}>{this.getTrans(this.props.translations.text_2)}</h4>
                                     <div className="profile__select">
-                                        <h4>You're currently an:</h4>
+                                        {/* <h4>{this.getTrans(this.props.translations.text_3)}</h4> */}
                                         {this.GetOptions()}
                                         {
                                             !this.changedRoleBool() &&
@@ -66,7 +76,7 @@ class ChangePreferencesSettings extends React.Component {
 
                                                 }}
                                                 className="button__style">
-                                                Save
+                                                {this.getTrans(this.props.translations.text_10)}
                                             </button>
                                         }
                                     </div>
@@ -76,7 +86,7 @@ class ChangePreferencesSettings extends React.Component {
                                         <React.Fragment>
                                             <a href="/settings/change_skills">
                                                 <div style={{ marginTop: 5 }} className="styled-select">
-                                                    <p>Skills</p>
+                                                    <p>{this.getTrans(this.props.translations.text_7)}</p>
                                                     <img src="/images/arr-right.png" alt="" />
                                                     <div className={`styled-select__open`}>
                                                     </div>
@@ -84,7 +94,7 @@ class ChangePreferencesSettings extends React.Component {
                                             </a>
                                             <a href="/settings/change_languages">
                                                 <div style={{ marginTop: 5 }} className="styled-select">
-                                                    <p>Languages</p>
+                                                    <p>{this.getTrans(this.props.translations.text_8)}</p>
                                                     <img src="/images/arr-right.png" alt="" />
                                                     <div className={`styled-select__open`}>
                                                     </div>
@@ -92,7 +102,7 @@ class ChangePreferencesSettings extends React.Component {
                                             </a>
                                             <a href="/settings/change_cities">
                                                 <div style={{ marginTop: 5 }} className="styled-select">
-                                                    <p>Cities</p>
+                                                    <p>{this.getTrans(this.props.translations.text_9)}</p>
                                                     <img src="/images/arr-right.png" alt="" />
                                                     <div className={`styled-select__open`}>
                                                     </div>
@@ -182,7 +192,7 @@ class ChangePreferencesSettings extends React.Component {
 let mapStateToProps = state => {
     return {
         currentUser: state.auth.profile,
-        translations: state.app_lang.data["/settings"].notifications,
+        translations: state.app_lang.data["/settings"].change_preferences,
         app_lang: state.app_lang.app_lang,
         common: state.app_lang.common
     }

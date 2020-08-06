@@ -281,7 +281,7 @@ class CreateTask extends React.Component {
         else return false
     }
     getButtonText = () => {
-        if (this.props.app_createTask.loading) return "Publishing task..."
+        if (this.props.app_createTask.loading) return this.getTrans(this.props.translations.text_53)
         if (this.state.step == 8) return this.getTrans(this.props.translations.text_51)
         if (this.state.step === this.lastStepIndex - 2) return this.getTrans(this.props.translations.text_49)
         if (this.state.step === this.lastStepIndex - 1) return this.getTrans(this.props.translations.text_50)

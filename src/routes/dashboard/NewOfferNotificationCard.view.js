@@ -12,7 +12,7 @@ export default props => {
         text_2 = props.getTrans(props.translations.text_3)
     }
     let { loading, error, payload } = props;
-    console.log("home__card gradient",props)
+    console.log("home__card gradient",props,props.translations.text_29)
     return (
         <div className={"home__card gradient "}>
             {
@@ -21,7 +21,8 @@ export default props => {
             {
                 !loading && error &&
                 <h5>
-                    No new offers<br />
+                    {props.web && props.translations.text_29 && props.getTrans(props.translations.text_29)}
+                    {props.mobile && props.translations.text_25 && props.getTrans(props.translations.text_25)}<br />
                 </h5>
 
 

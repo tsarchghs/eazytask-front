@@ -2,7 +2,7 @@
     "notifications": {
         "text_1": {
             "en": "Notifications",
-            "de": "None"
+            "de": "None1"
         },
         "text_2": {
             "en": [
@@ -10,31 +10,31 @@
                 "New offers, updates and more."
             ],
             "de": [
-                "DE: Choose how do you want to be notified across platform about:",
-                "DE: New offers, updates and more."
+                "DE: Choose how do you want to be notified across platform about:22",
+                "DE: New offers, updates and more.22"
             ]
         },
         "text_3": {
             "en": "I want to be notified with:",
-            "de": "None"
+            "de": "None3"
         },
         "text_4": {
             "en": "Email",
-            "de": "None"
+            "de": "None4"
         },
         "text_5": {
             "en": "SMS",
-            "de": "None"
+            "de": "None5"
         },
         "text_6": {
             "en": "Save",
-            "de": "None"
+            "de": "None6"
         }
     },
     "change_password": {
         "text_1": {
             "en": "Change Password",
-            "de": "None"
+            "de": "None1"
         },
         "text_2": {
             "en": [
@@ -43,37 +43,37 @@
                 "or something too obvious like your pet’s name."
             ],
             "de": [
-                "de: Choose a strong password and don’t reuse it from somewhere else.",
-                "de: Use at least 8 characters. Don’t use a password from another site,",
-                "de: or something too obvious like your pet’s name."
+                "de: Choose a strong password and don’t reuse it from somewhere else.22",
+                "de: Use at least 8 characters. Don’t use a password from another site,22",
+                "de: or something too obvious like your pet’s name.22"
             ]
         },
         "text_3": {
             "en": "Old password",
-            "de": "None"
+            "de": "None3"
         },
         "text_4": {
             "en": "New password",
-            "de": "None"
+            "de": "None4"
         },
         "text_5": {
             "en": "Confirm new password",
-            "de": "None"
+            "de": "None5"
         },
         "text_6": {
             "en": "Confirm",
-            "de": "None"
+            "de": "None6"
         }
     },
     "delete_account": {
         "web": {
             "text_1": {
                 "en": "Delete account",
-                "de": "None"
+                "de": "None1"
             },
             "text_2": {
                 "en": "Hi,",
-                "de": "None"
+                "de": "None2"
             },
             "text_3": {
                 "en": [
@@ -82,42 +82,42 @@
                     "improve"
                 ],
                 "de": [
-                    "de: We're sorry to hear you'd like to delete your account.",
-                    "de: Please tell us why you made this decision so in that way we will try to",
-                    "de: improve"
+                    "de: We're sorry to hear you'd like to delete your account.3",
+                    "de: Please tell us why you made this decision so in that way we will try to3",
+                    "de: improve3"
                 ]
             },
             "text_4": {
                 "en": "Please tell us why you decided to delete your account.",
-                "de": "None"
+                "de": "None4"
             },
             "text_5": {
                 "en": "Hard to use",
-                "de": "None"
+                "de": "None5"
             },
             "text_6": {
                 "en": "It has a lot of problems",
-                "de": "None"
+                "de": "None6"
             },
             "text_7": {
                 "en": "I don't need it",
-                "de": "None"
+                "de": "None7"
             },
             "text_8": {
                 "en": "I have a better platform",
-                "de": "None"
+                "de": "None8"
             },
             "text_9": {
                 "en": "It's not available in my country",
-                "de": "None"
+                "de": "None9"
             },
             "text_10": {
                 "en": "Delete",
-                "de": "None"
+                "de": "None10"
             },
             "text_11": {
                 "en": "Deleting..",
-                "de": "Neininig.."
+                "de": "Neininig..11"
             }
         },
         "mobile": {
@@ -127,44 +127,44 @@
                     "go"
                 ],
                 "de": [
-                    "de: We are sorry to see you",
-                    "de: go"
+                    "de: We are sorry to see you1",
+                    "de: go1"
                 ]
             },
             "text_2": {
                 "en": "Please tell us why you decided to delete your account.",
-                "de": "None"
+                "de": "None2"
             },
             "text_3": {
                 "en": "Hard to use",
-                "de": "None"
+                "de": "None3"
             },
             "text_4": {
                 "en": "It has a lot of problems",
-                "de": "None"
+                "de": "None4"
             },
             "text_5": {
                 "en": "I don't need it",
-                "de": "None"
+                "de": "None5"
             },
             "text_6": {
                 "en": "I have a better platform",
-                "de": "None"
+                "de": "None6"
             },
             "text_7": {
                 "en": "It's not available in my country",
-                "de": "None"
+                "de": "None7"
             },
             "text_8": {
                 "en": "Delete",
-                "de": "None"
+                "de": "None8"
             }
         }
     },
     "about": {
         "text_1": {
             "en": "Eazytask",
-            "de": "Eazytask"
+            "de": "Eazytask1"
         },
         "text_2": {
             "en": [
@@ -172,13 +172,55 @@
                 "en: Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei."
             ],
             "de": [
-                "Eazytask verbinden Privatpersonen für die Erledigung von Kleinaufträgen.",
-                "Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei."
+                "Eazytask verbinden Privatpersonen für die Erledigung von Kleinaufträgen.2",
+                "Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei.2"
             ]
         },
         "text_3": {
             "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi netus placerat magna iaculis sit lorem. Suspendisse in faucibus ut neque egestas. Consectetur a mattis vel commodo arcu malesuada turpis dolor duis. Enim elit pellentesque orci, porttitor nulla sit pretium. Sit purus, risus, iaculis neque proin non felis, ac. Laoreet mauris blandit praesent enim sed. Viverra non convallis sed blandit faucibus consectetur. Egestas posuere id eu scelerisque tristique at odio nisl. Sed eu enim molestie mauris risus, nullam pretium ut semper. Viverra nulla est, maecenas nibh. Felis, odio amet nam et lacus vitae, ornare. Hac proin mattis et sagittis rhoncus aliquam. Diam diam arcu lorem pharetra facilisis urna sit. Cras praesent est ac lorem morbi suspendisse aliquam vel.",
-            "de": "None"
+            "de": "None3"
+        }
+    },
+    "change_preferences": {
+        "text_1": {
+            "en": "Change preferences",
+            "de": "None1"
+        },
+        "text_2": {
+            "en": "Chose how you do you want to........",
+            "de": "None2"
+        },
+        "text_3": {
+            "en": "Yoi're currently an:",
+            "de": "None3"
+        },
+        "text_4": {
+            "en": "Asker",
+            "de": "None4"
+        },
+        "text_5": {
+            "en": "Asker and Tasker",
+            "de": "None5"
+        },
+        "text_6": {
+            "en": "",
+            "de": "None6"
+        },
+        "text_7": {
+            "en": "Skills",
+            "de": "None7"
+        },
+        "text_8": {
+            "en": "Languages",
+            "de": "None8"
+        },
+        "text_9": {
+            "en": "Cities",
+            "de": "None9"
+        },
+        "text_10": {
+            "en": "Save",
+            "de": "None10"
         }
     }
 }
