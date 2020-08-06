@@ -122,6 +122,16 @@ class Home extends React.Component {
             }
         })
     }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        console.log("GET_TRANS", data, obj)
+        if (typeof (data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br />
+            </React.Fragment>)
+        }
+    }
     render(){
         // console.log("this.state.onStep",this.state.onStep)
         // console.log("this.props.loading", this.props.loading)
@@ -141,10 +151,10 @@ class Home extends React.Component {
                                     <div className="two-column__info flex flex-column">
                                         <div className="flex-grow flex flex-column jcc m-jci w100">
                                             <div className="background-title mb5">
-                                                <h1 className="fs62 fwn">Your tasks</h1>
-                                                <h1 className="bold bigger fs70">Made Easy!</h1>
+                                                <h1 className="fs62 fwn">{this.getTrans(this.props.translations.text_1)}</h1>
+                                                <h1 className="bold bigger fs70">{this.getTrans(this.props.translations.text_2)}</h1>
                                             </div>
-                                            <p className="mb30 special fs19 fwl ">Lorem ipsum dolor sit amet, <br /> consetetur sadipscing elitr, sed diam. </p>
+                                            <p className="mb30 special fs19 fwl ">{this.getTrans(this.props.translations.text_3)}</p>
                                         </div>
                                         <div className="mb10">
                                             <SectionLink section="watch_how_it_works">
@@ -152,12 +162,12 @@ class Home extends React.Component {
                                                     <img onClick={onClick} style={{cursor:"pointer"}} className="play-img" src="/images/play.png" alt="" />
                                                 ) }
                                             </SectionLink>
-                                            <p className="special fs19 fwn">Watch how it works</p>
+                                            <p className="special fs19 fwn">{this.getTrans(this.props.translations.text_4)}</p>
                                         </div>
                                         <div className="buttons__group">
                                             {/* <button className="button__style no-color">Skip <span className="show__mobile">for now</span></button> */}
                                             <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                                <button className="button__style button--smaller">{ fromDashboardMore ? "Home" : "Join Us" }</button>
+                                                <button className="button__style button--smaller">{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_5) }</button>
                                             </Link>
                                         </div>
                                     </div>
@@ -172,15 +182,15 @@ class Home extends React.Component {
                                     <header className="flex jcsb aic">
                                         <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                                         <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                            <a href="#" className="h4">{ fromDashboardMore ? "Home" : "Join Us" }</a>
+                                            <a href="#" className="h4">{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_5)}</a>
                                         </Link>
                                     </header>
                                     <section className="two-column__layout profile__cover">
                                         <div className="two-column__info flex flex-column">
                                             <div className="flex-grow flex flex-column  w100">
                                                 <div className="background-title mb5">
-                                                    <h3 className="fs50 fwb lh08">Watch how it</h3>
-                                                    <h4 className="fs45 fwn">works</h4>
+                                                    <h3 className="fs50 fwb lh08">{this.getTrans(this.props.translations.text_7)}</h3>
+                                                    <h4 className="fs45 fwn">{this.getTrans(this.props.translations.text_8)}</h4>
                                                     <p className="shadow__title hide__mobile">wanna know how our app works?</p>
                                                     <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                 </div>
@@ -206,14 +216,14 @@ class Home extends React.Component {
                                     <div className="two-column__info flex flex-column">
                                         <div className=" flex flex-column  w100">
                                             <div className="background-title mb5">
-                                                <h3 className="fs50 fwb lh08">Our Wonderful</h3>
-                                                <h4 className="fs45 fwn">mission</h4>
+                                                <h3 className="fs50 fwb lh08">{this.getTrans(this.props.translations.text_9)}</h3>
+                                                <h4 className="fs45 fwn">{this.getTrans(this.props.translations.text_10)}</h4>
                                                 <p className="shadow__title hide__mobile">wanna know how our app works?</p>
                                                 <p className="shadow__title show__mobile">COMMERCIAL</p>
                                             </div>
                                         </div>
                                         <div className="flex jcsb aic two-content" style={{marginTop:60}}> 
-                                            <p className="special">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget praesent tristique sed morbi massa porttitor risus posuere. Faucibus platea suspendisse pharetra lacinia ipsum. Hendrerit praesent sem mattis vitae mollis enim.</p>
+                                            <p className="special">{this.getTrans(this.props.translations.text_11)}</p>
                                             <img style={{ width: "35%" }} src="/images/product.png" alt="" />
                                         </div>
                                     </div>
@@ -242,8 +252,8 @@ class Home extends React.Component {
                                                     <div className="two-column__info flex flex-column">
                                                         <div className=" flex flex-column  w100">
                                                             <div className="background-title mb5">
-                                                                <h3 className="fs50 fwb lh08">Steps to make</h3>
-                                                                <h4 className="fs45 fwn">an eazytask</h4>
+                                                                <h3 className="fs50 fwb lh08">{this.getTrans(this.props.translations.text_12)}</h3>
+                                                                <h4 className="fs45 fwn">{this.getTrans(this.props.translations.text_13)}</h4>
                                                                 <p className="shadow__title hide__mobile">checkout the steps to make an eazy</p>
                                                                 <p className="shadow__title show__mobile">COMMERCIAL</p>
                                                             </div>
@@ -256,9 +266,9 @@ class Home extends React.Component {
                                                                         <span className="landing-step__line" />
                                                                     </div>
                                                                     <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                                                        <h4>{ fromDashboardMore ? "Home" : "Join Us" }</h4>
+                                                                        <h4>{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_1_title)}</h4>
                                                                     </Link>
-                                                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                                                                    <p>{this.getTrans(this.props.translations.text_14_step_1)} </p>
                                                                 </div>
                                                                 <div className={"landing-step" + (onStep >= 2 ? " active" : "")} id="st2">
                                                                     <div className="landing-step--state">
@@ -266,8 +276,8 @@ class Home extends React.Component {
                                                                         <span className="landing-step__line" />
                                                                     </div>
                                                                     <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                                                        <h4>{ fromDashboardMore ? "Home" : "Join Us" }</h4>
-                                                                    </Link>                                                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                                                                        <h4>{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_2_title)}</h4>
+                                                                    </Link>                                                                    <p>{this.getTrans(this.props.translations.text_14_step_2)}</p>
                                                                 </div>
                                                                 <div className={"landing-step" + (onStep >= 3 ? " active" : "")} id="st3">
                                                                     <div className="landing-step--state">
@@ -275,8 +285,8 @@ class Home extends React.Component {
                                                                         <span className="landing-step__line" />
                                                                     </div>
                                                                     <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                                                        <h4>{ fromDashboardMore ? "Home" : "Join Us" }</h4>
-                                                                    </Link>                                                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                                                                        <h4>{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_3_title)}</h4>
+                                                                    </Link>                                                                    <p>{this.getTrans(this.props.translations.text_14_step_3)}</p>
                                                                 </div>
                                                             </div>
                                                             <img src={stepImage} alt="" />
@@ -296,20 +306,20 @@ class Home extends React.Component {
                                 <header className="flex jcsb aic">
                                     <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                                     <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                        <a href="#" className="h4">{ fromDashboardMore ? "Home" : "Join Us" }</a>
+                                        <a href="#" className="h4">{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_5)}</a>
                                     </Link>
                                 </header>
                                 <section className="profile__cover">
                                     <div className="two-column__info flex flex-column">
                                         <div className=" flex jcsb aic w100">
                                             <div className="background-title mb5 flex1">
-                                                <h3 className="fs50 fwb lh08">Active</h3>
-                                                <h4 className="fs45 fwn">listings</h4>
+                                                <h3 className="fs50 fwb lh08">{this.getTrans(this.props.translations.text_15)}</h3>
+                                                <h4 className="fs45 fwn">{this.getTrans(this.props.translations.text_16)}</h4>
                                                 <p className="shadow__title hide__mobile">some active listings on eazytask</p>
                                                 <p className="shadow__title show__mobile">COMMERCIAL</p>
                                             </div>
                                             <Link to="/active_listing">
-                                                <h4>Discover all</h4>
+                                                <h4>{this.getTrans(this.props.translations.text_17)}</h4>
                                             </Link><br/>
                                         </div>
                                         <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" :"") }>
@@ -330,7 +340,7 @@ class Home extends React.Component {
                             <div className="two-column__info flex flex-column">
                                 <div className=" flex jcsb aic w100">
                                     <div className="background-title mb5 flex1">
-                                        <h3>Explore more</h3>
+                                        <h3>{this.getTrans(this.props.translations.text_18)}</h3>
                                         <p className="shadow__title hide__mobile">asdas</p>
                                         <p className="shadow__title show__mobile">COMMERCIAL</p>
                                     </div>
@@ -341,8 +351,8 @@ class Home extends React.Component {
                                     <div className="more__card">
                                         <img src="/images/writer_1.png" alt="" />
                                         <div>
-                                            <h4>Blog</h4>
-                                            <p>Keep updated by reading<br />our latest blog</p>
+                                            <h4>{this.getTrans(this.props.translations.text_19)}</h4>
+                                            <p>{this.getTrans(this.props.translations.text_20)}</p>
                                         </div>
                                     </div>
                                 </Link>
@@ -350,8 +360,8 @@ class Home extends React.Component {
                                     <div className="more__card">
                                         <img src="/images/question_.png" alt="" />
                                         <div>
-                                            <h4>FAQ</h4>
-                                            <p>View Frequently <br />Asked <br />Question</p>
+                                            <h4>{this.getTrans(this.props.translations.text_21)}</h4>
+                                            <p>{this.getTrans(this.props.translations.text_22)}</p>
                                         </div>
                                     </div>
                                 </Link>
@@ -376,7 +386,12 @@ const mapStateToProps = state => {
         x => state.tasks.byIds[x]
     )
     let { loading } = state.app.activeListing;
-    return { loading, tasks }
+    return { 
+        loading, 
+        tasks,
+        translations: state.app_lang.data["/home"],
+        app_lang: state.app_lang.app_lang, 
+    }
 }
 
 

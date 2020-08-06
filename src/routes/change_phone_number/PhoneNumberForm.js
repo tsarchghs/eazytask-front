@@ -1,12 +1,19 @@
 import React from "react";
 import PhoneInput from "react-phone-number-input";
+import { withRouter } from "react-router-dom";
 
-export default props => {
+const PhoneNumberForm = props => {
     return (
         <div className="container">
             <div className="content pb50">
                 <header className="w-subtitle">
-                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                    <span onClick={() => {
+                        try {
+                            props.history.goBack()
+                        } catch (err) {
+                            props.history.push("/dashboard")
+                        }
+                    }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                     <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                     <p className="show__mobile">Change phone number</p>
                 </header>
@@ -57,3 +64,5 @@ export default props => {
 
     )
 }
+
+export default withRouter(PhoneNumberForm)

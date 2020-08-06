@@ -1,1 +1,178 @@
-{}
+{
+    "text_1": {
+        "en": "Your tasks",
+        "de": "None1"
+    },
+    "text_2": {
+        "en": "Made easy!",
+        "de": "None2"
+    },
+    "text_3": {
+        "en": [
+            "Lorem ipsum dolor sit amet,",
+            "consetetur sadipscing elitr, sed diam."
+        ],
+        "de": [
+            "de: Lorem ipsum dolor sit amet,",
+            "de: consetetur sadipscing elitr, sed diam."
+        ]
+    },
+    "text_4": {
+        "en": "Watch how it works",
+        "de": "None4"
+    },
+    "text_5": {
+        "en": "Join us",
+        "de": "None5"
+    },
+    "text_6": {
+        "en": "Home",
+        "de": "None6"
+    },
+    "text_7": {
+        "en": "Watch how it",
+        "de": "None7"
+    },
+    "text_8": {
+        "en": "works",
+        "de": "None8"
+    },
+    "text_9": {
+        "en": "Our Wonderful",
+        "de": "None9"
+    },
+    "text_10": {
+        "en": "mission",
+        "de": "None10"
+    },
+    "text_11": {
+        "en": [
+            "Lorem ipsum dolor sit amet,",
+            "Lorem ipsum dolor sit amet,",
+            "Lorem ipsum dolor sit amet,",
+            "Lorem ipsum dolor sit amet,",
+            "Lorem ipsum dolor sit amet,"
+        ],
+        "de": [
+            "de: Lorem ipsum dolor sit amet,",
+            "de: Lorem ipsum dolor sit amet,",
+            "de: Lorem ipsum dolor sit amet,",
+            "de: Lorem ipsum dolor sit amet,",
+            "de: Lorem ipsum dolor sit amet,"
+        ]
+    },
+    "text_12": {
+        "en": "Steps to make",
+        "de": "None12"
+    },
+    "text_13": {
+        "en": "an eazytask",
+        "de": "None13"
+    },
+    "text_14_step_1_title": {
+        "en": "Step 1",
+        "de": "De: Step1"
+    },
+    "text_14_step_1": {
+        "en": [
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid"
+        ],
+        "de": [
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid"
+        ]
+    },
+    "text_14_step_2_title": {
+        "en": "Step 2",
+        "de": "De: Step2"
+    },
+    "text_14_step_2": {
+        "en": [
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid"
+        ],
+        "de": [
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid"
+        ]
+    },
+    "text_14_step_3_title": {
+        "en": "Step 3",
+        "de": "De: Step3"
+    },
+    "text_14_step_3": {
+        "en": [
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid",
+            "Lorem ipsum dorem amet alid"
+        ],
+        "de": [
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid",
+            "de: Lorem ipsum dorem amet alid"
+        ]
+    },
+    "text_15": {
+        "en": "Activve",
+        "de": "None15"
+    },
+    "text_16": {
+        "en": "listings",
+        "de": "None16"
+    },
+    "text_17": {
+        "en": "Discover all",
+        "de": "None"
+    },
+    "text_18": {
+        "en": "Explore more",
+        "de": "None19"
+    },
+    "text_19": {
+        "en": "Blog",
+        "de": "None20"
+    },
+    "text_20": {
+        "en": [
+            "Keep updated by reading",
+            "our latest blog"
+        ],
+        "de": [
+            "de: Keep updated by reading",
+            "de: our latest blog"
+        ]
+    },
+    "text_21": {
+        "en": "FAQ",
+        "de": "None21"
+    },
+    "text_22": {
+        "en": [
+            "View frequently",
+            "Asked",
+            "Questions"
+        ],
+        "de": [
+            "de: View frequently",
+            "de: Asked",
+            "de: Questions"
+        ]
+    }
+}

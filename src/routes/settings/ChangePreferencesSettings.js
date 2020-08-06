@@ -127,7 +127,7 @@ class ChangePreferencesSettings extends React.Component {
                                                         </Link>
                                                     </span>
                                                     <h4 className="logo-title ">
-                                                        About us
+                                                        Change preferences
                                             </h4>
                                                 </header>
                                                 <div className="pa--mobile pb50 max-vh">
@@ -149,30 +149,35 @@ class ChangePreferencesSettings extends React.Component {
                                                         }
                                                     </div>
                                                     <br /><br />
-                                                    <a href="/settings/change_skills">
-                                                        <div style={{ marginTop: 5 }} className="styled-select">
-                                                            <p>Skills</p>
-                                                            <img src="/images/arr-right.png" alt="" />
-                                                            <div className={`styled-select__open`}>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="/settings/change_languages">
-                                                        <div style={{ marginTop: 5 }} className="styled-select">
-                                                            <p>Languages</p>
-                                                            <img src="/images/arr-right.png" alt="" />
-                                                            <div className={`styled-select__open`}>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="/settings/change_cities">
-                                                        <div style={{ marginTop: 5 }} className="styled-select">
-                                                            <p>Cities</p>
-                                                            <img src="/images/arr-right.png" alt="" />
-                                                            <div className={`styled-select__open`}>
-                                                            </div>
-                                                        </div>
-                                                    </a>
+                                                    {
+                                                        this.props.currentUser.isTasker &&
+                                                        <React.Fragment>
+                                                            <a href="/settings/change_skills">
+                                                                <div style={{ marginTop: 5 }} className="styled-select">
+                                                                    <p>Skills</p>
+                                                                    <img src="/images/arr-right.png" alt="" />
+                                                                    <div className={`styled-select__open`}>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/settings/change_languages">
+                                                                <div style={{ marginTop: 5 }} className="styled-select">
+                                                                    <p>Languages</p>
+                                                                    <img src="/images/arr-right.png" alt="" />
+                                                                    <div className={`styled-select__open`}>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/settings/change_cities">
+                                                                <div style={{ marginTop: 5 }} className="styled-select">
+                                                                    <p>Cities</p>
+                                                                    <img src="/images/arr-right.png" alt="" />
+                                                                    <div className={`styled-select__open`}>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </React.Fragment>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

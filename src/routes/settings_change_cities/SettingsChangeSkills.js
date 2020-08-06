@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getLanguages } from "../../actions/language";
+import { getCities } from "../../actions/city";
 import { getAuth } from "../../actions/auth";
 import { filter } from "../../utils/search";
 import { getCustomItems } from "../setup/utils";
@@ -22,7 +22,7 @@ class MySkills extends React.Component {
     }
     componentDidMount() {
         if (!once){
-            this.props.getLanguages()
+            this.props.getCities()
             this.props.getAuth("?fields=tasker")
             if (this.searchRef) this.searchRef.focus()
         }
@@ -202,12 +202,12 @@ class MySkills extends React.Component {
 
 const mapStateToProps = state => ({
     own_user: state.auth.profile,
-    byIds: state.languages.byIds,
-    allIds: state.languages.allIds,
-    loading: state.languages.loading,
+    byIds: state.cities.byIds,
+    allIds: state.cities.allIds,
+    loading: state.cities.loading,
     translations: state.app_lang.data["/setup"],
     app_lang: state.app_lang.app_lang,
     common: state.app_lang.common
 })
 
-export default compose(withRouter,connect(mapStateToProps, { getAuth, getLanguages }))(MySkills);
+export default compose(withRouter,connect(mapStateToProps, { getAuth, getCities }))(MySkills);

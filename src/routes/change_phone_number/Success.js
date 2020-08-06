@@ -1,12 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default props => {
+const Success = props => {
     return (
         <div className="container">
             <div className="content">
                 <header className="w-subtitle text-center">
-                    <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                    {/* <span onClick={() => {
+                        try {
+                            props.history.goBack()
+                        } catch (err) {
+                            props.history.push("/dashboard")
+                        }
+                    }} className="show__mobile"><img  src="/images/arrow.jpeg" alt="" /></span> */}
                     <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                     <p className="show__mobile">Reset account</p>
                 </header>
@@ -24,9 +30,9 @@ export default props => {
                             <img className="img__mobile " src="/images/smile.png" alt="" />
                         </div>
                         <div className="buttons__group aic">
-                            <Link to="/my_profile_edit">
-                                <button className="button__style">Profile</button>
-                            </Link>
+                            <button onClick={() => {
+                                window.location.href = "/my_profile_edit"
+                            }} className="button__style">Profile</button>
                         </div>
                     </div>
                     <div className="two-column__img hide-on-desktop">
@@ -45,3 +51,5 @@ export default props => {
 
     )
 }
+
+export default withRouter(Success)

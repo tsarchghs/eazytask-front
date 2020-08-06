@@ -19,13 +19,13 @@ class CategoryGroup extends React.Component {
         return (
             <React.Fragment>
                 <div className="background-title mb30">
-                    <h1>Task</h1>
-                    <h3>category</h3>
+                    <h1>{this.props.getTrans(this.props.translations.text_20)}</h1>
+                    <h3>{this.props.getTrans(this.props.translations.text_21)}</h3>
                     <p className="shadow__title no-contain">create a task on eazytask easy </p>
                 </div>
                 <h4 className="show__mobile">
-                    Task <br />
-                    <span>Category</span>
+                    {this.props.getTrans(this.props.translations.text_20)} <br />
+                    <span>{this.props.getTrans(this.props.translations.text_21)}</span>
                 </h4>
 
                 <div className="cards-section flex-grow">

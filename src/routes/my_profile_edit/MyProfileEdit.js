@@ -8,6 +8,7 @@ import { compose } from "recompose";
 import E404 from "../E404";
 import MobileNav from "../../components/MobileNav";
 import { wrap } from "lodash";
+import Modal from "../../components/Modal";
 
 class MyProfileEdit extends React.Component {
     constructor(props){
@@ -171,6 +172,14 @@ class MyProfileEdit extends React.Component {
         console.log(this.state.data)
         return (
             <section className="offers-layout offers-profile">
+                <Modal
+                    isActive={this.state.onModal == "SAVE_OR_CANCEL_CHANGES_MODAL"}     // required
+                    title="Discard changes?"
+                    description="If you click okay any unsaved changes to account settings will be discarded and you will go through the change number process."
+                    acceptText="Okay"
+                    closeModal={() => this.setState({ onModal: "" })} // required
+                    acceptOnClick={() => this.props.history.push("/change_phone_number")}
+                />
                 <header className="flex jcsb aic hide-on-mobile header-white">
                     <Link to="/">
                         <a href="#"><img className="logo__img" src="/images/logo2.png" alt="" /></a>
@@ -235,9 +244,16 @@ class MyProfileEdit extends React.Component {
                                     <p>{this.getTrans(this.props.translations.text_3)}</p>
                                     <div className="ap__input">
                                         <h5>{this.props.currentUser.phone_number}</h5>
-                                        <Link to="/change_phone_number">
-                                            <img src="/images/edit-pen.png" alt="" />
-                                        </Link>
+                                        {
+                                            this.showUpdateButton() ? 
+                                                <img style={{ cursor: "pointer" }} onClick={() => {
+                                                    this.setState({ onModal: "SAVE_OR_CANCEL_CHANGES_MODAL"})
+                                                }} src="/images/edit-pen.png" alt="" />
+                                                :
+                                                <Link to="/change_phone_number">
+                                                    <img src="/images/edit-pen.png" alt="" />
+                                                </Link>
+                                        }
                                     </div>
                                 </div>
                                 {this.getStaticOrInput("address")}
@@ -251,6 +267,7 @@ class MyProfileEdit extends React.Component {
                             this.showUpdateButton() && 
                             <div className="offers-buttons">
                                 <div onClick={this.update} className="button hollow">{this.getTrans(this.props.translations.text_9)}</div>
+                                <div onClick={this.decline} className="button hollow">Cancel</div>
                             </div>
                         }
                         <div className="offers-buttons hide-on-mobile">

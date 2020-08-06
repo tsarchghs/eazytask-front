@@ -11,10 +11,10 @@ let languages = ["en", "de"];
 
 const INITIAL_STATE = {
     languages,
-    app_lang: localStorage.getItem("app_lang") || "de",
+    app_lang: localStorage.getItem("app_lang") || "en",
     common: Common,
     data: {
-        "/": LandingPage,
+        "/home": LandingPage,
         "/dashboard": Dashboard,
         "/setup": Setup,
         "/create-task": CreateTask,

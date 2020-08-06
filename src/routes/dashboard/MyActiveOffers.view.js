@@ -14,8 +14,8 @@ class MyActiveOffers extends React.Component {
         return (
             <div>
                 {loading && this.getTrans(this.props.common.loading) }
-                { !loading && offers.map(({ Task }) => (
-                    <MainOfferCard task={Task} beforeTitleText={this.getTrans(this.props.translations.text_2)} />
+                { !loading && offers.map(({ Task, ...offer }) => (
+                    <MainOfferCard offer={offer} task={Task} beforeTitleText={this.getTrans(this.props.translations.text_2)} />
                 )) }
                 {!loading && !offers.length && this.getTrans(this.props.translations.text_9)}
             </div>

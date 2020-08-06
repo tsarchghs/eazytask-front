@@ -298,7 +298,7 @@ class CreateTask extends React.Component {
             }
         }
         if (this.state.step === this.lastStepIndex) return () => {
-            this.props.history.push("/");
+            window.location.href = "/dashboard";
             // this.props.history.push("/task/",this.props.app_createTask.data.id)
         } 
         else {

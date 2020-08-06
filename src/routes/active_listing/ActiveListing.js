@@ -109,8 +109,8 @@ class ActiveListing extends React.Component {
             let start = this.state.currentPage - 2 >= 1 ? this.state.currentPage - 2 : 1 
             if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2)
             console.log("this.state.currentPage -2 ", this.state.currentPage-2)
-            for (let x = start; x <= end;x++){
-                content.push(<Link style={{ color: "#1f4733", minWidth: 22, marginRight: 7, fontSize: 20 }} to={`/active_listing?page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
+            for (let x = 0; x <= pagesNumber;x++){
+                content.push(<Link style={{ color: "#1f4733", minWidth: 22, marginRight: 7, fontSize: 20 }} to={`/active_listing?page=${x}`}><div>{x + 1}&nbsp;&nbsp;&nbsp;</div></Link>)
             }
             return content;
         }
@@ -292,7 +292,7 @@ class ActiveListing extends React.Component {
                     </div>
                 </div>
                 <center className="flex aic jcc" style={{ marginBottom: 25 }}>
-                    {!loading && this.state.currentPage && <Pages />}
+                    {!loading && this.state.currentPage ? <Pages /> : null }
                 </center>
                 <Footer/>
             </React.Fragment>

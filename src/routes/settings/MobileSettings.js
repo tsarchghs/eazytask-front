@@ -4,6 +4,7 @@ import { compose } from "recompose";
 import WebSidebar from "./WebSidebar";
 import MobileNav from "../../components/MobileNav";
 import { connect } from "react-redux";
+import WebHeader from "../../components/WebHeader";
 
 const redirectTo = (history, path) => () => history.push(path)
 let getTrans = (app_lang,obj) => obj[app_lang]
@@ -17,14 +18,7 @@ const MobileSettings = props => {
             <section className="landing-info panel edit-task__section">
                 <div className="container">
                     <div className="content ">
-                        <header className="flex jcsb aic hide-on-mobile">
-                            <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                            <div className="header-nav-web">
-                                <a href="#" className="h4 active">Home <div /></a>
-                                <a href="#" className="h4">New Task</a>
-                                <a href="#" className="h4">Profile</a>
-                            </div>
-                        </header>
+                        <WebHeader active="profile"/>
                         <section className="profile__article hide-on-mobile">
                             <WebSidebar active="profile"/>
                             <div className="profile__article--content">

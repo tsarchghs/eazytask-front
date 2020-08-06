@@ -45,7 +45,13 @@ class TaskOffer extends React.Component {
         if (status == "ACCEPTED")
             if (loading) return <button>Loading</button>
             else return <a onClick={e => e.preventDefault()} className="button fill">Accepted</a>
-        else return <a onClick={this.acceptOffer} href="#" className="button fill">Accept offer</a>
+        else {
+            let rejected = this.props.offer.Task.Offers.find(x => x.status === "ACCEPTED")
+            let style = rejected ? { backgroundColor: "#9a4847" } : {}
+            let text = rejected ? "Rejected" : "Accept offer"
+            let onClick = rejected ? e => e.preventDefault() : this.acceptOffer;
+            return <a onClick={onClick} href="#" style={style} className="button fill">{text}</a>
+        }
     }
     closeModal = () => this.setState({ onModal: "" })
     render() {
