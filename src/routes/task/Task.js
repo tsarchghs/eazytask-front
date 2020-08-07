@@ -10,6 +10,7 @@ import { ModalContainer } from 'minimal-react-modal';
 import Modal from "../../components/Modal";
 
 import SelfPromote from "./SelfPromote.view";
+import getImageUrl from "../../utils/getImageUrl";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -253,7 +254,7 @@ class Task extends React.Component {
                 </div>
                 <section className="offers-layout hide-on-mobile">
                     <div className="offers-picture" style={{
-                        backgroundImage: `url(${this.props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__})`
+                        backgroundImage: `url(${getImageUrl(this.props.task.thumbnail,"medium")})`
                     }}>
                         {this.getOfferPictureButtons()}
 
@@ -295,7 +296,7 @@ class Task extends React.Component {
         return (
             <section className="offers-layout">
                 <div className="offers-picture" style={{
-                    backgroundImage: `url(${this.props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__})`
+                    backgroundImage: `url(${getImageUrl(this.props.task.thumbnail,"large")})`
                 }}>
                     {this.getOfferPictureButtons()}
 
@@ -311,7 +312,7 @@ class Task extends React.Component {
                             { this.state.belowUI === "DEFAULT" && <React.Fragment>
                                 { this.props.task.gallery && this.props.task.gallery.split(",").map(src => (
                                     <div className="offers-image">
-                                        <img src={src} alt="" />
+                                        <img src={getImageUrl(src,"medium")} alt="" />
                                     </div>
                                 ))}
 
@@ -509,8 +510,8 @@ class Task extends React.Component {
 
     render(){
         console.log({err: this.props})
-        if (this.props.error)
-            if (this.props.task.errorResponse.response.status === 404) 
+        if (this.props.errorResponse)
+            if (this.props.errorResponse.response.status === 404) 
                 return <E404/>
         if (this.props.loading) return <Loading/>
         let children;
@@ -573,9 +574,11 @@ class Task extends React.Component {
 
 const mapStateToProps = (state,ownProps) => {
     let { taskId } = ownProps.match.params
-    let { error, loading, ...task } = (state.tasks.byIds[taskId] && state.tasks.byIds[taskId].User) && state.tasks.byIds[taskId] || { loading: true }
+    console.log("state.tasks.byIds[taskId]", state.tasks.byIds[taskId])
+    let { error, errorResponse } = state.tasks.byIds[taskId] || {}
+    let { loading, ...task } = (state.tasks.byIds[taskId] && state.tasks.byIds[taskId].User) && state.tasks.byIds[taskId] || { loading: true }
     let own_user = state.auth.profile;
-    return { error, loading, own_user,task: task || {} }
+    return { error, errorResponse, loading, own_user,task: task || {} }
 }
 
 export default connect(mapStateToProps, { getTask, postOffers, patchTasks })(Task);

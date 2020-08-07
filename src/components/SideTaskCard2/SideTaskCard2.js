@@ -1,13 +1,16 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import withNotificationsInfo from "../HOC/withNotificationsInfo";
+import getImageUrl from "../../utils/getImageUrl";
 
 const SideTaskCard2 = props => {
-    console.log("SideTaskCard2",props)
+    let thumbnail;
+    if (props.task.thumbnail) thumbnail = getImageUrl(props.task.thumbnail, "small");
+    else thumbnail = window.__THUMBNAIL_DEFAULT_PICTURE__
     return (
         <Link to={props.offer ? `/task/${props.task.id}/edit/offers/${props.offer.id}` : `/task/${props.task.id}`}>
             <div className={`offers-image ${props.active && "active"}`}>
-                <img src={props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} />
+                <img src={thumbnail} />
                 <div>
                     <h4 style={{ textAlign: "center" }}>{props.task.title}</h4>
                     <p>{new Date(props.task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>

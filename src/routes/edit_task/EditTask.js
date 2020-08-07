@@ -13,6 +13,7 @@ import { compose } from "recompose";
 import {ModalContainer, Modal} from 'minimal-react-modal';
 
 import WebEditTask from "./WebEditTask";
+import getImageUrl from "../../utils/getImageUrl";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -20,12 +21,11 @@ const format_number = val => {
     else return num_val
 }
 
-function urltoFile(url, filename, mimeType) {
-    if (true) url = url
-    return (fetch(url)
-        .then(function (res) { return res.arrayBuffer(); })
-        .then(function (buf) { return new File([buf], filename, { type: mimeType }); })
-    );
+const urltoFile = async (url, filename, mimeType) => {
+    let res = await fetch(url)
+    let buff = await res.arrayBuffer()
+    return new File([buff], filename, { url, type: mimeType + (url ? `,${url}` : "" ) });
+    
 }
 
 class EditTask extends React.Component {
@@ -354,7 +354,7 @@ class EditTask extends React.Component {
                                             this.state.data.gallery && this.state.data.gallery.map(obj => {
                                                 return (
                                                     <div className={"offers-image image-uploads " + (this.state.data.thumbnail.value == obj.value ? "active" : "")}>
-                                                        <img onClick={this.onThumbnailChange(obj.value)} src={obj.value} alt="" />
+                                                        <img onClick={this.onThumbnailChange(obj.value)} src={getImageUrl(obj.value,"small")} alt="" />
                                                         <h4 onClick={this.onThumbnailChange(obj.value)}>Thumbnail</h4>
                                                         <span style={{ zIndex: 1000000 }} onClick={this.onGalleryImageRemove(obj.value)} className="remove-th">X</span>
                                                     </div>

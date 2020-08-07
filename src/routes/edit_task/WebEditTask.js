@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import getImageUrl from "../../utils/getImageUrl";
 
 class WebEditTask extends React.Component {
     render(){
@@ -7,7 +8,7 @@ class WebEditTask extends React.Component {
             <React.Fragment>
                 <section className="offers-layout edit-task__wrapper tasker-profile edit-task__layout hide-on-mobile">
                 <div style={{
-                        backgroundImage: `url(${this.props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__})`
+                        backgroundImage: `url(${getImageUrl(this.props.task.thumbnail, "large")})`
                     }} className="offers-picture">
                 <div className="offer-picture__buttons">
                     <div style={{ cursor: "pointer"}} onClick={() => {
@@ -103,7 +104,7 @@ class WebEditTask extends React.Component {
                         this.props.data.gallery && this.props.data.gallery.map(obj => {
                             return (
                                 <div className={"offers-image image-uploads " + (this.props.data.thumbnail.value == obj.value ? "active" : "")}>
-                                    <img onClick={this.props.onThumbnailChange(obj.value)} src={obj.value} alt="" />
+                                    <img onClick={this.props.onThumbnailChange(obj.value)} src={getImageUrl(obj.value, "small")} alt="" />
                                     <h4 onClick={this.props.onThumbnailChange(obj.value)}>Thumbnail</h4>
                                     <span style={{ zIndex: 1000000 }} onClick={this.props.onGalleryImageRemove(obj.value)} className="remove-th">X</span>
                                 </div>

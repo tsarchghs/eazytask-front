@@ -1,15 +1,20 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import withNotificationsInfo from "../HOC/withNotificationsInfo";
+import getImageUrl from "../../utils/getImageUrl";
 
 const SideTaskCard = props => {
+    let thumbnail;
+    if (props.task.thumbnail) thumbnail = getImageUrl(props.task.thumbnail, "small");
+    else thumbnail = window.__THUMBNAIL_DEFAULT_PICTURE__
+
     let onClick = props.useWithRouter ? () => props.history.push(`/task/` + props.task.id) : undefined;
     let child = (
         <div 
             onClick={onClick} 
             className="home__card home__card--discover" 
             style={{ 
-                backgroundImage: `url("${props.task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`,
+                backgroundImage: `url("${thumbnail}")`,
                 cursor: "pointer" 
         }}>
             <div className={`home__card--mask ${props.active && "active"}`} />
