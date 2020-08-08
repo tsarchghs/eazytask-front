@@ -2,6 +2,7 @@ import React from "react";
 import axios from "../../utils/axios";
 import getNotificationInfo from "../../utils/getNotificationInfo";
 import { withRouter, Link } from "react-router-dom";
+import getImageUrl from "../../utils/getImageUrl";
 
 class MobileNotifications extends React.Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class MobileNotifications extends React.Component {
 
                                                             className={"home__noti-card " + (!notifc.read ? "highlighted" : "") }>
                                                             <div className="img-circle" style={{ width: '43px', height: '43px', minWidth: '43px' }}><img src={
-                                                                notifc.user_2.profile_image || window.__PROFILE_DEFAULT_PICTURE__
+                                                                getImageUrl(notifc.user_2.profile_image,"small") || window.__PROFILE_DEFAULT_PICTURE__
                                                             } alt="" /></div>
                                                             <div clas="flex	aic">
                                                                 <h3 className="m-fs16 text-left fwb mb0">{notifc.user_2.first_name} {notifc.user_2.last_name[0]}.</h3>

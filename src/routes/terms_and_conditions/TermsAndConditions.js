@@ -12,8 +12,8 @@ const TermsAndConditions = props => {
     }
     let fromCreateTask = props.location.search.indexOf("fromCreateTask") !== -1
     return (
-        <div className=" edit-task__wrapper">
-        <section className="landing-info panel edit-task__section">
+        <div style={{ height: "initial"}} className=" edit-task__wrapper">
+        <section className="landing-info panel edit-task__section br-m">
             <div className="container">
                 <div className="content ">
                     <header className="logo-text">

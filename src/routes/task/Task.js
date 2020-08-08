@@ -14,6 +14,7 @@ import getImageUrl from "../../utils/getImageUrl";
 
 const format_number = val => {
     let num_val = Number(val)
+    if (isNaN(num_val)) return "0"
     if (num_val < 0) return "0";
     else return num_val
 }
@@ -48,7 +49,9 @@ class Task extends React.Component {
                 <div style={{ cursor: "pointer" }} onClick={e => {
                     // this.props.history.push("/dashboard")
                     try {
-                        this.props.history.goBack();
+                        if(!this.props.history.goBack()){
+                            this.props.history.push("/")
+                        }
                     } catch (e) {
                         this.props.history.push("/")
                     }
@@ -104,7 +107,7 @@ class Task extends React.Component {
                             <div className="img-circle">
                                 <Link to={"/profile/" + this.props.task.UserId}>
                                     <img
-                                        src={this.props.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__}
+                                        src={getImageUrl(this.props.task.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__}
                                         alt=""
                                     />
                                 </Link>
@@ -189,7 +192,7 @@ class Task extends React.Component {
                                     <h4 className="flex aic jcc"> <div className="img-circle">
                                         <Link to={"/profile/" + offer.Tasker.UserId}>
                                             <img
-                                                src={offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__}
+                                                src={getImageUrl(offer.Tasker.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__}
                                                 alt=""
                                             />
                                         </Link>
@@ -230,7 +233,7 @@ class Task extends React.Component {
                                                 <div className="offers__profile">
                                                     <div className="offers__profile--img" />
                                                     <div className="img-circle"><img src={
-                                                        offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__
+                                                        getImageUrl(offer.Tasker.User.profile_image,"small") || window.__PROFILE_DEFAULT_PICTURE__
                                                     } alt="" /></div>
                                                 </div>
                                                 <div className="vertical-card__info">
@@ -254,7 +257,7 @@ class Task extends React.Component {
                 </div>
                 <section className="offers-layout hide-on-mobile">
                     <div className="offers-picture" style={{
-                        backgroundImage: `url(${getImageUrl(this.props.task.thumbnail,"medium")})`
+                        backgroundImage: `url(${getImageUrl(this.props.task.thumbnail,"large") || window.__THUMBNAIL_DEFAULT_PICTURE__})`
                     }}>
                         {this.getOfferPictureButtons()}
 
@@ -269,7 +272,7 @@ class Task extends React.Component {
                                         <div className="offers-image">
                                             <h4 className="flex aic jcc"> 
                                             <div className="img-circle">
-                                            <img src={offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                            <img src={getImageUrl(offer.Tasker.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                             </div> {offer.Tasker.User.first_name} {offer.Tasker.User.last_name[0]}.</h4>
                                             <p>{offer.description} </p>
                                         </div>
@@ -296,7 +299,7 @@ class Task extends React.Component {
         return (
             <section className="offers-layout">
                 <div className="offers-picture" style={{
-                    backgroundImage: `url(${getImageUrl(this.props.task.thumbnail,"large")})`
+                    backgroundImage: `url(${getImageUrl(this.props.task.thumbnail,"large") || window.__THUMBNAIL_DEFAULT_PICTURE__})`
                 }}>
                     {this.getOfferPictureButtons()}
 
@@ -460,7 +463,7 @@ class Task extends React.Component {
         let buttonStyle = { backgroundColor: undefined }
         if (!buttonOnClick) buttonStyle = { backgroundColor: "darkgrey" }
         return <SelfPromote
-            thumbnail={this.props.task.thumbnail}
+            thumbnail={getImageUrl(this.props.task.thumbnail,"large") || window.__THUMBNAIL_DEFAULT_PICTURE__}
             goBack={() => this.setState({step: "TASK_PROFILE" })}
             onLogoClick={() => this.setState({ step: "TASK_PROFILE" })} 
             value={this.state.self_promote}

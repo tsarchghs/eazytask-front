@@ -15,7 +15,7 @@ const Footer = () => {
                         </div>
                         <div className="footer__rights">
                             <h5 className="roboto">All rights reserved - eazytask 2020</h5>
-                            <Link style={{ paddingRight: 130 }} to="/impressum" className="text-center">Impressum</Link>
+                            <Link style={{ paddingRight: 130 }} to="/impressum" className="text-center npm">Impressum</Link>
                         </div>
                     </div>
                 </div>

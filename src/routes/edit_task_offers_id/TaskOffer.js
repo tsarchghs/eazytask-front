@@ -8,6 +8,7 @@ import { compose } from "recompose";
 import E404 from "../E404";
 import queryString from "query-string";
 import Modal from "../../components/Modal";
+import getImageUrl from "../../utils/getImageUrl";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -24,7 +25,8 @@ class TaskOffer extends React.Component {
             self_promote: "",
             clickedMakeOffer: false,
             showAllOffersUI: false,
-            belowUI: "DEFAULT"
+            belowUI: "DEFAULT",
+            opened: false
         }
     }
     componentDidMount() {
@@ -54,6 +56,11 @@ class TaskOffer extends React.Component {
         }
     }
     closeModal = () => this.setState({ onModal: "" })
+    toggle = opened => () => this.setState(prevState => {
+        console.log(5555)
+        prevState.opened = !opened;
+        return prevState; 
+    })
     render() {
         console.log("this.props.auth.isAuthenticated", this.props.auth.isAuthenticated)
         if (this.props.loading || this.props.auth.loading) return <Loading />
@@ -85,20 +92,26 @@ class TaskOffer extends React.Component {
                 />
                 <section className="offers-layout tasker-profile">
                     <div className="offers-picture" style={{
-                        backgroundImage: `url(${this.props.offer.Tasker.User.cover_image || window.__COVER_DEFAULT_PICTURE__})`
+                        backgroundImage: `url(${getImageUrl(this.props.offer.Tasker.User.cover_image,"large") || window.__COVER_DEFAULT_PICTURE__})`
                     }}>
                         <div className="offer-picture__buttons">
-                            <div style={{ cursor: "pointer" }} className="offer-picture__back"><img onClick={e => {
-                                try {
-                                    this.props.history.goBack();
-                                } catch (e) {
-                                    this.props.history.push("/")
-                                }
-                            }} src="/images/arrow.jpeg" alt="" /></div>
-                            <div className="offer-picture__edit hide">
-                                <img src="/images/more.png" alt="" />
+                            <div className="offer-picture__back" style={{cursor: 'pointer'}}>
+                                <img src="/images/arrow.jpeg" alt="" />
+                                </div>
+                            <div onClick={this.toggle(this.state.opened)} className="offer-picture__edit " style={{cursor: 'pointer'}}>
+                                <img className="img-rot" src="/images/more.png" alt="" />
+                                <article className={`touchable__content arts ${this.state.opened ? "" : "hide"}`}>
+                                    <article onClick={() => {
+                                            console.log(555)
+                                            this.setState({ onModal: "EDIT_NOT_IMPLEMENTED"})
+                                        }} className="flex aic jcsb">
+                                        <p>Edit</p>
+                                        <img src="/images/cursor.png" alt="" />
+                                    </article>
+                                </article>
                             </div>
                         </div>
+
                         {/* <div class="slice"></div> */}
                     </div>
                     <div className="offers-content modified">
@@ -109,7 +122,7 @@ class TaskOffer extends React.Component {
                                         <div className="offers__profile--img" />
                                         <h4 className="flex aic jcc"> <div className="img-circle">
                                         <Link to={"/profile/" + this.props.offer.Tasker.User.id}>
-                                            <img src={this.props.offer.Tasker.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                            <img src={getImageUrl(this.props.offer.Tasker.User.profile_image,"small") || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                         </Link>
                                         </div> 
                                         {this.props.offer.Tasker.User.first_name} {this.props.offer.Tasker.User.last_name[0]}.</h4>
@@ -131,10 +144,7 @@ class TaskOffer extends React.Component {
                                 {
                                     this.props.offer.Tasker.UserId === this.props.own_user.id &&
                                         <React.Fragment>
-                                            <a onClick={e => {
-                                                e.preventDefault();
-                                                this.setState({ onModal: "EDIT_NOT_IMPLEMENTED"})
-                                            }} href="#" className="button">Edit</a>
+                                            <Link className="button" to={`/task/${this.props.offer.TaskId}`}>View task</Link>
                                             <a onClick={e => {
                                                 e.preventDefault();
                                                 this.setState({ onModal: "DELETE_NOT_IMPLEMENTED"})

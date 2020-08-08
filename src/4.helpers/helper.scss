@@ -274,7 +274,11 @@ body {
       width: 100%;
     }
   }
+  .npm {
+    padding-right: 0px !important;
+  }
 }
+
 
 .overflow-hidden {
   overflow-x: hidden;
@@ -494,4 +498,18 @@ input[type=number] {
     background: #d2d2d2;
     height: 2px;
     top: 12px;
+}
+
+.blog-card__article { 
+  h2 {
+    color: #1f4732;
+    font-weight: bold;
+    font-size: 45px;
+  }
+}
+
+.br-m {
+  br {
+    display: initial !important;
+  }
 }

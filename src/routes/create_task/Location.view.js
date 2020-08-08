@@ -16,7 +16,7 @@ export default class Location extends React.Component {
                     {this.props.getTrans(this.props.translations.text_10)}  <br />
                     <span>{this.props.getTrans(this.props.translations.text_11)}</span>
                 </h4>
-                <div className="locate-section" style={{ position: "relative" }}>
+                <div className="locate-section flex-grow" style={{ position: "relative" }}>
                     <div className="flex-grow input__group">
                         <input
                             onKeyDown={this.props.handleInputKeyDown}  
@@ -40,7 +40,7 @@ export default class Location extends React.Component {
                         ))}
                     </div>
                 </div>
-                <div className="flex-grow img-wrapper flex aic jcc ct-mob w45">
+                <div className="flex-grow img-wrapper flex aic jcc ct-mob w45 hide-on-mobile">
                     <img className="img__mobile " src="/images/stand.png" alt="" />
                 </div>
             </React.Fragment>

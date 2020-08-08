@@ -7,6 +7,14 @@ const PhoneNumberForm = props => {
         <div className="container">
             <div className="content pb50">
                 <header className="w-subtitle">
+                <span onClick={() => {
+                        try {
+                            props.history.goBack()
+                        } catch (err) {
+                            props.history.push("/dashboard")
+                        }
+                    }} className="arraw hide-on-mobile" style={{cursor: 'pointer'}}><img src="/images/arrow.jpeg" alt="" style={{width: '30px', top: '-3px', position: 'relative', marginRight: '20px'}} /></span>
+
                     <span onClick={() => {
                         try {
                             props.history.goBack()

@@ -5,6 +5,7 @@ import { getPosts } from "../../../actions/posts";
 import WebHeader from "../../../components/WebHeader";
 import { compose } from "recompose";
 import Footer from "../../../components/Footer";
+import getImageUrl from "../../../utils/getImageUrl";
 
 class Blog extends React.Component {
     constructor(props){
@@ -57,7 +58,7 @@ class Blog extends React.Component {
                                     <div className="blog-card">
                                         <Link to={"/blog/" + post.id}>
                                             <div className="blog-card__img">
-                                                <img src={post.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
+                                                <img src={getImageUrl(post.thumbnail) || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                                             </div>
                                         </Link>
                                         <div className="blog-card__date">
@@ -78,24 +79,6 @@ class Blog extends React.Component {
                     <Footer/>
                 </section>
             </div>
-        )
-        return (
-            <React.Fragment>
-                Posts: <br/>
-                { loading && "Loading..." }
-                { !loading && posts.map(post => (
-                    <div>
-                        {
-                            post.thumbnail && 
-                            <img src={post.thumbnail} width="30"/>
-                        }
-                        <Link to={"/blog/" + post.id}>
-                            { post.title } <br/>
-                        </Link>
-                        { post.createdAt } <br/>
-                    </div>
-                ))}
-            </React.Fragment>
         )
     }
 }

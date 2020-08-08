@@ -13,6 +13,7 @@ import { compose } from "recompose";
 import detectPhoneNumberInside from "../../algorithms/detect_phone_numbers";
 import detectEmails from "../../algorithms/detect_emails";
 import Modal from "../../components/Modal";
+import getImageUrl from "../../utils/getImageUrl";
 
 class TaskChat extends React.Component {
     constructor(props){
@@ -123,7 +124,7 @@ class TaskChat extends React.Component {
                                     <Link to={"/profile/" + this.props.taskInfo.task.User.id}>
                                         <div className="img-circle with-hover">
                                             {/* <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div> */}
-                                            <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                            <img src={getImageUrl(this.props.taskInfo.task.User.profile_image,"small") || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                         </div>
                                     </Link>
                                     <div className="name-info">
@@ -139,7 +140,7 @@ class TaskChat extends React.Component {
                                                     <div className="qanda-item">
                                                         <Link to={"/profile/" + this.props.taskInfo.task.User.id}>
                                                             <div className="img-circle with-hover">
-                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                <img src={(msg.User && getImageUrl(msg.User.profile_image,"small")) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                                             </div>
                                                         </Link>
                                                         <div className>
@@ -154,7 +155,7 @@ class TaskChat extends React.Component {
                                                     <div className="qanda-item">
                                                         <Link to={"/profile/" +  msg.User.id}>
                                                             <div className="img-circle with-hover">
-                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                <img src={(msg.User && getImageUrl(msg.User.profile_image,"small")) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                                             </div>
                                                         </Link>
                                                         <div className>
@@ -187,7 +188,7 @@ class TaskChat extends React.Component {
                                                         <Link to={"/profile/" + this.props.taskInfo.task.User.id}>
                                                             <div className="img-circle with-hover">
                                                                 <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                                <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                <img src={getImageUrl(this.props.taskInfo.task.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                                             </div>
                                                         </Link>
                                                         <div className="name-info">
@@ -205,7 +206,7 @@ class TaskChat extends React.Component {
                                                                         <Link to={"/profile/" + msg.User.id}>
                                                                             <div className="img-circle with-hover">
                                                                                 <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                                <img src={(msg.User && getImageUrl(msg.User.profile_image,"small")) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                                                             </div>
                                                                         </Link>
                                                                         <div className>
@@ -221,7 +222,7 @@ class TaskChat extends React.Component {
                                                                         <Link to={"/profile/" + msg.User.id}>
                                                                             <div className="img-circle with-hover">
                                                                                 <div className="img-circle__mask"><img src="/images/edit-pen.png" alt="" /></div>
-                                                                                <img src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                                                                <img src={(msg.User && getImageUrl(msg.User.profile_image,"small")) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                                                             </div>
                                                                         </Link>
                                                                         <div className>
@@ -244,30 +245,6 @@ class TaskChat extends React.Component {
                 </section>
             </div>
 
-        )
-        return (
-            <div>
-                <div>
-                    <img src={this.props.taskInfo.task.User.profile_image || window.__PROFILE_DEFAULT_PICTURE__} width="30" />
-                    { this.props.taskInfo.task.title} Q&A <br/> 
-                    {this.props.taskInfo.task.User.first_name} {this.props.taskInfo.task.User.last_name[0]}
-                </div><br/>
-                Test<br/>
-                Messages: <br/>
-                {
-                    this.props.messages.concat(this.state.messages).map(msg => (
-                        <div>
-                            <img width="30" src={(msg.User && msg.User.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} />
-                            Content: {msg.content}, UserId: {msg.UserId}, {msg.User.first_name} {msg.User.last_name[0]}<br/>
-                        </div>
-                    ))
-                }
-                {!this.props.messages.concat(this.state.messages).length && "No messages to show" }<br/>
-                <form onSubmit={this.handleOnSubmit}>
-                    <input value={this.state.content} onChange={e => this.setState({content: e.target.value})} />
-                    <button>Send</button>
-                </form>
-            </div>
         )
     }
 }

@@ -9,6 +9,7 @@ import E404 from "../E404";
 import MobileNav from "../../components/MobileNav";
 import { wrap } from "lodash";
 import Modal from "../../components/Modal";
+import getImageUrl from "../../utils/getImageUrl";
 
 class MyProfileEdit extends React.Component {
     constructor(props){
@@ -99,7 +100,7 @@ class MyProfileEdit extends React.Component {
     }
     getProfileImage = () => {
         if (this.state.data.profile_image) return this.state.data.profile_image.src
-        if (this.props.currentUser.profile_image) return this.props.currentUser.profile_image
+        if (this.props.currentUser.profile_image) return getImageUrl(this.props.currentUser.profile_image,"small")
         return window.__PROFILE_DEFAULT_PICTURE__
     }
     decline = () => this.setState({ data: {}, onEdit: ""})
@@ -164,7 +165,7 @@ class MyProfileEdit extends React.Component {
         let { currentUser } = this.props;
         if (this.state.data.cover_image) return { backgroundImage: `url("${this.state.data.cover_image.src}"` }
         let defaultCover = window.location.protocol + "//" + window.location.host + "/" + window.__USER_COVER_DEFAULT_PICTURE__
-        return { backgroundImage: `url("${currentUser.cover_image || defaultCover }")`}
+        return { backgroundImage: `url("${getImageUrl(currentUser.cover_image) || defaultCover }")`}
     }
     getTrans = obj => obj[this.props.app_lang]
     render(){

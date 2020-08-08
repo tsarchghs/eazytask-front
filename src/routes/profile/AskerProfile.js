@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import SideTaskCard2 from "../../components/SideTaskCard2/SideTaskCard2";
+import getImageUrl from "../../utils/getImageUrl";
 
 class AskerProfile extends React.Component {
     constructor(props) {
@@ -96,7 +97,7 @@ class AskerProfile extends React.Component {
         return (
             <section className="offers-layout tasker-profile">
                 <div className="offers-picture" style={{
-                    backgroundImage: `url(${this.props.user.cover_image || window.__COVER_DEFAULT_PICTURE__})`
+                    backgroundImage: `url(${getImageUrl(this.props.user.cover_image) || window.__COVER_DEFAULT_PICTURE__})`
                 }}>
                     <div className="offer-picture__buttons">
                         <div style={{cursor: "pointer"}} onClick={e => {
@@ -120,7 +121,7 @@ class AskerProfile extends React.Component {
                             <div className="offers__card--top">
                                 <div className="offers__profile">
                                     <div className="offers__profile--img" />
-                                    <h4 className="flex aic jcc"> <div className="img-circle"><img src={this.props.user.profile_image || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
+                                    <h4 className="flex aic jcc"> <div className="img-circle"><img src={getImageUrl(this.props.user.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                     </div> {this.props.user.first_name} {this.props.user.last_name[0]}.</h4>
                                 </div>
                                 <p className="special">{this.props.user.short_biography || "No short biography"}</p>

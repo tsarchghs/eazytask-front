@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPost } from "../../../actions/posts";
 import E404 from "../../E404";
+import getImageUrl from "../../../utils/getImageUrl";
+import Footer from "../../../components/Footer";
 
 class SingleBlog extends React.Component {
     constructor(props){
@@ -41,9 +43,8 @@ class SingleBlog extends React.Component {
         )
         if (error) return "Error...";
         if (!Object.keys(post).length) return <E404/>
-        console.log("POSTPOST",post)
         return (
-            <div className=" edit-task__wrapper">
+            <div style={{ height: "initial" }} className="edit-task__wrapper">
                 <section className="landing-info panel edit-task__section">
                     <div className="container">
                         <div className="content ">
@@ -64,7 +65,7 @@ class SingleBlog extends React.Component {
                             <section className="blog-cards bg-inside">
                                 <div className="blog-card " style={{ width: "100%", wordBreak: "break-all" }}>
                                     <div className="blog-card__img">
-                                        <img src={post.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
+                                        <img src={getImageUrl(post.thumbnail) || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                                     </div>
                                     <div className="blog-card__date">
                                         <p>{new Date(post.createdAt).toLocaleDateString().replace(/\//g, ".")}</p>
@@ -73,12 +74,13 @@ class SingleBlog extends React.Component {
                                         <h4>{post.title}</h4>
                                     </div>
                                     <div className="blog-card__article">
-                                        <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
+                                        <p style={{wordBreak: "break-word"}} dangerouslySetInnerHTML={{ __html: post.content }}></p>
                                     </div>
                                 </div>
                             </section>
                         </div>
                     </div>
+                    <Footer/>
                 </section>
             </div>
 

@@ -422,7 +422,7 @@ class CreateTask extends React.Component {
                             ))} */}
                             {
                                 this.showButtonCondition() &&
-                                <div className={`buttons__group` +  ( [0,3].indexOf(this.state.step) !== -1  ? " fixed" : "")}>
+                                <div className={`buttons__group` +  ( [0].indexOf(this.state.step) !== -1  ? " fixed" : "")}>
                                 {/* {
                                     this.state.step == 9 && 
                                         <p className="m-fs14" style={{ fontSize: 20 }}>

@@ -13,7 +13,7 @@ const Impressum = props => {
     let fromCreateTask = props.location.search.indexOf("fromCreateTask") !== -1
     return (
         <div className=" edit-task__wrapper">
-        <section className="landing-info panel edit-task__section">
+        <section className="landing-info panel edit-task__section br-m">
             <div className="container">
                 <div className="content ">
                     <header className="logo-text">
@@ -37,7 +37,11 @@ const Impressum = props => {
                     </header> */}
                     <center>
         <div>
-          <h2 data-pm-slice="1 1 []"><strong>Impressum</strong></h2><p>Die Webseite eazytask.ch wird von pbits GmbH – Professional Business &amp; IT Solutions betrieben.</p><p><strong>Kontaktadresse:</strong><br />eazytask<br />c/o pbits GmbH<br />Colombstrasse 30<br />CH-3027 Bern</p><p><strong>E-Mail:&nbsp;</strong>hello@eazytask.ch&nbsp;</p><p><strong>Geschäftsleitung:&nbsp;</strong>Senat Mustafi (Gesellschafter und Geschäftsführer)</p><p><strong>Handelsregistereintrag:</strong> Handelsregister des Kantons Bern, CH-036.4.061.531-5</p><p><strong>Firmenidentifikationsnummer (UID):</strong> CH-178.994.229</p>
+          <h2 data-pm-slice="1 1 []">
+            <strong>Impressum</strong>
+            </h2>
+            <p>Die Webseite eazytask.ch wird von pbits GmbH – Professional Business &amp; IT Solutions betrieben.</p><p>
+              <strong>Kontaktadresse:</strong><br />eazytask<br />c/o pbits GmbH<br />Colombstrasse 30<br />CH-3027 Bern</p><p><strong>E-Mail:&nbsp;</strong>hello@eazytask.ch&nbsp;</p><p><strong>Geschäftsleitung:&nbsp;</strong>Senat Mustafi (Gesellschafter und Geschäftsführer)</p><p><strong>Handelsregistereintrag:</strong> Handelsregister des Kantons Bern, CH-036.4.061.531-5</p><p><strong>Firmenidentifikationsnummer (UID):</strong> CH-178.994.229</p>
         </div>
 
                     </center>

@@ -48,17 +48,6 @@ class MyActiveTasks extends React.Component {
                 </section>
             </div>
         )
-        return (
-            <React.Fragment>
-                <div>My active tasks</div>
-                { this.props.loading && "Loading" }
-                { !this.props.loading && 
-                    <ul>
-                        { this.showTasks() }
-                    </ul>
-                }
-            </React.Fragment>
-        ) 
     }
 }
 

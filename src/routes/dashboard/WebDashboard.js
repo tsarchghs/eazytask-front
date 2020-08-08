@@ -154,7 +154,7 @@ class WebDashboard extends React.Component {
                                                         </Link>
                                                     </div>
                                                     <div className="listing-cards ">
-                                                        { this.props.activeListing2_info.loading && "Loading.." }
+                                                        { this.props.activeListing2_info.loading && <p className="special">Loading...</p> }
                                                         {
                                                             !this.props.activeListing2_info.loading && !this.props.activeListing2_info.tasks.length 
                                                             && <p className="special">{this.getTrans(translations.text_27)}</p>
