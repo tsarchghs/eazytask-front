@@ -7,5 +7,5 @@ isDataURL.regex = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a
 export default (key,type) => {
     if (!key) return undefined;
     if (isDataURL(key)) return key
-    return `${window.__AWS_BASE_URL__}/${type ? type + "-" : ""}${key}`
+    return `${window.__AWS_BASE_URL__ || `https://eazytask.s3.amazonaws.com`}/${type ? type + "-" : ""}${key}`
 }
