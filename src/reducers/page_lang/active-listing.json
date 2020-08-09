@@ -1,0 +1,12 @@
+{
+    "web": {
+        "text_1": {
+            "en": "Active",
+            "de": "Activen"
+        },
+        "text_2": {
+            "en": "listings",
+            "de": "listingens"
+        }
+    }
+}

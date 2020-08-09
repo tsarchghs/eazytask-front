@@ -15,13 +15,23 @@ class History extends React.Component {
     getShow = task => {
         let show;
         if (task.status == "ACTIVE") {
-            show = `Done on ${new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}`;
+            show = `${this.getTrans(this.props.translations.text_1)} ${new Date(task.due_date).toLocaleDateString().replace(/\//g, ".")}`;
         } else if (task.status == "DELETED") {
-            show = "Deleted"
+            show = this.getTrans(this.props.translations.text_2)
         } else if (task.status == "DEACTIVATED") {
-            show = "Deactivated"
+            show = this.getTrans(this.props.translations.text_3)
         }
         return show;
+    }
+    getTrans = obj => {
+      let data = obj[this.props.app_lang];
+      console.log("GET_TRANS", data, obj)
+      if (typeof (data) == "string") return data;
+      if (data.length) {
+          return data.map(str => <React.Fragment>
+              {str}
+          </React.Fragment>)
+      }
     }
     render(){
         let { loading, err, tasks } = this.props;
@@ -40,7 +50,7 @@ class History extends React.Component {
                         }
                       }} src="/images/arrow.jpeg" alt="" /></span>
                       <h4 className="hide-on-desktop logo-title">
-                        Task History
+                        {this.getTrans(this.props.translations.mobile.text_1)}
                       </h4>
                     </header>
                     <section className="home">
@@ -52,7 +62,7 @@ class History extends React.Component {
                         { !loading && !err && tasks.map(task => (
                             <div style={{cursor: "pointer" }} onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`}}>
                                 <div className="home__card--mask" />
-                                <h5>View “{task.title}”</h5>
+                                <h5>{this.getTrans(this.props.translations.text_4)} “{task.title}”</h5>
                                 <p>{this.getShow(task)}</p>
                             </div>
                         ))}
@@ -97,13 +107,14 @@ class History extends React.Component {
                         <h4 className="flex aic jcc"> <div className="img-circle"><img src={getImageUrl(this.props.own_profile.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                         </div> {this.props.own_profile.first_name} {this.props.own_profile.last_name}</h4>
                       </div>
-                      <p className="special">{this.props.own_profile.short_biography || "No short biography"}</p>
+                      <p className="special">{this.props.own_profile.short_biography || 
+                      this.getTrans(this.props.translations.web.text_2)}</p>
                     </div>
                   </div>
                   <div className="offers-images__layout">
                     <div className="faq-web__top  tabs-modified">
                       <div className="home__tabs jcc">
-                        <div className="home__tab active">History</div>
+                        <div className="home__tab active">{this.getTrans(this.props.translations.web.text_1)}</div>
                       </div>
                     </div>
                     <div className="offers-images slide-cards">
@@ -130,7 +141,12 @@ class History extends React.Component {
 
 const mapStateToProps = state => {
     let tasks = state.tasks.my_history.ids.map(id => state.tasks.byIds[id]);
-    return { ...state.tasks.my_history, tasks, own_profile: state.auth.profile }
+    return { 
+      ...state.tasks.my_history, tasks, own_profile: state.auth.profile,
+      translations: state.app_lang.data["/history"],
+      app_lang: state.app_lang.app_lang,
+      common: state.app_lang.common  
+    }
 }
 
 export default compose(withRouter,connect(mapStateToProps, { getMyHistory }))(History);

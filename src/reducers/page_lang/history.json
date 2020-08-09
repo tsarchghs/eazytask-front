@@ -1,0 +1,34 @@
+{
+    "text_1": {
+        "en": "Done on",
+        "de": "Mon on"
+    },
+    "text_2": {
+        "en": "Deleted",
+        "de": "Delemua"
+    },
+    "text_3": {
+        "en": "Deactivated",
+        "de": "Daeacfbgds"
+    },
+    "text_4": {
+        "en": "View",
+        "de": "Viwen"
+    },
+    "web": {
+        "text_1": {
+            "en": "History",
+            "de": "None1"
+        },
+        "text_2": {
+            "en": "No short biography",
+            "de": "None2"
+        }
+    },
+    "mobile": {
+        "text_1": {
+            "en": "Task history",
+            "de": "None1"
+        }
+    }
+}

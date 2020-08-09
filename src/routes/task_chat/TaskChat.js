@@ -96,7 +96,7 @@ class TaskChat extends React.Component {
     }
     inputAndButton = () => (
         <div className="qanda-textarea">
-            <textarea onKeyDown={this.handleOnKeyDown} onKeyUp={this.handleOnKeyUp} value={this.state.content} onChange={e => this.setState({ content: e.target.value })} name placeholder="Type your question here..." id cols={30} rows={1} />
+            <textarea onKeyDown={this.handleOnKeyDown} onKeyUp={this.handleOnKeyUp} value={this.state.content} onChange={e => this.setState({ content: e.target.value })} name placeholder={this.props.translations.text_1[this.props.app_lang]} id cols={30} rows={1} />
             <img onClick={this.handleOnSubmit} src={this.state.content ? "/images/send-b.png" : "/images/send-g.png"} alt="" />
             {/* <img src="/images/send-b.png" alt="" /> */}
         </div>
@@ -261,7 +261,10 @@ let mapStateToProps = (state, ownProps) => {
         messages, 
         own_profile: state.auth.profile, 
         currentUserId: state.auth.profile ? state.auth.profile.id : undefined,
-        taskInfo: { error: taskInfo.error, loading: taskInfo.loading, task: taskInfo }
+        taskInfo: { error: taskInfo.error, loading: taskInfo.loading, task: taskInfo },
+        translations: state.app_lang.data["/task-chat"],
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common    
     }
 }
 

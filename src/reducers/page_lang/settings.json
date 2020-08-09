@@ -2,7 +2,7 @@
     "notifications": {
         "text_1": {
             "en": "Notifications",
-            "de": "None1"
+            "de": "Benachrichtigungen"
         },
         "text_2": {
             "en": [
@@ -10,31 +10,31 @@
                 "New offers, updates and more."
             ],
             "de": [
-                "DE: Choose how do you want to be notified across platform about:22",
-                "DE: New offers, updates and more.22"
+                "Lege fest wie du benachrichtigt werden möchtest über:",
+                "Neue Angebote, Neuigkeiten und vieles mehr"
             ]
         },
         "text_3": {
             "en": "I want to be notified with:",
-            "de": "None3"
+            "de": "Ich möchte benachrichtigt werden mit:"
         },
         "text_4": {
             "en": "Email",
-            "de": "None4"
+            "de": "E-Mail"
         },
         "text_5": {
             "en": "SMS",
-            "de": "None5"
+            "de": "SMS"
         },
         "text_6": {
             "en": "Save",
-            "de": "None6"
+            "de": "Speichern"
         }
     },
     "change_password": {
         "text_1": {
             "en": "Change Password",
-            "de": "None1"
+            "de": "Passwort ändern"
         },
         "text_2": {
             "en": [
@@ -43,37 +43,37 @@
                 "or something too obvious like your pet’s name."
             ],
             "de": [
-                "de: Choose a strong password and don’t reuse it from somewhere else.22",
-                "de: Use at least 8 characters. Don’t use a password from another site,22",
-                "de: or something too obvious like your pet’s name.22"
+                "Wähle ein sicheres Passwort.",
+                "Verwende mindestens 8 Zeichen,",
+                "und vermeide offensichtliche Passwörter."
             ]
         },
         "text_3": {
             "en": "Old password",
-            "de": "None3"
+            "de": "Altes Passwort"
         },
         "text_4": {
             "en": "New password",
-            "de": "None4"
+            "de": "Neues Passwort"
         },
         "text_5": {
             "en": "Confirm new password",
-            "de": "None5"
+            "de": "Neues Passwort bestätigen"
         },
         "text_6": {
             "en": "Confirm",
-            "de": "None6"
+            "de": "Bestätigen"
         }
     },
     "delete_account": {
         "web": {
             "text_1": {
                 "en": "Delete account",
-                "de": "None1"
+                "de": "Benutzerkonto löschen"
             },
             "text_2": {
                 "en": "Hi,",
-                "de": "None2"
+                "de": "Hallo,"
             },
             "text_3": {
                 "en": [
@@ -82,42 +82,42 @@
                     "improve"
                 ],
                 "de": [
-                    "de: We're sorry to hear you'd like to delete your account.3",
-                    "de: Please tell us why you made this decision so in that way we will try to3",
-                    "de: improve3"
+                    "Wir bedauern, dass du dein Konto löschen möchtest.",
+                    "Bitte sag uns, warum du diese Entscheidung getroffen hast, damit wir uns",
+                    "verbessern können."
                 ]
             },
             "text_4": {
                 "en": "Please tell us why you decided to delete your account.",
-                "de": "None4"
+                "de": "Bitte teile uns mit, warum du das Konto löschen möchtest."
             },
             "text_5": {
                 "en": "Hard to use",
-                "de": "None5"
+                "de": "Schwer zu bedienen"
             },
             "text_6": {
                 "en": "It has a lot of problems",
-                "de": "None6"
+                "de": "Es hat viele Probleme"
             },
             "text_7": {
                 "en": "I don't need it",
-                "de": "None7"
+                "de": "Ich brauche es nicht"
             },
             "text_8": {
                 "en": "I have a better platform",
-                "de": "None8"
+                "de": "Ich nutze eine bessere Plattform"
             },
             "text_9": {
                 "en": "It's not available in my country",
-                "de": "None9"
+                "de": "In meinem Ort nicht verfügbar"
             },
             "text_10": {
                 "en": "Delete",
-                "de": "None10"
+                "de": "Löschen"
             },
             "text_11": {
                 "en": "Deleting..",
-                "de": "Neininig..11"
+                "de": "Wird gelöscht..."
             }
         },
         "mobile": {
@@ -127,44 +127,44 @@
                     "go"
                 ],
                 "de": [
-                    "de: We are sorry to see you1",
-                    "de: go1"
+                    "Es tut uns leid, dich gehen",
+                    "zu sehen"
                 ]
             },
             "text_2": {
                 "en": "Please tell us why you decided to delete your account.",
-                "de": "None2"
+                "de": "Bitte teile uns mit, warum du das Konto löschen möchtest."
             },
             "text_3": {
                 "en": "Hard to use",
-                "de": "None3"
+                "de": "Schwer zu bedienen"
             },
             "text_4": {
                 "en": "It has a lot of problems",
-                "de": "None4"
+                "de": "Es hat viele Probleme"
             },
             "text_5": {
                 "en": "I don't need it",
-                "de": "None5"
+                "de": "Ich brauche es nicht"
             },
             "text_6": {
                 "en": "I have a better platform",
-                "de": "None6"
+                "de": "Ich nutze eine bessere Plattform"
             },
             "text_7": {
                 "en": "It's not available in my country",
-                "de": "None7"
+                "de": "In meinem Ort nicht verfügbar"
             },
             "text_8": {
                 "en": "Delete",
-                "de": "None8"
+                "de": "Löschen"
             }
         }
     },
     "about": {
         "text_1": {
-            "en": "Eazytask",
-            "de": "Eazytask1"
+            "en": "eazytask",
+            "de": "eazytask"
         },
         "text_2": {
             "en": [
@@ -172,55 +172,55 @@
                 "en: Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei."
             ],
             "de": [
-                "Eazytask verbinden Privatpersonen für die Erledigung von Kleinaufträgen.2",
-                "Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei.2"
+                "eazytask verbindet Privatpersonen für die Erledigung von Kleinaufträgen.",
+                "Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei."
             ]
         },
         "text_3": {
             "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi netus placerat magna iaculis sit lorem. Suspendisse in faucibus ut neque egestas. Consectetur a mattis vel commodo arcu malesuada turpis dolor duis. Enim elit pellentesque orci, porttitor nulla sit pretium. Sit purus, risus, iaculis neque proin non felis, ac. Laoreet mauris blandit praesent enim sed. Viverra non convallis sed blandit faucibus consectetur. Egestas posuere id eu scelerisque tristique at odio nisl. Sed eu enim molestie mauris risus, nullam pretium ut semper. Viverra nulla est, maecenas nibh. Felis, odio amet nam et lacus vitae, ornare. Hac proin mattis et sagittis rhoncus aliquam. Diam diam arcu lorem pharetra facilisis urna sit. Cras praesent est ac lorem morbi suspendisse aliquam vel.",
-            "de": "None3"
+            "de": "Die Webseite eazytask.ch wird von pbits GmbH – Professional Business & IT Solutions betrieben. E-Mail: hello@eazytask.ch | Firmenidentifikationsnummer (UID): CH-178.994.229"
         }
     },
     "change_preferences": {
         "text_1": {
             "en": "Change preferences",
-            "de": "None1"
+            "de": "Präferenzen ändern"
         },
         "text_2": {
             "en": "Chose how you do you want to........",
-            "de": "None2"
+            "de": "Lege fest wie du benachrichtigt werden möchtest"
         },
         "text_3": {
             "en": "Yoi're currently an:",
-            "de": "None3"
+            "de": "Deine aktuelle Rolle:"
         },
         "text_4": {
             "en": "Asker",
-            "de": "None4"
+            "de": "Auftraggeber"
         },
         "text_5": {
             "en": "Asker and Tasker",
-            "de": "None5"
+            "de": "Auftraggeber & Tasker"
         },
         "text_6": {
             "en": "",
-            "de": "None6"
+            "de": ""
         },
         "text_7": {
             "en": "Skills",
-            "de": "None7"
+            "de": "Fähigkeiten"
         },
         "text_8": {
             "en": "Languages",
-            "de": "None8"
+            "de": "Sprachen"
         },
         "text_9": {
             "en": "Cities",
-            "de": "None9"
+            "de": "Orte"
         },
         "text_10": {
             "en": "Save",
-            "de": "None10"
+            "de": "Speichern"
         }
     }
 }

@@ -67,24 +67,24 @@ class Task extends React.Component {
                                     if (this.props.task.Offers && this.props.task.Offers.length) this.setState({ onModal: "CANNOT_EDIT"})
                                     else this.props.history.push("/task/" + this.props.match.params.taskId + "/edit")
                                 }} className="flex aic jcsb">
-                                    <p>Edit</p>
+                                    <p>{this.getTrans(this.props.translations.text_21)}</p>
                                     <img src="/images/cursor.png" alt="" />
                                 </article>
                                 <article onClick={() => this.setState({ onModal: "DELETE_MODAL" })} className="flex aic jcsb">
-                                    <p>Delete</p>
+                                    <p>{this.getTrans(this.props.translations.text_22)}</p>
                                     <img src="/images/trash.png" alt="" />
                                 </article>
 
                                 {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "ACTIVE" &&
                                     <article onClick={() => this.setState({onModal: "DEACTIVATE_MODAL"})} className="flex aic jcsb">
-                                        <p>Deactivate</p>
+                                        <p>{this.getTrans(this.props.translations.text_23)}</p>
                                         <img src="/images/sleep.png" alt="" />
                                     </article>
                                 }
 
                                 {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "DEACTIVATED" && 
                                     <article onClick={() => this.setState({ onModal: "REACTIVATE_MODAL" })} className="flex aic jcsb">
-                                        <p>Re-activate</p>
+                                        <p>{this.getTrans(this.props.translations.text_24)}</p>
                                         <img src="/images/sleep.png" alt="" />
                                     </article>
                                 }
@@ -119,7 +119,7 @@ class Task extends React.Component {
                         <p><img src="/images/inter.png" alt="" />
                             {this.props.task.status == "ACTIVE"
                                 ? new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")
-                                : "Deactive"
+                                : this.getTrans(this.props.translations.text_25)
                             }                                                                                                   
                         </p>
                         <p><img src="/images/pins.png" alt="" /> {this.props.task.zipCode}, {this.props.task.city}</p>
@@ -147,7 +147,7 @@ class Task extends React.Component {
         console.log(buttonOnClick, !!own_user,"buttonOnClick")
         let { clickedMakeOffer, amount } = this.state;
         let { own_user } = this.props;
-        let buttonText = !clickedMakeOffer ? "Make offer" : "Next"
+        let buttonText = !clickedMakeOffer ? this.getTrans(this.props.translations.text_2) : this.getTrans(this.props.translations.text_20)
         let buttonOnClick;
         if (own_user) buttonOnClick = !clickedMakeOffer ? () => this.setState({ clickedMakeOffer: true })
                                                 : this.setStep("SELF_PROMOTE")
@@ -155,7 +155,7 @@ class Task extends React.Component {
         return (
             <React.Fragment>
                 {clickedMakeOffer && <input type="number" value={amount} onChange={this.amountOnChange}/>}<br/>
-                <button onClick={buttonOnClick}>{ buttonText }</button>sddas
+                <button onClick={buttonOnClick}>{ buttonText }</button>
             </React.Fragment>
         )
     }
@@ -212,6 +212,15 @@ class Task extends React.Component {
             </React.Fragment>
         )
     }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof (data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br/>
+            </React.Fragment>)
+        }
+      }
     getTaskOffersUI = () => {
         return (
             <div>
@@ -222,7 +231,7 @@ class Task extends React.Component {
                                 <header className="logo-text">
                                     <span onClick={() => this.setState({ step: "TASK_PROFILE" })} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                     <h4 className="hide-on-desktop logo-title">
-                                        Offers
+                                    {this.getTrans(this.props.translations.text_26)}
                   </h4>
                                 </header>
                                 <section className="vertical-cards">
@@ -248,7 +257,9 @@ class Task extends React.Component {
                                 }
                                 {
                                     this.props.task.Offers && !this.props.task.Offers.length &&
-                                    <p className="special text-center" style={{ marginTop: '20px' }}>No offers to show</p>
+                                    <p className="special text-center" style={{ marginTop: '20px' }}>
+                                        {this.getTrans(this.props.translations.text_27)}
+                                    </p>
                                 }
                                 </section>
                             </div>
@@ -281,13 +292,14 @@ class Task extends React.Component {
                                 ))
                             }
                             </div>
-                            <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length} offers given</p>
+                            <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length}
+                             {this.getTrans(this.props.translations.text_28)}</p>
                             <div className="offers-buttons">
                                 <a href="#" className="button">Q&amp;A</a>
                                 <a onClick={e => {
                                     e.preventDefault();
                                     this.setState({ step: "TASK_PROFILE" })
-                                }} className="button fill">View Gallery</a>
+                                }} className="button fill">{this.getTrans(this.props.translations.text_29)}</a>
                             </div>
                         </div>
                     </div></section>
@@ -309,7 +321,9 @@ class Task extends React.Component {
                         {this.getOffersCard()}
                         {this.state.belowUI === "SHOW_OFFERS" && this.getAllOffersUI()}
                         {this.props.task.gallery == null && 
-                            <p class="special text-center" style={{ marginTop: 20 }}>No gallery images to show</p>
+                            <p class="special text-center" style={{ marginTop: 20 }}>
+                                {this.getTrans(this.props.translations.text_30)}
+                            </p>
                         }
                         <div className="offers-images">
                             { this.state.belowUI === "DEFAULT" && <React.Fragment>
@@ -343,7 +357,7 @@ class Task extends React.Component {
                                                 button
                                                 onClick={() => this.setState({ step: "TASK_OFFERS" })}
                                                 className="button fill">
-                                                View offers
+                                                {this.getTrans(this.props.translations.text_1)}
                                             </a>
                                             :
                                             (
@@ -365,13 +379,13 @@ class Task extends React.Component {
                                                                     else this.props.history.push("/register?to=/task/" + this.props.task.id);
                                                                 }}
                                                                 className="button fill">
-                                                                Make offer
+                                                                {this.getTrans(this.props.translations.text_2)}
                                                             </a>
                                                             <Modal
                                                                 isActive={isActive}     // required
                                                                 closeModal={closeModal} // required
-                                                                title="Action not allowed"
-                                                                description="You cannot make an offer, to make an offer become a tasker by going to your account settings."
+                                                                title={this.getTrans(this.props.translations.text_4)}
+                                                                description={this.getTrans(this.props.translations.text_5)}
                                                                 accountSettingsButton={true}
                                                                 hide_buttons={true}
                                                             />
@@ -394,7 +408,7 @@ class Task extends React.Component {
                                                 else this.props.history.push("/register?to=/task/" + this.props.task.id);
                                             }}
                                             className="button fill">
-                                            Make offer
+                                            {this.getTrans(this.props.translations.text_2)}
                                         </a>
                                         : ""
                                     }
@@ -411,7 +425,7 @@ class Task extends React.Component {
                                         } else this.props.history.push("/register?to=/task/" + this.props.task.id);
                                     }}
                                     className="button fill">
-                                    Make offer
+                                    {this.getTrans(this.props.translations.text_2)}
                                 </a>
                             }
                             {
@@ -429,7 +443,7 @@ class Task extends React.Component {
                                                 padding: 13,
                                                 fontSsize: 20
                                             }}
-                                            placeholder="Amount"
+                                            placeholder={this.getTrans(this.props.translations.text_31)}
                                             onChange={this.amountOnChange}
                                             value={this.state.amount}
                                         />
@@ -438,7 +452,7 @@ class Task extends React.Component {
                                             style={{ width: "120px", margin: "0 auto" }}
                                             onClick={this.state.amount ? () => this.setState({ step: "SELF_PROMOTE" }) : undefined}
                                             className={`button ${this.state.amount ? "fill" : "no-fill"}`}>
-                                            Next
+                                            {this.getTrans(this.props.translations.text_20)}
                                         </a>
                                 </div>
                                 )
@@ -470,7 +484,10 @@ class Task extends React.Component {
             onChange={e => this.setState({ self_promote: e.target.value })} 
             offersCard={this.getOffersCard()}
             buttonOnClick={buttonOnClick} 
-            buttonStyle={buttonStyle}    
+            buttonStyle={buttonStyle}
+            getTrans={this.getTrans}
+            translations={this.props.translations}
+            common={this.props.common}
         />
     }
     getOfferSentUI = () => <div className="container">
@@ -482,14 +499,16 @@ class Task extends React.Component {
             <section className="two-column__layout setup__mobile profile__cover">
                 <div className="two-column__info flex flex-column">
                     <div className="background-title mb5">
-                        <h1>Ready to go</h1>
+                        <h1>{this.getTrans(this.props.translations.text_18)}</h1>
                         <p className="shadow__title">setup your account</p>
                     </div>
                     <div>
                         <img src="/images/reminder.png" style={{ minWidth: '190px', width: '20%', margin: '0 auto 40px' }} alt="" />
                     </div>
-                    <h4 className="show__mobile">Ready to go</h4>
-                    <p className="mb30 flex-grow" style={{ fontSize: '18px', maxWidth: '240px', marginTop: "2%", margin: "0 auto" }}>You will be notified if the asker accept it or not</p>
+                    <h4 className="show__mobile">{this.getTrans(this.props.translations.text_18)}</h4>
+                    <p className="mb30 flex-grow" style={{ fontSize: '18px', maxWidth: '240px', marginTop: "2%", margin: "0 auto" }}>
+                        {this.getTrans(this.props.translations.text_19)}
+                    </p>
                     <div className="buttons__group">
                         <button onClick={() => {
                             this.setState({
@@ -501,9 +520,9 @@ class Task extends React.Component {
                                 belowUI: "DEFAULT"
                             })
                             this.props.getTask(this.props.match.params.taskId, "fields=question,user,offers,category")
-                        }} className="button__style no-color">View task</button>
+                        }} className="button__style no-color">{this.getTrans(this.props.translations.text_17)}</button>
                         <Link to="/">
-                            <button className="button__style">Go home</button>
+                            <button className="button__style">{this.getTrans(this.props.translations.text_16)}</button>
                         </Link>
                     </div>
                 </div>
@@ -529,9 +548,9 @@ class Task extends React.Component {
                 <Modal
                     isActive={this.state.onModal == "DELETE_MODAL"}     // required
                     closeModal={this.closeModal} // required
-                    title="Delete task"
-                    description="Are you sure you want to delete this task?"
-                    acceptText="Delete"
+                    title={this.getTrans(this.props.translations.text_12)}
+                    description={this.getTrans(this.props.translations.text_13)}
+                    acceptText={this.getTrans(this.props.translations.text_14)}
                     acceptOnClick={() => {
                         this.delete()
                         this.closeModal()
@@ -541,9 +560,9 @@ class Task extends React.Component {
                 <Modal
                     isActive={this.state.onModal == "DEACTIVATE_MODAL"}     // required
                     closeModal={this.closeModal} // required
-                    title="Deactivate task"
-                    description="Do you want to deactivate this task? You can always activate back."
-                    acceptText="Deactivate"
+                    title={this.getTrans(this.props.translations.text_7)}
+                    description={this.getTrans(this.props.translations.text_8)}
+                    acceptText={this.getTrans(this.props.translations.text_15)}
                     acceptOnClick={() => {
                         this.deactivate()
                         this.closeModal()
@@ -553,9 +572,9 @@ class Task extends React.Component {
                 <Modal
                     isActive={this.state.onModal == "REACTIVATE_MODAL"}     // required
                     closeModal={this.closeModal} // required
-                    title="Are you sure react?"
-                    description="Are you pretty sure?"
-                    acceptText="Re-activate"
+                    title={this.getTrans(this.props.translations.text_9)}
+                    description={this.getTrans(this.props.translations.text_10)}
+                    acceptText={this.getTrans(this.props.translations.text_11)}
                     acceptOnClick={() => {
                         this.reActivate()
                         this.closeModal()
@@ -565,8 +584,8 @@ class Task extends React.Component {
                 <Modal
                     isActive={this.state.onModal == "CANNOT_EDIT"}     // required
                     closeModal={this.closeModal} // required
-                    title="Action not allowed"
-                    description="You cannot edit this task since there are already offers made."
+                    title={this.getTrans(this.props.translations.text_3)}
+                    description={this.getTrans(this.props.translations.text_6)}
                     hide_buttons={true}
                 />
                 {children}
@@ -577,11 +596,15 @@ class Task extends React.Component {
 
 const mapStateToProps = (state,ownProps) => {
     let { taskId } = ownProps.match.params
-    console.log("state.tasks.byIds[taskId]", state.tasks.byIds[taskId])
     let { error, errorResponse } = state.tasks.byIds[taskId] || {}
     let { loading, ...task } = (state.tasks.byIds[taskId] && state.tasks.byIds[taskId].User) && state.tasks.byIds[taskId] || { loading: true }
     let own_user = state.auth.profile;
-    return { error, errorResponse, loading, own_user,task: task || {} }
+    return { 
+        error, errorResponse, loading, own_user,task: task || {},
+        translations: state.app_lang.data["/task-profile"],
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common    
+    }
 }
 
 export default connect(mapStateToProps, { getTask, postOffers, patchTasks })(Task);

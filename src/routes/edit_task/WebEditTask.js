@@ -72,7 +72,7 @@ class WebEditTask extends React.Component {
                         <div className="flex-grow">
                         <img src="/images/inter.png" alt="" />
                         </div>
-                        <p>Active until</p>
+                        <p>{this.props.translations.text_1[this.props.app_lang]}</p>
                         <h5>03.06.2020</h5>
                     </div>
                     <div className="big-icon">
@@ -86,26 +86,26 @@ class WebEditTask extends React.Component {
                         <div className="flex-grow">
                         <img src="/images/shop.png" alt="" />
                         </div>
-                        <p>Price</p>
+                        <p>{this.props.translations.text_2[this.props.app_lang]}</p>
                         <h5>CHF 300.-</h5>
                     </div>
                     <div className="big-icon">
                         <div className="flex-grow">
                         <img src="/images/house.png" alt="" />
                         </div>
-                        <p>Type</p>
+                        <p>{this.props.translations.text_3[this.props.app_lang]}</p>
                         <h5>Household</h5>
                     </div>
                     </div>
                     <div className="offers-images__layout">
-                    <p className="offers-images__title">Gallery</p>
+                    <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                     <div className="offers-images">
                     {
                         this.props.data.gallery && this.props.data.gallery.map(obj => {
                             return (
                                 <div className={"offers-image image-uploads " + (this.props.data.thumbnail.value == obj.value ? "active" : "")}>
                                     <img onClick={this.props.onThumbnailChange(obj.value)} src={getImageUrl(obj.value, "small")} alt="" />
-                                    <h4 onClick={this.props.onThumbnailChange(obj.value)}>Thumbnail</h4>
+                                    <h4 onClick={this.props.onThumbnailChange(obj.value)}>{this.props.translations.text_5[this.props.app_lang]}</h4>
                                     <span style={{ zIndex: 1000000 }} onClick={this.props.onGalleryImageRemove(obj.value)} className="remove-th">X</span>
                                 </div>
                             )
@@ -120,8 +120,8 @@ class WebEditTask extends React.Component {
                         {
                             this.props.showUpdateButton() ?
                                 (
-                                    this.props.loading ? <button className="button__style small">Saving..</button> :
-                                        <button onClick={this.props.updateTask} className="button__style small">Save</button>
+                                    this.props.loading ? <button className="button__style small">{this.props.translations.text_8[this.props.app_lang]}</button> :
+                                        <button onClick={this.props.updateTask} className="button__style small">{this.props.translations.text_7[this.props.app_lang]}</button>
                                 )
                                 : null
                         }          

@@ -6,6 +6,16 @@ import MyProfileEdit from "./page_lang/my_profile_edit.json"
 import Common from "./page_lang/common.json";
 import Settings from "./page_lang/settings.json"
 import DeleteAccountThank from "./page_lang/delete_account_thank.json"
+import LoginRegister from "./page_lang/login-register.json";
+import History from "./page_lang/history.json";
+import TaskProfile from "./page_lang/task-profile.json";
+import NotificationsMobile from "./page_lang/notifications-mobile.json";
+import TaskChat from "./page_lang/task-chat.json";
+import TaskEdit from "./page_lang/task-edit.json";
+import Blog from "./page_lang/blog.json";
+import Footer from "./page_lang/footer.json";
+import ActiveListing from "./page_lang/active-listing.json";
+import OfferProfile from "./page_lang/offer-profile.json";
 
 let languages = ["en", "de"];
 
@@ -20,7 +30,17 @@ const INITIAL_STATE = {
         "/create-task": CreateTask,
         "/my_profile_edit": MyProfileEdit,
         "/settings": Settings,
-        "/delete_account_thank": DeleteAccountThank
+        "/delete_account_thank": DeleteAccountThank,
+        "/login-register": LoginRegister,
+        "/history": History,
+        "/task-profile": TaskProfile,
+        "/notifications-mobile": NotificationsMobile,
+        "/task-chat": TaskChat,
+        "/task-edit": TaskEdit,
+        "/blog": Blog,
+        "/footer": Footer,
+        "/active-listing": ActiveListing,
+        "/offer-profile": OfferProfile
     }
 }
 

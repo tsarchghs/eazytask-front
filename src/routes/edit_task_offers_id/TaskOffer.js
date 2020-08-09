@@ -76,17 +76,19 @@ class TaskOffer extends React.Component {
             <React.Fragment>
                 <Modal
                     isActive={this.state.onModal == "EDIT_NOT_IMPLEMENTED"}     // required
-                    title="Coming soon!"
-                    description="Edit offer functionality will come soon!"
-                    acceptText="Okay"
+                    title={this.props.translations.text_9[this.props.app_lang]}
+                    description={this.props.translations.text_6[this.props.app_lang]}
+                    acceptText={this.props.translations.text_8[this.props.app_lang]}
+                    cancelText={this.props.translations.text_10[this.props.app_lang]}
                     closeModal={this.closeModal} // required
                     acceptOnClick={this.closeModal}
                 />
                 <Modal
                     isActive={this.state.onModal == "DELETE_NOT_IMPLEMENTED"}     // required
-                    title="Coming soon!"
-                    description="Delete offer functionality will come soon!"
-                    acceptText="Okay"
+                    title={this.props.translations.text_3[this.props.app_lang]}
+                    description={this.props.translations.text_4[this.props.app_lang]}
+                    acceptText={this.props.translations.text_8[this.props.app_lang]}
+                    cancelText={this.props.translations.text_10[this.props.app_lang]}
                     closeModal={this.closeModal} // required
                     acceptOnClick={this.closeModal}
                 />
@@ -96,7 +98,16 @@ class TaskOffer extends React.Component {
                     }}>
                         <div className="offer-picture__buttons">
                             <div className="offer-picture__back" style={{cursor: 'pointer'}}>
-                                <img src="/images/arrow.jpeg" alt="" />
+                                <img onClick={e => {
+                                    // this.props.history.push("/dashboard")
+                                    try {
+                                        if(!this.props.history.goBack()){
+                                            this.props.history.push("/")
+                                        }
+                                    } catch (e) {
+                                        this.props.history.push("/")
+                                    }
+                                }} src="/images/arrow.jpeg" alt="" />
                                 </div>
                             <div onClick={this.toggle(this.state.opened)} className="offer-picture__edit " style={{cursor: 'pointer'}}>
                                 <img className="img-rot" src="/images/more.png" alt="" />
@@ -105,7 +116,7 @@ class TaskOffer extends React.Component {
                                             console.log(555)
                                             this.setState({ onModal: "EDIT_NOT_IMPLEMENTED"})
                                         }} className="flex aic jcsb">
-                                        <p>Edit</p>
+                                        <p>{this.props.translations.text_5[this.props.app_lang]}</p>
                                         <img src="/images/cursor.png" alt="" />
                                     </article>
                                 </article>
@@ -136,7 +147,7 @@ class TaskOffer extends React.Component {
                                     this.props.offer.Tasker.UserId !== this.props.own_user.id &&
                                     <React.Fragment>
                                         <Link to={"/profile/" + this.props.offer.Tasker.UserId}>
-                                            <a href="#" className="button">View Profile</a>
+                                            <a href="#" className="button">{this.props.translations.text_7[this.props.app_lang]}</a>
                                         </Link>
                                         {this.getButton()}
                                     </React.Fragment>
@@ -144,11 +155,11 @@ class TaskOffer extends React.Component {
                                 {
                                     this.props.offer.Tasker.UserId === this.props.own_user.id &&
                                         <React.Fragment>
-                                            <Link className="button" to={`/task/${this.props.offer.TaskId}`}>View task</Link>
+                                            <Link className="button" to={`/task/${this.props.offer.TaskId}`}>{this.props.translations.text_1[this.props.app_lang]}</Link>
                                             <a onClick={e => {
                                                 e.preventDefault();
                                                 this.setState({ onModal: "DELETE_NOT_IMPLEMENTED"})
-                                            }} style={{ backgroundColor: "#9a4945" }} className="button fill">Delete</a>
+                                            }} style={{ backgroundColor: "#9a4945" }} className="button fill">{this.props.translations.text_2[this.props.app_lang]}</a>
                                         </React.Fragment>
                                 }
                             </div>
@@ -173,7 +184,10 @@ const mapStateToProps = (state, ownProps) => {
         acceptOffer: {
             loading: loading2,
             error: error2
-        }
+        },
+        translations: state.app_lang.data["/offer-profile"],
+        app_lang: state.app_lang.app_lang,
+        common: state.app_lang.common    
     }
 }
 

@@ -1,0 +1,153 @@
+{
+    "text_1": {
+        "en": "View offers",
+        "de": "ddView offers"
+    },
+    "text_2": {
+        "en": "Make offer",
+        "de": "ddMake offer"
+    },
+    "text_3": {
+        "en": "Action not allowed",
+        "de": "Action not allowed123"
+    },
+    "text_4": {
+        "en": "Action not allowed",
+        "de": "Action not allowed12356",
+        "description": "Translation for modal when you cannot make an offer as a asker"
+    },
+    "text_5": {
+        "en": "You cannot make an offer, to make an offer become a tasker by going to your account settings.",
+        "de": "dassad"
+    },
+    "text_6": {
+        "en": "You cannot edit this task since there are already offers made.",
+        "de": "sadsdasd"
+    },
+    "text_7": {
+        "en": "Deactivate task",
+        "de": "ddDeactivate task"
+    },
+    "text_8": {
+        "en": "Do you want to deactivate this task? You can always activate back.",
+        "de": "dsasdasd"
+    },
+    "text_9": {
+        "en": "Are you sure react?",
+        "de": "DSADSAASD"
+    },
+    "text_10": {
+        "en": "Are you pretty sure?",
+        "de": "dsadsAre you pretty sure?"
+    },
+    "text_11": {
+        "en": "Re-activate",
+        "de": "dsaRe-activate"
+    },
+    "text_12": {
+        "en": "Delete task",
+        "de": "dsasa"
+    },
+    "text_13": {
+        "en": "Are you sure you want to delete this task?",
+        "de": "dsadsaAre you sure you want to delete this task?"
+    },
+    "text_14": {
+        "en": "Delete",
+        "de": "sdadsDelete"
+    },
+    "text_15": {
+        "en": "Deactivate",
+        "de": "dsadDeactivate"
+    },
+    "text_16": {
+        "en": "Go home",
+        "de": "dsasGo home"
+    },
+    "text_17": {
+        "en": "View task",
+        "de": "Dsadsad"
+    },
+    "text_18": {
+        "en": "Ready to go",
+        "de": "dsadsa"
+    },
+    "text_19": {
+        "en": "You will be notified if the asker accept it or not",
+        "de": "dsadas"
+    },
+    "text_20": {
+        "en": "Next",
+        "de": "dsaNext"
+    },
+    "text_21": {
+        "en": "Edit",
+        "de": "dsaEdit"
+    },
+    "text_22": {
+        "en": "Delete",
+        "de": "dsaDelete"
+    },
+    "text_23": {
+        "en": "Deactivate",
+        "de": "dsaDeactivate"
+    },
+    "text_24": {
+        "en": "Reactivate",
+        "de": "dsadSReactivate"
+    },
+    "text_25": {
+        "en": "Deactive",
+        "de": "ddDeactive"
+    },
+    "text_26": {
+        "en": "Offers",
+        "de": "dsadOffers"
+    },
+    "text_27": {
+        "en": "No offers to show",
+        "de": "dsaNo offers to show"
+    },
+    "text_28": {
+        "en": " offers given",
+        "de": " dgdsafsda sdfafsd"
+    },
+    "text_29": {
+        "en": "View Gallery",
+        "de": "dsadSView Gallery"
+    },
+    "text_30": {
+        "en": "No gallery images to show",
+        "de": "dsadNo gallery images to show"
+    },
+    "text_31": {
+        "en": "Amount",
+        "de": "DDAMOUNT"
+    },
+    "text_32": {
+        "en": "Self promote",
+        "de": "SSelf promote"
+    },
+    "text_33": {
+        "en": "Lorem ipsum stuff",
+        "de": "Please write why do you think you are the right person to do this task",
+        "description": "Text below self promote on web"
+    },
+    "text_34": {
+        "en": "Lorem ipsum stuff",
+        "de": "Please write why do you think you are the right person to do this task",
+        "description": "Text below self promote on mobile"
+    },
+    "text_35": {
+        "en": "Promote yourself...",
+        "de": "dsa das..."
+    },
+    "text_36": {
+        "en": "Self",
+        "de": "Dasd"
+    },
+    "text_37": {
+        "en": "Promote",
+        "de": "DSADSADSA"
+    }
+}

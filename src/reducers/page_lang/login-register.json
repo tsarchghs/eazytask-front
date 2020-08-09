@@ -1,0 +1,143 @@
+{
+    "text_1": {
+        "en": "Login",
+        "de": "None1"
+    },
+    "text_2": {
+        "en": "Register",
+        "de": "None2"
+    },
+    "text_3": {
+        "en": "First name",
+        "de": "None3"
+    },
+    "text_4": {
+        "en": "Last name",
+        "de": "None4"
+    },
+    "text_5": {
+        "en": "Email",
+        "de": "None5"
+    },
+    "text_6": {
+        "en": "Password",
+        "de": "None6"
+    },
+    "text_7": {
+        "en": [
+            "By joining on platform I confirm that I read and",
+            "understood all the"
+        ],
+        "de": "None7"
+    },
+    "text_8": {
+        "en": "Terms&Conditions",
+        "de": "None8"
+    },
+    "text_9": {
+        "en": " of eazytask",
+        "de": " None9"
+    },
+    "text_10": {
+        "en": "Join us Login",
+        "de": "None10"
+    },
+    "text_11": {
+        "en": "Trouble logging in?",
+        "de": "None11"
+    },
+    "text_12": {
+        "en": "Join us Register",
+        "de": "None12"
+    },
+    "text_13": {
+        "en": "Welcome back",
+        "de": "None13"
+    },
+    "text_14": {
+        "en": "Please fill the credentials",
+        "de": "None14"
+    },
+    "text_15": {
+        "en": "Welcome to eazytask",
+        "de": "None15"
+    },
+    "text_16": {
+        "en": "Please fill the information",
+        "de": "None16"
+    },
+    "text_17": {
+        "en": "By joining on platform I confirm that I read and understood all the ",
+        "de": "None18"
+    },
+    "text_18":{
+        "en": "Terms&Conditions",
+        "de": "None19"
+    },
+    "text_19": {
+        "en": " of eazytask",
+        "de": "None19"
+    },
+    "login_errors": {
+        "VerifyEmail": {
+            "en": "Please verify your email address.",
+            "de": "Pleaseadsdsasad verify your email address."
+        },
+        "InvalidCredentials": {
+            "en": "The email address or password is incorrect. Please try again.",
+            "de": "dsadsaNone1."
+        }
+    },
+    "login_info": {
+        "SuccessRegister": {
+            "en": "You have successfully registered, check your email to verify your account!",
+            "de": "DASDS You have successfully registered, check your email to verify your account!"
+        },
+        "InvalidLink": {
+            "en": "The link is either invalid or has expired!",
+            "de": "fffff The link is either invalid or has expired!"
+        },
+        "AccountVerified": {
+            "en": "Account verified! You can now log in.",
+            "de": "dddd Account verified! You can now log in."
+        }
+    },
+    "register_errors": {
+        "requestBody.email is a required field": {
+            "en": "Email is a required field",
+            "de": "Emsdadsail is a required field"
+        },
+        "requestBody.password is a required field": {
+            "en": "Password is a required field",
+            "de": "Passwosdasdrd is a required field"
+        },
+        "requestBody.email must be a valid email": {
+            "en": "Email must be a valid email",
+            "de": "dsasda Email must be a valid email"
+        },
+        "requestBody.password must be at least 6 characters": {
+            "en": "Password must be at least 6 characters",
+            "de": "sadsda Password must be at least 6 characters"
+        },
+        "requestBody.first_name is a required field": {
+            "en": "First name is a required field",
+            "de": "dd First name is a required field"
+        },
+        "requestBody.last_name is a required field": {
+            "en": "Last name is a required field",
+            "de": "assa Last name is a required field"
+        },
+        "users.email must be unique": {
+            "en": "Email is already taken",
+            "de": "dd Email is already taken"
+        },
+        "requestBody.first_name must be at least 2 characters": {
+            "en": "First name must be at least 2 characters",
+            "de": "dsadsa First name must be at least 2 characters"
+        },
+        "requestBody.last_name must be at least 2 characters": {
+            "en": "Last name must be at least 2 characters",
+            "de": " asddsasa Last name must be at least 2 characters"
+        }
+    }
+}

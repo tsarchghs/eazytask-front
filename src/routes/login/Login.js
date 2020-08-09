@@ -34,14 +34,25 @@ class Login extends React.Component {
   getErrors = () => {
     let { errors } = this.props[POST_AUTH];
     if (errors && errors.length)
-      if (errors[0] == "Please verify your email address.") return ["Please verify your email address."]
-      else return ["The email address or password is incorrect. Please try again."]
+      if (errors[0] == "Please verify your email address.") 
+        return [this.getTrans(this.props.translations.login_errors["VerifyEmail"])]
+      else return [this.getTrans(this.props.translations.login_errors["InvalidCredentials"])]
       // return errors.filter((value,i) => errors.indexOf(value) === i).map(x => showError[x] || x);
     return [];
   };
   handleInputKeyDown = e => {
     if (e.key == "Enter") {
       this.onSubmit(e)
+    }
+  }
+  getTrans = obj => {
+    let data = obj[this.props.app_lang];
+    console.log("GET_TRANS", data, obj)
+    if (typeof (data) == "string") return data;
+    if (data.length) {
+        return data.map(str => <React.Fragment>
+            {str}<br />
+        </React.Fragment>)
     }
   }
   render() {
@@ -53,10 +64,10 @@ class Login extends React.Component {
             <h4 className="shadow-text">join eazytask now</h4>
             <div className="grid-container register__tabs">
               <NavLink to="/login">
-                <button className="fs62 fwb">Log In</button>
+                <button className="fs62 fwb">{this.getTrans(this.props.translations.text_1)}</button>
               </NavLink>
               <NavLink to="/register" onClick={this.changeImg}>
-                <button className="fs62">Register</button>
+                <button className="fs62">{this.getTrans(this.props.translations.text_2)}</button>
               </NavLink>
             </div>
             <div className="grid-container register__layout">
@@ -73,6 +84,9 @@ class Login extends React.Component {
                   errors={this.getErrors()}
                   onSubmit={this.onSubmit}
                   loading={this.props[POST_AUTH].loading}
+                  translations={this.props.translations}
+                  getTrans={this.getTrans}
+                  common={this.props.common}
                 />
             </div>
           </div>
@@ -90,7 +104,10 @@ const mapStateToProps = (state) => {
   console.log({state});
   return { 
     isAuthenticated: state.auth.isAuthenticated,
-    POST_AUTH: state.auth[POST_AUTH] 
+    POST_AUTH: state.auth[POST_AUTH],
+    translations: state.app_lang.data["/login-register"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
   };
 };
 

@@ -139,13 +139,13 @@ class ActiveListing extends React.Component {
                                 <div className="two-column__info flex flex-column">
                                     <div className=" flex jcsb aic w100">
                                         <div className="background-title mb5 flex1">
-                                            <h3>Active</h3>
-                                            <h4>listings</h4>
+                                            <h3>{this.getTrans(this.props.active_listing_translations.text_1)}</h3>
+                                            <h4>{this.getTrans(this.props.active_listing_translations.text_2)}</h4>
                                             <p className="shadow__title hide__mobile">some active listings on eazytask</p>
                                             <p className="shadow__title show__mobile">COMMERCIAL</p>
                                         </div>
-                                        <button style={{ cursor: "pointer" }} onClick={debounce(this.getToggleFilterFunc(), 10)}>
-                                        <img style={{ width: 25 }} src="/images/tools-and-utensils.png"/></button>
+                                        {/* <button style={{ cursor: "pointer" }} onClick={debounce(this.getToggleFilterFunc(), 10)}>
+                                        <img style={{ width: 25 }} src="/images/tools-and-utensils.png"/></button> */}
                                         <br />
                                     </div>
                                     <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" : "")}>
@@ -314,8 +314,8 @@ const mapStateToProps = state => {
         translations: state.app_lang.data["/create-task"],
         app_lang: state.app_lang.app_lang,
         own_profile: state.auth.profile,
-        common: state.app_lang.common
- 
+        common: state.app_lang.common,
+        active_listing_translations: state.app_lang.data["/active-listing"].web,    
     }
 }
 

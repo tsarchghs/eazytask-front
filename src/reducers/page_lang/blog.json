@@ -1,0 +1,26 @@
+{
+    "text_1": {
+        "en": "No posts to show...",
+        "de": "Noen postens toen showen..."
+    },
+    "web": {
+        "text_1": {
+            "en": "Read our Blog",
+            "de": "Readen ouren Blogen "
+        },
+        "text_2": {
+            "en": "Get inspired by reading our latest articles on our blog",
+            "de": "Geten inspiren Get inspired by reading our latest articles on our blog"
+        }
+    },
+    "mobile": {
+        "text_1": {
+            "en": "Read Our ",
+            "de": "Readen Ouren "
+        },
+        "text_2": {
+            "en": "Blog",
+            "de": "Blogen"
+        }
+    }
+}

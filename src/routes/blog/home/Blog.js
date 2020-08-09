@@ -42,18 +42,20 @@ class Blog extends React.Component {
                                     }
                                 }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="logo-title ">
-                                    Read Our <br /> <span>Blog</span>
+                                {this.props.translations.mobile.text_1[this.props.app_lang]} <br /> <span>
+                                    {this.props.translations.mobile.text_2[this.props.app_lang]}
+                                </span>
                                 </h4>
                             </header>
                             <div className="blog-title hide-on-mobile">
                                 <div>
-                                    <h4>Read our Blog</h4>
-                                    <h3>Get inspired by reading our latest articles on our blog</h3>
+                                    <h4>{this.props.translations.web.text_1[this.props.app_lang]}</h4>
+                                    <h3>{this.props.translations.web.text_2[this.props.app_lang]}</h3>
                                 </div>
-                                <a href="#">Read All</a>
+                                {/* <a href="#">Read All</a> */}
                             </div>
                             <section className="blog-cards">
-                                {loading && <p className="special">Loading..</p>}
+                                {loading && <p className="special">{this.props.common.loading[this.props.app_lang]}</p>}
                                 {!loading && posts.map(post => (
                                     <div className="blog-card">
                                         <Link to={"/blog/" + post.id}>
@@ -72,7 +74,9 @@ class Blog extends React.Component {
                                         </div>
                                     </div>
                                 ))}
-                                {!loading && !posts.length && <p className="special">No posts to show...</p>}
+                                {!loading && !posts.length && <p className="special">
+                                {this.props.translations.text_1[this.props.app_lang]}
+                                </p>}
                             </section>
                         </div>
                     </div>
@@ -85,6 +89,9 @@ class Blog extends React.Component {
 
 const mapStateToProps = state => ({
     posts: state.posts.allIds.map(id => state.posts.byIds[id]),
-    loading: state.posts.loading
+    loading: state.posts.loading,
+    translations: state.app_lang.data["/blog"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
 })
 export default compose(withRouter,connect(mapStateToProps, { getPosts }))(Blog);

@@ -3,6 +3,8 @@ import axios from "../../utils/axios";
 import getNotificationInfo from "../../utils/getNotificationInfo";
 import { withRouter, Link } from "react-router-dom";
 import getImageUrl from "../../utils/getImageUrl";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 class MobileNotifications extends React.Component {
     constructor(props) {
@@ -43,7 +45,7 @@ class MobileNotifications extends React.Component {
                                         }
                                     }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                     <h4 className="hide-on-desktop logo-title">
-                                        What’s new?
+                                        {this.props.translations.text_1[this.props.app_lang]}
                                     </h4>
                                 </header>
                                 <section className="home">
@@ -85,4 +87,9 @@ class MobileNotifications extends React.Component {
     }
 }
 
-export default withRouter(MobileNotifications)
+let mapStateToProps = state => ({
+    translations: state.app_lang.data["/notifications-mobile"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+})
+export default compose(withRouter,connect(mapStateToProps))(MobileNotifications)

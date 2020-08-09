@@ -11,26 +11,26 @@ class LoginForm extends React.Component{
     return (
       <React.Fragment>
         <div className="mobile__welcome">
-          <h5>Welcome back</h5>
-          <p>Please fill the credentials</p>
+          <h5>{this.props.getTrans(this.props.translations.text_13)}</h5>
+          <p>{this.props.getTrans(this.props.translations.text_14)}</p>
         </div>
         <form className="register__form" onSubmit={Boolean(this.props.email.value) && Boolean(this.props.password.value) ? this.props.onSubmit : e => e.preventDefault()}>
           <div className="flex-grow"> 
           {
             window.location.search.indexOf("from_register") !== -1 &&
-            <p className="special">You have successfully registered, check your email to verify your account!</p>
+            <p className="special">{this.props.getTrans(this.props.translations.login_info["SuccessRegister"])}</p>
           }
           {
             window.location.search.indexOf("invalid_verification_link") !== -1
-            ?  <p className="special">The link is either invalid or has expired!</p>
+            ?  <p className="special">{this.props.getTrans(this.props.translations.login_info["InvalidLink"])}</p>
             : window.location.search.indexOf("valid_verification_link") !== -1 ? 
-            <p className="special">Account verified! You can now log in.</p> : ""
+            <p className="special">{this.props.getTrans(this.props.translations.login_info["AccountVerified"])}</p> : ""
           }
 
           <input
             ref={ref => this.emailRef = ref}
             onKeyDown={this.props.handleInputKeyDown}
-            placeholder="Email"
+            placeholder={this.props.getTrans(this.props.translations.text_5)}
             type="email"
               className="fs27"
               value={this.props.email.value}
@@ -38,7 +38,7 @@ class LoginForm extends React.Component{
           />
           <input
             onKeyDown={this.props.handleInputKeyDown}
-            placeholder="Password"
+            placeholder={this.props.getTrans(this.props.translations.text_6)}
               className="fs27"
               type="password"
             value={this.props.password.value}
@@ -50,7 +50,7 @@ class LoginForm extends React.Component{
           </div>
           <div className="register__button">
           
-            <Link to="/forget_password" style={{ marginBottom: "10%", fontSize: 20}} className="roboto">Trouble loging in?</Link>
+            <Link to="/forget_password" style={{ marginBottom: "10%", fontSize: 20}} className="roboto">{this.props.getTrans(this.props.translations.text_11)}</Link>
             { this.props.loading && "Loading"}
             { !this.props.loading && 
                 <button
@@ -60,7 +60,7 @@ class LoginForm extends React.Component{
                       : "button__style not-filled"
                   }
                 >
-                  Join us
+                  {this.props.getTrans(this.props.translations.text_10)}
               </button>
             }
           </div>
