@@ -1,153 +1,153 @@
 {
     "text_1": {
         "en": "View offers",
-        "de": "ddView offers"
+        "de": "Angebote anzeigen"
     },
     "text_2": {
         "en": "Make offer",
-        "de": "ddMake offer"
+        "de": "Angebot abgeben"
     },
     "text_3": {
         "en": "Action not allowed",
-        "de": "Action not allowed123"
+        "de": "Aktion nicht zulässig"
     },
     "text_4": {
         "en": "Action not allowed",
-        "de": "Action not allowed12356",
+        "de": "Aktion nicht zulässig",
         "description": "Translation for modal when you cannot make an offer as a asker"
     },
     "text_5": {
         "en": "You cannot make an offer, to make an offer become a tasker by going to your account settings.",
-        "de": "dassad"
+        "de": "Du kannst kein Angebot abgeben. Werde zum Tasker, um ein Angebot abzugeben. Gehe jetzt zu deinen Kontoeinstellungen."
     },
     "text_6": {
         "en": "You cannot edit this task since there are already offers made.",
-        "de": "sadsdasd"
+        "de": "Du kannst diesen Task nicht bearbeiten, da es bereits Angebote gibt."
     },
     "text_7": {
         "en": "Deactivate task",
-        "de": "ddDeactivate task"
+        "de": "Task deaktivieren"
     },
     "text_8": {
         "en": "Do you want to deactivate this task? You can always activate back.",
-        "de": "dsasdasd"
+        "de": "Willst du diesen Task deaktivieren? Du kannst es jederzeit wieder aktivieren."
     },
     "text_9": {
         "en": "Are you sure react?",
-        "de": "DSADSAASD"
+        "de": "Bist du sicher?"
     },
     "text_10": {
         "en": "Are you pretty sure?",
-        "de": "dsadsAre you pretty sure?"
+        "de": "Bist du dir wirklich sicher?"
     },
     "text_11": {
         "en": "Re-activate",
-        "de": "dsaRe-activate"
+        "de": "Reaktivieren"
     },
     "text_12": {
         "en": "Delete task",
-        "de": "dsasa"
+        "de": "Task löschen"
     },
     "text_13": {
         "en": "Are you sure you want to delete this task?",
-        "de": "dsadsaAre you sure you want to delete this task?"
+        "de": "Möchtest du diesen Task wirklich löschen?"
     },
     "text_14": {
         "en": "Delete",
-        "de": "sdadsDelete"
+        "de": "Löschen"
     },
     "text_15": {
         "en": "Deactivate",
-        "de": "dsadDeactivate"
+        "de": "Deaktivieren"
     },
     "text_16": {
         "en": "Go home",
-        "de": "dsasGo home"
+        "de": "Zurück zur Hauptseite"
     },
     "text_17": {
         "en": "View task",
-        "de": "Dsadsad"
+        "de": "Task anzeigen"
     },
     "text_18": {
         "en": "Ready to go",
-        "de": "dsadsa"
+        "de": "Startklar"
     },
     "text_19": {
         "en": "You will be notified if the asker accept it or not",
-        "de": "dsadas"
+        "de": "Du wirst benachrichtigt, sofern der Auftraggeber dein Angebot akzeptiert."
     },
     "text_20": {
         "en": "Next",
-        "de": "dsaNext"
+        "de": "Weiter"
     },
     "text_21": {
         "en": "Edit",
-        "de": "dsaEdit"
+        "de": "Bearbeiten"
     },
     "text_22": {
         "en": "Delete",
-        "de": "dsaDelete"
+        "de": "Löschen"
     },
     "text_23": {
         "en": "Deactivate",
-        "de": "dsaDeactivate"
+        "de": "Deaktivieren"
     },
     "text_24": {
         "en": "Reactivate",
-        "de": "dsadSReactivate"
+        "de": "Reaktivieren"
     },
     "text_25": {
         "en": "Deactive",
-        "de": "ddDeactive"
+        "de": "Deaktiviert"
     },
     "text_26": {
         "en": "Offers",
-        "de": "dsadOffers"
+        "de": "Angebote"
     },
     "text_27": {
         "en": "No offers to show",
-        "de": "dsaNo offers to show"
+        "de": "Keine Angebote anzuzeigen"
     },
     "text_28": {
         "en": " offers given",
-        "de": " dgdsafsda sdfafsd"
+        "de": " Angebote"
     },
     "text_29": {
         "en": "View Gallery",
-        "de": "dsadSView Gallery"
+        "de": "Galerie anzeigen"
     },
     "text_30": {
         "en": "No gallery images to show",
-        "de": "dsadNo gallery images to show"
+        "de": "Keine Galeriebilder anzuzeigen"
     },
     "text_31": {
         "en": "Amount",
-        "de": "DDAMOUNT"
+        "de": "Betrag"
     },
     "text_32": {
         "en": "Self promote",
-        "de": "SSelf promote"
+        "de": "Angebotsnachricht"
     },
     "text_33": {
         "en": "Lorem ipsum stuff",
-        "de": "Please write why do you think you are the right person to do this task",
+        "de": "Schreib dem Auftraggeber eine persönliche Nachricht, warum du die richtige Person für diesen Task bist.",
         "description": "Text below self promote on web"
     },
     "text_34": {
         "en": "Lorem ipsum stuff",
-        "de": "Please write why do you think you are the right person to do this task",
+        "de": "Weshalb bist du die richtige Person für diesen Task?",
         "description": "Text below self promote on mobile"
     },
     "text_35": {
         "en": "Promote yourself...",
-        "de": "dsa das..."
+        "de": "Persönliche Angebotsnachricht..."
     },
     "text_36": {
         "en": "Self",
-        "de": "Dasd"
+        "de": "Persönliche"
     },
     "text_37": {
         "en": "Promote",
-        "de": "DSADSADSA"
+        "de": "Angebotsnachricht"
     }
 }

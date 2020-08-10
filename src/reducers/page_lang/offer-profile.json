@@ -1,42 +1,42 @@
 {
     "text_1": {
         "en": "View task",
-        "de": "Viewen tasken"
+        "de": "Task anzeigen"
     },
     "text_2": {
         "en": "Delete",
-        "de": "Deleten"
+        "de": "Löschen"
     },
     "text_3": {
         "en": "Coming Soon Delete",
-        "de": "Comeingern dsad delete"
+        "de": "Löschen demnäscht verfügbar"
     },
     "text_4": {
         "en": "Delete offer functionality will come soon!",
-        "de": "Deleteem offerem functionality will come soon!"
+        "de": "Das Löschen von Angeboten demnächst verfügbar!"
     },
     "text_5": {
         "en": "Edit",
-        "de": "Editen"
+        "de": "Bearbeiten"
     },
     "text_6": {
         "en": "Edit offer functionality will come soon!",
-        "de": "Editen Edit offer functionality will come soon!"
+        "de": "Das Bearbeiten von Angeboten demnächst verfügbar!"
     },
     "text_7": {
         "en": "View Profile",
-        "de":" Viewen profilen"
+        "de": "Profil anzeigen"
     },
     "text_8": {
         "en": "Okay",
-        "de": "Okayen"
+        "de": "Okay"
     },
     "text_9": {
         "en": "Coming Soon Edit",
-        "de": "Comeingern dsad Edit"
+        "de": "Bearbeiten demnächst verfügbar"
     },
     "text_10": {
         "en": "Cancel",
-        "de": "Cancelen"
+        "de": "Abbrechen"
     }
 }

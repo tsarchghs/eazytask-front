@@ -2,11 +2,11 @@
     "web": {
         "text_1": {
             "en": "Active",
-            "de": "Activen"
+            "de": "Aktive"
         },
         "text_2": {
             "en": "listings",
-            "de": "listingens"
+            "de": "Tasks"
         }
     }
 }

@@ -1,32 +1,32 @@
 {
     "no_results": {
         "en": "Nothing to show...",
-        "de": "Noendsa d asda ..."
+        "de": "Nichts anzuzeigen..."
     },
     "loading": {
         "en": "Loading...",
-        "de": "Noneing.."
+        "de": "Lädt..."
     },
     "settings": {
         "text_1": {
             "en": "Notifications",
-            "de": "None"
+            "de": "Benachrichtigungen"
         },
         "text_2": {
             "en": "Change Password",
-            "de": "None"
+            "de": "Passwort ändern"
         },
         "text_3": {
             "en": "Change Preferences",
-            "de": "None"
+            "de": "Präferenzen ändern"
         },
         "text_4": {
             "en": "Delete account",
-            "de": "None"
+            "de": "Benutzerkonto löschen"
         },
         "text_5": {
             "en": "About",
-            "de": "None"
+            "de": "Impressum"
         }
     }
 }

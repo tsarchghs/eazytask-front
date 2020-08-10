@@ -1,34 +1,34 @@
 {
     "text_1": {
         "en": "Active until",
-        "de": "Activen untilen"
+        "de": "Aktiv bis"
     },
     "text_2": {
         "en": "Price",
-        "de": "Pricen"
+        "de": "Preis"
     },
     "text_3": {
         "en": "Type",
-        "de": "Typen"
+        "de": "Typ"
     },
     "text_4": {
         "en": "Gallery",
-        "de": "Gallerien"
+        "de": "Galerie"
     },
     "text_5": {
         "en": "Thumbnail",
-        "de": "Thumbnailen"
+        "de": "Vorschaubild"
     },
     "text_6": {
         "en": "Edit task",
-        "de": "Editen tasken"
+        "de": "Task bearbeiten"
     },
     "text_7": {
         "en": "Save",
-        "de": "Saven"
+        "de": "Speichern"
     },
     "text_8": {
         "en": "Saving..",
-        "de": "Savingen.."
+        "de": "Speichert.."
     }
 }
