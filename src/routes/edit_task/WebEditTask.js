@@ -11,13 +11,7 @@ class WebEditTask extends React.Component {
                         backgroundImage: `url(${getImageUrl(this.props.task.thumbnail, "large")})`
                     }} className="offers-picture">
                 <div className="offer-picture__buttons">
-                    <div style={{ cursor: "pointer"}} onClick={() => {
-                        try {
-                            this.props.history.goBack();
-                        } catch (e) {
-                            this.props.history.push("/dashboard")
-                        }
-                    }} className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
+                    <div style={{ cursor: "pointer"}} onClick={this.props.goBack} className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
                     <div className="offer-picture__edit hide">
                     <img src="/images/more.png" alt="" />
                     </div>	

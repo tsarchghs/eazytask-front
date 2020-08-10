@@ -6,7 +6,6 @@ import MobileNav from "../../components/MobileNav";
 import { connect } from "react-redux";
 import WebHeader from "../../components/WebHeader";
 
-const redirectTo = (history, path) => () => history.push(path)
 let getTrans = (app_lang,obj) => obj[app_lang]
 
 const MobileSettings = props => {
@@ -33,29 +32,27 @@ const MobileSettings = props => {
                                     <div className="container">
                                         <div className="content ">
                                             <header style={{ minHeight: 35 }} className="logo-text xn-br hide-on-desktop">
-                                                <span className="show__mobile">
-                                                <Link to="/my_profile_edit">
+                                                <span onClick={props.goBack} className="show__mobile">
                                                     <img src="/images/arrow.jpeg" alt="" />
-                                                </Link>
                                                 </span>
                                                 <h4 className="logo-title ">
                                                 </h4>
                                             </header>
                                             <div className="pa--mobile pb50 max-vh nopadding">
                                                 <div className="mobile-account__menu">
-                                                    <div onClick={redirectTo(history,"/settings/notifications")} className="active"><img src="/images/noti-b.png" alt="" />
+                                                    <div onClick={() => props.history.push("/settings/notifications")} className="active"><img src="/images/noti-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_1)}
                                                     </div>
-                                                    <div onClick={redirectTo(history,"/settings/change_password")}><img src="/images/shield-b.png" alt="" />
+                                                    <div onClick={() => props.history.push("/settings/change_password")}><img src="/images/shield-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_2)}
                                                     </div>
-                                                    <div onClick={redirectTo(history,"/settings/change_preferences")}><img src="/images/info-b.png" alt="" />
+                                                    <div onClick={() => props.history.push("/settings/change_preferences")}><img src="/images/info-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_3)}
                                                     </div>
-                                                    <div onClick={redirectTo(history,"/settings/delete_account")}><img src="/images/exit-b.png" alt="" />
+                                                    <div onClick={() => props.history.push("/settings/delete_account")}><img src="/images/exit-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_4)}
                                                     </div>
-                                                    <div onClick={redirectTo(history,"/settings/about")}><img src="/images/info-b.png" alt="" />
+                                                    <div onClick={() => props.history.push("/settings/about")}><img src="/images/info-b.png" alt="" />
                                                         {getTrans(app_lang,settings.text_5)}
                                                     </div>
                                                 </div>

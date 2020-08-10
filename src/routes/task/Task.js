@@ -4,13 +4,14 @@ import { getTask } from "../../actions/task";
 import { postOffers } from "../../actions/offer";
 import { patchTasks } from "../../actions/task";
 import Loading from "../../components/loading";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import E404 from "../E404";
 import { ModalContainer } from 'minimal-react-modal';
 import Modal from "../../components/Modal";
 
 import SelfPromote from "./SelfPromote.view";
 import getImageUrl from "../../utils/getImageUrl";
+import { compose } from "recompose";
 
 const format_number = val => {
     let num_val = Number(val)
@@ -220,7 +221,7 @@ class Task extends React.Component {
                 {str}<br/>
             </React.Fragment>)
         }
-      }
+    }
     getTaskOffersUI = () => {
         return (
             <div>
@@ -493,8 +494,8 @@ class Task extends React.Component {
     getOfferSentUI = () => <div className="container">
         <div className="content setup-ready">
             <header>
-                <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                <span onClick={this.props.goBack} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                <Link to="/dashboard"><img className="logo__img" src="/images/logo.svg" alt="" /></Link>
             </header>
             <section className="two-column__layout setup__mobile profile__cover">
                 <div className="two-column__info flex flex-column">
@@ -607,4 +608,4 @@ const mapStateToProps = (state,ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, { getTask, postOffers, patchTasks })(Task);
+export default compose(withRouter,connect(mapStateToProps, { getTask, postOffers, patchTasks }))(Task);

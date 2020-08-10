@@ -23,7 +23,7 @@ class MobileNotifications extends React.Component {
     }
     render() {
         let { loading, error, payload } = this.state;
-        if (loading) return "Loading";
+        if (loading) return <p className="text-center special">Loading</p>;
         if (error) {
             console.log(error)
             return "Error";
@@ -37,13 +37,7 @@ class MobileNotifications extends React.Component {
                         <div className="container">
                             <div className="content pb50">
                                 <header className="logo-text">
-                                    <span onClick={() => {
-                                        try {
-                                            this.props.history.goBack();
-                                        } catch (e) {
-                                            this.props.history.push("/")
-                                        }
-                                    }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                    <span onClick={this.props.goBack} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                     <h4 className="hide-on-desktop logo-title">
                                         {this.props.translations.text_1[this.props.app_lang]}
                                     </h4>

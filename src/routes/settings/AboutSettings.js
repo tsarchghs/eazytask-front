@@ -35,10 +35,8 @@ const AboutSettings = props => (
                                 <div className="container">
                                     <div className="content ">
                                         <header className="logo-text xn-br hide-on-desktop">
-                                            <span className="show__mobile">
-                                            <Link to="/settings">
+                                            <span onClick={props.goBack} className="show__mobile">
                                                 <img src="/images/arrow.jpeg" alt="" />
-                                            </Link>
                                             </span>
                                             <h4 className="logo-title ">
                                                 About us

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 class FAQ extends React.Component {
     constructor(props){
@@ -47,20 +49,29 @@ class FAQ extends React.Component {
         else onQuestion = i
         return () => this.setState({ onQuestion })
     }
-    getQuestions = () => this.state.byIds[this.state.onCategory].map((q_a, i) => {
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof (data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br />
+            </React.Fragment>)
+        }
+    }
+    getQuestions = () => this.props.translations.faq_categories[this.state.onCategory].questions.map((q_a, i) => {
         let selected = i == this.state.onQuestion;
         let src = selected ? "/images/up-arrow.png" : "/images/down-arrow.png"
         let className = "faq-item__content ";
         if (selected) className += "open";
+        q_a = q_a[this.props.app_lang]
         return (
             <div className="faq-item open">
                 <h4 onClick={this.toggleQuestion(i)} style={{ cursor: "pointer" }}>{q_a.title} <img src={src} alt="" /></h4>
                 <div className={className}>
                     <p>
                         {q_a.description} <br />
-                        Need more help about this?
-                        You can always contact us in:
-                        <a href="#">help@eazytask.ch</a>
+                        { this.getTrans(this.props.translations.text_2)}
+                        <a onClick={e => e.preventDefault()} href="#">{ this.getTrans(this.props.translations.text_3) }</a>
                     </p>
                 </div>
             </div>
@@ -84,40 +95,21 @@ class FAQ extends React.Component {
                                 <div className="header-nav-web">
                                     <Link to="/">
                                         <a href="#" className={`h4`}>
-                                            Home
+                                            {this.getTrans(this.props.common.home)}
                                         </a>
                                     </Link>
                                 </div>
                             </header>
                             <section className="faq-web hide-on-mobile">
                                 <div className="faq-web__top">
-                                    <h4>View <span>Faq</span></h4>
+                                    <h4>{this.getTrans(this.props.translations.text_1_web)} 
+                                    <span> {this.getTrans(this.props.translations.text_1_1_web)}</span></h4>
                                     <div className="home__tabs" style={{ marginTop: '30px', width: '46%' }}>
                                         {tabs}
                                     </div>
                                 </div>
                                 <div className="faq-items">
                                     {questions}
-                                    {/* <div className="faq-item">
-                                        <h4>How can you edit sent offer? <img src="/images/down-arrow.png" alt="" /></h4>
-                                        <div className="faq-item__content open">
-                                            <p>You can easily delete your account by clicking
-                                            Profile &gt; Account Settings &gt; Delete Account.
-                                            Need more help about this?
-                                            You can always contact us in:
-                        <a href="#">help@eazytask.ch</a></p>
-                                        </div>
-                                    </div>
-                                    <div className="faq-item">
-                                        <h4>Can I chat with a tasker? <img src="/images/down-arrow.png" alt="" /></h4>
-                                        <div className="faq-item__content">
-                                            <p>You can easily delete your account by clicking
-                                            Profile &gt; Account Settings &gt; Delete Account.
-                                            Need more help about this?
-                                            You can always contact us in:
-                        <a href="#">help@eazytask.ch</a></p>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </section>
                             <section className="profile__article--mobile qanda hide-on-web">
@@ -129,16 +121,12 @@ class FAQ extends React.Component {
                                                 <section className="home faq-mobile">
                                                     <div className="home__title">
                                                         <span className="show__mobile">
-                                                            <img onClick={() => {
-                                                                try {
-                                                                    this.props.history.goBack();
-                                                                } catch (e) {
-                                                                    this.props.history.push("/")
-                                                                }
-                                                            }} src="/images/arrow.jpeg" />
+                                                            <img onClick={this.props.goBack} src="/images/arrow.jpeg" />
                                                             <div className="flex jcsb aic" style={{ width: '100%', marginRight: 0 }}>
-                                                                <h3>Explore <br /> 
-                                                                <span>More</span></h3>			
+                                                                <h3>{this.getTrans(this.props.translations.text_1_mobile)}
+                                                                    {/* <br /> 
+                                                                    <span>More</span> */}
+                                                                </h3>			
                                                                 <img src="/images/question_.png" alt="" style={{ width: '50px' }} />
                                                             </div>
                                                         </span></div>
@@ -161,4 +149,11 @@ class FAQ extends React.Component {
         )
     }
 }
-export default withRouter(FAQ);
+
+const mapStateToProps = state => ({
+    translations: state.app_lang.data["/faq"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+})
+
+export default compose(withRouter,connect(mapStateToProps))(FAQ);

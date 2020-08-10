@@ -126,38 +126,42 @@ const Routes = props => {
         !props.auth.profile.setupCompleted && 
         props.location.pathname !== "/setup"
     ) return <Redirect to="/setup"/> 
+    let commonProps = {
+        goBack: props.goBack
+    }
+    console.log("COMMON_PROPS",commonProps)
     return (
         <React.Fragment>
             <Suspense fallback={<div></div>}>
                 <Switch>
                     <Route exact path="/settings" component={() =>
-                        <ProtectedRoute to="/login" Component={MobileSettings} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={MobileSettings} allowLoggedIn={true} />
                     } />
                     <Route exact path="/settings/notifications" component={() =>
-                        <ProtectedRoute to="/login" Component={NotificationSettings} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={NotificationSettings} allowLoggedIn={true} />
                     } />
                     <Route exact path="/settings/change_password" component={() =>
-                        <ProtectedRoute to="/login" Component={ChangePasswordSettings} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={ChangePasswordSettings} allowLoggedIn={true} />
                     } />
                     <Route exact path="/settings/delete_account" component={() =>
-                        <ProtectedRoute to="/login" Component={DeleteAccountSettings} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={DeleteAccountSettings} allowLoggedIn={true} />
                     } />
                     <Route exact path="/settings/about" component={() =>
-                        <ProtectedRoute to="/login" Component={AboutSettings} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={AboutSettings} allowLoggedIn={true} />
                     } />
                     <Route exact path="/settings/change_preferences" component={() =>
-                        <ProtectedRoute to="/login" Component={ChangePreferencesSettings} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={ChangePreferencesSettings} allowLoggedIn={true} />
                     } />
 
 
                     <Route exact path="/settings/change_skills" component={() =>
-                        <ProtectedRoute to="/login" Component={SettingsChangeSkills} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={SettingsChangeSkills} allowLoggedIn={true} />
                     } />
                     <Route exact path="/settings/change_cities" component={() =>
-                        <ProtectedRoute to="/login" Component={SettingsChangeCities} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={SettingsChangeCities} allowLoggedIn={true} />
                     } />
                     <Route exact path="/settings/change_languages" component={() =>
-                        <ProtectedRoute to="/login" Component={SettingsChangeLanguages} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={SettingsChangeLanguages} allowLoggedIn={true} />
                     } />
 
 
@@ -165,74 +169,73 @@ const Routes = props => {
                         () => <Redirect to="/admin/dashboard"/>
                     }/>
                     <Route exact path="/admin/dashboard" component={() =>
-                        <AdminOnly to="/dashboard" Component={AdminDashboard} />
+                        <AdminOnly to="/dashboard" props={commonProps} Component={AdminDashboard} />
                     } />
                     
-                    <Route exact path="/terms_and_conditions" component={TermsAndConditions}/>
+                    <Route exact path="/terms_and_conditions" component={() => <TermsAndConditions {...commonProps} />}/>
 
                     <Route exact path="/admin/posts" component={() =>
-                        <AdminOnly to="/dashboard" Component={AdminPosts} />
+                        <AdminOnly to="/dashboard" props={commonProps} Component={AdminPosts} />
                     } />
                     <Route exact path="/admin/posts/create" component={() =>
-                        <AdminOnly to="/dashboard" Component={AdminPostsCreate} />
+                        <AdminOnly to="/dashboard" props={commonProps} Component={AdminPostsCreate} />
                     } />
                     <Route exact path="/admin/posts/:postId/edit" component={() =>
-                        <AdminOnly to="/dashboard" Component={AdminPostEdit} />
+                        <AdminOnly to="/dashboard" props={commonProps} Component={AdminPostEdit} />
                     } />
 
                     <Route exact path="/" component={() =>
-                        <ProtectedRoute to="/dashboard" Component={Home} allowLoggedIn={false} />
+                        <ProtectedRoute to="/dashboard" props={commonProps} Component={Home} allowLoggedIn={false} />
                     } />
 
                     <Route exact path="/landing_page" component={() =>
-                        <ProtectedRoute to="/" Component={Home} allowLoggedIn={true} />
+                        <ProtectedRoute to="/" props={commonProps} Component={Home} allowLoggedIn={true} />
                     } />
 
                     <Route exact path="/history" component={() =>
-                        <ProtectedRoute to="/" Component={History} allowLoggedIn={true} />
+                        <ProtectedRoute to="/" props={commonProps} Component={History} allowLoggedIn={true} />
                     } />
 
-                    <Route path="/faq" component={FAQ} exact />
-
-                    <Route path="/" component={Home} exact/>
+                    <Route path="/faq" component={() => <FAQ {...commonProps}/>} exact />
+                    <Route path="/" component={() => <Home {...commonProps}/>} exact/>
                     <Route path="/verify_account/:token" component={VerifyAccount} exact/>
-                    <Route path="/task/:taskId" component={Task} exact />
-                    <Route path="/task/:taskId/qa" component={TaskChat} exact/>
-                    <Route path="/task/:taskId/edit" component={EditTask} exact />
-                    <Route path="/task/:taskId/edit/offers" component={TaskOffers} exact />
-                    <Route path="/task/:taskId/edit/offers/:offerId" component={TaskOffer} exact />
-                    <Route path="/active_listing" component={ActiveListing} exact />
-                    <Route path="/profile/:userId" component={Profile} exact/>
-                    <Route path="/delete_account/thank" component={DeleteAccountThank} exact/>
-                    <Route path="/impressum" component={Impressum} exact/>
+                    <Route path="/task/:taskId" component={() => <Task {...commonProps}/>} exact />
+                    <Route path="/task/:taskId/qa" component={() => <TaskChat {...commonProps}/>} exact/>
+                    <Route path="/task/:taskId/edit" component={() => <EditTask {...commonProps}/>} exact />
+                    <Route path="/task/:taskId/edit/offers" component={() => <TaskOffers {...commonProps}/>} exact />
+                    <Route path="/task/:taskId/edit/offers/:offerId" component={() => <TaskOffer {...commonProps}/>} exact />
+                    <Route path="/active_listing" component={() => <ActiveListing {...commonProps}/>} exact />
+                    <Route path="/profile/:userId" component={() => <Profile {...commonProps}/>} exact/>
+                    <Route path="/delete_account/thank" component={() => <DeleteAccountThank {...commonProps}/>} exact/>
+                    <Route path="/impressum" component={() => <Impressum {...commonProps}/>} exact/>
                     
-                    <Route path="/blog" component={Blog} exact />
-                    <Route path="/blog/:postId" component={SingleBlog} exact />
+                    <Route path="/blog" component={() => <Blog {...commonProps}/>} exact />
+                    <Route path="/blog/:postId" component={() => <SingleBlog {...commonProps}/>} exact />
 
 
                     <Route path="/dashboard" component={() =>
-                        <ProtectedRoute to="/login" Component={Dashboard} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps}Component={Dashboard} allowLoggedIn={true} />
                     } />
                     <Route path="/mobile_notifications" component={() =>
-                        <ProtectedRoute to="/login" Component={MobileNotifications} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps}Component={MobileNotifications} allowLoggedIn={true} />
                     } />
                     <Route path="/change_phone_number" component={() =>
-                        <ProtectedRoute to="/login" Component={ChangePhoneNumber} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps}Component={ChangePhoneNumber} allowLoggedIn={true} />
                     } />
                     <Route path="/my_active_tasks" component={() =>
-                        <ProtectedRoute to="/login" Component={MyActiveTasks} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps}Component={MyActiveTasks} allowLoggedIn={true} />
                     } />
                     <Route path="/forget_password" component={() =>
-                        <ProtectedRoute Component={ForgetPassword} allowLoggedIn={false} />
+                        <ProtectedRoute props={commonProps}Component={ForgetPassword} allowLoggedIn={false} />
                     } />
                     <Route path="/delete_account" component={() =>
-                        <ProtectedRoute to="/login" Component={DeleteAccount} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps}Component={DeleteAccount} allowLoggedIn={true} />
                     } />
                     <Route path="/my_profile_edit" component={() =>
                         <ProtectedRoute to="/login" Component={MyProfileEdit} allowLoggedIn={true} />
                     } />
                     <Route path="/my_active_offers" component={() =>
-                        <ProtectedRoute to="/login" Component={MyActiveOffers} allowLoggedIn={true} />
+                        <ProtectedRoute to="/login" props={commonProps} Component={MyActiveOffers} allowLoggedIn={true} />
                     } />
                     <Route path="/logout" component={() => {
                         props.logout()
@@ -242,21 +245,21 @@ const Routes = props => {
                     { /* TODO: Switch to closed Route tags */}
                     
                     <Route path="/create-task" exact>
-                        <ProtectedRoute to="/register" Component={CreateTask} allowLoggedIn={true} />
+                        <ProtectedRoute to="/register" props={commonProps} Component={CreateTask} allowLoggedIn={true} />
                     </Route>
 
 
                     <Route path="/login" exact>
-                        <ProtectedRoute to="/dashboard" Component={Login} allowLoggedIn={false} />
+                        <ProtectedRoute to="/dashboard" props={commonProps} Component={Login} allowLoggedIn={false} />
                     </Route>
 
                     <Route path="/register" exact>
-                        <ProtectedRoute to="/dashboard" Component={Register} allowLoggedIn={false} />
+                        <ProtectedRoute to="/dashboard" props={commonProps} Component={Register} allowLoggedIn={false} />
                     </Route>
 
 
                     <Route path="/setup" exact>
-                        <ProtectedRoute to="/register" Component={Setup} allowLoggedIn={true} />
+                        <ProtectedRoute to="/register" props={commonProps} Component={Setup} allowLoggedIn={true} />
                     </Route>
                     
                     <Route path="/" component={E404} />

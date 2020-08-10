@@ -19,8 +19,8 @@ class Profile extends React.Component {
     render(){
         if (this.props.loading) return <Loading/>
         if (this.props.error) return <E404/>
-        if (this.props.user.Tasker && this.props.user.isTasker) return <TaskerProfile user={this.props.user}/>
-        else return <AskerProfile user={this.props.user}/>
+        if (this.props.user.Tasker && this.props.user.isTasker) return <TaskerProfile goBack={this.props.goBack} user={this.props.user}/>
+        else return <AskerProfile goBack={this.props.goBack} user={this.props.user}/>
     }
 }
 

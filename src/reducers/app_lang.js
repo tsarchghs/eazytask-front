@@ -16,6 +16,7 @@ import Blog from "./page_lang/blog.json";
 import Footer from "./page_lang/footer.json";
 import ActiveListing from "./page_lang/active-listing.json";
 import OfferProfile from "./page_lang/offer-profile.json";
+import Faq from "./page_lang/faq.json";
 
 let languages = ["en", "de"];
 
@@ -40,7 +41,8 @@ const INITIAL_STATE = {
         "/blog": Blog,
         "/footer": Footer,
         "/active-listing": ActiveListing,
-        "/offer-profile": OfferProfile
+        "/offer-profile": OfferProfile,
+        "/faq": Faq
     }
 }
 

@@ -42,13 +42,7 @@ class History extends React.Component {
                 <div className="container">
                   <div className="content pb50">
                     <header className="logo-text">
-                      <span className="show__mobile"><img onClick={() => {
-                        try {
-                          this.props.history.goBack();
-                        } catch (e) {
-                          this.props.history.push("/")
-                        }
-                      }} src="/images/arrow.jpeg" alt="" /></span>
+                      <span className="show__mobile"><img onClick={this.props.goBack} src="/images/arrow.jpeg" alt="" /></span>
                       <h4 className="hide-on-desktop logo-title">
                         {this.getTrans(this.props.translations.mobile.text_1)}
                       </h4>
@@ -85,13 +79,7 @@ class History extends React.Component {
 
               }} className="offers-picture">
                 <div className="offer-picture__buttons">
-                  <div style={{ cursor: "pointer" }} className="offer-picture__back"><img onClick={() => {
-                    try {
-                      this.props.history.goBack();
-                    } catch (e) {
-                      this.props.history.push("/")
-                    }
-                  }} src="/images/arrow.jpeg" alt="" /></div>
+                  <div style={{ cursor: "pointer" }} className="offer-picture__back"><img onClick={this.props.goBack} src="/images/arrow.jpeg" alt="" /></div>
                   <div className="offer-picture__edit hide">
                     <img src="/images/more.png" alt="" />
                   </div>	

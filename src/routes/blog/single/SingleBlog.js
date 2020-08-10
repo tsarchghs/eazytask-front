@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { getPost } from "../../../actions/posts";
 import E404 from "../../E404";
 import getImageUrl from "../../../utils/getImageUrl";
 import Footer from "../../../components/Footer";
+import { compose } from "recompose";
 
 class SingleBlog extends React.Component {
     constructor(props){
@@ -101,4 +102,4 @@ const mapStateToProps = (state, ownProps) => {
     return { loading, error, post }
 }
 
-export default connect(mapStateToProps, { getPost })(SingleBlog);
+export default compose(withRouter,connect(mapStateToProps, { getPost }))(SingleBlog);

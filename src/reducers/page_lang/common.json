@@ -1,4 +1,20 @@
 {
+    "home": {
+        "en": "Home",
+        "de": "Homen"
+    },
+    "new_task": {
+        "en": "New Task",
+        "de": "Newen Tasken"
+    },
+    "profile" :{
+        "en": "Profile",
+        "de": "Profilen"
+    },
+    "new": {
+        "en": "New",
+        "de": "Newen"
+    },
     "no_results": {
         "en": "Nothing to show...",
         "de": "Nichts anzuzeigen..."
@@ -6,6 +22,10 @@
     "loading": {
         "en": "Loading...",
         "de": "Lädt..."
+    },
+    "cancel": {
+        "en": "Cancel",
+        "de": "Cancelen"
     },
     "settings": {
         "text_1": {

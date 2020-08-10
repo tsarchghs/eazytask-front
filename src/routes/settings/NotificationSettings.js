@@ -87,10 +87,8 @@ class NotificationSettings extends React.Component {
                                         <div className="container">
                                             <div className="content ">
                                                 <header className="logo-text xn-br hide-on-desktop">
-                                                    <span className="show__mobile">
-                                                        <Link to="/settings">
-                                                            <img src="/images/arrow.jpeg" alt="" />
-                                                        </Link>
+                                                    <span onClick={this.props.goBack} className="show__mobile">
+                                                        <img src="/images/arrow.jpeg" alt="" />
                                                     </span>
                                                     <h4 className="logo-title ">
                                                     {this.getTrans(this.props.translations.text_1)}

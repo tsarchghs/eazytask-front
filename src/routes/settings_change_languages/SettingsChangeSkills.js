@@ -107,13 +107,7 @@ class MySkills extends React.Component {
                 <div className="container">
                     <div className={"content"}>
                         <header className="logo-text">
-                        <span onClick={e => {
-                            try {
-                                this.props.history.goBack()
-                            } catch (err) {
-                                this.props.history.push("/settings/change_preferences")
-                            }
-                        }}  class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                        <span onClick={this.props.goBack}  class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                             <h4 class="hide-on-desktop">My languages</h4>
                             <img onClick={e => this.props.history.push("/")} style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
                         </header>

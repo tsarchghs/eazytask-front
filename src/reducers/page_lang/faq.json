@@ -1,0 +1,128 @@
+{
+    "text_1_mobile": {
+        "en": "Explore more",
+        "de": "ads dsa"
+    },
+    "text_1_web": {
+        "en": "View",
+        "de": "Viewen"
+    },
+    "text_1_1_web": {
+        "en": "Faq",
+        "de": "Faqen"
+    },
+    "text_2": {
+        "en": "Needd more help about this? You can always contact us in:",
+        "de": "asdd sdad sad sa dasdsa:"
+    },
+    "text_3": {
+        "en": "help@eazytask.ch",
+        "de": "help@eazytask.ch"
+    },
+    "faq_categories": {
+        "Relative": {
+            "en": "Relative",
+            "de": "Relativen",
+            "questions": [
+                {
+                    "en": {
+                        "title": "How do you delete account?",
+                        "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Howen doen youen deleten accounten?",
+                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                },
+                {
+                    "en": {
+                        "title": "2How do you delete account?",
+                        "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "2Howen doen youen deleten accounten?",
+                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                }
+            ]
+        },
+        "Tasker": {
+            "en": "Tasker",
+            "de": "Taskeren",
+            "questions": [
+                {
+                    "en": {
+                        "title": "asddsasd?",
+                        "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "asddsaasdsd?",
+                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                },
+                {
+                    "en": {
+                        "title": "2asddsasd?",
+                        "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "2asddsaasdsd?",
+                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                }
+            ]
+        },
+        "Asker": {
+            "en": "Asker",
+            "de": "Askeren",
+            "questions": [
+                {
+                    "en": {
+                        "title": "How do you delete account?",
+                        "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Howen doen youen deleten accounten?",
+                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                },
+                {
+                    "en": {
+                        "title": "2How do you delete account?",
+                        "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "2Howen doen youen deleten accounten?",
+                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                }
+            ]
+        },
+        "Other": {
+            "en": "Other",
+            "de": "Otheren",
+            "questions": [
+                {
+                    "en": {
+                        "title": "How do you delete account?",
+                        "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Howen doen youen deleten accounten?",
+                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                },
+                {
+                    "en": {
+                        "title": "2How do you delete account?",
+                        "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "2Howen doen youen deleten accounten?",
+                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    }
+                }
+            ]
+        }
+    }
+}

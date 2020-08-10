@@ -92,7 +92,7 @@ class ActiveListing extends React.Component {
             () => this.updateTasks(this.state.currentPage, this.state.filters),
             debounce_val
         ))
-    } 
+    }
     getAllPagesNumber = () => Math.floor(this.props.tasks_count.count / this.state.limit) 
     getToggleFilterFunc = () => {
         if (!this.state.onFilter) return () => this.setState({ onFilter: "MAIN" })

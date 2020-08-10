@@ -186,9 +186,14 @@ class MyProfileEdit extends React.Component {
                         <a href="#"><img className="logo__img" src="/images/logo2.png" alt="" /></a>
                     </Link>
                     <div className="header-nav-web">
-                        <a href="#" onClick={this.redirectTo("/dashboard")} className="h4">Home </a>
-                        <a href="#" onClick={this.redirectTo("/create-task")} className="h4">New Task</a>
-                        <a href="#" onClick={this.redirectTo("/my_profile_edit")} className="h4 active">Profile<div/></a>
+                        <a href="#" onClick={this.redirectTo("/dashboard")} className="h4">
+                        {this.getTrans(this.props.common.home)} </a>
+                        <a href="#" onClick={this.redirectTo("/create-task")} className="h4">
+                            {this.getTrans(this.props.common.new_task)}
+                        </a>
+                        <a href="#" onClick={this.redirectTo("/my_profile_edit")} className="h4 active">
+                            {this.getTrans(this.props.common.profile)}
+                        <div/></a>
                     </div>
                 </header>
                 <div id="coverImage" style={this.getOffersPictureStyle()} className="offers-picture">
@@ -268,7 +273,7 @@ class MyProfileEdit extends React.Component {
                             this.showUpdateButton() && 
                             <div className="offers-buttons">
                                 <div onClick={this.update} className="button hollow">{this.getTrans(this.props.translations.text_9)}</div>
-                                <div onClick={this.decline} className="button hollow">Cancel</div>
+                                <div onClick={this.decline} className="button hollow">{this.getTrans(this.props.common.cancel)}</div>
                             </div>
                         }
                         <div className="offers-buttons hide-on-mobile">
@@ -281,24 +286,7 @@ class MyProfileEdit extends React.Component {
                             }} className="button hollow red">{this.getTrans(this.props.translations.text_8)}</a>
                         </div>
                     </div>
-                    <div className="mobile-nav  hide-on-web">
-                        <Link to="/dashboard">
-                            <div className="mob-nav ">
-                                <img src="/images/nav-home.png" alt="" />
-                                <p>Home</p>
-                            </div>
-                        </Link>
-                        <Link to="/create-task">
-                            <div className="mob-nav ">
-                                <img src="/images/nav-plus.png" alt="" />
-                            </div>
-                        </Link>
-                        <Link to="/my_profile_edit">
-                            <div className="mob-nav active"><img src="/images/nav-profile.png" alt="" />
-                                <p>Profile</p>
-                            </div>
-                        </Link>
-                    </div>                
+                    <MobileNav active="my-profile-edit"/>             
                 </div></section>
 
         )

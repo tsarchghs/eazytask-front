@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 const WebHeader2 = props => (
     <header className="flex jcsb aic hide-on-mobile">
@@ -24,19 +26,19 @@ const WebHeader2 = props => (
                 <div className="header-nav-web">
                     <Link to="/dashboard">
                         <a href="#" className={`h4 ${props.active == "home" ? "active" : ""}`}>
-                            Home
+                            {props.common.home[props.app_lang]}
                             { props.active == "home" ? <div/> : null }
                         </a>
                     </Link>
                     <Link to="/create-task">
                         <a href="#" className={`h4 ${props.active == "new_task" ? "active" : ""}`}>
-                            New Task
+                            {props.common.new_task[props.app_lang]}
                             { props.active == "new_task" ? <div/> : null }
                         </a>
                     </Link>
                     <Link to="/my_profile_edit">
                         <a href="#" className={`h4 ${props.active == "profile" ? "active" : ""}`}>
-                            Profile
+                            {props.common.profile[props.app_lang]}
                             { props.active == "profile" ? <div/> : null }
 
                         </a>
@@ -47,4 +49,8 @@ const WebHeader2 = props => (
     </header>
 )
 
-export default withRouter(WebHeader2);
+let mapStateToProps = state => ({
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+})
+export default compose(withRouter,connect(mapStateToProps))(WebHeader2);

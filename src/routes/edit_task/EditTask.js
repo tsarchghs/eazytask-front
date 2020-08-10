@@ -206,6 +206,7 @@ class EditTask extends React.Component {
                     updateTask={this.updateTask}
                     translations={this.props.translations}
                     app_lang={this.props.app_lang}
+                    goBack={this.props.goBack}
                 />
 
             <div class="hide-on-web">
@@ -215,13 +216,7 @@ class EditTask extends React.Component {
                     <div className="container">
                         <div className="content">
                             <header className="logo-text">
-                                <span onClick={() => {
-                                    try {
-                                        this.props.history.goBack();
-                                    } catch (e) {
-                                        this.props.history.push("/")
-                                    }
-                                }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
+                                <span onClick={this.props.goBack} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="hide-on-desktop logo-title">
                                 {this.props.translations.text_6[this.props.app_lang]}
                                 </h4>

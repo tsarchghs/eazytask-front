@@ -112,9 +112,7 @@ class ChangePasswordSettings extends React.Component {
                                         <div className="container">
                                             <div className="content ">
                                                 <header className="logo-text xn-br hide-on-desktop">
-                                                    <Link to="/settings">
-                                                        <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                                                    </Link>
+                                                        <span onClick={this.props.goBack} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                                     <h4 className="logo-title ">
                                                         {this.getTrans(this.props.translations.text_1)}
                           </h4>

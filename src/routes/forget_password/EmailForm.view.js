@@ -27,7 +27,7 @@ class EmailForm extends React.Component {
                             </div>
                             <h4 className="show__mobile title-with-subtitle text-center">
                                 Forgot password?
-                    <p>Enter your email</p>
+                                <p>Enter your email</p>
                             </h4>
                             <h4 className="mt30 hide-on-mobile">Enter your email</h4>
                             <form 

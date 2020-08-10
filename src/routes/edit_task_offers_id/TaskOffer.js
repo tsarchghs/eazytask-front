@@ -98,16 +98,7 @@ class TaskOffer extends React.Component {
                     }}>
                         <div className="offer-picture__buttons">
                             <div className="offer-picture__back" style={{cursor: 'pointer'}}>
-                                <img onClick={e => {
-                                    // this.props.history.push("/dashboard")
-                                    try {
-                                        if(!this.props.history.goBack()){
-                                            this.props.history.push("/")
-                                        }
-                                    } catch (e) {
-                                        this.props.history.push("/")
-                                    }
-                                }} src="/images/arrow.jpeg" alt="" />
+                                <img onClick={this.props.goBack} src="/images/arrow.jpeg" alt="" />
                                 </div>
                             <div onClick={this.toggle(this.state.opened)} className="offer-picture__edit " style={{cursor: 'pointer'}}>
                                 <img className="img-rot" src="/images/more.png" alt="" />

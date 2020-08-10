@@ -100,13 +100,7 @@ class AskerProfile extends React.Component {
                     backgroundImage: `url(${getImageUrl(this.props.user.cover_image) || window.__COVER_DEFAULT_PICTURE__})`
                 }}>
                     <div className="offer-picture__buttons">
-                        <div style={{cursor: "pointer"}} onClick={e => {
-                            try {
-                                this.props.history.goBack();
-                            } catch (e) {
-                                this.props.history.push("/dashboard")
-                            }
-                        }} className="offer-picture__back">
+                        <div style={{cursor: "pointer"}} onClick={this.props.goBack} className="offer-picture__back">
                             <img src="/images/arrow.jpeg" alt="" />
                         </div>
                         <div className="offer-picture__edit hide">

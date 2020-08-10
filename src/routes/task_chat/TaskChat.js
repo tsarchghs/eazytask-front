@@ -175,13 +175,7 @@ class TaskChat extends React.Component {
                                         <div className="container">
                                             <div className="content ">
                                                 <header className="logo-text hide-on-desktop">
-                                                    <span onClick={e => {
-                                                        try {
-                                                            this.props.history.goBack();
-                                                        } catch (e) {
-                                                            this.props.history.push("/")
-                                                        }
-                                                    }} className="show__mobile">
+                                                    <span onClick={this.props.goBack} className="show__mobile">
                                                         <img src="/images/arrow.jpeg" alt="" />
                                                     </span>
                                                     <h4 className="logo-title ">

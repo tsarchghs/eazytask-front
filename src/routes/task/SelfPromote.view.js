@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default props => {
     return (
@@ -8,7 +9,9 @@ export default props => {
                     <header className="logo-text">
                         <span onClick={props.goBack} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                         <h4 className="hide-on-desktop logo-title">{props.getTrans(props.translations.text_36)} <span> {props.getTrans(props.translations.text_37)}</span></h4>
-                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
+                        <Link to="/dashboard">
+                            <img className="logo__img" src="/images/logo.svg" alt="" />
+                        </Link>
                     </header>
                     <section className="two-column__layout setup__mobile create-task ">
                         <div className="two-column__info flex flex-column">

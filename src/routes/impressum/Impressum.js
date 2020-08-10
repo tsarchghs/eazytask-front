@@ -4,12 +4,6 @@ import WebHeader from "../../components/WebHeader";
 import Footer from "../../components/Footer";
 
 const Impressum = props => {
-    let goBack = () => {
-      let { state } = props.location;
-      console.log("backPathname",state)
-      if (!state || !state.backPathname) return props.history.push("/")
-      return props.history.push(state.backPathname)
-    }
     let fromCreateTask = props.location.search.indexOf("fromCreateTask") !== -1
     return (
         <div className=" edit-task__wrapper">
@@ -17,14 +11,14 @@ const Impressum = props => {
             <div className="container">
                 <div className="content ">
                     <header className="logo-text">
-                        <span style={{ cursor: "pointer" }} onClick={goBack} className="show__mobile">
+                        <span style={{ cursor: "pointer" }} onClick={props.goBack} className="show__mobile">
                         {
                           !fromCreateTask &&
                           <img src="/images/arrow.jpeg" alt="" />
                         }
                         </span>
                         <h4 style={ fromCreateTask ? { textAlign: "center" } : undefined } className="hide-on-desktop logo-title ">
-                        <span style={{ cursor: "pointer" }} onClick={goBack} className="arraw hide-on-mobile">
+                        <span style={{ cursor: "pointer" }} onClick={props.goBack} className="arraw hide-on-mobile">
                           {
                             !fromCreateTask && 
                           <img src="/images/arrow.jpeg" alt="" />
