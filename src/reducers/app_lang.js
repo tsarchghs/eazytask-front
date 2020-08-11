@@ -23,7 +23,7 @@ let languages = ["en", "de"];
 
 const INITIAL_STATE = {
     languages,
-    app_lang: localStorage.getItem("app_lang") || "en",
+    app_lang: localStorage.getItem("app_lang") || "de",
     common: Common,
     data: {
         "/home": LandingPage,
