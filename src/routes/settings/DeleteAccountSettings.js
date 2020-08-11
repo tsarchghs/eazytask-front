@@ -95,7 +95,7 @@ class DeleteAccountSettings extends React.Component {
                                 </div>
                             </section>
                             <section className="hide-on-web">
-                                <DeleteAccount from="/settings"/>
+                                <DeleteAccount goBack={this.props.goBack} from="/settings"/>
                             </section>
                         </div>
                     </div>

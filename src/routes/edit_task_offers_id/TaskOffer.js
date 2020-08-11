@@ -35,7 +35,6 @@ class TaskOffer extends React.Component {
     }
     acceptOffer = (e) => {
         e.preventDefault();
-        console.log("acceptOffer");
         this.props.acceptOffer(
             this.props.match.params.taskId,
             this.props.match.params.offerId,
@@ -57,12 +56,10 @@ class TaskOffer extends React.Component {
     }
     closeModal = () => this.setState({ onModal: "" })
     toggle = opened => () => this.setState(prevState => {
-        console.log(5555)
         prevState.opened = !opened;
         return prevState; 
     })
     render() {
-        console.log("this.props.auth.isAuthenticated", this.props.auth.isAuthenticated)
         if (this.props.loading || this.props.auth.loading) return <Loading />
         if (
             (this.props.own_user && this.props.own_user.id !== this.props.offer.Task.UserId) ||
@@ -104,7 +101,6 @@ class TaskOffer extends React.Component {
                                 <img className="img-rot" src="/images/more.png" alt="" />
                                 <article className={`touchable__content arts ${this.state.opened ? "" : "hide"}`}>
                                     <article onClick={() => {
-                                            console.log(555)
                                             this.setState({ onModal: "EDIT_NOT_IMPLEMENTED"})
                                         }} className="flex aic jcsb">
                                         <p>{this.props.translations.text_5[this.props.app_lang]}</p>

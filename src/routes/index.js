@@ -239,7 +239,9 @@ const Routes = props => {
                     } />
                     <Route path="/logout" component={() => {
                         props.logout()
-                        return <Redirect to="/"/>
+                        localStorage.removeItem("eazytask:token")
+                        window.location.href = "/"
+                        return null //<Redirect to="/"/>
                     }} />
 
                     { /* TODO: Switch to closed Route tags */}

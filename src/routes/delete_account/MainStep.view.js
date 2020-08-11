@@ -9,7 +9,7 @@ const MainStep = props => {
         <div className="container">
             <div className="content">
                 <header>
-                    <span onClick={this.props.goBack} className="show__mobile">
+                    <span onClick={props.goBack} className="show__mobile">
                         <img src="/images/arrow.jpeg" alt="" />
                     </span>
                     <a href="#" style={{ visibility: 'hidden' }}><img className="logo__img" src="/images/logo.svg" alt="" /></a>

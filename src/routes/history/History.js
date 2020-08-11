@@ -25,7 +25,6 @@ class History extends React.Component {
     }
     getTrans = obj => {
       let data = obj[this.props.app_lang];
-      console.log("GET_TRANS", data, obj)
       if (typeof (data) == "string") return data;
       if (data.length) {
           return data.map(str => <React.Fragment>

@@ -77,7 +77,6 @@ class AskerProfile extends React.Component {
     }
     getActiveListingsUI = () => {
         let tasks = this.getCurrentListings();
-        console.log("this.getCurrentListings", this.getCurrentListings())
         if (tasks.length) return <div className="offers-images">
             {
                 tasks.map(task => <SideTaskCard2 task={task}/>)

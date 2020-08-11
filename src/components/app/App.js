@@ -4,6 +4,7 @@ import { getAuth, logout } from "../../actions/auth";
 import Routes from "../../routes";
 import { withRouter, Redirect } from "react-router-dom";
 import { compose } from "recompose";
+import ExpectedPriceView from "../../routes/create_task/ExpectedPrice.view";
 
 class App extends React.Component {
   constructor(props) {
@@ -26,12 +27,17 @@ class App extends React.Component {
   goBack = () => {
     console.log("GOBACK")
     if (this.state.locations.length) {
-      if (!this.props.history.goBack()) this.props.history.push("/dashboard")
-    } else this.props.history.push("/dashboard")
-    this.setState(prevState => {
-      prevState.locations.pop();
-      return { ...prevState, locations: [ ...prevState.locations ] }
-    })
+      try {
+        this.props.history.goBack();
+      } catch (err) {
+        this.props.history.push("/dashboard")
+      } 
+    } else {
+      this.setState(prevState => {
+        prevState.locations.pop();
+        return { ...prevState, locations: [ ...prevState.locations ] }
+      })
+    }
   }
   componentDidMount() {
     // localStorage.setItem("eazytask:token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU4OTk2ODE4MH0.z0OURNRh2ghGEgtzG7xbAc3U_gFQ_GikNiBEpzW63Lc");

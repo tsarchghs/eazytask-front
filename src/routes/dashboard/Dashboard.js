@@ -21,7 +21,6 @@ class Dashboard extends React.Component {
         axios.get("/get_latest_offer_received_notification_general")
             .then(({ data }) => {
                 let payload = data.data;
-                console.log("datadata", data, payload)
                 this.setState({ loading: false, payload })
             })
             .catch(error => {
@@ -29,7 +28,6 @@ class Dashboard extends React.Component {
             })
     }
     render(){
-        console.log("DASHH",this.state)
         return (
             <React.Fragment>
                 <section className="hide-on-web">

@@ -25,7 +25,6 @@ class Login extends React.Component {
     });
   onSubmit = (e) => {
     e.preventDefault();
-    console.log({state:this.state},191)
     this.props.postAuth({
       email: this.state.email,
       password: this.state.password,
@@ -47,7 +46,6 @@ class Login extends React.Component {
   }
   getTrans = obj => {
     let data = obj[this.props.app_lang];
-    console.log("GET_TRANS", data, obj)
     if (typeof (data) == "string") return data;
     if (data.length) {
         return data.map(str => <React.Fragment>
@@ -101,7 +99,6 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
   if (!state) return state;
-  console.log({state});
   return { 
     isAuthenticated: state.auth.isAuthenticated,
     POST_AUTH: state.auth[POST_AUTH],

@@ -30,10 +30,8 @@ class MySkills extends React.Component {
     }
     getFilteredSkills = () => {
         let skills = this.props.allIds.map(id => this.props.byIds[id])
-        console.log("this.props.own_user.Tasker.Cities", this.props.own_user.Tasker)
         let customSkills = getCustomItems(this.state.skills, skills)
         let uniqueCustomSkills = customSkills
-        console.log({uniqueCustomSkills})
         let combined = uniqueCustomSkills.concat(skills)
         return filter(this.state.query, combined)
     }
@@ -102,7 +100,6 @@ class MySkills extends React.Component {
                 return { ...prevState } 
             })
         }
-        console.log({ props: this.props, state: this.state })
         return (
                 <div className="container">
                     <div className={"content"}>

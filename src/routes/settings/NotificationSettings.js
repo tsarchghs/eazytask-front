@@ -19,7 +19,6 @@ class NotificationSettings extends React.Component {
         }
     }
     toggle = opened => () => {
-        console.log("this.setState({ opened: !opened })")
         this.setState({ opened: !opened })
     }
     GetNotificationOptions = () => (

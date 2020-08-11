@@ -37,7 +37,6 @@ class Notifications extends React.Component {
             console.log(error)
             return "Error";
         }
-        console.log("this.props1",this.props)
         if (this.props.children) return this.props.children({ loading, error, payload })
         return (
             <div className="home__notifications">
@@ -50,7 +49,6 @@ class Notifications extends React.Component {
                     {
                         payload.map(notifc => {
                             let info = getNotificationInfo[notifc.type](notifc);
-                            console.log({ info }, this.props)
                             return (
                                 <div 
                                     onClick={e => {

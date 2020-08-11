@@ -52,7 +52,6 @@ class VerificationCode extends React.Component {
     onSubmit = async e => {
         e.preventDefault();
         let isValid = await this.valuesSchema.isValid(this.state.values);
-        console.log({isValid});
         if (!isValid) return;
         let code = Number(this.state.values.join(""))
         this.props.onSubmit(code)

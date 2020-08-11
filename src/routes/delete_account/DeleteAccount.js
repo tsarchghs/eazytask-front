@@ -50,7 +50,7 @@ class DeleteAccount extends React.Component {
     }
     render(){
         let { translations, app_lang, common } = this.props;
-        let commonProps = { translations, app_lang, common, getTrans: this.getTrans }
+        let commonProps = { goBack: this.props.goBack, translations, app_lang, common, getTrans: this.getTrans }
 
         switch (this.state.step) {
             case "MAIN": return <MainStep

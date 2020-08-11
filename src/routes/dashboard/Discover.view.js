@@ -36,13 +36,10 @@ class Discover extends React.Component {
     }
     getPages = () => {
         let pagesNumber = this.getAllPagesNumber()
-        console.log({ pagesNumber})
         let content = []
-        console.log("this.state.currentPage", this.state.currentPage, pagesNumber)
         let end = pagesNumber >= this.state.currentPage + 2 ? this.state.currentPage + 2 : pagesNumber
         let start = this.state.currentPage - 2 >= 1 ? this.state.currentPage - 2 : 1
         if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2)
-        console.log("this.state.currentPage -2 ", this.state.currentPage - 2)
         for (let x = start; x <= end; x++) {
             content.push(<Link to={`?tab=discover&page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
         }
@@ -75,7 +72,6 @@ const mapStateToProps = state => {
         x => state.tasks.byIds[x]
     )
     let { loading } = state.app.activeListing3;
-    console.log({tasksss:tasks})
     return {
         loading, tasks, tasks_count: state.tasks.tasks_count,
         translations: state.app_lang.data["/dashboard"].mobile,

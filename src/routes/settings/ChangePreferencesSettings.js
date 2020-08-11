@@ -40,7 +40,6 @@ class ChangePreferencesSettings extends React.Component {
             data: { isTasker: this.state.isTasker },
             callUpdateAuthProfile: true
         })
-        console.log("ON_UPDATE")
     }
     getTrans = obj => {
         let data = obj[this.props.app_lang];

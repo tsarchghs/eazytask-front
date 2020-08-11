@@ -65,7 +65,6 @@ class EditTask extends React.Component {
         } else {
             const handleOnClick = () => this.setState(prevState => {
                 prevState.onEdit = key;
-                console.log("prevState.data[key]", prevState.data[key])
                 if (!prevState.data[key]) prevState.data[key] = this.props.task[key]
                 return prevState;
             })
@@ -78,11 +77,9 @@ class EditTask extends React.Component {
     }
     fillGalleryThumbnailState = () => {
         // if (!this.props.task.gallery) return;
-        console.log("fillGalleryThumbnailState")
         this.executed_fillGalleryThumbnailState = true;
         let task = this.props.task
         this.setState(prevState => {
-            console.log(task,"tasktask")
             prevState.data.gallery = task.gallery ? task.gallery.split(",") : []
             prevState.data.gallery = prevState.data.gallery.map(url => ({
                 type: "SOURCE",
@@ -98,19 +95,16 @@ class EditTask extends React.Component {
                     value: task.thumbnail
                 });
             }
-            console.log("prevState.data.gallery", prevState.data.gallery)
             return prevState;
         })
     }
     onFileChange = e => {
-        console.log("EREEEE")
         e.persist()
         e.preventDefault()
         let file = e.target.files[0]
         if (file) {
             var fr = new FileReader();
             fr.onload = d => {
-                console.log("ON_LOAD")
                 let src = d.srcElement.result;
                 let key = v4()
                 let image = { type: "FILE", value: src, key, file }
@@ -142,7 +136,6 @@ class EditTask extends React.Component {
             else data.remove_thumbnail = true
             if (data.gallery.length == 0) data.remove_gallery = true
         }
-        console.log({data},55)
         this.props.updateTask({
             id: this.props.match.params.taskId,
             data
@@ -153,7 +146,6 @@ class EditTask extends React.Component {
         }, 1000)
     }
     onThumbnailChange = val => () => this.setState(prevState => {
-        console.log("onThumbnailChangeonThumbnailChange")
         prevState.imagesUpdated = true;
         prevState.data.thumbnail.value = val
         return prevState;
@@ -163,7 +155,6 @@ class EditTask extends React.Component {
         prevState.data.gallery = prevState.data.gallery.filter(obj => obj.value !== val)
         if (prevState.data.thumbnail.value == val) {
             prevState.data.thumbnail.value = undefined;
-            console.log("prevState.data.thumbnail.value = undefined;")
         }
         return prevState;
     })
@@ -182,7 +173,6 @@ class EditTask extends React.Component {
             this.props.auth.isAuthenticated === false
         ) return <Redirect to={"/task/" + this.props.task.id}/>
         if (!this.executed_fillGalleryThumbnailState) this.fillGalleryThumbnailState()
-        console.log("this.stateee",this.state)
         if (this.props.task.Offers && this.props.task.Offers.length) return <Redirect to={"/task/" + this.props.task.id}/>
         return (
             <React.Fragment>

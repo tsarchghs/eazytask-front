@@ -51,24 +51,6 @@ const OtherStep = props => {
             </div>
         </div>
     )
-    return (
-        <React.Fragment>
-            <h3>We are sorry to see you go</h3><br />
-            <h5>Please tell us why you decided to delete your account.</h5>
-            <form action="" class="register__form flex-grow" style={{marginTop: 0}}>
-                <textarea value={props.reason} onChange={e => props.onChange(e.target.value)()} class="textarea" name="" id="" placeholder="Type here"></textarea>
-            </form>
-            {/* <textarea value={props.reason} onChange={e => props.onChange(e.target.value)()} type="text" /> */}
-            {/* <button onClick={info.onClick} style={info.style}>Next</button> */}
-            <div className="buttons__group">
-                <button
-                    onClick={info.onClick}
-                    className={"button__style " + (info.active ? "" : "not-filled")}
-                >Next</button>
-            </div>
-
-        </React.Fragment>
-    )
 }
 
 export default OtherStep;

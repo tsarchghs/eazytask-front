@@ -35,7 +35,6 @@ class MyProfileEdit extends React.Component {
     handleClickOutside = event => {
         if (!this.state.onEdit) return;
         let wrapperRef = this[this.state.onEdit + "_ref"]
-        console.log(event,wrapperRef)
         if (wrapperRef && !wrapperRef.contains(event.target)) {
             this.setState({ onEdit: "" })
         }
@@ -84,12 +83,10 @@ class MyProfileEdit extends React.Component {
         let file = e.target.files[0]
         let useThis = this;
         if (file) {
-            console.log("file123",file)
             var fr = new FileReader();
             fr.onload = function (d) {
                 let src = d.srcElement.result;
                 useThis.setState(prevState => {
-                    console.log("file123", file)
 
                     prevState.data[key] = { file, src };
                     return prevState;
@@ -170,7 +167,6 @@ class MyProfileEdit extends React.Component {
     getTrans = obj => obj[this.props.app_lang]
     render(){
         let { currentUser } = this.props;
-        console.log(this.state.data)
         return (
             <section className="offers-layout offers-profile">
                 <Modal

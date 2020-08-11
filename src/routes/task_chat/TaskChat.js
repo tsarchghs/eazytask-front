@@ -30,7 +30,6 @@ class TaskChat extends React.Component {
         this.props.getTask(taskId, "fields=question,user,offers,category")
         this.props.getMessages({taskId})
         this.socket = io.connect(baseURL_WS)
-        console.log("this.socket", this.socket)
         this.socket.on("connect", () => {
             console.log("socket ON connect")
             this.socket.emit("join_room",{ room_name: "task/" + taskId})
@@ -47,7 +46,6 @@ class TaskChat extends React.Component {
                     profile_image: message.user_profile_image,
                 }
                 prevState.messages.push(message);
-                console.log("PUSHING message: ", message)
                 return { ...prevState, messages: [ ...prevState.messages ] };
             })
         });

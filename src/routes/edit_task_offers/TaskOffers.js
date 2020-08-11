@@ -30,7 +30,6 @@ class TaskOffers extends React.Component {
         this.props.getTask(this.props.match.params.taskId, "fields=question,user,offers,category")
     }
     render() {
-        console.log("this.props.auth.isAuthenticated", this.props.auth.isAuthenticated)
         if (this.props.loading || this.props.auth.loading) return <Loading />
         if (
             (this.props.own_user && this.props.own_user.id !== this.props.task.User.id) ||

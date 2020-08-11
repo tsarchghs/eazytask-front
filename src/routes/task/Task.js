@@ -47,16 +47,7 @@ class Task extends React.Component {
     getOfferPictureButtons = () => {
         return (
             <div className="offer-picture__buttons">
-                <div style={{ cursor: "pointer" }} onClick={e => {
-                    // this.props.history.push("/dashboard")
-                    try {
-                        if(!this.props.history.goBack()){
-                            this.props.history.push("/")
-                        }
-                    } catch (e) {
-                        this.props.history.push("/")
-                    }
-                }} className="offer-picture__back">
+                <div style={{ cursor: "pointer" }} onClick={this.props.goBack} className="offer-picture__back">
                     <img  src="/images/arrow.jpeg" alt="" />
                 </div>
                 <div style={{ cursor: "pointer" }} className={`offer-picture__edit ${!(this.props.own_user && this.props.own_user.id == this.props.task.UserId) ? "hide" : ""}`}>
@@ -145,7 +136,6 @@ class Task extends React.Component {
         !this.props.task.Offers.find(offer => offer.Tasker.User.id === this.props.own_user.id)
     )
     getOfferUI = () => {
-        console.log(buttonOnClick, !!own_user,"buttonOnClick")
         let { clickedMakeOffer, amount } = this.state;
         let { own_user } = this.props;
         let buttonText = !clickedMakeOffer ? this.getTrans(this.props.translations.text_2) : this.getTrans(this.props.translations.text_20)
@@ -372,7 +362,6 @@ class Task extends React.Component {
                                                                 button
                                                                 onClick={() => {
                                                                     let { own_user } = this.props;
-                                                                    console.log("this.showOfferUI()", this.showOfferUI())
                                                                     if (own_user) {
                                                                         if (!own_user.Tasker || !own_user.isTasker) openModal()
                                                                         else this.setState({ belowUI: "NONE", clickedMakeOffer: true });
@@ -404,7 +393,6 @@ class Task extends React.Component {
                                             button
                                             onClick={() => {
                                                 let { own_user } = this.props;
-                                                console.log("this.showOfferUI()", this.showOfferUI())
                                                 if (own_user) this.setState({ belowUI: "SHOW_OFFERS", clickedMakeOffer: true });
                                                 else this.props.history.push("/register?to=/task/" + this.props.task.id);
                                             }}
@@ -465,7 +453,6 @@ class Task extends React.Component {
         )
     }
     sendOffer = () => {
-        console.log("SEND_OFFER",this.state)
         let { amount, self_promote } = this.state;
         this.props.postOffers({ taskId: this.props.task.id, amount, description: self_promote })
     }
@@ -532,7 +519,6 @@ class Task extends React.Component {
     </div>
 
     render(){
-        console.log({err: this.props})
         if (this.props.errorResponse)
             if (this.props.errorResponse.response.status === 404) 
                 return <E404/>

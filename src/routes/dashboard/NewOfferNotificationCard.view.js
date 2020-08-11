@@ -12,7 +12,6 @@ export default props => {
         text_2 = props.getTrans(props.translations.text_3)
     }
     let { loading, error, payload } = props;
-    console.log("home__card gradient",props,props.translations.text_29)
     return (
         <div className={"home__card gradient "}>
             {

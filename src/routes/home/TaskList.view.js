@@ -22,7 +22,6 @@ class TaskList extends React.Component {
         }
     }
     render() {
-        console.log({ tasks: this.props.tasks})
         return (
             <React.Fragment> <br/>
                 <h4 style={{ display: "inline" }}>Active listing  </h4>
