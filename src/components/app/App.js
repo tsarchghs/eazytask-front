@@ -30,10 +30,10 @@ class App extends React.Component {
       try {
         this.props.history.goBack();
       } catch (err) {
-        this.props.history.push("/dashboard")
+        this.props.history.push("/")
       } 
     } else {
-      this.props.history.push("/dashboard")
+      this.props.history.push("/")
     }
     this.setState(prevState => {
       prevState.locations.pop();
