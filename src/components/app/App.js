@@ -16,12 +16,12 @@ class App extends React.Component {
   }
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.setState(prevState => {
-        console.log("ROUTE CHANGE", prevProps.location)
-        if (prevState.locations.indexOf(prevProps.location) === -1)
-          prevState.locations.push(prevProps.location)
-        return { ...prevState, locations: [ ...prevState.locations ] }
-      })
+      // this.setState(prevState => {
+      //   console.log("ROUTE CHANGE", prevProps.location)
+      //   if (prevState.locations.indexOf(prevProps.location) === -1)
+      //     prevState.locations.push(prevProps.location)
+      //   return { ...prevState, locations: [ ...prevState.locations ] }
+      // })
     }
   }
   goBack = () => {
@@ -33,11 +33,12 @@ class App extends React.Component {
         this.props.history.push("/dashboard")
       } 
     } else {
-      this.setState(prevState => {
-        prevState.locations.pop();
-        return { ...prevState, locations: [ ...prevState.locations ] }
-      })
+      this.props.history.push("/dashboard")
     }
+    this.setState(prevState => {
+      prevState.locations.pop();
+      return { ...prevState, locations: [ ...prevState.locations ] }
+    })
   }
   componentDidMount() {
     // localStorage.setItem("eazytask:token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU4OTk2ODE4MH0.z0OURNRh2ghGEgtzG7xbAc3U_gFQ_GikNiBEpzW63Lc");
