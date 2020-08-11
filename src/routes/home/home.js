@@ -147,7 +147,7 @@ class Home extends React.Component {
                                 <header>
                                     <Link to={fromDashboardMore ? "/dashboard" : "/"}><img className="logo__img" src="/images/logo2.png" alt="" /></Link>
                                 </header>
-                                <section style={{height:"initial"}} className="two-column__layout setup__mobile profile__cover">
+                                <section className="two-column__layout setup__mobile profile__cover">
                                     <div className="two-column__info flex flex-column">
                                         <div className="flex-grow flex flex-column jcc m-jci w100">
                                             <div className="background-title mb5">
