@@ -516,3 +516,7 @@ input[type=number] {
     display: initial !important;
   }
 }
+
+@media screen and (max-width: 39.9375em) {
+  .mb-mobile-button--group {
+    margin-bottom: 60px !important; } }

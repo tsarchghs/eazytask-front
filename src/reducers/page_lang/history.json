@@ -1,34 +1,34 @@
 {
     "text_1": {
         "en": "Done on",
-        "de": "Mon on"
+        "de": "Bearbeitet am"
     },
     "text_2": {
         "en": "Deleted",
-        "de": "Delemua"
+        "de": "Gelöscht"
     },
     "text_3": {
         "en": "Deactivated",
-        "de": "Daeacfbgds"
+        "de": "Deaktiviert"
     },
     "text_4": {
         "en": "View",
-        "de": "Viwen"
+        "de": "Anzeigen"
     },
     "web": {
         "text_1": {
             "en": "History",
-            "de": "None1"
+            "de": "Verlauf"
         },
         "text_2": {
             "en": "No short biography",
-            "de": "None2"
+            "de": "Keine Kurzbiographie"
         }
     },
     "mobile": {
         "text_1": {
             "en": "Task history",
-            "de": "None1"
+            "de": "Taskverlauf"
         }
     }
 }

@@ -147,7 +147,7 @@ class Home extends React.Component {
                                 <header>
                                     <Link to={fromDashboardMore ? "/dashboard" : "/"}><img className="logo__img" src="/images/logo2.png" alt="" /></Link>
                                 </header>
-                                <section className="two-column__layout setup__mobile profile__cover">
+                                <section style={{height:"initial"}} className="two-column__layout setup__mobile profile__cover">
                                     <div className="two-column__info flex flex-column">
                                         <div className="flex-grow flex flex-column jcc m-jci w100">
                                             <div className="background-title mb5">
@@ -185,7 +185,7 @@ class Home extends React.Component {
                                             <a href="#" className="h4">{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_5)}</a>
                                         </Link>
                                     </header>
-                                    <section className="two-column__layout profile__cover">
+                                    <section className="two-column__layout profile__cover" style={{height: "initial"}}>
                                         <div className="two-column__info flex flex-column">
                                             <div className="flex-grow flex flex-column  w100">
                                                 <div className="background-title mb5">
@@ -212,7 +212,7 @@ class Home extends React.Component {
                         <div className="container">
                             <div className="content">
                                 <header className="flex jcsb aic"></header>
-                                <section className="two-column__layout profile__cover mission-section">
+                                <section className="two-column__layout profile__cover mission-section" style={{ height: "initial" }}>
                                     <div className="two-column__info flex flex-column">
                                         <div className=" flex flex-column  w100">
                                             <div className="background-title mb5">
@@ -248,7 +248,7 @@ class Home extends React.Component {
                                         <div className="container">
                                             <div className="content">
                                                 <header className="flex jcsb aic"></header>
-                                                <section ref={ref => this.stepsSectionRef = ref} className="two-column__layout steps__layout-toggle profile__cover steps__layout"> {/* two-column__layout steps__layout-toggle steps__layout profile__cover */ }
+                                                <section ref={ref => this.stepsSectionRef = ref} className="two-column__layout steps__layout-toggle profile__cover steps__layout" style={{height: "initial"}}> {/* two-column__layout steps__layout-toggle steps__layout profile__cover */ }
                                                     <div className="two-column__info flex flex-column">
                                                         <div className=" flex flex-column  w100">
                                                             <div className="background-title mb5">
