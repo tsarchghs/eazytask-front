@@ -1,18 +1,27 @@
+import store from "../store";
 
-module.exports = {
+let state = store.getState()
+let { 
+    OFFER_RECEIVED, 
+    OFFER_ACCEPTED, 
+    NEW_CHAT_MESSAGE 
+} = state.app_lang.common.notifications;
+let app_lang = localStorage.getItem("app_lang");
+
+export default {
     "OFFER_RECEIVED": ({ user_1, user_2, task }) => ({
-        text: `made an offer at “${task.title}”`,
+        text: `${OFFER_RECEIVED.text_1[app_lang]} “${task.title}”`,
         pathname: "/task/" + task.id
     }),
     "OFFER_ACCEPTED": ({ user_1, user_2, task }) => ({
-        text: `accepted your offer for “${task.title}”`,
+        text: `${OFFER_ACCEPTED.text_1[app_lang]} “${task.title}”`,
         pathname: "/task/" + task.id
     }),
     "NEW_CHAT_MESSAGE": ({ user_1, user_2, task }) => {
         let isAnswer = task.UserId === user_2.id;
         let text;
-        if (isAnswer) text =  `answered a question in “${task.title}” QA`
-        else text =  `asked a question in “${task.title}” QA`
+        if (isAnswer) text =  `${NEW_CHAT_MESSAGE.text_1[app_lang]} “${task.title}” QA`
+        else text =  `${NEW_CHAT_MESSAGE.text_2[app_lang]} “${task.title}” QA`
         return {
             text,
             pathname: "/task/" + task.id + "/qa"

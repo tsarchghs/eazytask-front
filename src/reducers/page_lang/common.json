@@ -48,5 +48,29 @@
             "en": "About",
             "de": "Impressum"
         }
+    },
+    "notifications": {
+        "OFFER_RECEIVED": {
+            "text_1": {
+                "en": "made an offer at ",
+                "de": "maden anen offeren aten"
+            }
+        },
+        "OFFER_ACCEPTED": {
+            "text_1": {
+                "en": "accepted your offer for ",
+                "de": "accepteden youren offeren foren "
+            }
+        },
+        "NEW_CHAT_MESSAGE": {
+            "text_1": {
+                "en": "answered a question in ",
+                "de": "answereden aen questionen inen "
+            },
+            "text_2": {
+                "en": "asked a question in ",
+                "de": "askeden aen questionen inen "
+            }
+        }
     }
 }

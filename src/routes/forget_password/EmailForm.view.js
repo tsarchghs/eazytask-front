@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import InternalHeader from "./InternalHeader.view";
 
 class EmailForm extends React.Component {
     componentDidMount(){
@@ -9,15 +10,7 @@ class EmailForm extends React.Component {
         return (
             <div className="container">
                 <div className="content">
-                    <header className="w-subtitle">
-                        <Link to="/login">
-                            <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                        </Link>
-                        <Link to="/">
-                            <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                        </Link>
-                        <p className="show__mobile">Reset account</p>
-                    </header>
+                    <InternalHeader/>
                     <section className="two-column__layout setup__mobile create-task reset-password">
                         <div className="two-column__info flex flex-column">
                             <div className="background-title mb30">

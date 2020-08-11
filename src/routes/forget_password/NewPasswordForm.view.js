@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import queryString from "query-string";
+import InternalHeader from "./InternalHeader.view";
 
 let showError = {
     "requestBody.confirm_new_password is a required field": "Confirm new password is a required field",
@@ -21,15 +22,7 @@ class NewPasswordForm extends React.Component {
         return (
             <div className="container">
                 <div className="content">
-                    <header className="w-subtitle">
-                        <Link to={`?email=${queryString.parse(this.props.location.search).email}`}>
-                            <span className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                        </Link>
-                        <Link to="/">
-                            <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                        </Link>
-                        <p className="show__mobile">Reset account</p>
-                    </header>
+                    <InternalHeader/>
                     <section className="two-column__layout setup__mobile create-task reset-password">
                         <div className="two-column__info flex flex-column">
                             <div className="background-title mb30">

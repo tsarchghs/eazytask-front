@@ -52,13 +52,25 @@ class ForgetPassword extends React.Component {
         }
         this.props.resetPassword(args)
     }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof (data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br/>
+            </React.Fragment>)
+        }
+    }
     render() {
         let buttonType = this.state.valid ? "submit" : "button"
         let buttonStyle = this.state.valid ? { backgroundColor: undefined } : { backgroundColor: "darkgrey" }
         
         let { search } = this.props.location;
         let params = queryString.parse(search);
-        if (params.success) return <Success/>
+
+        let commonProps = { getTrans: this.getTrans }
+
+        if (params.success) return <Success {...commonProps} />
         if (params.valid_code && params.email) return <NewPasswordForm
             onSubmit={this.onNewPasswordSubmit}
             new_password={this.state.new_password}
@@ -66,6 +78,7 @@ class ForgetPassword extends React.Component {
             confirm_new_password={this.state.confirm_new_password}
             onConfirmNewPasswordChange={this.onChange("confirm_new_password")}
             app_resetPassowrd={this.props.app_resetPassowrd}
+            {...commonProps}
         />
         if (!params.email) return <EmailForm 
             onSubmit={this.onEmailFormSubmit}
@@ -73,17 +86,22 @@ class ForgetPassword extends React.Component {
             buttonStyle={buttonStyle}
             email={this.state.email} 
             onChange={e => this.setState({ email: e.target.value, valid: this.isEmailValid(e.target.value) })} 
+            {...commonProps}
         />
         if (params.email) return <VerificationCode 
             app_validateVerificationCode={this.props.app_validateVerificationCode} 
             onSubmit={this.onVerificationCodeSubmit} 
+            {...commonProps}
         />
     }
 }
 
 const mapStateToProps = state => ({
     app_validateVerificationCode: state.app.validateVerificationCode,
-    app_resetPassowrd: state.app.resetPassword
+    app_resetPassowrd: state.app.resetPassword,
+    translations: state.app_lang.data["/forget-password"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
 })
 
 export default 

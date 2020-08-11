@@ -17,6 +17,7 @@ import Footer from "./page_lang/footer.json";
 import ActiveListing from "./page_lang/active-listing.json";
 import OfferProfile from "./page_lang/offer-profile.json";
 import Faq from "./page_lang/faq.json";
+import ForgetPassword from "./page_lang/forget-password.json";
 
 let languages = ["en", "de"];
 
@@ -42,7 +43,8 @@ const INITIAL_STATE = {
         "/footer": Footer,
         "/active-listing": ActiveListing,
         "/offer-profile": OfferProfile,
-        "/faq": Faq
+        "/faq": Faq,
+        "/forget-password": ForgetPassword
     }
 }
 
