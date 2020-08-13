@@ -260,7 +260,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={undefined && openModal} className="big-icon">
+                                        <div onClick={openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/inter.png" alt="" />
                                             </div>
@@ -279,7 +279,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={undefined && openModal} className="big-icon">
+                                        <div onClick={openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/pins.png" alt="" />
                                             </div>
@@ -298,7 +298,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={undefined && openModal} className="big-icon">
+                                        <div onClick={openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/shop.png" alt="" />
                                             </div>
@@ -317,7 +317,7 @@ class EditTask extends React.Component {
                                 <ModalContainer>
                                     {(openModal, closeModal, isActive) => (
                                     <div>
-                                        <div onClick={undefined && openModal} className="big-icon">
+                                        <div onClick={openModal} className="big-icon">
                                             <div className="flex-grow">
                                                 <img src="/images/house.png" alt="" />
                                             </div>

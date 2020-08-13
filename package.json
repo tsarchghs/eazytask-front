@@ -9,6 +9,7 @@
     "@types/styled-components": "^5.1.0",
     "axios": "0.19.2",
     "babel-loader": "^8.1.0",
+    "babel-polyfill": "6.26.0",
     "express": "4.17.1",
     "formik": "2.1.4",
     "foundation-sites": "^6.6.3",
@@ -23,6 +24,7 @@
     "object-to-formdata": "3.0.9",
     "query-string": "6.13.0",
     "react": "^16.13.1",
+    "react-app-polyfill": "1.0.6",
     "react-device-detect": "1.13.1",
     "react-dom": "^16.13.1",
     "react-filter-search": "1.0.11",
@@ -66,6 +68,7 @@
       "not op_mini all"
     ],
     "development": [
+      "ie 11",
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
