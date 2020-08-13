@@ -74,13 +74,12 @@ class VerificationCode extends React.Component {
                     <section className="two-column__layout setup__mobile create-task reset-password">
                             <div className="two-column__info flex flex-column">
                                 <div className="background-title mb30">
-                                    <h1>Verification code</h1>
-                                    <p className="web__subtitle">A code has been to your email, please <br /> enter it here</p>
-                                    <p className="shadow__title no-contain">Reset when you forgot password</p>
+                                    <h1>{this.props.getTrans(this.props.translations.text_4)}</h1>
+                                <p className="web__subtitle">{this.props.getTrans(this.props.translations.mobile.text_3)}</p>
                                 </div>
                                 <h4 className="show__mobile title-with-subtitle text-center">
-                                    Verification code
-                    <p className="text-center">A code has been to your email, please <br /> enter it here</p>
+                                {this.props.getTrans(this.props.translations.text_4)}
+                    <p className="text-center">{this.props.getTrans(this.props.translations.mobile.text_3)}</p>
                                 </h4>
                                 <form onSubmit={this.onSubmit} className="flex-grow">
                                     {
@@ -88,7 +87,15 @@ class VerificationCode extends React.Component {
                                         this.props.app_validateVerificationCode.err.response &&
                                         this.props.app_validateVerificationCode.err.response.data &&
                                         this.props.app_validateVerificationCode.err.response.data.errors &&
-                                        this.props.app_validateVerificationCode.err.response.data.errors.map(err => <div>{this.showError[err] || err}</div>)
+                                        this.props.app_validateVerificationCode.err.response.data.errors.map(err => 
+                                            <div>{
+                                                (
+                                                    this.props.translations.errors[err] && 
+                                                    this.props.translations.errors[err][this.props.app_lang]
+                                                ) || 
+                                                this.showError[err] || err
+                                            }</div>
+                                        )
                                     }
                                     <div className="small-input">
                                         <CodeInputs
@@ -106,49 +113,18 @@ class VerificationCode extends React.Component {
                                         type={buttonType} 
                                         style={buttonStyle} 
                                         onClick={this.onSubmit}
-                                    className="button__style">Next</button>
+                                        className="button__style"
+                                    >{this.props.getTrans(this.props.translations.text_2)}</button>
                                 </div>
                             </div>
                         <div className="two-column__img">
                             <div className="two-column__image">
                                 <img src="/images/flymail.png" alt="" />
                             </div>
-                            {/* 	<div class="dots__group">
-					<span class="dot active"></span>
-					<span class="dot"></span>
-					<span class="dot"></span>
-				</div> */}
                         </div>
                     </section>
                 </div>
             </div>
-
-        )
-        return (
-            <React.Fragment>
-                Reset account <br /><br />
-                Verification code<br />
-                A code has been to your email, please enter it here<br /> <br />
-                {
-                    this.props.app_validateVerificationCode.err && 
-                    this.props.app_validateVerificationCode.err.response && 
-                    this.props.app_validateVerificationCode.err.response.data &&
-                    this.props.app_validateVerificationCode.err.response.data.errors.map(err => <div>{err}</div>)
-
-                }
-                <form onSubmit={this.onSubmit}>
-                    <div style={{ display: "flex" }}>
-                        <CodeInputs
-                            onChange={this.onChange}
-                            values={this.state.values}
-                        />
-                    </div>
-                    {
-                        loading ? "Loading" :
-                        <button type={this.props.buttonType} style={this.props.buttonStyle}>Submit</button>
-                    }
-                </form>
-            </React.Fragment>
         )
     }
 }

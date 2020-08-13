@@ -8,49 +8,64 @@ import { logout } from "../actions/auth";
 
 import isAuthLoading from "../utils/isAuthLoading";
 
-import MobileSettings from "./settings/MobileSettings";
-import NotificationSettings from "./settings/NotificationSettings"
-import ChangePasswordSettings from "./settings/ChangePasswordSettings"
-import DeleteAccountSettings from "./settings/DeleteAccountSettings"
-import AboutSettings from "./settings/AboutSettings"
-import AdminDashboard from "./admin/dashboard";
-import ChangePreferencesSettings from "./settings/ChangePreferencesSettings";
+// import MobileSettings from "./settings/MobileSettings";
+// import NotificationSettings from "./settings/NotificationSettings"
+// import ChangePasswordSettings from "./settings/ChangePasswordSettings"
+// import DeleteAccountSettings from "./settings/DeleteAccountSettings"
+// import AboutSettings from "./settings/AboutSettings"
+// import AdminDashboard from "./admin/dashboard";
+// import ChangePreferencesSettings from "./settings/ChangePreferencesSettings";
+import ReloadPage from "./reload_page"
 
-const Home = lazy(() => import('./home'));
-const Login = lazy(() => import('./login'));
-const Register = lazy(() => import('./register'));
-const Setup = lazy(() => import('./setup'));
-const CreateTask = lazy(() => import('./create_task'));
-const Task = lazy(() => import('./task'));
-const MyActiveTasks = lazy(() => import('./my_active_tasks'));
-const MyActiveOffers = lazy(() => import('./my_active_offers'));
-const ActiveListing = lazy(() => import('./active_listing'));
-const EditTask = lazy(() => import('./edit_task/EditTask'));
-const Profile = lazy(() => import('./profile/Profile'));
-const TaskOffers = lazy(() => import('./edit_task_offers/TaskOffers'));
-const TaskOffer = lazy(() => import('./edit_task_offers_id/TaskOffer'));
-const TaskChat = lazy(() => import('./task_chat'));
-const MyProfileEdit = lazy(() => import('./my_profile_edit'));
-const DeleteAccount = lazy(() => import('./delete_account'));
-const DeleteAccountThank = lazy(() => import('./delete_account_thank'));
-const Dashboard = lazy(() => import('./dashboard'));
-const AdminPosts = lazy(() => import('./admin/posts'));
-const AdminPostsCreate = lazy(() => import('./admin/posts_create'));
-const AdminPostEdit = lazy(() => import('./admin/posts_edit'));
-const Blog = lazy(() => import('./blog/home'));
-const SingleBlog = lazy(() => import('./blog/single'));
-const ForgetPassword = lazy(() => import('./forget_password'));
-const FAQ = lazy(() => import('./faq'));
-const History = lazy(() => import('./history'));
-const TermsAndConditions = lazy(() => import('./terms_and_conditions'));
-const E404 = lazy(() => import('./E404'));
+const MobileSettings = lazy(() => import("./settings/MobileSettings"))
+const NotificationSettings = lazy(() => import("./settings/NotificationSettings"))
+const ChangePasswordSettings = lazy(() => import("./settings/ChangePasswordSettings"))
+const DeleteAccountSettings = lazy(() => import("./settings/DeleteAccountSettings"))
+const AboutSettings = lazy(() => import("./settings/AboutSettings"))
+const AdminDashboard = lazy(() => import("./admin/dashboard"))
+const ChangePreferencesSettings = lazy(() => import("./settings/ChangePreferencesSettings"))
+
+let thenCallback = val => val;
+let errorCallback = val => {
+    console.log("ERRORRRRR")
+    return import("./reload_page")
+}
+
+const Home = lazy(() => import('./home').then(thenCallback).catch(errorCallback));
+const Login = lazy(() => import('./login').then(thenCallback).catch(errorCallback));
+const Register = lazy(() => import('./register').then(thenCallback).catch(errorCallback));
+const Setup = lazy(() => import('./setup').then(thenCallback).catch(errorCallback));
+const CreateTask = lazy(() => import('./create_task').then(thenCallback).catch(errorCallback));
+const Task = lazy(() => import('./task').then(thenCallback).catch(errorCallback));
+const MyActiveTasks = lazy(() => import('./my_active_tasks').then(thenCallback).catch(errorCallback));
+const MyActiveOffers = lazy(() => import('./my_active_offers').then(thenCallback).catch(errorCallback));
+const ActiveListing = lazy(() => import('./active_listing').then(thenCallback).catch(errorCallback));
+const EditTask = lazy(() => import('./edit_task/EditTask').then(thenCallback).catch(errorCallback));
+const Profile = lazy(() => import('./profile/Profile').then(thenCallback).catch(errorCallback));
+const TaskOffers = lazy(() => import('./edit_task_offers/TaskOffers').then(thenCallback).catch(errorCallback));
+const TaskOffer = lazy(() => import('./edit_task_offers_id/TaskOffer').then(thenCallback).catch(errorCallback));
+const TaskChat = lazy(() => import('./task_chat').then(thenCallback).catch(errorCallback));
+const MyProfileEdit = lazy(() => import('./my_profile_edit').then(thenCallback).catch(errorCallback));
+const DeleteAccount = lazy(() => import('./delete_account').then(thenCallback).catch(errorCallback));
+const DeleteAccountThank = lazy(() => import('./delete_account_thank').then(thenCallback).catch(errorCallback));
+const Dashboard = lazy(() => import('./dashboard').then(thenCallback).catch(errorCallback));
+const AdminPosts = lazy(() => import('./admin/posts').then(thenCallback).catch(errorCallback));
+const AdminPostsCreate = lazy(() => import('./admin/posts_create').then(thenCallback).catch(errorCallback));
+const AdminPostEdit = lazy(() => import('./admin/posts_edit').then(thenCallback).catch(errorCallback));
+const Blog = lazy(() => import('./blog/home').then(thenCallback).catch(errorCallback));
+const SingleBlog = lazy(() => import('./blog/single').then(thenCallback).catch(errorCallback));
+const ForgetPassword = lazy(() => import('./forget_password').then(thenCallback).catch(errorCallback));
+const FAQ = lazy(() => import('./faq').then(thenCallback).catch(errorCallback));
+const History = lazy(() => import('./history').then(thenCallback).catch(errorCallback));
+const TermsAndConditions = lazy(() => import('./terms_and_conditions').then(thenCallback).catch(errorCallback));
+const E404 = lazy(() => import('./E404').then(thenCallback).catch(errorCallback));
 const MobileNotifications = lazy(() => import("./mobile_notifications"))
-const ChangePhoneNumber = lazy(() => import("./change_phone_number"));
+const ChangePhoneNumber = lazy(() => import("./change_phone_number").then(thenCallback).catch(errorCallback));
 const Impressum = lazy(() => import("./impressum"))
-const SettingsChangeSkills = lazy(() => import("./settings_change_skills"));
-const SettingsChangeLanguages = lazy(() => import("./settings_change_languages"));
-const SettingsChangeCities = lazy(() => import("./settings_change_cities"));
-const VerifyAccount = lazy(() => import("./verify_account"))
+const SettingsChangeSkills = lazy(() => import("./settings_change_skills").then(thenCallback).catch(errorCallback));
+const SettingsChangeLanguages = lazy(() => import("./settings_change_languages").then(thenCallback).catch(errorCallback));
+const SettingsChangeCities = lazy(() => import("./settings_change_cities").then(thenCallback).catch(errorCallback));
+const VerifyAccount = lazy(() => import("./verify_account").then(thenCallback).catch(errorCallback))
 
 // import Login from "./login";
 // import Register from "./register";

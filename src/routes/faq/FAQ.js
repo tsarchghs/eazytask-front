@@ -3,42 +3,13 @@ import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
 import { compose } from "recompose";
 import { connect } from "react-redux";
+import { times } from "lodash";
 
 class FAQ extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            allIds: ["Relative", "Tasker", "Asker", "Other" ],
-            byIds: {
-                "Relative": [
-                    {
-                        title: "How do you delete account?",
-                        description: `You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?`
-                    },
-                    {
-                        title: "How can you edit sent offer? ",
-                        description: `You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?`
-                    }
-                ],
-                "Tasker": [
-                    {
-                        title: "How do you become a tasker?",
-                        description: `Become a tasker by..`
-                    }
-                ],
-                "Asker": [
-                    {
-                        title: "How do you become a asker?",
-                        description: `Sign up.`
-                    }
-                ],
-                "Other": [
-                    {
-                        title: "How to edit profile?",
-                        description: `Click on profile icon or text in menu`
-                    }
-                ]
-            },
+            allIds: ["Relative", "Tasker", "Asker" ],
             onCategory: "Relative",
             onQuestion: -1
         }
@@ -78,7 +49,9 @@ class FAQ extends React.Component {
         )
     })
     getTabs = () => this.state.allIds.map(id => (
-        <div onClick={() => this.setState({ onCategory: id, onQuestion: -1 })} className={`home__tab ${this.state.onCategory == id ? "active" : ""}`}>{id}</div>
+        <div onClick={() => this.setState({ onCategory: id, onQuestion: -1 })} className={`home__tab ${this.state.onCategory == id ? "active" : ""}`}>{
+            this.props.translations.faq_categories[id][this.props.app_lang]
+        }</div>
     ))
     render(){
         let questions = this.getQuestions()

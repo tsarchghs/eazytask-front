@@ -1,11 +1,11 @@
 {
     "text_1": {
         "en": "Ready to go",
-        "de": "None"
+        "de": "Startklar"
     },
     "text_3": {
         "en": "Thanks for your feedback",
-        "de": "None"
+        "de": "Danke für deine Rückmeldung"
     },
     "text_4": {
         "en": [
@@ -13,12 +13,12 @@
             " experience better "
         ],
         "de": [
-            "de: We will try hard to make users ",
-            "de:  experience better "
+            "Wir werden uns bemühen, die ",
+            "Benutzererfahrung zu verbessern "
         ]
     },
     "text_5": {
         "en": "Go",
-        "de": "Goen"
+        "de": "Los"
     }
 }

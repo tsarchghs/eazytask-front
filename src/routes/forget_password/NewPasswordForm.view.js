@@ -26,12 +26,12 @@ class NewPasswordForm extends React.Component {
                     <section className="two-column__layout setup__mobile create-task reset-password">
                         <div className="two-column__info flex flex-column">
                             <div className="background-title mb30">
-                                <h1>New password</h1>
+                                <h1>{this.props.getTrans(this.props.translations.text_5)}</h1>
                                 <p className="web__subtitle">Please write your new password down below</p>
                                 <p className="shadow__title no-contain">Reset when you forgot password</p>
                             </div>
                             <h4 className="show__mobile title-with-subtitle text-center">
-                                New password
+                                {this.props.getTrans(this.props.translations.text_5)}
                 <p className="text-center">Please write your new password <br /> down below </p>
                             </h4>
                             <form onSubmit={this.props.onSubmit} className="register__form flex-grow">
@@ -46,20 +46,25 @@ class NewPasswordForm extends React.Component {
                                     ref={ref => this.inputRef = ref}
                                     value={this.props.new_password}
                                     onChange={this.props.onNewPasswordChange}
-
-                                    type="password" placeholder="New Password" className="input" />
+                                    type="password" 
+                                    placeholder={this.props.getTrans(this.props.translations.text_6)} className="input" />
                                 <input
                                     value={this.props.confirm_new_password}
                                     onChange={this.props.onConfirmNewPasswordChange}
-
-                                    type="password" placeholder="Confirm Password" className="input" />
-                                <button type="submit" style={{ display: "none" }}>Next</button>
+                                    type="password" 
+                                    placeholder={this.props.getTrans(this.props.translations.text_7)}
+                                    className="input" />
+                                <button type="submit" style={{ display: "none" }}>
+                                    {this.props.getTrans(this.props.translations.text_2)}
+                                </button>
                             </form>
                             {/* 	<div class="flex-grow img-wrapper flex aic jcc">
 					<img class="img__mobile " src="/images/auth.png" alt="">
 				</div> */}
                             <div className="buttons__group">
-                                <button onClick={this.props.onSubmit} type="submit" className="button__style">Next</button>
+                                <button onClick={this.props.onSubmit} type="submit" className="button__style">
+                                    {this.props.getTrans(this.props.translations.text_2)}
+                                </button>
                             </div>
                         </div>
                         <div className="two-column__img">

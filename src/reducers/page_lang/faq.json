@@ -1,28 +1,28 @@
 {
     "text_1_mobile": {
         "en": "Explore more",
-        "de": "ads dsa"
+        "de": "Erfahre mehr"
     },
     "text_1_web": {
         "en": "View",
-        "de": "Viewen"
+        "de": "Anzeigen"
     },
     "text_1_1_web": {
         "en": "Faq",
-        "de": "Faqen"
+        "de": "FAQ"
     },
     "text_2": {
         "en": "Needd more help about this? You can always contact us in:",
-        "de": "asdd sdad sad sa dasdsa:"
+        "de": "Benötigst du mehr Hilfe? Du kannst uns immer via Mail kontaktieren:"
     },
     "text_3": {
-        "en": "help@eazytask.ch",
-        "de": "help@eazytask.ch"
+        "en": "support@eazytask.ch",
+        "de": "support@eazytask.ch"
     },
     "faq_categories": {
         "Relative": {
             "en": "Relative",
-            "de": "Relativen",
+            "de": "Konto",
             "questions": [
                 {
                     "en": {
@@ -30,8 +30,8 @@
                         "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
                     },
                     "de": {
-                        "title": "Howen doen youen deleten accounten?",
-                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "Was geschieht mit meinen persönlichen Informationen?",
+                        "description": "Deine persönliche Informationen werden nicht weitergegeben. Sie werden verlangt, damit wir dir eine bessere Kontaktvermittlung gewährleisten können. Öffentlich sichtbar sind dein Profilfoto, dein Titelbild, dein Vorname und der erste Buchstabe deines Nachnamens."
                     }
                 },
                 {
@@ -40,15 +40,25 @@
                         "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
                     },
                     "de": {
-                        "title": "2Howen doen youen deleten accounten?",
-                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "Wie kann ich die Benachrichtigungsoptionen ändern?",
+                        "description": "Klicke auf Profil > Konto-Einstellungen > Benachrichtigungen. Nun kannst du wählen, ob du per E-Mail oder SMS benachrichtigt werden willst."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "3How do you delete account?",
+                        "description": "3You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie kann ich mein Benutzerkonto löschen?",
+                        "description": "Klicke auf Profil > Konto-Einstellungen > Benutzerkonto löschen."
                     }
                 }
             ]
         },
         "Tasker": {
             "en": "Tasker",
-            "de": "Taskeren",
+            "de": "Auftraggeber",
             "questions": [
                 {
                     "en": {
@@ -56,8 +66,8 @@
                         "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
                     },
                     "de": {
-                        "title": "asddsaasdsd?",
-                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "Was ist ein Tasker?",
+                        "description": "Ein Tasker ist eine Privatperson, welche seine Zeit und Skills auf eazytask anbietet. Tasker geben Angebote für die Erledigung bestimmter Tasks ab."
                     }
                 },
                 {
@@ -66,15 +76,95 @@
                         "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
                     },
                     "de": {
-                        "title": "2asddsaasdsd?",
-                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "Wie wähle ich einen Tasker aus?",
+                        "description": "Du wirst bei Angebotseingängen basierend auf der gewählten Benachrichtigungsoption informiert. Unter «Angebote» hast du die Möglichkeit durch «Angebot annehmen» einen Tasker auszuwählen."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "3asddsasd?",
+                        "description": "3You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie kann ich Tasker kontaktieren?",
+                        "description": "Die Kontaktinformationen des Taskers werden dir nach Annahme des Angebots zur Verfügung gestellt. Gleichzeitig erhält der Tasker deine Kontaktinformationen."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "4asddsasd?",
+                        "description": "4You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie wird die Bezahlung abgewickelt?",
+                        "description": "Zahlungen werden im Moment nicht über eazytask abgewickelt. Nach dem Erhalt der Kontaktdaten kannst du mit dem Auftraggeber vereinbaren, wie die Zahlung erfolgen werden soll."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "5asddsasd?",
+                        "description": "5You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie kann ich Tasker bewerten?",
+                        "description": "Nach der Erledigung des Tasks erhältst du eine Einladung, den Tasker zu bewerten. Alternativ kannst du über dein Dashboard den Tasker bewerten."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "6asddsasd?",
+                        "description": "6You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie und wann kann ich ein Task bearbeiten, löschen oder deaktivieren?",
+                        "description": "Ein Task kann nur gelöscht werden, wenn dafür keine Angebote abgegeben wurden. Falls bereits Angebote abgegeben wurden, kannst du den Task deaktivieren. Klicke in der Taskseite auf das Symbol mit 3 Punkten und dann wählst du Bearbeiten, Löschen oder Deaktivieren aus. "
+                    }
+                },
+                {
+                    "en": {
+                        "title": "7asddsasd?",
+                        "description": "7You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie kann ich ein Task stornieren, nachdem ich das Angebot eines Taskers angenommen habe?",
+                        "description": "Setze dich dafür mit dem Tasker in Kontakt und storniere den Task direkt beim Tasker."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "8asddsasd?",
+                        "description": "8You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie wir die Qualität sichergestellt?",
+                        "description": "Tasker sollten nur mit einfachen Aufgaben betraut werden, die von erfahrenen Benutzern (auch ohne formelle Ausbildung) bewältigt werden können. Tätigkeiten, für die die Erbringung eines formellen Befähigungsnachweises erforderlich ist (z.B. Elektro- oder Gas-Installationen) dürfen vom Auftraggeber ausschliesslich an die entsprechenden Spezialisten vergeben werden. Unser Bewertungssystem gibt dir Hilfe bei der Auswahl des passenden Taskers."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "9asddsasd?",
+                        "description": "9You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wer übernimmt die Haftung?",
+                        "description": "Ist der Task nach Ansicht des Auftraggebers mangelhaft erbracht oder dem Auftraggeber durch den Tasker ein Schaden verursacht worden, hat der Auftraggeber seine diesbezüglichen Ansprüche ausschliesslich gegenüber dem jeweiligen Tasker geltend zu machen. Tasker werden darauf hingewiesen eine Haftpflichtversicherung abzuschliessen."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "10asddsasd?",
+                        "description": "10You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wird automatisch eine Versicherung abgeschlossen?",
+                        "description": "Seitens eazytask wird keine Versicherung abgeschlossen. Tasker werden darauf hingewiesen eine Haftpflichtversicherung abzuschliessen."
                     }
                 }
             ]
         },
         "Asker": {
             "en": "Asker",
-            "de": "Askeren",
+            "de": "Tasker",
             "questions": [
                 {
                     "en": {
@@ -82,8 +172,8 @@
                         "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
                     },
                     "de": {
-                        "title": "Howen doen youen deleten accounten?",
-                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "Wie kann ich den Auftraggeber kontaktieren?",
+                        "description": "Die Kontaktinformationen des Auftraggebers werden dir nach Annahme des Angebots zur Verfügung gestellt. Gleichzeitig erhält der Auftraggeber deine Kontaktinformationen."
                     }
                 },
                 {
@@ -92,34 +182,58 @@
                         "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
                     },
                     "de": {
-                        "title": "2Howen doen youen deleten accounten?",
-                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
-                    }
-                }
-            ]
-        },
-        "Other": {
-            "en": "Other",
-            "de": "Otheren",
-            "questions": [
-                {
-                    "en": {
-                        "title": "How do you delete account?",
-                        "description": "You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
-                    },
-                    "de": {
-                        "title": "Howen doen youen deleten accounten?",
-                        "description": "Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "Wie kann ich die Wahrscheinlichkeit einer Vermittlung erhöhen?",
+                        "description": "Erstelle ein attraktives Profil, in du ein klares persönliches Profilbild hinzufügst, gebe Angaben über deine Person, Verfügbarkeit und Fachkenntnisse. Verbessere deine Antwortzeit, verringere deine Stornierungsquote und steigere die Zufriedenheit des Auftraggebers."
                     }
                 },
                 {
                     "en": {
-                        "title": "2How do you delete account?",
-                        "description": "2You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "3How do you delete account?",
+                        "description": "3You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
                     },
                     "de": {
-                        "title": "2Howen doen youen deleten accounten?",
-                        "description": "2Youen canen easilies deleten youren account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                        "title": "Wie kann ich ein Angebot ändern?",
+                        "description": "Ein abgegebenes Angebot kann angepasst oder gelöscht werden nur solange es vom Auftraggeber noch nicht angenommen wurde. Klicke vom Dashboars aus auf Angebot > Angebot auswählen > Symbol mit drei Punkten > Bearbeiten oder Löschen"
+                    }
+                },
+                {
+                    "en": {
+                        "title": "4How do you delete account?",
+                        "description": "4You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie wird die Bezahlung abgewickelt?",
+                        "description": "Zahlungen werden im Moment nicht über eazytask abgewickelt. Nach dem Erhalt der Kontaktdaten kannst du mit dem Auftraggeber vereinbaren, wie die Zahlung erfolgen werden soll. eazytask erhebt aufgrund der Coronakrise und der Unsicherheit am Arbeitsmarkt keine Vermittlungsgebühr und steht dir daher zurzeit kostenlos zur Verfügung."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "5How do you delete account?",
+                        "description": "5You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie kann ich mein Angebot stornieren, nachdem mein Angebot vom Auftraggeber angenommen wurde?",
+                        "description": "Setze dich dafür mit dem Auftraggeber in Kontakt und storniere dein Angebot direkt beim Auftraggeber."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "6How do you delete account?",
+                        "description": "6You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Bin ich während der Task-Durchführung versichert?",
+                        "description": "Zurzeit bietet eazytask keine Option für eine Versicherung. Stelle deshalb sicher, dass du eine Haftpflichtversicherung hast, welche dich vor gesetzlichen Schadenersatzansprüchen Dritter schützt. Normalerweise wird durch die Versicherung sowohl Personenschäden wie auch Sachschäden versichert. Prüfe dein Selbstbehalt und Ausschlüsse, bevor du ein Angebot für ein Task abgibst."
+                    }
+                },
+                {
+                    "en": {
+                        "title": "7How do you delete account?",
+                        "description": "7You can easily delete your account by clicking Profile > Account Settings > Delete Account. Need more help about this?"
+                    },
+                    "de": {
+                        "title": "Wie kann ich den Auftraggeber bewerten?",
+                        "description": "Nach der Erledigung des Tasks erhältst du eine Einladung, den Auftraggeber zu bewerten. Alternativ kannst du über dein Dashboard den Tasker bewerten."
                     }
                 }
             ]

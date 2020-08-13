@@ -1,19 +1,19 @@
 {
     "home": {
         "en": "Home",
-        "de": "Homen"
+        "de": "Startseite"
     },
     "new_task": {
         "en": "New Task",
-        "de": "Newen Tasken"
+        "de": "Neuer Task"
     },
-    "profile" :{
+    "profile": {
         "en": "Profile",
-        "de": "Profilen"
+        "de": "Profil"
     },
     "new": {
         "en": "New",
-        "de": "Newen"
+        "de": "Neu"
     },
     "no_results": {
         "en": "Nothing to show...",
@@ -25,7 +25,7 @@
     },
     "cancel": {
         "en": "Cancel",
-        "de": "Cancelen"
+        "de": "Abbrechen"
     },
     "settings": {
         "text_1": {
@@ -53,23 +53,23 @@
         "OFFER_RECEIVED": {
             "text_1": {
                 "en": "made an offer at ",
-                "de": "maden anen offeren aten"
+                "de": "hat ein Angebot abgegeben für "
             }
         },
         "OFFER_ACCEPTED": {
             "text_1": {
                 "en": "accepted your offer for ",
-                "de": "accepteden youren offeren foren "
+                "de": "hat dein Angebot akzeptiert für "
             }
         },
         "NEW_CHAT_MESSAGE": {
             "text_1": {
                 "en": "answered a question in ",
-                "de": "answereden aen questionen inen "
+                "de": "hat eine Frage beantwortet in  "
             },
             "text_2": {
                 "en": "asked a question in ",
-                "de": "askeden aen questionen inen "
+                "de": "hat eine Frage gestellt in "
             }
         }
     }

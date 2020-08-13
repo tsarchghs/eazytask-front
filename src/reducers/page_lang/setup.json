@@ -1,192 +1,192 @@
 {
-    "text_1": {
-      "en": "Account setup",
-      "de": "None1"
-    },
-    "text_2": {
-      "en": "Welcome",
-      "de": "None2"
-    },
-    "text_3": {
-      "en": "Do you want to",
-      "de": "None3"
-    },
-    "text_4": {
-      "en": "setup your account now?",
-      "de": "None4"
-    },
-    "text_5": {
-      "en": "Profile",
-      "de": "None5"
-    },
-    "text_5_1": {
-      "en": "Cover",
-      "de": "None6"
-    },
-    "text_6": {
-      "en": "Add your profile picture",
-      "de": "None7"
-    },
-    "text_7": {
-      "en": "Add your cover picture",
-      "de": "None8"
-    },
-    "text_8": {
-      "en": "Location",
-      "de": "None9"
-    },
-    "text_9": {
-      "en": "Please add your location",
-      "de": "None10"
-    },
-    "text_10": {
-      "en": "ZIP",
-      "de": "None11"
-    },
-    "text_11": {
-      "en": "Town",
-      "de": "None12"
-    },
-    "text_12": {
-      "en": "Address",
-      "de": "None13"
-    },
-    "text_13": {
-      "en": "Notifications",
-      "de": "None14"
-    },
-    "text_14": {
-      "en": "How do you want",
-      "de": "None15"
-    },
-    "text_15": {
-      "en": "to be notified?",
-      "de": "None16"
-    },
-    "text_16": {
-      "en": "Mail",
-      "de": "None17"
-    },
-    "text_17": {
-      "en": "SMS",
-      "de": "None18"
-    },
-    "text_18": {
-      "en": "Phone number",
-      "de": "None19"
-    },
-    "text_19": {
-      "en": "Type your phone number",
-      "de": "None20"
-    },
-    "text_20": {
-      "en": "Verification code",
-      "de": "None21"
-    },
-    "text_21": {
-      "en": "Type your verification code",
-      "de": "None22"
-    },
-    "text_22": {
-      "en": "Invalid code",
-      "de": "None23"
-    },
-    "text_23": {
-      "en": "Almost there",
-      "de": "None24"
-    },
-    "text_24": {
-      "en": "Do you want to join",
-      "de": "None25"
-    },
-    "text_25": {
-      "en": "also as a tasker?",
-      "de": "None26"
-    },
-    "text_26": {
-      "en": "My skills",
-      "de": "None27"
-    },
-    "text_27": {
-      "en": "Search for a skill or add a custom one",
-      "de": "None28"
-    },
-    "text_28": {
-      "en": "My area of activity",
-      "de": "None29"
-    },
-    "text_29": {
-      "en": "Search for a city or add a custom one",
-      "de": "None30"
-    },
-    "text_30": {
-      "en": "My languages",
-      "de": "None31"
-    },
-    "text_31": {
-      "en": "Search for a language or add a custom one",
-      "de": "None32"
-    },
-    "text_32": {
-      "en": "Ready to go",
-      "de": "None33"
-    },
-    "text_33": {
-      "en": [
-        "Lorem ipsum dolor sit amet,",
-        "consetetur sadipscing elitr, sed diam."
-      ],
-      "de": [
-        "DE: Lorem ipsum dolor sit amet,34",
-        "DE: consetetur sadipscing elitr, sed diam.34"
-      ]
-    },
-    "text_34": {
-      "en": "Go",
-      "de": "None35"
-    },
-    "text_35": {
-      "en": "Next",
-      "de": "None36"
-    },
-    "text_36": {
-      "en": "Skip for now",
-      "de": "None37"
-    },
-    "text_37": {
-      "en": "Finish",
-      "de": "None38"
-    },
-    "text_38": {
-      "en": "Personal apperance",
-      "de": "None39"
-    },
-    "text_39": {
-      "en": "Last thing",
-      "de": "None40"
-    },
-    "text_40": {
-      "en": "Setup",
-      "de": "None41"
-    },
-    "text_41": {
-      "en": "No, thanks.",
-      "de": "None42"
-    },
-    "text_42": {
-        "en": "Zip code required",
-        "de": "None43"
-    },
-    "text_43": {
-        "en": "Address required",
-        "de": "None44"
-    },
-    "text_44": {
-      "en": "City required",
-      "de": "None45"
-    },
-    "text_45": {
-      "en": "Yes",
-      "de": "None46"
-    }
+  "text_1": {
+    "en": "Account setup",
+    "de": "Benutzerkonto einrichten"
+  },
+  "text_2": {
+    "en": "Welcome",
+    "de": "Willkommen"
+  },
+  "text_3": {
+    "en": "Do you want to",
+    "de": "Möchtest du dein"
+  },
+  "text_4": {
+    "en": "setup your account now?",
+    "de": "Benutzerkonto jetzt einrichten?"
+  },
+  "text_5": {
+    "en": "Profile",
+    "de": "Profil"
+  },
+  "text_5_1": {
+    "en": "Cover",
+    "de": "Hintergrundbild"
+  },
+  "text_6": {
+    "en": "Add your profile picture",
+    "de": "Dein Profilbild hinzufügen"
+  },
+  "text_7": {
+    "en": "Add your cover picture",
+    "de": "Dein Hintergrundbild hinzufügen"
+  },
+  "text_8": {
+    "en": "Location",
+    "de": "Standort"
+  },
+  "text_9": {
+    "en": "Please add your location",
+    "de": "Füge bitte deinen Standort hinzu"
+  },
+  "text_10": {
+    "en": "ZIP",
+    "de": "PLZ"
+  },
+  "text_11": {
+    "en": "Town",
+    "de": "Ort"
+  },
+  "text_12": {
+    "en": "Address",
+    "de": "Adresse"
+  },
+  "text_13": {
+    "en": "Notifications",
+    "de": "Benachrichtigungen"
+  },
+  "text_14": {
+    "en": "How do you want",
+    "de": "Wie möchtest du"
+  },
+  "text_15": {
+    "en": "to be notified?",
+    "de": "benachrichtigt werden?"
+  },
+  "text_16": {
+    "en": "Mail",
+    "de": "E-Mail"
+  },
+  "text_17": {
+    "en": "SMS",
+    "de": "SMS"
+  },
+  "text_18": {
+    "en": "Phone number",
+    "de": "Mobilenummer"
+  },
+  "text_19": {
+    "en": "Type your phone number",
+    "de": "Gib deine Mobilenummer ein"
+  },
+  "text_20": {
+    "en": "Verification code",
+    "de": "Verifizierungscode"
+  },
+  "text_21": {
+    "en": "Type your verification code",
+    "de": "Gib deinen Verifizierungscode ein"
+  },
+  "text_22": {
+    "en": "Invalid code",
+    "de": "Ungültiger Code"
+  },
+  "text_23": {
+    "en": "Almost there",
+    "de": "Fast fertig"
+  },
+  "text_24": {
+    "en": "Do you want to join",
+    "de": "Möchtest du auch als"
+  },
+  "text_25": {
+    "en": "also as a tasker?",
+    "de": "Tasker teilnehmen?"
+  },
+  "text_26": {
+    "en": "My skills",
+    "de": "Meine Fähigkeiten"
+  },
+  "text_27": {
+    "en": "Search for a skill or add a custom one",
+    "de": "Suche nach einer Fähigkeit oder füge eine benutzerdefinierte hinzu"
+  },
+  "text_28": {
+    "en": "My area of activity",
+    "de": "Mein Tätigkeitsgebiet"
+  },
+  "text_29": {
+    "en": "Search for a city or add a custom one",
+    "de": "Suche nach einer Ortschaft oder füge eine benutzerdefinierte hinzu"
+  },
+  "text_30": {
+    "en": "My languages",
+    "de": "Meine Sprachen"
+  },
+  "text_31": {
+    "en": "Search for a language or add a custom one",
+    "de": "Suche nach einer Sprache oder füge eine benutzerdefinierte hinzu"
+  },
+  "text_32": {
+    "en": "Ready to go",
+    "de": "Startklar"
+  },
+  "text_33": {
+    "en": [
+      "Lorem ipsum dolor sit amet,",
+      "consetetur sadipscing elitr, sed diam."
+    ],
+    "de": [
+      "Helfen & Verdienen mit eazytask.ch",
+      "Die Schweizer Plattform für Kleinaufträge und Alltagsaufgaben (Tasks) im privaten Umfeld."
+    ]
+  },
+  "text_34": {
+    "en": "Go",
+    "de": "Los"
+  },
+  "text_35": {
+    "en": "Next",
+    "de": "Weiter"
+  },
+  "text_36": {
+    "en": "Skip for now",
+    "de": "Vorläufig überspringen"
+  },
+  "text_37": {
+    "en": "Finish",
+    "de": "Fertigstellen"
+  },
+  "text_38": {
+    "en": "Personal apperance",
+    "de": "Persönliches Auftreten"
+  },
+  "text_39": {
+    "en": "Last thing",
+    "de": "Letzter Punkt"
+  },
+  "text_40": {
+    "en": "Setup",
+    "de": "Einrichten"
+  },
+  "text_41": {
+    "en": "No, thanks.",
+    "de": "Nein, danke."
+  },
+  "text_42": {
+    "en": "Zip code required",
+    "de": "PLZ erforderlich"
+  },
+  "text_43": {
+    "en": "Address required",
+    "de": "Adresse erforderlich"
+  },
+  "text_44": {
+    "en": "City required",
+    "de": "Ort erforderlich"
+  },
+  "text_45": {
+    "en": "Yes",
+    "de": "Ja"
+  }
 }

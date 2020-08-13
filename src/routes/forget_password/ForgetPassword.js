@@ -53,6 +53,7 @@ class ForgetPassword extends React.Component {
         this.props.resetPassword(args)
     }
     getTrans = obj => {
+        console.log(this.props.app_lang, obj,"this.props.app_lang")
         let data = obj[this.props.app_lang];
         if (typeof (data) == "string") return data;
         if (data.length) {
@@ -68,7 +69,12 @@ class ForgetPassword extends React.Component {
         let { search } = this.props.location;
         let params = queryString.parse(search);
 
-        let commonProps = { getTrans: this.getTrans }
+        let commonProps = { 
+            getTrans: this.getTrans,
+            translations: this.props.translations,
+            app_lang: this.props.app_lang,
+            common: this.props.common
+        }
 
         if (params.success) return <Success {...commonProps} />
         if (params.valid_code && params.email) return <NewPasswordForm

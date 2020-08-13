@@ -14,27 +14,36 @@ class EmailForm extends React.Component {
                     <section className="two-column__layout setup__mobile create-task reset-password">
                         <div className="two-column__info flex flex-column">
                             <div className="background-title mb30">
-                                <h1>Forgot password?</h1>
-                                <p className="web__subtitle">Now you can login with your new password</p>
+                                <h1>{this.props.getTrans(this.props.translations.web.text_1)}</h1>
+                                <p className="web__subtitle">{this.props.getTrans(this.props.translations.web.text_2)}</p>
                                 <p className="shadow__title no-contain">Reset when you forgot password</p>
                             </div>
                             <h4 className="show__mobile title-with-subtitle text-center">
-                                Forgot password?
-                                <p>Enter your email</p>
+                                {this.props.getTrans(this.props.translations.mobile.text_1)}
+                                <p>{this.props.getTrans(this.props.translations.web.text_3)}</p>
                             </h4>
-                            <h4 className="mt30 hide-on-mobile">Enter your email</h4>
+                            <h4 className="mt30 hide-on-mobile">{this.props.getTrans(this.props.translations.web.text_3)}</h4>
                             <form 
                                 onSubmit={this.props.onSubmit} 
                                 className="register__form flex-grow" 
                                 style={{ minHeight: 65}}
                             >
-                                <input ref={ref => this.emailRef = ref} value={this.props.email} onChange={this.props.onChange} type="Email" placeholder="Email" className="input" />
+                                <input 
+                                    ref={ref => this.emailRef = ref} 
+                                    value={this.props.email} 
+                                    onChange={this.props.onChange} 
+                                    type="email" 
+                                    placeholder={this.props.getTrans(this.props.translations.text_1)} 
+                                    className="input" 
+                                />
                             </form>
                             <div className="flex-grow img-wrapper flex aic jcc hide-on-mobile">
                                 <img className="img__mobile " src="/images/auth.png" alt="" />
                             </div>
                             <div className="buttons__group">
-                                <button onClick={this.props.onSubmit} type={this.props.buttonType} style={this.props.buttonStyle} type="submit" className="button__style">Next</button>
+                                <button onClick={this.props.onSubmit} type={this.props.buttonType} style={this.props.buttonStyle} type="submit" className="button__style">
+                                    {this.props.getTrans(this.props.translations.text_2)}
+                                </button>
                             </div>
                         </div>
                         <div className="two-column__img">
