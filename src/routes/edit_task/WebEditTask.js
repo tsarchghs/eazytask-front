@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import getImageUrl from "../../utils/getImageUrl";
+import BigIcons from "./BigIcons";
 
 class WebEditTask extends React.Component {
     render(){
@@ -61,36 +62,9 @@ class WebEditTask extends React.Component {
                         </div>
                     </div>
                     </div>
-                    <div className="big-icons jcc mb40">
-                    <div className="big-icon">
-                        <div className="flex-grow">
-                        <img src="/images/inter.png" alt="" />
-                        </div>
-                        <p>{this.props.translations.text_1[this.props.app_lang]}</p>
-                        <h5>03.06.2020</h5>
-                    </div>
-                    <div className="big-icon">
-                        <div className="flex-grow">
-                        <img src="/images/pins.png" alt="" />
-                        </div>
-                        <p>Bern</p>
-                        <h5>3004</h5>
-                    </div>
-                    <div className="big-icon">
-                        <div className="flex-grow">
-                        <img src="/images/shop.png" alt="" />
-                        </div>
-                        <p>{this.props.translations.text_2[this.props.app_lang]}</p>
-                        <h5>CHF 300.-</h5>
-                    </div>
-                    <div className="big-icon">
-                        <div className="flex-grow">
-                        <img src="/images/house.png" alt="" />
-                        </div>
-                        <p>{this.props.translations.text_3[this.props.app_lang]}</p>
-                        <h5>Household</h5>
-                    </div>
-                    </div>
+                    <center>
+                        <BigIcons translations={this.props.translations} app_lang={this.props.app_lang} task={this.props.task} />
+                    </center>
                     <div className="offers-images__layout">
                     <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                     <div className="offers-images">

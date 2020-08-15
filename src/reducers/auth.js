@@ -15,6 +15,7 @@ import {
     UPDATE_AUTH_PROFILE_TASKER,
     LOGOUT 
 } from "../actionTypes"
+import { toast } from 'react-toastify';
 
 const INITIAL_STATE = {
     isAuthenticated: undefined,
@@ -29,7 +30,20 @@ export default (state = INITIAL_STATE, action) => {
     let token = localStorage.getItem("eazytask:token");
     console.log({before:token})
     let onRequest = { loading: true, error: false, errorResponse: undefined }
-    let onFailed = { isAuthenticated: false, errors: action.err && action.err.response.data.errors, loading: false, error: true }
+    let onFailed = { 
+        isAuthenticated: false, 
+        errors: action.err && (
+            (action.err.response && action.err.response.data && action.err.response.data.errors) ||
+            action.err.response
+        ),   
+        loading: false, 
+        error: true 
+    }
+    if (action.err && action.err.message === "Network Error") {
+        console.log("action.erraction.err", action.err)
+        toast.error(window.__GENERAL_ERROR_VALUE__[localStorage.getItem("app_lang")])
+    }
+
     switch (action.type) {
         case GET_AUTH_REQUEST:
             return { ...state, isAuthenticated: false, GET_AUTH: onRequest }

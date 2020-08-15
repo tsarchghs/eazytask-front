@@ -15,6 +15,8 @@ import "../src/4.helpers/helper.scss";
 import "../src/utils/fonts/product-sans.ttf";
 import "../src/utils/fonts/product-sans-bold.ttf";
 import { Helmet } from "react-helmet";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 window.__BASE_URL__ = "http://localhost:4000/api/v1";       
 
@@ -22,11 +24,28 @@ window.__PROFILE_DEFAULT_PICTURE__ = "/images/no-profile-picture-icon-22.jpg"
 window.__THUMBNAIL_DEFAULT_PICTURE__ = "/images/image_61.png"
 window.__COVER_DEFAULT_PICTURE__ = "/images/image_61.png"
 window.__USER_COVER_DEFAULT_PICTURE__ = "/images/user_cover.jpg"
-
+window.__GENERAL_ERROR_VALUE__ = {
+  "en": "Something unexpected happened, please check your internet connection and try again!",
+  "de": "Etwas Unerwartetes ist passiert, bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es noch einmal!"
+}
+window.__TOAST_NO_INTERNET_VALUE__ = {
+  "en": "No internet connection!",
+  "de": "Noen interneten connectionen!"
+}
+window.__TOAST_BACK_ONLINE_VALUE__ = {
+  "en": "You are back online!",
+  "de": "Youen aren backen onlinen!"
+}
 window.__AWS_BASE_URL__ = "https://eazytask.s3.amazonaws.com"
 // window.__BASE_URL__ = "https://app.swaggerhub.com/apis/gjergjk71/easytask/1.0.0-oas3";
 // window.__BASE_URL__ = "https://eazytask-back.herokuapp.com/api/v1"
 // window.__BASE_URL__ = "http://192.168.0.102:4000/api/v1"
+
+toast.configure({
+  autoClose: 5000,
+  draggable: true,
+  //etc you get the idea
+});
 
 ReactDOM.render(
   <React.StrictMode>

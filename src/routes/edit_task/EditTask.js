@@ -10,8 +10,7 @@ import { GET_AUTH } from "../../actionTypes";
 import { debounce } from "lodash";
 import E404 from "../E404";
 import { compose } from "recompose";
-import {ModalContainer, Modal} from 'minimal-react-modal';
-
+import BigIcons from "./BigIcons";
 import WebEditTask from "./WebEditTask";
 import getImageUrl from "../../utils/getImageUrl";
 
@@ -256,84 +255,7 @@ class EditTask extends React.Component {
                                 }
                                     {/* <img src="/images/edit-pen.png" alt="" /></span></p> */}
                                 </div>
-                                <div className="big-icons">
-                                <ModalContainer>
-                                    {(openModal, closeModal, isActive) => (
-                                    <div>
-                                        <div onClick={openModal} className="big-icon">
-                                            <div className="flex-grow">
-                                                <img src="/images/inter.png" alt="" />
-                                            </div>
-                                            <p>{this.props.translations.text_1[this.props.app_lang]}</p>
-                                            <h5>{new Date(this.props.task.due_date).toLocaleDateString().replace(/\//g, ".")}</h5>
-                                        </div>
-                                        <Modal
-                                            isActive={isActive}     // required
-                                            closeModal={closeModal} // required
-                                        >
-                                        <h3>modal content</h3>
-                                        </Modal>
-                                    </div>
-                                    )}
-                                </ModalContainer>
-                                <ModalContainer>
-                                    {(openModal, closeModal, isActive) => (
-                                    <div>
-                                        <div onClick={openModal} className="big-icon">
-                                            <div className="flex-grow">
-                                                <img src="/images/pins.png" alt="" />
-                                            </div>
-                                            <p>{this.props.task.city}</p>
-                                            <h5>{this.props.task.zipCode}</h5>
-                                        </div>
-                                        <Modal
-                                            isActive={isActive}     // required
-                                            closeModal={closeModal} // required
-                                        >
-                                        <h3>modal content2</h3>
-                                        </Modal>
-                                    </div>
-                                    )}
-                                </ModalContainer>
-                                <ModalContainer>
-                                    {(openModal, closeModal, isActive) => (
-                                    <div>
-                                        <div onClick={openModal} className="big-icon">
-                                            <div className="flex-grow">
-                                                <img src="/images/shop.png" alt="" />
-                                            </div>
-                                            <p>{this.props.translations.text_2[this.props.app_lang]}</p>
-                                            <h5>CHF {this.props.task.expected_price}.-</h5>
-                                        </div>
-                                        <Modal
-                                            isActive={isActive}     // required
-                                            closeModal={closeModal} // required
-                                        >
-                                        <h3>modal content3</h3>
-                                        </Modal>
-                                    </div>
-                                    )}
-                                </ModalContainer>
-                                <ModalContainer>
-                                    {(openModal, closeModal, isActive) => (
-                                    <div>
-                                        <div onClick={openModal} className="big-icon">
-                                            <div className="flex-grow">
-                                                <img src="/images/house.png" alt="" />
-                                            </div>
-                                            <p>{this.props.translations.text_3[this.props.app_lang]}</p>
-                                            <h5>{this.props.task.Category.name}</h5>
-                                        </div>
-                                        <Modal
-                                            isActive={isActive}     // required
-                                            closeModal={closeModal} // required
-                                        >
-                                        <h3>modal content4</h3>
-                                        </Modal>
-                                    </div>
-                                    )}
-                                </ModalContainer>
-                                </div>
+                                <BigIcons translations={this.props.translations} app_lang={this.props.app_lang} task={this.props.task}/>
                                 <div className="offers-images__layout">
                                     <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                                     <div className="offers-images">
@@ -343,7 +265,7 @@ class EditTask extends React.Component {
                                                     <div className={"offers-image image-uploads " + (this.state.data.thumbnail.value == obj.value ? "active" : "")}>
                                                         <img onClick={this.onThumbnailChange(obj.value)} src={getImageUrl(obj.value,"small")} alt="" />
                                                         <h4 onClick={this.onThumbnailChange(obj.value)}>{this.props.translations.text_5[this.props.app_lang]}</h4>
-                                                        <span style={{ zIndex: 1000000 }} onClick={this.onGalleryImageRemove(obj.value)} className="remove-th">X</span>
+                                                        <span style={{ zIndex: 1 }} onClick={this.onGalleryImageRemove(obj.value)} className="remove-th">X</span>
                                                     </div>
                                                 )
                                             })

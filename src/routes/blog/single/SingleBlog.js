@@ -38,7 +38,7 @@ class SingleBlog extends React.Component {
                             </header>
                         </div>
                     </div>
-                <p className="text-center special">Loading...</p>
+                <p className="text-center special">{this.props.common.loading[this.props.app_lang]}</p>
                 </section>
             </div>
         )
@@ -86,20 +86,13 @@ class SingleBlog extends React.Component {
             </div>
 
         )
-        return (
-            <React.Fragment>
-                { post.title }
-                <div dangerouslySetInnerHTML={{__html: post.content }}/>
-                { post.createdAt }
-            </React.Fragment>
-        )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
     let { postId } = ownProps.match.params;
     let { loading, error, ...post } = state.posts.byIds[postId] || { loading: true };
-    return { loading, error, post }
+    return { loading, error, post, common: state.app_lang.common, app_lang: state.app_lang.app_lang }
 }
 
 export default compose(withRouter,connect(mapStateToProps, { getPost }))(SingleBlog);

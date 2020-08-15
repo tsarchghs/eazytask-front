@@ -11,7 +11,9 @@ export default class Location extends React.Component {
                     <h1>{this.props.getTrans(this.props.translations.text_8)}</h1>
                     <p className="shadow__title">setup your account</p>
                 </div>
-                <h5 className="show__mobile"><img src="/images/Vector.png" alt="" style={{ width: '20px', marginRight: '10px' }} />Location</h5>
+                <h5 className="show__mobile"><img src="/images/Vector.png" alt="" style={{ width: '20px', marginRight: '10px' }} />
+                    {this.props.getTrans(this.props.translations.text_47)}
+                </h5>
                 <div className="mobile__dots">
                     <span className="dot active"></span>
                     <span className="dot active"></span>

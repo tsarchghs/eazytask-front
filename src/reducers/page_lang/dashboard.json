@@ -119,6 +119,10 @@
     "text_30": {
       "en": "Create a new task",
       "de": "Erstelle einen Task"
+    },
+    "text_31": {
+      "en": "No posts to show...",
+      "de": "Noen postsen toen showen..."
     }
   },
   "mobile": {
@@ -204,7 +208,7 @@
     },
     "text_21": {
       "en": "Frequently asked",
-      "de": "häufig gestellte"
+      "de": "Häufig gestellte"
     },
     "text_22": {
       "en": "Questions",

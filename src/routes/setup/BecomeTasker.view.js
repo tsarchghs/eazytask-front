@@ -7,7 +7,7 @@ export default props => {
                 <h1>{props.getTrans(props.translations.text_23)}</h1>
                 <p className="shadow__title">setup your account</p>
             </div>
-            <h5 className="show__mobile"><img src="/images/sign.png" alt="" style={{ width: '20px', marginRight: '10px' }} />One last thing</h5>
+            <h5 className="show__mobile"><img src="/images/sign.png" alt="" style={{ width: '20px', marginRight: '10px' }} />{props.getTrans(props.translations.text_46)}</h5>
             <div className="mobile__dots">
                 <span className="dot active" />
                 <span className="dot active" />

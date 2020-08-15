@@ -10,8 +10,7 @@
                 "New offers, updates and more."
             ],
             "de": [
-                "Lege fest wie du benachrichtigt werden möchtest über:",
-                "Neue Angebote, Neuigkeiten und vieles mehr"
+                "Meine Rolle auf eazytask ist:"
             ]
         },
         "text_3": {
@@ -184,14 +183,14 @@
     "change_preferences": {
         "text_1": {
             "en": "Change preferences",
-            "de": "Präferenzen ändern"
+            "de": "Rolle ändern"
         },
         "text_2": {
             "en": "Chose how you do you want to........",
-            "de": "Lege fest wie du benachrichtigt werden möchtest"
+            "de": "Lege fest wie du benachrichtigt werden möchtest:"
         },
         "text_3": {
-            "en": "Yoi're currently an:",
+            "en": "You're currently an:",
             "de": "Deine aktuelle Rolle:"
         },
         "text_4": {

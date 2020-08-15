@@ -5,6 +5,9 @@ import Routes from "../../routes";
 import { withRouter, Redirect } from "react-router-dom";
 import { compose } from "recompose";
 import ExpectedPriceView from "../../routes/create_task/ExpectedPrice.view";
+import Detector from "../OnlineDetector/OnlineDetector";
+import { toast } from "react-toastify";
+import EventListener from "../EventListener"
 
 class App extends React.Component {
   constructor(props) {
@@ -57,6 +60,25 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Routes goBack={this.goBack}/>
+        <Detector>
+          {({ online }) => {
+            if (!online) {
+              toast.error(window.__TOAST_NO_INTERNET_VALUE__[localStorage.getItem("app_lang")], { toastId: "InternetError" })
+              this.wasDisconnected = true;
+            }
+            if (online && this.wasDisconnected) {
+              toast.success(window.__TOAST_BACK_ONLINE_VALUE__[localStorage.getItem("app_lang")], { toastId: "RECONNECTED" })
+              this.wasDisconnected = false;
+            }
+            return (
+              <EventListener
+                target="window"
+                onKeyDown={this.handleKeyDown}
+                onKeyUp={this.handleKeyUp}
+              />
+            )
+          }}
+        </Detector>
       </React.Fragment>
     );
   }

@@ -153,7 +153,7 @@ class Home extends React.Component {
                                                 <h1 className="fs62 fwn">{this.getTrans(this.props.translations.text_1)}</h1>
                                                 <h1 className="bold bigger fs70">{this.getTrans(this.props.translations.text_2)}</h1>
                                             </div>
-                                            <p className="mb30 special fs19 fwl ">{this.getTrans(this.props.translations.text_3)}</p>
+                                            <p className="br-m mb30 special fs19 fwl ">{this.getTrans(this.props.translations.text_3)}</p>
                                         </div>
                                         <div className="mb10">
                                             <SectionLink section="watch_how_it_works">
@@ -349,7 +349,7 @@ class Home extends React.Component {
                                 <Link to="/blog">
                                     <div className="more__card">
                                         <img src="/images/writer_1.png" alt="" />
-                                        <div>
+                                        <div className="br-m">
                                             <h4>{this.getTrans(this.props.translations.text_19)}</h4>
                                             <p>{this.getTrans(this.props.translations.text_20)}</p>
                                         </div>
@@ -358,7 +358,7 @@ class Home extends React.Component {
                                 <Link to="/faq">
                                     <div className="more__card">
                                         <img src="/images/question_.png" alt="" />
-                                        <div>
+                                        <div className="br-m">
                                             <h4>{this.getTrans(this.props.translations.text_21)}</h4>
                                             <p>{this.getTrans(this.props.translations.text_22)}</p>
                                         </div>

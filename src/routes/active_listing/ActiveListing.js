@@ -149,7 +149,7 @@ class ActiveListing extends React.Component {
                                         <br />
                                     </div>
                                     <div className={"listing-cards flex aic jcsb" + (this.state.detailed ? "col-cards" : "")}>
-                                        {loading && "Loading"}
+                                        {loading && this.getTrans(this.props.common.loading)}
                                         {
                                             !loading &&
                                             !this.props.tasks.length &&

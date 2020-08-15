@@ -37,7 +37,7 @@ class More extends React.Component {
                     <img src="/images/question_.png" alt="" />
                     <div>
                         <h4>{this.getTrans(this.props.translations.text_19)}</h4>
-                        <p>{this.getTrans(this.props.translations.text_20)} <br />{this.getTrans(this.props.translations.text_21)} 
+                        <p>{this.getTrans(this.props.translations.text_21)} 
                         <br />{this.getTrans(this.props.translations.text_22)}</p>
                     </div>
                 </div>

@@ -27,8 +27,8 @@ const ChangePreferencesSettings = lazy(() => import("./settings/ChangePreference
 
 let thenCallback = val => val;
 let errorCallback = val => {
-    console.log("ERRORRRRR")
-    return import("./reload_page").then(Comp => <Comp err={val}/>)
+    console.log("ERRORRRRR:",val)
+    return import("./reload_page")
 }
 
 const Home = lazy(() => import('./home').then(thenCallback).catch(errorCallback));

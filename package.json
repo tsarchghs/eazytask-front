@@ -41,6 +41,7 @@
     "react-scrollmagic": "2.2.0",
     "react-slider": "1.0.8",
     "react-textfit": "1.1.0",
+    "react-toastify": "6.0.8",
     "recompose": "0.30.0",
     "redux": "4.0.5",
     "redux-logger": "3.0.6",

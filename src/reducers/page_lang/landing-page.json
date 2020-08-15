@@ -39,11 +39,11 @@
     },
     "text_9": {
         "en": "Our Wonderful",
-        "de": "Unsere"
+        "de": "Wir helfen dort,"
     },
     "text_10": {
         "en": "mission",
-        "de": "Mission"
+        "de": "wo Überqualifizierung kostenintensiv ist."
     },
     "text_11": {
         "en": [
@@ -54,11 +54,7 @@
             "Lorem ipsum dolor sit amet,"
         ],
         "de": [
-            "Wir helfen dort, wo Überqualifizierung kostenintensiv ist.",
-            "Wir helfen dabei, Kleinaufträge günstig",
-            "erledigen zu lassen und bieten Privatpersonen",
-            "eine Plattform, auf welche sie ihre Fähigkeiten",
-            "und Talent mit ihren Mitmenschen teilen können."
+            "Wir helfen dort, wo Überqualifizierung kostenintensiv ist. Wir helfen dabei, Kleinaufträge günstig erledigen zu lassen und bieten Privatpersonen. eine Plattform, auf welche sie ihre Fähigkeiten und Talent mit ihren Mitmenschen teilen können."
         ]
     },
     "text_12": {
@@ -164,8 +160,7 @@
             "Questions"
         ],
         "de": [
-            "Häufig",
-            "gestellte",
+            "Häufig gestellte",
             "Fragen"
         ]
     }

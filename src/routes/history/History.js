@@ -51,7 +51,9 @@ class History extends React.Component {
                         <div className="home__card--content">
                         { loading && "Loading.." }
                         { err && err.name }
-                        { !loading && !err && !tasks.length  && <p className="special">Nothing to show...</p>}
+                        { !loading && !err && !tasks.length  && <p className="special">
+                          {this.getTrans(this.props.common.no_results)}
+                        </p>}
                         { !loading && !err && tasks.map(task => (
                             <div style={{cursor: "pointer" }} onClick={() => this.props.history.push("/task/" + task.id)} className="home__card" style={{backgroundImage: `url("${task.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__}")`}}>
                                 <div className="home__card--mask" />
@@ -116,7 +118,9 @@ class History extends React.Component {
                                 </div>
                                 </div>
                         ))}
-                        { !loading && !err && !tasks.length && <p className="special">Nothing to show...</p> }
+                        { !loading && !err && !tasks.length && <p className="special">
+                          {this.getTrans(this.props.common.no_results)}
+                        </p> }
                     </div>
                   </div>
                 </div>
