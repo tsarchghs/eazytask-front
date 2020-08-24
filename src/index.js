@@ -86,11 +86,11 @@ window.__GENERAL_ERROR_VALUE__ = {
 }
 window.__TOAST_NO_INTERNET_VALUE__ = {
   "en": "No internet connection!",
-  "de": "Noen interneten connectionen!"
+  "de": "Keine Internetverbindung!"
 }
 window.__TOAST_BACK_ONLINE_VALUE__ = {
   "en": "You are back online!",
-  "de": "Youen aren backen onlinen!"
+  "de": "Du bist wieder online!"
 }
 window.__AWS_BASE_URL__ = "https://eazytask.s3.amazonaws.com"
 // window.__BASE_URL__ = "https://app.swaggerhub.com/apis/gjergjk71/easytask/1.0.0-oas3";
@@ -100,7 +100,6 @@ window.__AWS_BASE_URL__ = "https://eazytask.s3.amazonaws.com"
 toast.configure({
   autoClose: 5000,
   draggable: true,
-  //etc you get the idea
 });
 
 ReactDOM.render(
