@@ -39,7 +39,7 @@ const AboutSettings = props => (
                                                 <img src="/images/arrow.jpeg" alt="" />
                                             </span>
                                             <h4 className="logo-title ">
-                                                About us
+                                                {getTrans(props.app_lang,props.translations.text_0)}
                                             </h4>
                                         </header>
                                         <div className="pa--mobile pb50 max-vh">

@@ -124,12 +124,12 @@ class ChangePreferencesSettings extends React.Component {
                                                         <img src="/images/arrow.jpeg" alt="" />
                                                     </span>
                                                     <h4 className="logo-title ">
-                                                        Change preferences
+                                                        {this.getTrans(this.props.translations.text_1)}
                                             </h4>
                                                 </header>
                                                 <div className="pa--mobile pb50 max-vh">
                                                     <div className="profile__select">
-                                                        <h4>You're currently an:</h4>
+                                                        <h4>{this.getTrans(this.props.translations.text_3)}</h4>
                                                         {this.GetOptions()}
                                                         {
                                                             !this.changedRoleBool() &&

@@ -57,7 +57,7 @@
         },
         "text_5": {
             "en": "Confirm new password",
-            "de": "Neues Passwort bestätigen"
+            "de": "Passwort bestätigen"
         },
         "text_6": {
             "en": "Confirm",
@@ -161,6 +161,10 @@
         }
     },
     "about": {
+        "text_0":{
+            "en": "About us",
+            "de": "Impressum"
+        },
         "text_1": {
             "en": "eazytask",
             "de": "eazytask"
@@ -177,7 +181,10 @@
         },
         "text_3": {
             "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi netus placerat magna iaculis sit lorem. Suspendisse in faucibus ut neque egestas. Consectetur a mattis vel commodo arcu malesuada turpis dolor duis. Enim elit pellentesque orci, porttitor nulla sit pretium. Sit purus, risus, iaculis neque proin non felis, ac. Laoreet mauris blandit praesent enim sed. Viverra non convallis sed blandit faucibus consectetur. Egestas posuere id eu scelerisque tristique at odio nisl. Sed eu enim molestie mauris risus, nullam pretium ut semper. Viverra nulla est, maecenas nibh. Felis, odio amet nam et lacus vitae, ornare. Hac proin mattis et sagittis rhoncus aliquam. Diam diam arcu lorem pharetra facilisis urna sit. Cras praesent est ac lorem morbi suspendisse aliquam vel.",
-            "de": "Die Webseite eazytask.ch wird von pbits GmbH – Professional Business & IT Solutions betrieben. E-Mail: hello@eazytask.ch | Firmenidentifikationsnummer (UID): CH-178.994.229"
+            "de": [
+                "Die Webseite eazytask.ch wird von pbits GmbH – Professional Business & IT Solutions betrieben.","",
+                "E-Mail: hello@eazytask.ch | Firmenidentifikationsnummer (UID): CH-178.994.229"
+            ]
         }
     },
     "change_preferences": {

@@ -29,7 +29,8 @@ const mapStateToProps = (state, ownProps) => {
     let { loading, error, ...user } = state.users.byIds[userId] || { loading: true }
     return { loading, error, user }
 }
+
 export default compose(
+    withRouter,
     connect(mapStateToProps,{ getUser }),
-    withRouter
-)(Profile);
+    )(Profile);

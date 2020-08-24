@@ -10,11 +10,11 @@
     "text_3": {
         "en": [
             "Lorem ipsum dolor sit amet,",
-            "consetetur sadipscing elitr, sed diam."
+            " consetetur sadipscing elitr, sed diam."
         ],
         "de": [
             "Wir verbinden Privatpersonen für die Erledigung von Kleinaufträgen.",
-            "Gewinne jetzt Zeit und Flexibilität."
+            " Gewinne jetzt Zeit und Flexibilität."
         ]
     },
     "text_4": {
@@ -78,8 +78,8 @@
             "Lorem ipsum dorem amet alid"
         ],
         "de": [
-            "Erstelle einen aussagekräftigen Task",
-            "für deinen Kleinauftrag und",
+            "Erstelle einen aussagekräftigen Task ",
+            "für deinen Kleinauftrag und ",
             "füge relevante Details hinzu."
         ]
     },
@@ -96,8 +96,8 @@
             "Lorem ipsum dorem amet alid"
         ],
         "de": [
-            "Prüfe eingegange Angebote",
-            "und wähle den für dich",
+            "Prüfe eingegange Angebote ",
+            "und wähle den für dich ",
             "passenden Tasker aus."
         ]
     },
@@ -114,7 +114,7 @@
             "Lorem ipsum dorem amet alid"
         ],
         "de": [
-            "Kontaktiere den Tasker",
+            "Kontaktiere den Tasker ",
             "und vereinbare die ",
             "weiteren Details."
         ]
