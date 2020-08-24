@@ -176,9 +176,10 @@ class EditTask extends React.Component {
         return (
             <React.Fragment>
                 <WebEditTask 
+                    data={this.state.data}
                     onEdit={this.state.onEdit}
                     onChange={key => e => {
-                        e.persist()
+                        if (e.persist) e.persist()
                         this.setState(prevState => {
                             prevState.data[key] = e.target.value;
                             return { ...prevState, data: { ...prevState.data } }
@@ -255,7 +256,19 @@ class EditTask extends React.Component {
                                 }
                                     {/* <img src="/images/edit-pen.png" alt="" /></span></p> */}
                                 </div>
-                                <BigIcons translations={this.props.translations} app_lang={this.props.app_lang} task={this.props.task}/>
+                                {/* <BigIcons
+                                    data={this.state.data} 
+                                    translations={this.props.translations} 
+                                    app_lang={this.props.app_lang} 
+                                    task={this.props.task}
+                                    onChange={key => e => {
+                                        e.persist()
+                                        this.setState(prevState => {
+                                            prevState.data[key] = e.target.value;
+                                            return { ...prevState, data: { ...prevState.data } }
+                                        })
+                                    }}
+                                /> */}
                                 <div className="offers-images__layout">
                                     <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                                     <div className="offers-images">

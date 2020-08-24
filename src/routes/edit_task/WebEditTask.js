@@ -9,7 +9,9 @@ class WebEditTask extends React.Component {
             <React.Fragment>
                 <section className="offers-layout edit-task__wrapper tasker-profile edit-task__layout hide-on-mobile">
                 <div style={{
-                        backgroundImage: `url(${getImageUrl(this.props.task.thumbnail, "large")})`
+                        backgroundImage: `url(${getImageUrl(this.props.task.thumbnail, "large") || 
+                        window.__COVER_DEFAULT_PICTURE__
+                        })`
                     }} className="offers-picture">
                 <div className="offer-picture__buttons">
                     <div style={{ cursor: "pointer"}} onClick={this.props.goBack} className="offer-picture__back"><img src="/images/arrow.jpeg" alt="" /></div>
@@ -62,9 +64,13 @@ class WebEditTask extends React.Component {
                         </div>
                     </div>
                     </div>
-                    <center>
-                        <BigIcons translations={this.props.translations} app_lang={this.props.app_lang} task={this.props.task} />
-                    </center>
+                    {/* <BigIcons
+                        data={this.props.data}
+                        translations={this.props.translations}
+                        app_lang={this.props.app_lang}
+                        task={this.props.task}
+                        onChange={this.props.onChange}
+                    /> */}
                     <div className="offers-images__layout">
                     <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                     <div className="offers-images">

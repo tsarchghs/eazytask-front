@@ -2,10 +2,16 @@ import React from "react";
 import { ModalContainer, Modal } from 'minimal-react-modal';
 
 class BigIcons extends React.Component {
+    constructor(props){
+        super(props);
+    }
     render(){
+        let task = this.props.task;
+        let due_date = new Date(task.due_date);
+        let data = this.props.data || {}
         return (
             <div className="big-icons">
-                <ModalContainer>
+                <ModalContainer key="1">
                     {(openModal, closeModal, isActive) => (
                         <div>
                             <div onClick={openModal} className="big-icon">
@@ -19,17 +25,43 @@ class BigIcons extends React.Component {
                                 isActive={isActive}     // required
                                 closeModal={closeModal} // required
                             >
-                                <div style={{ zIndex: 9999999999999999 }} className="date-section">
+                                <div key="ASDDASDDSASDDASDDSASDDASDDSAS" style={{ zIndex: 9999999999999999 }} className="date-section">
                                     <h5>Date	</h5>
-                                    <img src="/images/calendar.png" alt="" />
+                                    <img src="/images/calendar.png" width="30" alt="" />
                                     <div className="date-section__tabs mt20 flex jcc aic">
-                                        <h3 className="active">Fixed</h3>
-                                        <h3>Until</h3>
+                                        <h3 onClick={() => this.props.onChange("due_date_type")({ target: { value: "FIXED_DATE"}})} className={
+                                            data.due_date_type ? 
+                                             data.due_date_type === "FIXED_DATE" ? "active": "" : 
+                                             task.due_date_type === "FIXED_DATE" ? "active" : ""
+                                        }>Fixed</h3>
+                                        <h3 
+                                            onClick={() => this.props.onChange("due_date_type")({ target: { value: "UNTIL_DATE" } })}
+                                            className={
+                                                data.due_date_type ?
+                                                    data.due_date_type === "UNTIL_DATE" ? "active" : "" :
+                                                    task.due_date_type === "UNTIL_DATE" ? "active" : ""
+                                            }
+                                        >Until</h3>
                                     </div>
                                     <div className="date-section__select flex-grow flex jcc aic ">
-                                        <input type="text" placeholder="Day" />
-                                        <input type="text" placeholder="Month" />
-                                        <input type="text" placeholder="Year" />
+                                        <input 
+                                            type="number" 
+                                            value={data.day || due_date.getDate()} 
+                                            placeholder="Day" 
+                                            onChange={this.props.onChange("day")}
+                                        />
+                                        <input 
+                                            type="number" 
+                                            value={data.month || due_date.getMonth()} 
+                                            placeholder="Month" 
+                                            onChange={this.props.onChange("month")}
+                                        />
+                                        <input 
+                                            type="number" 
+                                            value={data.year || due_date.getFullYear()} 
+                                            placeholder="Year" 
+                                            onChange={this.props.onChange("year")}
+                                        />
                                     </div>
                                     <div className="buttons__group mb5">
                                         <button className="button__style">Save Changes</button>
@@ -39,9 +71,9 @@ class BigIcons extends React.Component {
                         </div>
                     )}
                 </ModalContainer>
-                <ModalContainer>
+                <ModalContainer key="12">
                     {(openModal, closeModal, isActive) => (
-                        <div>
+                        <div key="ASDDASDDSASDDASDDSASDDASDDSASDDASDDS">
                             <div onClick={openModal} className="big-icon">
                                 <div className="flex-grow">
                                     <img src="/images/pins.png" alt="" />
@@ -73,9 +105,9 @@ class BigIcons extends React.Component {
                         </div>
                     )}
                 </ModalContainer>
-                <ModalContainer>
+                <ModalContainer key="13">
                     {(openModal, closeModal, isActive) => (
-                        <div>
+                        <div key="ASDDASDDSASDDASDDS">
                             <div onClick={openModal} className="big-icon">
                                 <div className="flex-grow">
                                     <img src="/images/shop.png" alt="" />
@@ -102,9 +134,9 @@ class BigIcons extends React.Component {
                         </div>
                     )}
                 </ModalContainer>
-                <ModalContainer>
+                <ModalContainer key="14">
                     {(openModal, closeModal, isActive) => (
-                        <div>
+                        <div key="ASDDASDDS">
                             <div onClick={openModal} className="big-icon">
                                 <div className="flex-grow">
                                     <img src="/images/house.png" alt="" />

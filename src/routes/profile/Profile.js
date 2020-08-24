@@ -33,4 +33,4 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     withRouter,
     connect(mapStateToProps,{ getUser }),
-    )(Profile);
+)(Profile);
