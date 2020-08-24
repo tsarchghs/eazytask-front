@@ -215,7 +215,9 @@ class WebDashboard extends React.Component {
                                                     </div>
                                                     <section className="blog-cards" style={{ marginTop: '50px' }}>
                                                         { this.props.posts_info.loading && <p className="special">{"Loading..."}</p> }
-                                                        {!this.props.posts_info.loading && !this.props.posts_info.posts.length && <p className="special">{"No posts to show..."}</p>}
+                                                        {!this.props.posts_info.loading && !this.props.posts_info.posts.length && <p className="special">
+                                                            {this.getTrans(translations.text_31)}
+                                                        </p>}
                                                         {!this.props.posts_info.loading && this.props.posts_info.posts.map(post => (
                                                             <div className="blog-card">
                                                                 <Link to={"/blog/" + post.id}>
