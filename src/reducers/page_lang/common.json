@@ -27,6 +27,18 @@
         "en": "Cancel",
         "de": "Abbrechen"
     },
+    "save": {
+        "en": "Save",
+        "de": "Speichern"
+    },
+    "saving": {
+        "en": "Saving...",
+        "de": "Speichern..."
+    },
+    "offers_given": {
+        "en": "offers given",
+        "de": "offersen givenen"
+    },
     "settings": {
         "text_1": {
             "en": "Notifications",

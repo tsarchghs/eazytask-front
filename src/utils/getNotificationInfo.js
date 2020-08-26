@@ -6,7 +6,7 @@ let {
     OFFER_ACCEPTED, 
     NEW_CHAT_MESSAGE 
 } = state.app_lang.common.notifications;
-let app_lang = localStorage.getItem("app_lang");
+let app_lang = localStorage.getItem("app_lang") || "de";
 
 export default {
     "OFFER_RECEIVED": ({ user_1, user_2, task }) => ({
@@ -20,7 +20,7 @@ export default {
     "NEW_CHAT_MESSAGE": ({ user_1, user_2, task }) => {
         let isAnswer = task.UserId === user_2.id;
         let text;
-        if (isAnswer) text =  `${NEW_CHAT_MESSAGE.text_1[app_lang]} “${task.title}” QA`
+        if (isAnswer) text = `${NEW_CHAT_MESSAGE.text_1[app_lang]} “${task.title}” QA`
         else text =  `${NEW_CHAT_MESSAGE.text_2[app_lang]} “${task.title}” QA`
         return {
             text,

@@ -64,13 +64,13 @@ class WebEditTask extends React.Component {
                         </div>
                     </div>
                     </div>
-                    {/* <BigIcons
+                    <BigIcons
                         data={this.props.data}
                         translations={this.props.translations}
                         app_lang={this.props.app_lang}
                         task={this.props.task}
                         onChange={this.props.onChange}
-                    /> */}
+                    />
                     <div className="offers-images__layout">
                     <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                     <div className="offers-images">

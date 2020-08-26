@@ -10,7 +10,7 @@
                 "New offers, updates and more."
             ],
             "de": [
-                "Meine Rolle auf eazytask ist:"
+                "Lege fest wie du benachrichtigt werden möchtest"
             ]
         },
         "text_3": {
@@ -176,7 +176,8 @@
             ],
             "de": [
                 "eazytask verbindet Privatpersonen für die Erledigung von Kleinaufträgen.",
-                "Gewinne jetzt Zeit und Flexibilität - völlig gebührenfrei."
+                "Gewinne jetzt Zeit und Flexibilität ",
+                "- völlig gebührenfrei."
             ]
         },
         "text_3": {
@@ -194,7 +195,7 @@
         },
         "text_2": {
             "en": "Chose how you do you want to........",
-            "de": "Lege fest wie du benachrichtigt werden möchtest:"
+            "de": "Meine Rolle auf eazytask ist:"
         },
         "text_3": {
             "en": "You're currently an:",

@@ -165,12 +165,12 @@ class MySkills extends React.Component {
                                     } catch (err) {
                                         this.props.history.push("/")
                                     }
-                                }} className="button__style no-color">Cancel</button>
+                                }} className="button__style no-color">{this.getTrans(this.props.common.cancel)}</button>
 
                                 <button
                                     className={`button__style ${false ? "not-filled" : ""}`}
                                     onClick={this.update}>
-                                    { this.state.loading ? "Saving.." : "Save" }
+                                {this.state.loading ? this.getTrans(this.props.common.saving) : this.getTrans(this.props.common.save)}
                                 </button>
 
                             </div>

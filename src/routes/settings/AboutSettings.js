@@ -25,8 +25,8 @@ const AboutSettings = props => (
                         <WebSidebar/>
                         <div className="profile__article--content">
                             <h3>{getTrans(props.app_lang,props.translations.text_1)}</h3>
-                            <h4 className="text-green">{getTrans(props.app_lang,props.translations.text_2)}</h4>
-                            <h4 style={{ fontWeight: "initial" }}>{getTrans(props.app_lang,props.translations.text_3)}</h4>
+                            <h4 className="text-green br-m">{getTrans(props.app_lang,props.translations.text_2)}</h4>
+                            <h4 className="br-m" style={{ fontWeight: "initial" }}>{getTrans(props.app_lang,props.translations.text_3)}</h4>
                         </div>
                     </section>
                     <section className="profile__article--mobile hide-on-web">
@@ -42,7 +42,7 @@ const AboutSettings = props => (
                                                 {getTrans(props.app_lang,props.translations.text_0)}
                                             </h4>
                                         </header>
-                                        <div className="pa--mobile pb50 max-vh">
+                                        <div className="pa--mobile pb50 max-vh br-m">
                                             <h4 className="text-green">{getTrans(props.app_lang,props.translations.text_2)}</h4>
                                             <h4>{getTrans(props.app_lang,props.translations.text_3)}</h4>
                                         </div>

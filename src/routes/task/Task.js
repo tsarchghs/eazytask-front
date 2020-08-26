@@ -88,6 +88,13 @@ class Task extends React.Component {
         )
     }
     getOffersCard = () => {
+        let category_name;
+        for (let category of this.props.categories_translations){
+            category_name = category.sub_categories.find(x => x.en == this.props.task.Category.name)
+            if (category_name) break;
+        }
+        if (category_name) category_name = category_name[this.props.app_lang]
+        else category_name = this.props.task.Category.name;
         return (
             <div className="offers__card">
                 <div className="offers__card--top">
@@ -118,7 +125,8 @@ class Task extends React.Component {
                     </div>
                     <div>
                         <p><img src="/images/shop.png" alt="" />CHF {this.props.task.expected_price}.-</p>
-                        <p><img src="/images/flags.png" alt="" /> {this.props.task.Category.name}</p>
+                        <p><img src="/images/flags.png" alt="" /> 
+                            {category_name}</p>
                     </div>
                 </div>
             </div>
@@ -327,7 +335,7 @@ class Task extends React.Component {
                             </React.Fragment>}
                         </div>
                         {this.props.task.Offers && this.props.task.Offers.length ? 
-                            <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length} offers given</p>
+                            <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length} {this.getTrans(this.props.common.offers_given)}</p>
                         : null}
                         <div className="offers-buttons">
                             {
@@ -589,6 +597,7 @@ const mapStateToProps = (state,ownProps) => {
     return { 
         error, errorResponse, loading, own_user,task: task || {},
         translations: state.app_lang.data["/task-profile"],
+        categories_translations: state.app_lang.data["/create-task"].categories,
         app_lang: state.app_lang.app_lang,
         common: state.app_lang.common    
     }

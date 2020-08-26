@@ -105,13 +105,13 @@ class MySkills extends React.Component {
                     <div className={"content"}>
                         <header className="logo-text">
                         <span onClick={this.props.goBack} class="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                            <h4 class="hide-on-desktop">Area of activity</h4>
+                            <h4 class="hide-on-desktop">{this.getTrans(this.props.translations.text_28)}</h4>
                             <img onClick={e => this.props.history.push("/")} style={{ cursor: "pointer" }} class="logo__img" src="/images/logo.svg" alt="" />
                         </header>
                         <section className={`two-column__layout setup__mobile`} style={{ height: "calc(99vh - 114.6px)" }}>
                             <div className="two-column__info flex flex-column">
                                 <div className="background-title mb5">
-                                    <h1>Area of activity</h1>
+                                    <h1>{this.getTrans(this.props.translations.text_28)}</h1>
                                     <p className="shadow__title">setup your account</p>
                                 </div>
                                 <div className="flex-grow input__group skills__input-group">
@@ -165,12 +165,12 @@ class MySkills extends React.Component {
                                     } catch (err) {
                                         this.props.history.push("/")
                                     }
-                                }} className="button__style no-color">Cancel</button>
+                                }} className="button__style no-color">{this.getTrans(this.props.common.cancel)}</button>
 
                                 <button
                                     className={`button__style ${false ? "not-filled" : ""}`}
                                     onClick={this.update}>
-                                    { this.state.loading ? "Saving.." : "Save" }
+                                    { this.state.loading ? this.getTrans(this.props.common.saving) : this.getTrans(this.props.common.save) }
                                 </button>
 
                             </div>

@@ -256,7 +256,7 @@ class EditTask extends React.Component {
                                 }
                                     {/* <img src="/images/edit-pen.png" alt="" /></span></p> */}
                                 </div>
-                                {/* <BigIcons
+                                <BigIcons
                                     data={this.state.data} 
                                     translations={this.props.translations} 
                                     app_lang={this.props.app_lang} 
@@ -268,7 +268,7 @@ class EditTask extends React.Component {
                                             return { ...prevState, data: { ...prevState.data } }
                                         })
                                     }}
-                                /> */}
+                                />
                                 <div className="offers-images__layout">
                                     <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                                     <div className="offers-images">
