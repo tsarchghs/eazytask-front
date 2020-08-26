@@ -73,7 +73,6 @@ class Task extends React.Component {
                                         <img src="/images/sleep.png" alt="" />
                                     </article>
                                 }
-
                                 {this.props.own_user && this.props.own_user.id == this.props.task.UserId && this.props.task.status == "DEACTIVATED" && 
                                     <article onClick={() => this.setState({ onModal: "REACTIVATE_MODAL" })} className="flex aic jcsb">
                                         <p>{this.getTrans(this.props.translations.text_24)}</p>

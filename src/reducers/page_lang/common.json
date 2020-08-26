@@ -39,6 +39,14 @@
         "en": "offers given",
         "de": "offersen givenen"
     },
+    "accept_offer": {
+        "en": "Accept offer",
+        "de": "Accepten offeren"
+    },
+    "rejected": {
+        "en": "rejected",
+        "de": "rejecteden"
+    },
     "settings": {
         "text_1": {
             "en": "Notifications",

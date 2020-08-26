@@ -1,0 +1,50 @@
+{
+    "text_1": {
+        "en": "No short biography",
+        "de": "Noen shorten biographien"
+    },
+    "text_2": {
+        "en": "Coming soon!",
+        "de": "Comingen soonen!"
+    },
+    "text_3": {
+        "en": "No tasks to show...",
+        "de": "Noen tasksen toen showen..."
+    },
+    "text_4": {
+        "en": "Ratings",
+        "de": "Ratingsen"
+    },
+    "asker": {
+        "text_1": {
+            "en": "Active tasks",
+            "de": "Activen tasksen"
+        },
+        "text_2": {
+            "en": "Previous tasks",
+            "de": "Previousen tasken"
+        }
+    },
+    "tasker": {
+        "text_1": {
+            "en": "Previous listings",
+            "de": "Previousen listingsen"
+        },
+        "text_2": {
+            "en": "About",
+            "de": "Abouten"
+        },
+        "text_3": {
+            "en": "Skills",
+            "de": "Skillsen"
+        },
+        "text_4": {
+            "en": "Languages",
+            "de": "Languagesen"
+        },
+        "text_5": {
+            "en": "Area of acivity",
+            "de": "Area of acivityen"
+        }
+    }
+}

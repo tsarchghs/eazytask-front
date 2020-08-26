@@ -18,6 +18,7 @@ import ActiveListing from "./page_lang/active-listing.json";
 import OfferProfile from "./page_lang/offer-profile.json";
 import Faq from "./page_lang/faq.json";
 import ForgetPassword from "./page_lang/forget-password.json";
+import Profile from "./page_lang/profile.json";
 
 let languages = ["en", "de"];
 
@@ -44,7 +45,8 @@ const INITIAL_STATE = {
         "/active-listing": ActiveListing,
         "/offer-profile": OfferProfile,
         "/faq": Faq,
-        "/forget-password": ForgetPassword
+        "/forget-password": ForgetPassword,
+        "/profile": Profile
     }
 }
 

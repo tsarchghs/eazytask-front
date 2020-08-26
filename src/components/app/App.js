@@ -19,12 +19,12 @@ class App extends React.Component {
   }
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      // this.setState(prevState => {
-      //   console.log("ROUTE CHANGE", prevProps.location)
-      //   if (prevState.locations.indexOf(prevProps.location) === -1)
-      //     prevState.locations.push(prevProps.location)
-      //   return { ...prevState, locations: [ ...prevState.locations ] }
-      // })
+      this.setState(prevState => {
+        console.log("ROUTE CHANGE", prevProps.location)
+        if (prevState.locations.indexOf(prevProps.location) === -1)
+          prevState.locations.push(prevProps.location)
+        return { ...prevState, locations: [ ...prevState.locations ] }
+      })
     }
   }
   goBack = () => {

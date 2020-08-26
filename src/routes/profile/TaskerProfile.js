@@ -2,6 +2,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import SideTaskCard2 from "../../components/SideTaskCard2/SideTaskCard2";
 import getImageUrl from "../../utils/getImageUrl";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 class TaskerProfile extends React.Component {
     constructor(props){
@@ -31,7 +33,7 @@ class TaskerProfile extends React.Component {
             <div className="offers-images tasker-card__about">
                 <div className="offers-image">
                     <article className="task__left">
-                        <p>Skills</p>
+                        <p>{this.props.translations.tasker.text_3[this.props.app_lang]}</p>
                         <ul>
                             {this.props.user.Tasker.Skills.map(skill => <li>{skill.name}</li>)}
                         </ul>
@@ -42,7 +44,7 @@ class TaskerProfile extends React.Component {
                 </div>
                 <div className="offers-image">
                     <article className="task__left">
-                        <p>Languages</p>
+                        <p>{this.props.translations.tasker.text_4[this.props.app_lang]}</p>
                         <ul>
                             {this.props.user.Tasker.Languages.map(lang => <li>{lang.name}</li>)}
                         </ul>
@@ -53,7 +55,7 @@ class TaskerProfile extends React.Component {
                 </div>
                 <div className="offers-image">
                     <article className="task__left">
-                        <p>Area of Activity</p>
+                        <p>{this.props.translations.tasker.text_5[this.props.app_lang]}</p>
                         <ul>
                             {this.props.user.Tasker.Cities.map(city => <li>{city.name}</li>)}
                         </ul>
@@ -73,7 +75,7 @@ class TaskerProfile extends React.Component {
                 tasks.map(task => <SideTaskCard2 task={task} />)
             }
         </div>
-        return <p className="special text-center">No tasks to show...</p>
+        return <p className="special text-center">{this.props.translations.text_3[this.props.app_lang]}</p>
     }
     getTabContent = () => {
         let { onTab } = this.state;
@@ -108,15 +110,21 @@ class TaskerProfile extends React.Component {
                                     <h4 className="flex aic jcc"> <div className="img-circle"><img src={getImageUrl(this.props.user.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                     </div> {this.props.user.first_name} {this.props.user.last_name[0]}.</h4>
                                 </div>
-                                <p className="special">{this.props.user.short_biography || "No short biography"}</p>
+                                <p className="special">{this.props.user.short_biography || this.props.translations.text_1[this.props.app_lang]}</p>
                             </div>
                         </div>
                         <div className="offers-images__layout">
                             <div className="faq-web__top tabs-modified">
                                 <div className="home__tabs">
-                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("PREVIOUS_LISTINGS")} className={`home__tab ${this.state.onTab === "PREVIOUS_LISTINGS" ? "active" : ""}`}>Previous Listings</div>
-                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("RATINGS_IN_PROGRESS")} className={`home__tab ${this.state.onTab === "RATINGS_IN_PROGRESS" ? "active" : ""}`}>Ratings</div>
-                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("ABOUT")} className={`home__tab ${this.state.onTab === "ABOUT" ? "active" : ""}`}>About</div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("PREVIOUS_LISTINGS")} className={`home__tab ${this.state.onTab === "PREVIOUS_LISTINGS" ? "active" : ""}`}>
+                                        {this.props.translations.tasker.text_1[this.props.app_lang]}
+                                    </div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("RATINGS_IN_PROGRESS")} className={`home__tab ${this.state.onTab === "RATINGS_IN_PROGRESS" ? "active" : ""}`}>
+                                        {this.props.translations.text_4[this.props.app_lang]}
+                                    </div>
+                                    <div style={{ cursor: "pointer" }} onClick={tabOnClick("ABOUT")} className={`home__tab ${this.state.onTab === "ABOUT" ? "active" : ""}`}>
+                                        {this.props.translations.tasker.text_2[this.props.app_lang]}
+                                    </div>
                                 </div>
                             </div>
                             {
@@ -130,4 +138,15 @@ class TaskerProfile extends React.Component {
         )
     }
 }
-export default withRouter(TaskerProfile);
+let mapStateToProps = state => ({
+    translations: state.app_lang.data["/profile"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+})
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps)
+)(TaskerProfile)
+
+

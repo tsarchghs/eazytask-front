@@ -1,10 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default props => {
     console.log("TASK_REVIEW",props)
     let { day, month, year } = props;
     let due_date = new Date(`${month}/${day}/${year}`).toLocaleDateString().replace(/\//g,".")
+    
+
+    let category_name = props.translations.categories.find(x => x.en == props.categoryGroupName)
+    if (category_name) category_name = category_name[props.app_lang]
+    else category_name = props.categoryGroupName;
+
+    let sub_category_name;
+    for (let category of props.translations.categories) {
+        sub_category_name = category.sub_categories.find(x => x.en == props.category)
+        if (sub_category_name) break;
+    }
+    if (sub_category_name) sub_category_name = sub_category_name[props.app_lang]
+    else sub_category_name = props.category;
+
     return (
         <React.Fragment>
             <div className="background-title ">
@@ -26,8 +39,8 @@ export default props => {
                     : props.getTrans(props.translations.text_341)
                 }</span> {due_date}</p>
                 <p><span>{props.getTrans(props.translations.text_42)}</span> {props.address}, {props.zipCode} {props.city}</p>
-                <p><span>{props.getTrans(props.translations.text_43)}</span> {props.categoryGroupName}</p>
-                <p><span>{props.getTrans(props.translations.text_44)}</span> {props.category}</p>
+                <p><span>{props.getTrans(props.translations.text_43)}</span> {category_name}</p>
+                <p><span>{props.getTrans(props.translations.text_44)}</span> {sub_category_name}</p>
             </div>
         </React.Fragment>
 

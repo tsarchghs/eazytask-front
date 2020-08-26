@@ -49,7 +49,7 @@ class TaskOffer extends React.Component {
         else {
             let rejected = this.props.offer.Task.Offers.find(x => x.status === "ACCEPTED")
             let style = rejected ? { backgroundColor: "#9a4847" } : {}
-            let text = rejected ? "Rejected" : "Accept offer"
+            let text = rejected ? this.props.common.rejected[this.props.app_lang] : this.props.common.accept_offer[this.props.app_lang]
             let onClick = rejected ? e => e.preventDefault() : this.acceptOffer;
             return <a onClick={onClick} href="#" style={style} className="button fill">{text}</a>
         }
