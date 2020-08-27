@@ -47,6 +47,22 @@
         "en": "rejected",
         "de": "rejecteden"
     },
+    "search-language": {
+        "en": "Search for a language or add a custom one",
+        "de": "Suche nach einer Sprache oder füge eine benutzerdefinierte hinzu"
+    },
+    "search-city": {
+        "en": "Search for a city or add a custom one",
+        "de": "Suche nach einer Ortschaft oder füge eine benutzerdefinierte hinzu"
+    },
+    "search-skill": {
+        "en": "Search for a skill or add a custom one",
+        "de": "Suche nach einer Fähigkeit oder füge eine benutzerdefinierte hinzu"
+    },
+    "join_us":{
+        "en": "Join us",
+        "de": "Mitmachen"
+    },
     "settings": {
         "text_1": {
             "en": "Notifications",

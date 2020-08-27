@@ -42,7 +42,10 @@ class FAQ extends React.Component {
                     <p>
                         {q_a.description} <br />
                         { this.getTrans(this.props.translations.text_2)}
-                        <a onClick={e => e.preventDefault()} href="#">{ this.getTrans(this.props.translations.text_3) }</a>
+                        <a 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            href={`mailto:${this.getTrans(this.props.translations.text_3)}`}>{ this.getTrans(this.props.translations.text_3) }</a>
                     </p>
                 </div>
             </div>

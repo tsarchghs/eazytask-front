@@ -120,7 +120,7 @@ class MySkills extends React.Component {
                                         <input
                                             type="text"
                                             ref={ref => this.searchRef = ref}
-                                            placeholder={"Search for a city or add a custom one"}
+                                            placeholder={this.getTrans(this.props.common["search-city"])}
                                             value={this.state.query}
                                             onChange={e => this.setState({ query: e.target.value })}
                                             onKeyDown={this.searchOnKeyDown}

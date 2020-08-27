@@ -132,7 +132,9 @@ class ActiveListing extends React.Component {
                                     <img className="logo__img" src="/images/logo.svg" alt="" />
                                 </Link>
                                 <Link to="/register">
-                                    <a href="#" className="h4">{this.props.own_profile ? "Home" : "Join us"}</a>
+                                    <a href="#" className="h4">{this.props.own_profile ? "Home" : 
+                                        this.getTrans(this.props.common.join_us)
+                                    }</a>
                                 </Link>
                             </header>
                             <section className="profile__cover">

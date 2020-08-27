@@ -15,7 +15,7 @@ class EmailForm extends React.Component {
                         <div className="two-column__info flex flex-column">
                             <div className="background-title mb30">
                                 <h1>{this.props.getTrans(this.props.translations.web.text_1)}</h1>
-                                <p className="web__subtitle">{this.props.getTrans(this.props.translations.web.text_2)}</p>
+                                <p className="web__subtitle">{this.props.getTrans(this.props.translations.web.text_3)}</p>
                                 <p className="shadow__title no-contain">Reset when you forgot password</p>
                             </div>
                             <h4 className="show__mobile title-with-subtitle text-center">

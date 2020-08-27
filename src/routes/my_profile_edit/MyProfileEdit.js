@@ -23,7 +23,8 @@ class MyProfileEdit extends React.Component {
             "last_name": this.getTrans(props.translations.text_2),
             "zipCode": this.getTrans(props.translations.text_4),
             "address": this.getTrans(this.props.translations.text_6),
-            "short_biography": this.getTrans(this.props.translations.text_6_1)
+            "short_biography": this.getTrans(this.props.translations.text_6_1),
+            "city": this.getTrans(this.props.translations.text_5)
         }
     }
     componentDidMount() {

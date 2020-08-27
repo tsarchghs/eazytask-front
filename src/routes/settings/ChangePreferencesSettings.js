@@ -151,7 +151,7 @@ class ChangePreferencesSettings extends React.Component {
                                                         <React.Fragment>
                                                             <a href="/settings/change_skills">
                                                                 <div style={{ marginTop: 5 }} className="styled-select">
-                                                                    <p>Skills</p>
+                                                                    <p>{this.getTrans(this.props.translations.text_7)}</p>
                                                                     <img src="/images/arr-right.png" alt="" />
                                                                     <div className={`styled-select__open`}>
                                                                     </div>
@@ -159,7 +159,7 @@ class ChangePreferencesSettings extends React.Component {
                                                             </a>
                                                             <a href="/settings/change_languages">
                                                                 <div style={{ marginTop: 5 }} className="styled-select">
-                                                                    <p>Languages</p>
+                                                                    <p>{this.getTrans(this.props.translations.text_8)}</p>
                                                                     <img src="/images/arr-right.png" alt="" />
                                                                     <div className={`styled-select__open`}>
                                                                     </div>
@@ -167,7 +167,7 @@ class ChangePreferencesSettings extends React.Component {
                                                             </a>
                                                             <a href="/settings/change_cities">
                                                                 <div style={{ marginTop: 5 }} className="styled-select">
-                                                                    <p>Cities</p>
+                                                                    <p>{this.getTrans(this.props.translations.text_9)}</p>
                                                                     <img src="/images/arr-right.png" alt="" />
                                                                     <div className={`styled-select__open`}>
                                                                     </div>
