@@ -42,5 +42,21 @@
     "text_10": {
         "en": "Edit cover",
         "de": "Hintergrund bearbeiten"
+    },
+    "text_11": {
+        "en": "Discard changes?",
+        "de": "Änderungen verwerfen?"
+    },
+    "text_12": {
+        "en": "If you click okay any unsaved changes to account settings will be discarded and you will go through the change number process.",
+        "de": "Wenn du auf OK klickst, werden alle ungespeicherten Änderungen an den Kontoeinstellungen verworfen und du durchläufst den Änderungsnummernprozess."
+    },
+    "text_13": {
+        "en": "Cancel",
+        "de": "Abbrechen"
+    },
+    "text_14": {
+        "en": "Okay",
+        "de": "OK"
     }
 }

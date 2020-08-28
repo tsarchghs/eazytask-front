@@ -1,0 +1,58 @@
+{
+    "text_0": {
+        "en": "Next",
+        "de": "Weiter"
+    },
+    "text_1": {
+        "en": "Update number",
+        "de": "Nummer aktualisieren"
+    },
+    "text_2": {
+        "en": "Enter your new phone number",
+        "de": "Neue Nummer eingeben"
+    },
+    "text_3_m": {
+        "en": "Change phone number",
+        "de": "Nummer ändern"
+    },
+    "text_4": {
+        "en": "Verification code",
+        "de": "Verifizierungscode"
+    },
+    "text_5": {
+        "en": [
+            "A code has been to your phone number, please",
+            "enter it here"
+        ],
+        "de": [
+            "Ein Code wurde an deine Nummer gesendet.",
+            "Gib es hier ein"
+        ]
+    },
+    "text_6": {
+        "en": "Reset account",
+        "de": "Konto zurücksetzen"
+    },
+    "text_7": {
+        "en": "Phone number updated",
+        "de": "Nummer aktualisiert"
+    },
+    "text_8": {
+        "en": "You will be notified now with your new phone number",
+        "de": "Benachrichtigungen werden an deine neue Nummer gesendet"
+    },
+    "text_9": {
+        "en": "Profile",
+        "de": "Profil"
+    },
+    "text_10": {
+        "en": [
+            "You will be notified now with your new",
+            "phone number"
+        ],
+        "de": [
+            "Benachrichtigungen werden an deine neue",
+            "Nummer gesendet"
+        ]
+    }
+}

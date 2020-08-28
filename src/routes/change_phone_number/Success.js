@@ -13,18 +13,20 @@ const Success = props => {
                             props.history.push("/dashboard")
                         }
                     }} className="show__mobile"><img  src="/images/arrow.jpeg" alt="" /></span> */}
-                    <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                    <p className="show__mobile">Reset account</p>
+                    <Link to="/dashboard">
+                        <img className="logo__img" src="/images/logo.svg" alt="" />
+                    </Link>
+                    <p className="show__mobile">{props.getTrans(props.translations.text_6)}</p>
                 </header>
                 <section className="two-column__layout setup__mobile create-task reset-password text-center">
                     <div className="two-column__info flex flex-column">
                         <div className="background-title mb30">
-                            <h1>Phone number updated</h1>
-                            <p className="web__subtitle">You will be notified now with your new phone number</p>
+                            <h1>{props.getTrans(props.translations.text_6)}</h1>
+                            <p className="web__subtitle">{props.getTrans(props.translations.text_8)}</p>
                         </div>
                         <h4 className="show__mobile title-with-subtitle text-center">
-                            Phone number updated
-                <p className="text-center">You will be notified now with your new <br />phone number</p>
+                            {props.getTrans(props.translations.text_6)}
+                            <p className="text-center">{props.getTrans(props.translations.text_10)}</p>
                         </h4>
                         <div className="flex-grow img-wrapper flex aic jcc one-section-show">
                             <img className="img__mobile " src="/images/smile.png" alt="" />
@@ -32,7 +34,7 @@ const Success = props => {
                         <div className="buttons__group aic">
                             <button onClick={() => {
                                 window.location.href = "/my_profile_edit"
-                            }} className="button__style">Profile</button>
+                            }} className="button__style">{props.getTrans(props.translations.text_9)}</button>
                         </div>
                     </div>
                     <div className="two-column__img hide-on-desktop">

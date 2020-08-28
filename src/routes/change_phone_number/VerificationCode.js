@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "../../utils/axios";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import * as Yup from "yup";
 
 class CodeInputs extends React.Component {
@@ -83,19 +83,21 @@ class VerificationCode extends React.Component {
                                 this.props.history.push("/")
                             }
                         }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                        <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                        <p className="show__mobile">Reset account</p>
+                        <Link to="/dashboard">
+                            <img className="logo__img" src="/images/logo.svg" alt="" />
+                        </Link>
+                        <p className="show__mobile">{this.props.getTrans(this.props.translations.text_6)}</p>
                     </header>
                     <section className="two-column__layout setup__mobile create-task reset-password">
                         <div className="two-column__info flex flex-column">
                             <div className="background-title mb30">
-                                <h1>Verification code</h1>
-                                <p className="web__subtitle">A code has been to your phone number, please <br /> enter it here</p>
+                                <h1>{this.props.getTrans(this.props.translations.text_4)}</h1>
+                                <p className="web__subtitle">{this.props.getTrans(this.props.translations.text_5)}</p>
                                 <p className="shadow__title no-contain">Reset when you forgot password</p>
                             </div>
                             <h4 className="show__mobile title-with-subtitle text-center">
-                                Verification code
-                <p className="text-center">A code has been to your phone number, please <br /> enter it here</p>
+                                {this.props.getTrans(this.props.translations.text_4)}
+                <p className="text-center">{this.props.getTrans(this.props.translations.text_5)}</p>
                             </h4>
                             {this.state.showError}
                             <form className="flex-grow" onSubmit={this.onSubmit}>
@@ -112,7 +114,7 @@ class VerificationCode extends React.Component {
                                     style={!this.state.valid ? { backgroundColor: "darkgrey" } : {}}
                                     onClick={this.state.loading ? undefined : this.onSubmit}
                                     className="button__style"
-                                >Next</button>
+                                >{this.props.getTrans(this.props.translations.text_0)}</button>
                             </div>
                         </div>
                         <div className="two-column__img">

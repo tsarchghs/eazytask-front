@@ -1,6 +1,6 @@
 import React from "react";
 import PhoneInput from "react-phone-number-input";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 const PhoneNumberForm = props => {
     return (
@@ -22,19 +22,21 @@ const PhoneNumberForm = props => {
                             props.history.push("/dashboard")
                         }
                     }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
-                    <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
-                    <p className="show__mobile">Change phone number</p>
+                    <Link to="/dashboard">
+                        <img className="logo__img" src="/images/logo.svg" alt="" />
+                    </Link>
+                    <p className="show__mobile">{props.getTrans(props.translations.text_3_m)}</p>
                 </header>
                 <section className="two-column__layout setup__mobile create-task reset-password">
                     <div className="two-column__info flex flex-column">
                         <div className="background-title mb30">
-                            <h1>Update number</h1>
+                            <h1>{props.getTrans(props.translations.text_1)}</h1>
                         </div>
                         <h4 className="show__mobile title-with-subtitle text-center">
-                            Update number
-                <p>Enter your new phone number</p>
+                            {props.getTrans(props.translations.text_1)}
+                <p>{props.getTrans(props.translations.text_2)}</p>
                         </h4>
-                        <h4 className="mt30 hide-on-mobile">Enter your new phone number</h4>
+                        <h4 className="mt30 hide-on-mobile">{props.getTrans(props.translations.text_2)}</h4>
                         <form onSubmit={props.onSubmit} className="register__form flex-grow" style={{ minHeight: '65px' }}>
                             <PhoneInput defaultCountry="CH" onChange={props.onChange} value={props.value}/>
                         </form>
@@ -46,7 +48,7 @@ const PhoneNumberForm = props => {
                                 style={props.buttonStyle}
                                 onClick={props.onSubmit}
                                 className="button__style">
-                            Next</button>
+                            {props.getTrans(props.translations.text_0)}</button>
                         </div>
                     </div>
                     <div className="two-column__img">
@@ -64,7 +66,7 @@ const PhoneNumberForm = props => {
                         <img src="/images/nav-plus.png" alt="" />
                     </div>
                     <div className="mob-nav active"><img src="/images/nav-profile.png" alt="" />
-                        <p>Profile</p>
+                        <p>{props.getTrans(props.translations.text_9)}</p>
                     </div>
                 </div>
             </div>

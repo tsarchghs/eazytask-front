@@ -10,6 +10,9 @@ import { isValidPhoneNumber } from 'react-phone-number-input'
 
 import axios from "../../utils/axios";
 
+import { compose } from "recompose";
+import { connect } from "react-redux";
+
 class ChangePhoneNumber extends React.Component {
     constructor(props){
         super(props);
@@ -25,13 +28,28 @@ class ChangePhoneNumber extends React.Component {
             .catch(e => console.log(e))
         this.props.history.push("?phone_number=" + this.state.phone_number)
     }
+    getTrans = obj => {
+        let data = obj[this.props.app_lang];
+        if (typeof (data) == "string") return data;
+        if (data.length) {
+            return data.map(str => <React.Fragment>
+                {str}<br />
+            </React.Fragment>)
+        }
+    }
     render(){
         let buttonType = this.state.valid ? "submit" : "button"
         let buttonStyle = this.state.valid ? { backgroundColor: undefined } : { backgroundColor: "darkgrey" }
 
         let { search } = this.props.location;
         let params = queryString.parse(search);
-        if (params.success) return <Success />
+        let common = { 
+            translations: this.props.translations, 
+            app_lang: this.props.app_lang, 
+            common: this.props.common,
+            getTrans: this.getTrans
+        }
+        if (params.success) return <Success {...common} />
         if (!params.phone_number) return <PhoneNumberForm
             value={this.state.phone_number}
             onChange={phone_number => this.setState({ 
@@ -41,14 +59,22 @@ class ChangePhoneNumber extends React.Component {
             onSubmit={this.phoneNumberOnSubmit}
             buttonType={buttonType}
             buttonStyle={buttonStyle}
+            {...common}
         />
         if (params.phone_number) return <VerificationCode
             phone_number={this.state.phone_number}
             buttonType={buttonType}
             buttonStyle={buttonStyle}
+            {...common}
         />
 
     }
 }
 
-export default withRouter(ChangePhoneNumber);
+const mapStateToProps = state => ({
+    translations: state.app_lang.data["/change-phone-number"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+})
+
+export default compose(withRouter, connect(mapStateToProps))(ChangePhoneNumber)

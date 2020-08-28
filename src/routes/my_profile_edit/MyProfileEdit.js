@@ -172,9 +172,10 @@ class MyProfileEdit extends React.Component {
             <section className="offers-layout offers-profile">
                 <Modal
                     isActive={this.state.onModal == "SAVE_OR_CANCEL_CHANGES_MODAL"}     // required
-                    title="Discard changes?"
-                    description="If you click okay any unsaved changes to account settings will be discarded and you will go through the change number process."
-                    acceptText="Okay"
+                    title={this.getTrans(this.props.translations.text_11)}
+                    description={this.getTrans(this.props.translations.text_12)}
+                    cancelText={this.getTrans(this.props.translations.text_13)}
+                    acceptText={this.getTrans(this.props.translations.text_14)}
                     closeModal={() => this.setState({ onModal: "" })} // required
                     acceptOnClick={() => this.props.history.push("/change_phone_number")}
                 />
