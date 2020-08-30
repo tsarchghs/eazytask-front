@@ -196,5 +196,20 @@
   "text_47": {
     "en": "Location",
     "de": "Ort"
+  },
+  "text_48": {
+    "en": [
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit.", 
+      "Labore accusantium delectus autem voluptate at odit"
+    ],
+    "de": [
+      "Stelle deine Fähigkeiten und deine frei verfügbare",
+      "Zeit anderen Menschen in deiner Region",
+      "zur Verfügung - einfach, unkompliziert", 
+      "und ganz ohne Anmeldegebühr oder Mitgliederbeitrag.", 
+      "Du entscheidest völlig frei darüber,",
+      "ob du ein Angebot abgibst und für welchen",
+      "Preis du einen Task erledigen möchtest."
+    ]
   }
 }
