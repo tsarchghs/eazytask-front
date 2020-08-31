@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 export default props => {
     let text_1; let text_2;
     if (props.mobile) { 
-        text_1 = props.getTrans(props.translations.text_2)
-        text_2 = props.getTrans(props.translations.text_23)
+        text_1 = props.getTrans(props.translations.text_26)
+        text_2 = props.getTrans(props.translations.text_27)
     }
     if (props.web) { 
-        text_1 = props.getTrans(props.translations.text_2)
-        text_2 = props.getTrans(props.translations.text_3)
+        text_1 = props.getTrans(props.translations.text_32)
+        text_2 = props.getTrans(props.translations.text_33)
     }
     let { loading, error, payload } = props;
     return (

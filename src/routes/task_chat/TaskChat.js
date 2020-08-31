@@ -109,8 +109,8 @@ class TaskChat extends React.Component {
                 <Modal
                     isActive={this.state.onModal === "PHONE_NUMBER_DETECTED"}     // required
                     closeModal={this.closeModal} // required
-                    title="Phone number and/or Email detected"
-                    description="Sharing contact informations outside Eazytask is not allowed."
+                    title={this.props.common.qa_detected_title[this.props.app_lang]}
+                    description={this.props.common.qa_detected_description[this.props.app_lang]}
                     hide_buttons={true}
                 />
                 <section className="landing-info panel edit-task__section">

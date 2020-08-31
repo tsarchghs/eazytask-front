@@ -45,7 +45,9 @@ class TaskOffer extends React.Component {
         let { loading } = this.props.acceptOffer;
         if (status == "ACCEPTED")
             if (loading) return <button>Loading</button>
-            else return <a onClick={e => e.preventDefault()} className="button fill">Accepted</a>
+            else return <a onClick={e => e.preventDefault()} className="button fill">
+                {this.props.common.accepted[this.props.app_lang]}
+            </a>
         else {
             let rejected = this.props.offer.Task.Offers.find(x => x.status === "ACCEPTED")
             let style = rejected ? { backgroundColor: "#9a4847" } : {}
@@ -65,7 +67,8 @@ class TaskOffer extends React.Component {
             (this.props.own_user && this.props.own_user.id !== this.props.offer.Task.UserId) ||
             this.props.auth.isAuthenticated === false
         ) {
-            if (!(this.props.offer.Tasker.UserId === this.props.own_user.id)){
+            if (this.props.own_user && this.props.offer && this.props.offer.Tasker && 
+                !(this.props.offer.Tasker.UserId === this.props.own_user.id)){
                 return <Redirect to={"/task/" + this.props.match.params.taskId} />
             }
         }

@@ -334,7 +334,14 @@ class Task extends React.Component {
                             </React.Fragment>}
                         </div>
                         {this.props.task.Offers && this.props.task.Offers.length ? 
-                            <p className="special text-center" style={{ marginTop: '20px' }}>{this.props.task.Offers.length} {this.getTrans(this.props.common.offers_given)}</p>
+                            <p className="special text-center" style={{ marginTop: '20px' }}>
+                            {this.props.task.Offers.length} { " "}
+                                {
+                                    this.props.task.Offers.length == 1 ? 
+                                    this.getTrans(this.props.common.offers_given).slice(0, this.getTrans(this.props.common.offers_given).length - 1)
+                                        : this.getTrans(this.props.common.offers_given)
+                                } { " " } { this.getTrans(this.props.common.given)}
+                                </p>
                         : null}
                         <div className="offers-buttons">
                             {
@@ -427,7 +434,7 @@ class Task extends React.Component {
                             {
                                 this.showOfferUI() && this.state.clickedMakeOffer && (
                                     <div className="register__form" style={{ paddingBottom: 50, maxWidth: "800px", margin: "0 auto"}}>
-                                        Amount
+                                        {this.getTrans((this.props.translations.text_31))}
                                         <input 
                                             className="input" 
                                             style={{

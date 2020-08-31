@@ -33,7 +33,15 @@ class MySkills extends React.Component {
         let customSkills = getCustomItems(this.state.skills, skills)
         let uniqueCustomSkills = customSkills
         let combined = uniqueCustomSkills.concat(skills)
-        return filter(this.state.query, combined)
+        return filter(this.state.query, combined).map(x => {
+            if (this.props.common.languages[x.name]){
+                return {
+                    ...x,
+                    show: this.props.common.languages[x.name][this.props.app_lang]
+                }
+            }
+            return x
+        })
     }
     resetQuery = () => this.setState({ query: "" })
     customAddSkill = skill_name => () => {
@@ -134,7 +142,7 @@ class MySkills extends React.Component {
                                             .filter(skill => this.getAllowedOperation(skill.name).type == "-")
                                             .map(skill => (
                                                 <div className="item-added">
-                                                    <p>{skill.name}</p>
+                                                    <p>{skill.show || skill.name}</p>
                                                     {this.getAllowedOperation(skill.name).div}
                                                 </div>
 
@@ -147,7 +155,7 @@ class MySkills extends React.Component {
                                             .map(skill => {
                                                 return (
                                                     <React.Fragment>
-                                                        <div className="list-item"><p>{skill.name}</p>
+                                                        <div className="list-item"><p>{skill.show || skill.name}</p>
                                                             {this.getAllowedOperation(skill.name).div}
                                                         </div>
                                                     </React.Fragment>

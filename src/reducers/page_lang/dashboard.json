@@ -123,6 +123,14 @@
     "text_31": {
       "en": "No posts to show...",
       "de": "Keine Beiträge anzuzeigen..."
+    },
+    "text_32": {
+      "en": "english: neue Angebote in",
+      "de": "Neue Angebote in"
+    },
+    "text_33": {
+      "en": "english: anzeigen",
+      "de": "anzeigen"
     }
   },
   "mobile": {
@@ -225,6 +233,14 @@
     "text_25": {
       "en": "No new offers",
       "de": "Keine neuen Angebote"
+    },
+    "text_26": {
+      "en": "english: neue Angebote in",
+      "de": "Neue Angebote in"
+    },
+    "text_27": {
+      "en": "english: anzeigen",
+      "de": "anzeigen"
     }
   }
 }

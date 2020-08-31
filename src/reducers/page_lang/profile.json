@@ -1,50 +1,50 @@
 {
     "text_1": {
         "en": "No short biography",
-        "de": "Noen shorten biographien"
+        "de": "Keine Beschreibung"
     },
     "text_2": {
         "en": "Coming soon!",
-        "de": "Comingen soonen!"
+        "de": "Coming soon! Dieses Feature ist noch in der Entwicklung"
     },
     "text_3": {
         "en": "No tasks to show...",
-        "de": "Noen tasksen toen showen..."
+        "de": "Keine Tasks vorhanden..."
     },
     "text_4": {
         "en": "Ratings",
-        "de": "Ratingsen"
+        "de": "Bewertung"
     },
     "asker": {
         "text_1": {
             "en": "Active tasks",
-            "de": "Activen tasksen"
+            "de": "Aktive Tasks"
         },
         "text_2": {
             "en": "Previous tasks",
-            "de": "Previousen tasken"
+            "de": "Erledigte Tasks"
         }
     },
     "tasker": {
         "text_1": {
             "en": "Previous listings",
-            "de": "Previousen listingsen"
+            "de": "Erledigte Tasks"
         },
         "text_2": {
             "en": "About",
-            "de": "Abouten"
+            "de": "Eigenschaften"
         },
         "text_3": {
             "en": "Skills",
-            "de": "Skillsen"
+            "de": "Skills"
         },
         "text_4": {
             "en": "Languages",
-            "de": "Languagesen"
+            "de": "Sprachen"
         },
         "text_5": {
             "en": "Area of acivity",
-            "de": "Area of acivityen"
+            "de": "Tätigkeitsbereich"
         }
     }
 }

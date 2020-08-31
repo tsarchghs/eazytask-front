@@ -20,7 +20,15 @@ class MyLanguages extends React.Component {
         let languages = this.props.allIds.map(id => this.props.byIds[id])
         let customLanguages = getCustomItems(this.props.languages, languages)
         let combined = customLanguages.concat(languages);
-        return filter(this.state.query, combined)
+        return filter(this.state.query, combined).map(x => {
+            if (this.props.common.languages[x.name]) {
+                return {
+                    ...x,
+                    show: this.props.common.languages[x.name][this.props.app_lang]
+                }
+            }
+            return x
+        })
     }
     resetQuery = () => this.setState({ query: "" })
     customAddLanguage = language_name => () => {
@@ -78,7 +86,7 @@ class MyLanguages extends React.Component {
                             .filter(language => this.getAllowedOperation(language.name).type == "-")
                             .map(language => (
                                 <div className="item-added">
-                                    <p>{language.name}</p>
+                                    <p>{language.show || language.name}</p>
                                     {this.getAllowedOperation(language.name).div}
                                 </div>
 
@@ -91,7 +99,7 @@ class MyLanguages extends React.Component {
                             .map(language => {
                                 return (
                                     <React.Fragment>
-                                        <div className="list-item"><p>{language.name}</p>
+                                        <div className="list-item"><p>{language.show || language.name}</p>
                                             {this.getAllowedOperation(language.name).div}
                                         </div>
                                     </React.Fragment>

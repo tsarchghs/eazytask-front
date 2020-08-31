@@ -265,7 +265,8 @@ class Home extends React.Component {
                                                                         <span className="landing-step__line" />
                                                                     </div>
                                                                     <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                                                        <h4>{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_1_title)}</h4>
+                                                                        {/* <h4>{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_1_title)}</h4> */}
+                                                                        <h4>{this.getTrans(this.props.translations.text_14_step_1_title)}</h4>
                                                                     </Link>
                                                                     <p>{this.getTrans(this.props.translations.text_14_step_1)} </p>
                                                                 </div>
@@ -275,7 +276,7 @@ class Home extends React.Component {
                                                                         <span className="landing-step__line" />
                                                                     </div>
                                                                     <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                                                        <h4>{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_2_title)}</h4>
+                                                                        <h4>{false ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_2_title)}</h4>
                                                                     </Link>                                                                    <p>{this.getTrans(this.props.translations.text_14_step_2)}</p>
                                                                 </div>
                                                                 <div className={"landing-step" + (onStep >= 3 ? " active" : "")} id="st3">
@@ -284,7 +285,7 @@ class Home extends React.Component {
                                                                         <span className="landing-step__line" />
                                                                     </div>
                                                                     <Link to={fromDashboardMore ? "/dashboard?tab=more" : "/register"}>
-                                                                        <h4>{fromDashboardMore ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_3_title)}</h4>
+                                                                        <h4>{false ? this.getTrans(this.props.translations.text_6) : this.getTrans(this.props.translations.text_14_step_3_title)}</h4>
                                                                     </Link>                                                                    <p>{this.getTrans(this.props.translations.text_14_step_3)}</p>
                                                                 </div>
                                                             </div>

@@ -46,7 +46,15 @@ class TaskerProfile extends React.Component {
                     <article className="task__left">
                         <p>{this.props.translations.tasker.text_4[this.props.app_lang]}</p>
                         <ul>
-                            {this.props.user.Tasker.Languages.map(lang => <li>{lang.name}</li>)}
+                            {this.props.user.Tasker.Languages.map(x => {
+                                if (this.props.common.languages[x.name]) {
+                                    return {
+                                        ...x,
+                                        show: this.props.common.languages[x.name][this.props.app_lang]
+                                    }
+                                }
+                                return x
+                            }).map(lang => <li>{lang.show || lang.name}</li>)}
                         </ul>
                     </article>
                     <article className="task__right">

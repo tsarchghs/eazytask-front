@@ -37,15 +37,23 @@
     },
     "offers_given": {
         "en": "offers given",
-        "de": "offersen givenen"
+        "de": "Angebote"
+    },
+    "given": {
+        "en": "given",
+        "de": "abgegeben"
     },
     "accept_offer": {
         "en": "Accept offer",
-        "de": "Accepten offeren"
+        "de": "Angebot annehmen"
+    },
+    "accepted": {
+        "en": "Accepted",
+        "de": "Angenommen"
     },
     "rejected": {
         "en": "rejected",
-        "de": "rejecteden"
+        "de": "Abgelehnt"
     },
     "search-language": {
         "en": "Search for a language or add a custom one",
@@ -62,6 +70,18 @@
     "join_us":{
         "en": "Join us",
         "de": "Mitmachen"
+    },
+    "qa_detected_title": {
+        "en": "Phone number and/or Email detected",
+        "de": "Es wurde eine Telefonnummer oder E-Mail-Adresse bemerkt"
+    },
+    "qa_detected_description": {
+        "en": "Sharing contact informations outside Eazytask is not allowed.",
+        "de": "Das Teilen von Kontaktinformationen darf nur durch eazytask erfolgen"
+    },
+    "terms_and_conditions": {
+        "en": "Terms and Conditions",
+        "de": "AGB"
     },
     "settings": {
         "text_1": {
@@ -107,6 +127,24 @@
                 "en": "asked a question in ",
                 "de": "hat eine Frage gestellt in "
             }
+        }
+    },
+    "languages": {
+        "English": {
+            "en": "English",
+            "de": "Englisch"
+        },
+        "German": {
+            "en": "German",
+            "de": "Deutsch"
+        },
+        "Italian": {
+            "en": "Italian",
+            "de": "Italienisch"
+        },
+        "French": {
+            "en": "French",
+            "de": "Französisch"
         }
     }
 }

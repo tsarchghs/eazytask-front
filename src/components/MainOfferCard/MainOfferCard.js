@@ -14,7 +14,7 @@ const MainOfferCard = props => {
             style={{ backgroundImage: `url("${thumbnail}")` }}
         >
             <div className="home__card--mask" />
-            <h5 style={{ textAlign: "center" }}>{props.beforeTitleText} “{props.task.title}”</h5>
+            <h5 style={{ textAlign: "center" }}>“{props.task.title}” {props.beforeTitleText}</h5>
             <p>{new Date(props.task.due_date).toLocaleDateString().replace(/\//g, ".")}</p>
         </div>
 

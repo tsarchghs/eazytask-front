@@ -2,6 +2,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import WebHeader from "../../components/WebHeader";
 import Footer from "../../components/Footer";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 const TermsAndConditions = props => {
     let fromCreateTask = props.location.search.indexOf("fromCreateTask") !== -1
@@ -23,7 +25,7 @@ const TermsAndConditions = props => {
                             !fromCreateTask && 
                           <img src="/images/arrow.jpeg" alt="" />
                           }
-                        </span>Terms and Conditions</h4>
+                        </span>{props.common.terms_and_conditions[props.app_lang]}</h4>
                         </header>
                     {/* <header>
                       <span style={{width: 29, display: "flex", marginRight: 15}} onClick={() => props.history.push("/register")} class=""><img src="/images/arrow.jpeg" alt="" /></span>
@@ -1143,4 +1145,11 @@ const TermsAndConditions = props => {
     )
 }
 
-export default withRouter(TermsAndConditions);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+  }
+}
+
+export default compose(connect(mapStateToProps), withRouter)(TermsAndConditions) 
