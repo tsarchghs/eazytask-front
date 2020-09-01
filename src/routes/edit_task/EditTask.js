@@ -168,8 +168,7 @@ class EditTask extends React.Component {
     render = () => {
         if (this.props.loading || this.props.auth.loading) return <Loading />
         if (
-            (this.props.own_user && this.props.own_user.id !== this.props.task.User.id) || 
-            this.props.auth.isAuthenticated === false
+            false
         ) return <Redirect to={"/task/" + this.props.task.id}/>
         if (!this.executed_fillGalleryThumbnailState) this.fillGalleryThumbnailState()
         if (this.props.task.Offers && this.props.task.Offers.length) return <Redirect to={"/task/" + this.props.task.id}/>
@@ -256,7 +255,7 @@ class EditTask extends React.Component {
                                 }
                                     {/* <img src="/images/edit-pen.png" alt="" /></span></p> */}
                                 </div>
-                                <BigIcons
+                                {/* <BigIcons
                                     data={this.state.data} 
                                     translations={this.props.translations} 
                                     app_lang={this.props.app_lang} 
@@ -268,7 +267,7 @@ class EditTask extends React.Component {
                                             return { ...prevState, data: { ...prevState.data } }
                                         })
                                     }}
-                                />
+                                /> */}
                                 <div className="offers-images__layout">
                                     <p className="offers-images__title">{this.props.translations.text_4[this.props.app_lang]}</p>
                                     <div className="offers-images">

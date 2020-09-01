@@ -64,8 +64,7 @@ class TaskOffer extends React.Component {
     render() {
         if (this.props.loading || this.props.auth.loading) return <Loading />
         if (
-            (this.props.own_user && this.props.own_user.id !== this.props.offer.Task.UserId) ||
-            this.props.auth.isAuthenticated === false
+            false
         ) {
             if (this.props.own_user && this.props.offer && this.props.offer.Tasker && 
                 !(this.props.offer.Tasker.UserId === this.props.own_user.id)){
