@@ -407,14 +407,14 @@ class CreateTask extends React.Component {
         if (stepName == "TASK_PUBLISHED") headerClassName = "no-visibility"
         return (
             <div className="container">
-                <div className={"content" + (headerClassName ? " setup-ready" : "")}>
+                <div className={"pb50 content" + (headerClassName ? " setup-ready" : "")}>
                     <WebHeader active="new_task"/>
-                    <header className="hide-on-web">
+                    <header className={`hide-on-web ${this.state.step == 10 ? "hide" : ""}`}>
                         <span onClick={this.getGoBack()} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                         <a href="#"><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                     </header>
 
-                    <section className={"two-column__layout setup__mobile create-task " + extra}>
+                    <section style={this.state.step == 10 ? { paddingTop: 58, height: "auto"} : undefined} className={"two-column__layout setup__mobile create-task " + extra}>
                         <div className="two-column__info flex flex-column">
                             { this.showCurrentStep() }
                             {/* {this.state.errors.map(x => (

@@ -45,15 +45,4 @@ export default props => {
         </React.Fragment>
 
     )
-    return (
-        <React.Fragment>
-            Task review <br/>
-            title: { props.name} <br />
-            description: { props.description} <br />
-            date: { due_date } ({ props.date_type == "FIXED_DATE" ? "Fixed" : "Until"}) <br />
-            location: { props.address }, { props.zipCode } { props.city } <br />
-            category: { props.categoryGroupName} <br />
-            sub category: { props.category } <br />
-        </React.Fragment>
-    )
 }

@@ -60,7 +60,7 @@ class CategoryGroup extends React.Component {
                     </div>
                 </div>
                 <div className="img-wrapper flex aic jcc">
-                    <img className="img__mobile " src="/images/stand2.png" alt="" />
+                    <img className="img__mobile hide__smallest" src="/images/stand2.png" alt="" />
                 </div>
 
             </React.Fragment>

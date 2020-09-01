@@ -2,11 +2,22 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import withNotificationsInfo from "../HOC/withNotificationsInfo";
 import getImageUrl from "../../utils/getImageUrl";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 const SideTaskCard = props => {
     let thumbnail;
     if (props.task.thumbnail) thumbnail = getImageUrl(props.task.thumbnail, "small");
     else thumbnail = window.__THUMBNAIL_DEFAULT_PICTURE__
+
+    let sub_category_name;
+    for (let category of props.translations.categories) {
+        sub_category_name = category.sub_categories.find(x => x.en == props.task.Category.name)
+        if (sub_category_name) break;
+    }
+    if (sub_category_name) sub_category_name = sub_category_name[props.app_lang]
+    else sub_category_name = props.task.Category.name;
+
 
     let onClick = props.useWithRouter ? () => props.history.push(`/task/` + props.task.id) : undefined;
     let child = (
@@ -30,7 +41,7 @@ const SideTaskCard = props => {
                     <h6>{props.task.due_date ? new Date(props.task.due_date).toLocaleDateString() : "-"}</h6>
                     <h6>{props.task.zipCode} {props.task.city || "-"}</h6>
                     <h6>CHF {props.task.expected_price}.-</h6>
-                    <h6 style={{ marginBottom: 0 }}>{props.task.Category.name}</h6>
+                    <h6 style={{ marginBottom: 0 }}>{sub_category_name}</h6>
                 </div>
             </div>
         </div>
@@ -43,6 +54,12 @@ const SideTaskCard = props => {
     )
 }
 
-const SideTaskCard_ = withRouter(SideTaskCard)
+const mapStateToProps = state => ({
+    translations: state.app_lang.data["/create-task"],
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+})
+
+const SideTaskCard_ = compose(connect(mapStateToProps),withRouter)(SideTaskCard)
 
 export default withNotificationsInfo(SideTaskCard_);
