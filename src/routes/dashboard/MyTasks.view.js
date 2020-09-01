@@ -36,7 +36,7 @@ class MyTasks extends React.Component {
         let start = this.state.currentPage - 2 >= 1 ? this.state.currentPage - 2 : 1
         if (this.state.currentPage - 2 < 1) end += -(this.state.currentPage - 2)
         for (let x = start; x <= end; x++) {
-            content.push(<Link to={`?tab=my_tasks&page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
+            content.push(<Link style={{ color: "#1f4733", minWidth: 22, marginRight: 7, fontSize: 20 }} to={`?tab=my_tasks&page=${x}`}><div>{x}&nbsp;&nbsp;&nbsp;</div></Link>)
         }
         return content;
     }
@@ -57,7 +57,11 @@ class MyTasks extends React.Component {
                     </div>
 
                 }
-                { !loading && tasks.length ? this.getPages() : null }
+                { !loading && tasks.length ? 
+                    <center className="flex aic jcc" style={{ marginBottom: 25 }}>
+                        {this.getPages()}
+                    </center>
+                 : null }
             </div>
         )
     }

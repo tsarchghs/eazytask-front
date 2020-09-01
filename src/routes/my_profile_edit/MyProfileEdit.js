@@ -272,8 +272,8 @@ class MyProfileEdit extends React.Component {
                         {
                             this.showUpdateButton() && 
                             <div className="offers-buttons">
-                                <div onClick={this.update} className="button hollow">{this.getTrans(this.props.translations.text_9)}</div>
-                                <div onClick={this.decline} className="button hollow">{this.getTrans(this.props.common.cancel)}</div>
+                                <div onClick={this.update} className="button hollow" style={{marginBottom: 10}}>{this.getTrans(this.props.translations.text_9)}</div>
+                                <div onClick={this.decline} className="button hollow" style={{marginBottom: 10}}>{this.getTrans(this.props.common.cancel)}</div>
                             </div>
                         }
                         <div className="offers-buttons hide-on-mobile">

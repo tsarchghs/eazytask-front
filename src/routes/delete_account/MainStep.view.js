@@ -14,7 +14,7 @@ const MainStep = props => {
                     </span>
                     <a href="#" style={{ visibility: 'hidden' }}><img className="logo__img" src="/images/logo.svg" alt="" /></a>
                 </header>
-                <section className="two-column__layout setup__mobile create-task">
+                <section className="two-column__layout setup__mobile create-task" style={{ height: "auto" }}>
                     <div className="two-column__info flex flex-column">
                         <div className="background-title ">
                             {/* <h1>Task</h1>
