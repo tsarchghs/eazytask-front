@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Modal extends React.Component {
     constructor(props){
@@ -30,15 +31,20 @@ class Modal extends React.Component {
                     {
                         !this.props.hide_buttons &&
                         <div class="pop-up__buttons">
-                            <a onClick={this.props.cancelOnClick || this.props.closeModal}>{this.props.cancelText || "Cancel"}</a>
+                            <a onClick={this.props.cancelOnClick || this.props.closeModal}>{this.props.cancelText || 
+                                this.props.common.cancel[this.props.app_lang]
+                            }</a>
                             <a onClick={this.props.acceptOnClick}>{this.props.acceptText}</a>
                         </div>
                     }
                     {
                         this.props.accountSettingsButton && 
                         <div class="pop-up__buttons">
-                            <a style={{ fontSize: 15 }} onClick={this.props.cancelOnClick || this.props.closeModal}>{this.props.cancelText || "Cancel"}</a>
-                            <Link style={{ fontSize: 15 }} to="/settings/change_preferences">Account settings</Link>
+                            <a style={{ fontSize: 15 }} onClick={this.props.cancelOnClick || this.props.closeModal}>{this.props.cancelText || 
+                            this.props.common.cancel[this.props.app_lang]}</a>
+                            <Link style={{ fontSize: 15 }} to="/settings/change_preferences">
+                                {this.props.common.account_settings[this.props.app_lang]}
+                            </Link>
                         </div>
                     }
                 </div>
@@ -47,4 +53,8 @@ class Modal extends React.Component {
     }
 }
 
-export default Modal;
+let mapStateToProps = state => ({
+    app_lang: state.app_lang.app_lang,
+    common: state.app_lang.common
+})
+export default connect(mapStateToProps)(Modal);

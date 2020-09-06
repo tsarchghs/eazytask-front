@@ -105,6 +105,10 @@
             "de": "Impressum"
         }
     },
+    "account_settings": {
+        "en": "Account settings",
+        "de": "Kontoeinstellungen"
+    },
     "notifications": {
         "OFFER_RECEIVED": {
             "text_1": {
