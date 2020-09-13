@@ -64,11 +64,16 @@ class ActiveListing extends React.Component {
             })
         }
     }
-    updateTasks = (x, filters={}) => {
-        this.setState({ currentPage: Number(x) })
+    updateTasks = (currentPage, filters={}) => {
+        currentPage = 
+            queryString.parse(this.props.location.search).page !== undefined ? 
+                Number(queryString.parse(this.props.location.search).page) + 1 :
+                1
+        this.setState({ currentPage: Number(currentPage) })
+        console.log({ currentPage, val: (currentPage * this.state.limit) - 6})
         this.props.getActiveListing2({
             limit: this.state.limit,
-            offset: this.state.currentPage * this.state.limit - 6,
+            offset: currentPage === 1 ? 0 : (currentPage * this.state.limit) - 6,
             ...filters
         });
         this.props.getTasksCount(this.state.filters)

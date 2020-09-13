@@ -12,6 +12,7 @@ import SideTaskCard2 from "../../components/SideTaskCard2";
 import MainOfferCard from "../../components/MainOfferCard";
 import NewOfferNotificationCardView from "./NewOfferNotificationCard.view";
 import Notifications from "./Notifications";
+import getImageUrl from "../../utils/getImageUrl";
 
 class WebDashboard extends React.Component {
     constructor(props) {
@@ -222,7 +223,7 @@ class WebDashboard extends React.Component {
                                                             <div className="blog-card">
                                                                 <Link to={"/blog/" + post.id}>
                                                                     <div className="blog-card__img" style={{borderRadius: 22}}>
-                                                                        <img src={post.thumbnail || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
+                                                                        <img src={getImageUrl(post.thumbnail) || window.__THUMBNAIL_DEFAULT_PICTURE__} alt="" />
                                                                     </div>
                                                                 </Link>
                                                                 <div className="blog-card__date">
