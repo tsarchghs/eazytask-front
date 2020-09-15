@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-let getClassName = (param,param2) => console.log(param,param2) || param == param2 ? "active" : ""
+let getClassName = (param,param2) => param == param2 ? "active" : ""
 let getTrans = (app_lang,obj) => obj[app_lang]
 
 const WebSidebar = props => {

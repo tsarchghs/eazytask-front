@@ -35,7 +35,6 @@ class Dashboard extends React.Component {
     render(){
         let disabledButton = !this.state.from || !this.state.to
         let { loading, err, payload } = this.state;
-        console.log(this.state)
         return (
             <React.Fragment>
                 <Header/>

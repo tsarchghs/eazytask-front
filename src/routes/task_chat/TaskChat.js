@@ -72,12 +72,10 @@ class TaskChat extends React.Component {
         message.UserId = this.props.currentUserId
         message.user_profile_image = this.props.own_profile.profile_image
         message.uniqueID = v4();
-        console.log({message})
         this.socket.emit(`send_message`, message)
         this.setState({ content: "" })
     }
     handleOnKeyDown = e => {
-        console.log(this.map)
         this.map[e.key] = true;
         if (this.map["Shift"] && this.map["Enter"]){
             if (!this.state.content) e.preventDefault();
@@ -89,7 +87,6 @@ class TaskChat extends React.Component {
         }
     }
     handleOnKeyUp = e => {
-        console.log(this.map)
         this.map[e.key] = false
     }
     inputAndButton = () => (
@@ -101,9 +98,8 @@ class TaskChat extends React.Component {
 
     )
     render(){
-        if (this.props.taskInfo.loading) return null;
+        if (this.props.taskInfo.loading || !this.props.taskInfo.task || !this.props.taskInfo.task.User) return null;
         if (this.props.taskInfo.error) return <E404/>
-        console.log(this.state,this.props.messages);
         return (
             <div className=" edit-task__wrapper">
                 <Modal

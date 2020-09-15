@@ -39,7 +39,6 @@ class Posts extends React.Component {
                                             resource_name_plural="posts" 
                                             fields={[ "id", "title", "content", "thumbnail", "createdAt", "updatedAt" ]}
                                             onDelete={id => () => {
-                                                console.log(123);
                                                 this.props.deletePosts(id)
                                             }}
                                             items={posts}

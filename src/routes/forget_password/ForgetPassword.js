@@ -36,7 +36,6 @@ class ForgetPassword extends React.Component {
         this.props.history.push("?email=" + this.state.email)
     }
     onVerificationCodeSubmit = code => {
-        console.log("onVerificationCodeSubmit", code)
         let { search } = this.props.location;
         let params = queryString.parse(search);
         this.props.validateVerificationCode({ email: params.email, code })
@@ -53,7 +52,6 @@ class ForgetPassword extends React.Component {
         this.props.resetPassword(args)
     }
     getTrans = obj => {
-        console.log(this.props.app_lang, obj,"this.props.app_lang")
         let data = obj[this.props.app_lang];
         if (typeof (data) == "string") return data;
         if (data.length) {

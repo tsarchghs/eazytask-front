@@ -97,7 +97,7 @@ class VerificationCode extends React.Component {
                             </div>
                             <h4 className="show__mobile title-with-subtitle text-center">
                                 {this.props.getTrans(this.props.translations.text_4)}
-                <p className="text-center">{this.props.getTrans(this.props.translations.text_5)}</p>
+                            <p className="text-center">{this.props.getTrans(this.props.translations.text_5)}</p>
                             </h4>
                             {this.state.showError}
                             <form className="flex-grow" onSubmit={this.onSubmit}>

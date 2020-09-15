@@ -45,7 +45,6 @@ class EditTask extends React.Component {
     }
     setStep = step => () => this.setState({ step })
     onChange = key => e => {
-        console.log(key, e.target.value.length)
         if (key === "description") 
             if (e.target.value.length > 250) return;
         this.setState({ [key]: e.target.value })
@@ -124,7 +123,6 @@ class EditTask extends React.Component {
         }
     }
     updateTask = async () => {
-        console.log("UPDATE_TASK::",this.state.data);
         this.setState({ loading: true })
         let { gallery, thumbnail, ...rest } = this.state.data;
         let data = { ...rest }
@@ -250,7 +248,6 @@ class EditTask extends React.Component {
                                                 } Characters left
                                             </p>
                                             <textarea className="register__form_input" onChange={e => e.persist() || this.setState(prevState => {
-                                                console.log(e.target.value.length, e.target.value)
                                                 if (e.target.value.length > 250) return prevState;
                                                 prevState.data["description"] = e.target.value;
                                                 return prevState;

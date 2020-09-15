@@ -25,7 +25,6 @@ class MobileNotifications extends React.Component {
         let { loading, error, payload } = this.state;
         if (loading) return <p className="text-center special">Loading</p>;
         if (error) {
-            console.log(error)
             return "Error";
         }
         if (this.props.children) return this.props.children({ loading, error, payload })

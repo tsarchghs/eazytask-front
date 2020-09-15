@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 
 const WebHeader2 = props => (
     <header className="flex jcsb aic hide-on-mobile">
-            <a href="#">
-            <span onClick={() => {
+        <a onClick={e => e.preventDefault()}>
+            <span style={{ pointer: "cursor" }} onClick={() => {
                 try {
                     props.history.goBack()
                 } catch (err) {
@@ -20,24 +20,24 @@ const WebHeader2 = props => (
             }} src="/images/arrow.jpeg" alt="" /></span>
                     <Link to="/">
                 <img className="logo__img" src="/images/logo.svg" alt="" /></Link>
-                </a>
+        </a>
         {
             !props.hideRightSide &&
                 <div className="header-nav-web">
                     <Link to="/dashboard">
-                        <a href="#" className={`h4 ${props.active == "home" ? "active" : ""}`}>
+                        <a onClick={e => e.preventDefault()} className={`h4 ${props.active == "home" ? "active" : ""}`}>
                             {props.common.home[props.app_lang]}
                             { props.active == "home" ? <div/> : null }
                         </a>
                     </Link>
                     <Link to="/create-task">
-                        <a href="#" className={`h4 ${props.active == "new_task" ? "active" : ""}`}>
+                        <a onClick={e => e.preventDefault()} className={`h4 ${props.active == "new_task" ? "active" : ""}`}>
                             {props.common.new_task[props.app_lang]}
                             { props.active == "new_task" ? <div/> : null }
                         </a>
                     </Link>
                     <Link to="/my_profile_edit">
-                        <a href="#" className={`h4 ${props.active == "profile" ? "active" : ""}`}>
+                        <a onClick={e => e.preventDefault()} className={`h4 ${props.active == "profile" ? "active" : ""}`}>
                             {props.common.profile[props.app_lang]}
                             { props.active == "profile" ? <div/> : null }
 

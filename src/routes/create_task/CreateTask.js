@@ -51,6 +51,8 @@ const format_year = val => {
 class CreateTask extends React.Component {
     constructor(props) {
         super(props);
+        var default_due_date = new Date();
+        default_due_date.setDate(default_due_date.getDate() + 1);
         this.state = {
             step: 0,
             errors: [],
@@ -59,6 +61,7 @@ class CreateTask extends React.Component {
                 name: "",
                 description:"",
                 date_type: "FIXED_DATE",
+                due_date: default_due_date,
                 day: format_day_or_month(new Date().getDate() + 1,31),
                 month: format_day_or_month(new Date().getMonth() + 1,12),
                 zipCode: "",
@@ -91,6 +94,9 @@ class CreateTask extends React.Component {
                 address: Yup.string().required(this.getTrans(props.translations.text_16)),
                 city: Yup.string().required(this.getTrans(props.translations.text_17))
             }),
+            "PICK_DATE": Yup.object().shape({
+                due_date: Yup.date().test(val => new Date().getTime() < new Date(val).getTime())
+            }),
             "OTHER_CATEGORY": Yup.object().shape({
                 category: Yup.string().required(this.getTrans(props.translations.text_30))
             })
@@ -99,12 +105,11 @@ class CreateTask extends React.Component {
         this.requestSent = false;
         this.redirected = false;
     }
+    handleDateChange = date => this.onChange("due_date")({ target: { value: date }})
     createTask = async () => {
         console.log("CREATE_TASK", this.state.data, this.requestSent)
         if (!this.requestSent){
-            let { name, date_type, day, month, year, thumbnail } = this.state.data;
-            let due_date = new Date(`${month}/${day}/${year}`)
-            console.log(`${day}/${month}/${year}`,due_date)
+            let { name, date_type, thumbnail, due_date} = this.state.data;
             let body = {
                 ...this.state.data, title: name, 
                 due_date_type: date_type, due_date,
@@ -138,7 +143,7 @@ class CreateTask extends React.Component {
     }
     getCurrentStepName = () => this.state.steps[this.state.step];
     onFileChange = key => e => {
-        e.persist()
+        if (e.persist) e.persist()
         e.preventDefault()
         let src;
 
@@ -175,7 +180,8 @@ class CreateTask extends React.Component {
         })
     }
     onChange = key => async e => {
-        e.persist()
+        if (e.persist) e.persist()
+        console.log({e})
         let { value } = e.target;
         this.setState(prevState => {
             if (key === "day") value = format_day_or_month(value,31);
@@ -209,7 +215,10 @@ class CreateTask extends React.Component {
                 description_limit={this.state.description_limit}
                 errors={this.state.errors}
             />
-            case 2: return <PickDate {...commonProps} 
+            case 2: return <PickDate {...commonProps}
+            errors={this.state.errors}
+                due_date={this.state.data.due_date}
+                handleDateChange={this.handleDateChange} 
                 date_type={this.state.data.date_type}
                 fixedOnClick={this.onChangeWithVal("date_type","FIXED_DATE")}
                 untilOnClick={this.onChangeWithVal("date_type","UNTIL_DATE")}

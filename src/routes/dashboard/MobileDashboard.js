@@ -59,7 +59,7 @@ class MobileDashboard extends React.Component {
                                         <Link to="?tab=my_tasks">
                                             <div className={`home__tab ${tab == "my_tasks" && "active"}`}>{this.getTrans(this.props.translations.text_3)}</div>
                                         </Link>
-                                        <div onClick={() => console.log("123")}>
+                                        <div>
                                             <Link to="?tab=discover">
                                                 <div className={`home__tab ${tab == "discover" && "active"}`}>{this.getTrans(this.props.translations.text_4)}</div>
                                             </Link>

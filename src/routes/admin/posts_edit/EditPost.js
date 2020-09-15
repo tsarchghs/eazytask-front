@@ -110,7 +110,6 @@ class CreatePost extends React.Component {
     }
     onSubmit = e => {
         e.preventDefault();
-        console.log(this.state.data);
         let { title, content, thumbnail } = this.state.data;
         let body = { title, content, thumbnail: thumbnail ? thumbnail.file : undefined }
         let { postId } = this.props.match.params;
@@ -122,13 +121,10 @@ class CreatePost extends React.Component {
         let file = e.target.files[0]
         let useThis = this;
         if (file) {
-            console.log("file123", file)
             var fr = new FileReader();
             fr.onload = function (d) {
                 let src = d.srcElement.result;
                 useThis.setState(prevState => {
-                    console.log("file123", file)
-
                     prevState.data["thumbnail"] = { file, src };
                     return prevState;
                 })

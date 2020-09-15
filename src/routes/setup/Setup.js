@@ -80,7 +80,6 @@ class Setup extends React.Component {
         this.setState(prevState => {
             let file = e.target.files[0]
             prevState.data[key] = file;
-            console.log({ ref })
             if (ref){
                 if (!file) {
                     ref.src = "/images/plus.png"
@@ -89,7 +88,6 @@ class Setup extends React.Component {
                 else {
                     var fr = new FileReader();
                     fr.onload = function () {
-                        console.log({ref})
                         ref.src = fr.result;
                         ref.className = ""
                     }
@@ -100,7 +98,6 @@ class Setup extends React.Component {
         }, async () => {
             let stepKey = this.state.steps[this.state.step]
             let valid = this.validations[stepKey] ? await this.validations[stepKey].isValid(this.state.data) : true;
-            console.log("this.validations[stepKey]",this.validations[stepKey],valid)
             this.setState({ valid })    
         })
     }
@@ -111,7 +108,6 @@ class Setup extends React.Component {
             if (!step) step = 0;
             step = Number(String(step).slice(0,3));
             let prevStep = String(step).indexOf(".") !== -1 ? Math.round(step - 0.1) : step - 1 ;
-            console.log({step,prevStep});
             this.setState({ 
                 step, prevStep
             })
@@ -149,7 +145,6 @@ class Setup extends React.Component {
             callUpdateAuthProfile: true
         });
         if (this.state.setupTasker) {
-            console.log("POST_TASKER")
             this.props.postTasker(this.state.data);
         }
     }
@@ -271,7 +266,6 @@ class Setup extends React.Component {
         else {
             if (this.state.step == 4 && this.state.data.notification_option == "SMS") return this.nextStep(4.1);
             if (this.state.step == 4.1) return () => {
-                console.log(55);
                 this.nextStep(4.2)();
             }
             if (this.state.step == 4.2) return this.nextStep(5);
@@ -290,7 +284,6 @@ class Setup extends React.Component {
         else sliceValues = [6,this.state.steps.length -1];
         return this.state.steps.slice(...sliceValues).map((x,i) => {
             let getOnClick = () => {
-                console.log(this.state.step,index)
                 if (this.state.step <= index) return () => {}
                 else return this.nextStep(index);
             }
@@ -363,7 +356,6 @@ class Setup extends React.Component {
     }
     getTrans = obj => obj[this.props.app_lang]
     render(){
-        console.log(this.state, "this.state")
         if (this.props.setupCompleted) return <Redirect to="/" />
         let coverPicture = this.state.step == 2 ? " profile__cover" : ""
         return (

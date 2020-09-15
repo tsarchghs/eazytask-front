@@ -35,7 +35,6 @@ class Blog extends React.Component {
                             </header>
                             <header className="logo-text xn-br hide-on-desktop">
                                 <span onClick={() => {
-                                    console.log(233,this.props)
                                     this.props.goBack()
                                 }} className="show__mobile"><img src="/images/arrow.jpeg" alt="" /></span>
                                 <h4 className="logo-title ">
