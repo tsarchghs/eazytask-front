@@ -375,5 +375,9 @@
   "text_54": {
     "en": "characters left",
     "de": "verbleibende Zeichen"
+  },
+  "text_55": {
+    "en": "Task price:",
+    "de": "Erwarteter Preis:"
   }
 }

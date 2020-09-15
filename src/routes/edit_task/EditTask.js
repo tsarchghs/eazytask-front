@@ -44,9 +44,14 @@ class EditTask extends React.Component {
         this.props.getTask(this.props.match.params.taskId, "fields=question,user,offers,category")
     }
     setStep = step => () => this.setState({ step })
-    onChange = key => e => this.setState({ [key]: e.target.value })
+    onChange = key => e => {
+        console.log(key, e.target.value.length)
+        if (key === "description") 
+            if (e.target.value.length > 250) return;
+        this.setState({ [key]: e.target.value })
+    }
     getValueOrInput = key => {
-        let value = this.state.data[key] || this.props.task[key];
+        let value = this.state.data[key] !== undefined ? this.state.data[key] : this.props.task[key];
         if (this.state.onEdit === key) {
             const handleOnChange = e => {
                 e.persist();
@@ -179,6 +184,8 @@ class EditTask extends React.Component {
                     onEdit={this.state.onEdit}
                     onChange={key => e => {
                         if (e.persist) e.persist()
+                        if (key === "description")
+                            if (e.target.value.length > 250) return;
                         this.setState(prevState => {
                             prevState.data[key] = e.target.value;
                             return { ...prevState, data: { ...prevState.data } }
@@ -220,14 +227,14 @@ class EditTask extends React.Component {
                                                     return prevState;
                                                 })}
                                                 className="register__form_input"
-                                                value={this.state.data.title || this.props.task.title}
+                                                value={this.state.data.title !== undefined ? this.state.data.title : this.props.task.title}
                                             /> 
                                                 <span onClick={e => this.setState({ onEdit: "" })} className="edit-pen">
                                                     <img src="/images/edit-pen.png" alt="" />
                                                 </span>
                                         </React.Fragment>
                                         :
-                                        <h3>{this.state.data.title || this.props.task.title}
+                                        <h3>{(this.state.data.title !== undefined ? this.state.data.title : this.props.task.title) || "No title..."}
                                             <span onClick={e => this.setState({ onEdit: "TITLE" })} className="edit-pen">
                                                 <img src="/images/edit-pen.png" alt="" />
                                             </span>
@@ -236,18 +243,26 @@ class EditTask extends React.Component {
                                 {
                                     this.state.onEdit === "DESCRIPTION" ?
                                         <React.Fragment>
-                                            <input className="register__form_input" onChange={e => e.persist() || this.setState(prevState => {
+                                            <p className="special">
+                                                {this.state.data.description === undefined ?
+                                                    250 - this.props.task.description.length :
+                                                    250 - this.state.data.description.length
+                                                } Characters left
+                                            </p>
+                                            <textarea className="register__form_input" onChange={e => e.persist() || this.setState(prevState => {
+                                                console.log(e.target.value.length, e.target.value)
+                                                if (e.target.value.length > 250) return prevState;
                                                 prevState.data["description"] = e.target.value;
                                                 return prevState;
                                             })}
-                                                    value={this.state.data.description || this.props.task.description}
+                                                    value={this.state.data.description !== undefined ? this.state.data.description : this.props.task.description}
                                             />
                                             <span onClick={e => this.setState({ onEdit: "" })} className="edit-pen">
                                                 <img src="/images/edit-pen.png" alt="" />
                                             </span>
                                         </React.Fragment>
                                         :
-                                        <p>{this.state.data.description || this.props.task.description}
+                                        <p>{(this.state.data.description !== undefined ? this.state.data.description : this.props.task.description) || "No description.."}
                                             <span onClick={e => this.setState({ onEdit: "DESCRIPTION" })} className="edit-pen">
                                                 <img src="/images/edit-pen.png" alt="" />
                                             </span>

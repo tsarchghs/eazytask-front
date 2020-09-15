@@ -17,7 +17,7 @@ class MySkills extends React.Component {
         this.searchRef.focus()
     }
     getFilteredSkills = () => {
-        let skills = this.props.allIds.map(id => this.props.byIds[id])
+        let skills = this.props.allIds.map(id => this.props.byIds[id]).filter(x => !x.createdByUser)
         let customSkills = getCustomItems(this.props.skills,skills)
         let combined = customSkills.concat(skills);
         return filter(this.state.query, combined)

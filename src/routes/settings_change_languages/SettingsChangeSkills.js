@@ -29,7 +29,7 @@ class MySkills extends React.Component {
         once = true;
     }
     getFilteredSkills = () => {
-        let skills = this.props.allIds.map(id => this.props.byIds[id])
+        let skills = this.props.allIds.map(id => this.props.byIds[id]).filter(x => !x.createdByUser)
         let customSkills = getCustomItems(this.state.skills, skills)
         let uniqueCustomSkills = customSkills
         let combined = uniqueCustomSkills.concat(skills)

@@ -39,7 +39,11 @@ class WebDashboard extends React.Component {
                 <p>{this.getTrans(translations.text_6)}</p>
                 <img src="/images/waiting_1.png" alt="" style={{ width: '35%' }} />
                 <img src="/images/lonely.jpeg" className="hide-on-web" alt="" />
-                <h4 className="mt15">{this.getTrans(this.props.translations.text_30)}</h4>
+                <h4 
+                    style={{ cursor: "pointer" }} 
+                    onClick={() => this.props.history.push("/create-task")} 
+                    className="mt15"
+                >{this.getTrans(this.props.translations.text_30)}</h4>
             </div>
 
         )

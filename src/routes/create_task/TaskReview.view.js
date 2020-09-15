@@ -32,15 +32,16 @@ export default props => {
             <div className="task-section" style={{ width: "100%" }}>
                 <p><span>{props.getTrans(props.translations.text_38)}</span> {props.name}</p>
                 <p><span>{props.getTrans(props.translations.text_39)}</span>  {props.description}</p>
-                <p><span>{props.getTrans(props.translations.text_36)}
+                <p><span>{props.getTrans(props.translations.text_36)} {" "}
                 {
-                    props.date_type 
+                    props.date_type === "FIXED_DATE"
                     ? props.getTrans(props.translations.text_40) 
-                    : props.getTrans(props.translations.text_341)
+                    : props.getTrans(props.translations.text_41)
                 }</span> {due_date}</p>
                 <p><span>{props.getTrans(props.translations.text_42)}</span> {props.address}, {props.zipCode} {props.city}</p>
                 <p><span>{props.getTrans(props.translations.text_43)}</span> {category_name}</p>
                 <p><span>{props.getTrans(props.translations.text_44)}</span> {sub_category_name}</p>
+                <p><span>{props.getTrans(props.translations.text_55)}</span> {props.expected_price} CHF.</p>
             </div>
         </React.Fragment>
 

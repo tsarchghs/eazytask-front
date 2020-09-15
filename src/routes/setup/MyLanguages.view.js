@@ -17,7 +17,7 @@ class MyLanguages extends React.Component {
         this.searchRef.focus()
     }
     getFilteredLanguages = () => {
-        let languages = this.props.allIds.map(id => this.props.byIds[id])
+        let languages = this.props.allIds.map(id => this.props.byIds[id]).filter(x => !x.createdByUser)
         let customLanguages = getCustomItems(this.props.languages, languages)
         let combined = customLanguages.concat(languages);
         return filter(this.state.query, combined).map(x => {

@@ -30,37 +30,43 @@ class WebEditTask extends React.Component {
                                 <React.Fragment>
                                     <input onChange={this.props.onChange("title")}
                                         className="register__form_input"
-                                        value={this.props.data.title || this.props.task.title}
+                                        value={this.props.data.title !== undefined ? this.props.data.title : this.props.task.title}
                                     /> 
                                         <span onClick={this.props.changeOnEdit("")} className="edit-pen">
-                                            <img src="/images/edit-pen.png" alt="" />
+                                            <img style={{cursor:"pointer"}} src="/images/edit-pen.png" alt="" />
                                         </span>
                                 </React.Fragment>
                                 :
-                                <h3 className="text-center">{this.props.data.title || this.props.task.title}
+                                <h3 className="text-center">{(this.props.data.title !== undefined ? this.props.data.title : this.props.task.title) || "No title..."}
                                     <span onClick={this.props.changeOnEdit("TITLE")} className="edit-pen">
-                                        <img src="/images/edit-pen.png" alt="" />
+                                        <img style={{cursor:"pointer"}} src="/images/edit-pen.png" alt="" />
                                     </span>
                                 </h3>
                         }
                                 {
                                     this.props.onEdit === "DESCRIPTION" ?
                                         <React.Fragment>
-                                            <input className="register__form_input" onChange={this.props.onChange("description")}
-                                                    value={this.props.data.description || this.props.task.description}
+                                            <p className="special">
+                                                {this.props.data.description === undefined ?
+                                                    250 - this.props.task.description.length :
+                                                    250 - this.props.data.description.length
+                                                } Characters left
+                                            </p>
+                                            <textarea className="register__form_input" onChange={this.props.onChange("description")}
+                                                    value={this.props.data.description !== undefined ? this.props.data.description : this.props.task.description}
                                             />
                                             <span onClick={this.props.changeOnEdit("")} className="edit-pen">
-                                                <img src="/images/edit-pen.png" alt="" />
+                                                <img style={{cursor:"pointer"}} src="/images/edit-pen.png" alt="" />
                                             </span>
                                         </React.Fragment>
                                         :
-                                        <p className="text-center">{this.props.data.description || this.props.task.description}
+                                        <p className="text-center">{(this.props.data.description !== undefined ? this.props.data.description : this.props.task.description) || "No description.."}
                                             <span onClick={this.props.changeOnEdit("DESCRIPTION")} className="edit-pen">
-                                                <img src="/images/edit-pen.png" alt="" />
+                                                <img style={{cursor:"pointer"}} src="/images/edit-pen.png" alt="" />
                                             </span>
                                         </p>
                                 }
-                        {/* <p className="text-center mb0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse<span className="edit-pen"><img src="/images/edit-pen.png" alt="" /></span></p> */}
+                        {/* <p className="text-center mb0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse<span className="edit-pen">< style={{cursor:"pointer"}}img src="/images/edit-pen.png" alt="" /></span></p> */}
                         </div>
                     </div>
                     </div>

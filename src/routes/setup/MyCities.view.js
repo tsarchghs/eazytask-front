@@ -17,7 +17,7 @@ class MyCities extends React.Component {
         this.searchRef.focus()
     }
     getFilteredCities = () => {
-        let cities = this.props.allIds.map(id => this.props.byIds[id])
+        let cities = this.props.allIds.map(id => this.props.byIds[id]).filter(x => !x.createdByUser)
         let customCities = getCustomItems(this.props.cities, cities)
         let combined = customCities.concat(cities);
         return filter(this.state.query, combined)
