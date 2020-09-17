@@ -32,6 +32,7 @@ export default props => {
                 </div>
                 <div className="date-section__select flex jcc aic ">
                     <DatePicker
+                        dateFormat={"dd-MM-yyyy"}
                         selected={props.due_date}
                         onChange={props.handleDateChange}
                     />
@@ -42,9 +43,6 @@ export default props => {
                     ))}
                 </div>
             </div>
-            {/* <div className="flex-grow img-wrapper flex aic jcc">
-                <img className="img__mobile " src="/images/calendar.png" alt="" />
-            </div> */}
         </React.Fragment>
     )
 }
