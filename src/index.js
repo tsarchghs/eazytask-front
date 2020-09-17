@@ -74,7 +74,7 @@ if (!Array.prototype.find) {
   });
 }
 
-window.__BASE_URL__ = "http://eazytask-back.herokuapp.com/api/v1";       
+window.__BASE_URL__ = "https://eazytask-back.herokuapp.com/api/v1";       
 
 window.__PROFILE_DEFAULT_PICTURE__ = "/images/no-profile-picture-icon-22.jpg"
 window.__THUMBNAIL_DEFAULT_PICTURE__ = "/images/image_61.png"
