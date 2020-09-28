@@ -55,8 +55,10 @@ class CreateTask extends React.Component {
         default_due_date.setDate(default_due_date.getDate() + 1);
         this.state = {
             step: 0,
+            calendar_open: false,
             errors: [],
             description_limit: 250,
+            name_limit: 50,
             data: {
                 name: "",
                 description:"",
@@ -105,7 +107,12 @@ class CreateTask extends React.Component {
         this.requestSent = false;
         this.redirected = false;
     }
-    handleDateChange = date => this.onChange("due_date")({ target: { value: date }})
+    handleDateChange = date => {
+        let date_ = new Date(date);
+        if (date_.getTime() < new Date().getTime()) return;
+        this.onChange("due_date")({ target: { value: date } })
+        this.setState({ calendar_open: false })
+    }
     createTask = async () => {
         console.log("CREATE_TASK", this.state.data, this.requestSent)
         if (!this.requestSent){
@@ -184,11 +191,13 @@ class CreateTask extends React.Component {
         console.log({e})
         let { value } = e.target;
         this.setState(prevState => {
-            if (key === "day") value = format_day_or_month(value,31);
+            if (key === "name") 
+                if (value.length > this.state.name_limit) return prevState
+            else if (key === "day") value = format_day_or_month(value,31);
             else if (key === "month") value = format_day_or_month(value,12);
             else if (key === "year") value = format_year(value);
             else if (key === "expected_price") value = format_number(value);
-            else if (key === "description") 
+            else if (key === "description")
                 if (value.length > this.state.description_limit) return prevState
             prevState.data[key] = value;
             return prevState;
@@ -207,7 +216,9 @@ class CreateTask extends React.Component {
         let commonProps = { handleInputKeyDown: this.handleInputKeyDown, translations, app_lang, common, getTrans: this.getTrans }
         switch (this.state.step) {
             case 0: return <Name {...commonProps} 
-                onNameChange={this.onChange("name")} name={this.state.data.name}
+                name_limit={this.state.name_limit}
+                onNameChange={this.onChange("name")} 
+                name={this.state.data.name}
                 errors={this.state.errors}
             />
             case 1: return <Description {...commonProps}
@@ -217,6 +228,8 @@ class CreateTask extends React.Component {
             />
             case 2: return <PickDate {...commonProps}
             errors={this.state.errors}
+                calendar_open={this.state.calendar_open}
+                onCalendarOpen={() => this.setState({ calendar_open: true })}
                 due_date={this.state.data.due_date}
                 handleDateChange={this.handleDateChange} 
                 date_type={this.state.data.date_type}

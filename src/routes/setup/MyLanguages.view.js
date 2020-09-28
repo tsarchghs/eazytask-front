@@ -35,21 +35,25 @@ class MyLanguages extends React.Component {
         this.props.addLanguage(language_name)
         if (this.state.query === language_name) this.resetQuery()
     }
-    getAllowedOperation = language_name => {
+    getAllowedOperation = (language_name, defaultOnClick = true) => {
         let alreadyExists = this.props.languages.indexOf(language_name) !== -1
         if (alreadyExists) {
-            let div = <span onClick={() => this.props.removeLanguage(language_name)}>-</span>
-            return { type: "-", div }
+            let div = <span onClick={defaultOnClick && (() => this.props.removeLanguage(language_name))}>-</span>
+            return { type: "-", div, onClick: () => this.props.removeLanguage(language_name) }
         }
         else {
-            let div = <span onClick={this.customAddLanguage(language_name)}>+</span>
-            return { type: "+", div }
+            let div = <span onClick={defaultOnClick && this.customAddLanguage(language_name)}>+</span>
+            return { type: "+", div, onClick: this.customAddLanguage(language_name) }
         }
     }
     createCustomLanguage = () => (
         <React.Fragment>
-            <div className="list-item"><p>Create "{this.state.query}"</p>
-                {this.getAllowedOperation(this.state.query).div}
+            <div
+                onClick={this.getAllowedOperation(this.state.query, false).onClick}
+                style={{ cursor: "pointer" }}
+                className="list-item"
+            ><p>Create "{this.state.query}"</p>
+                {this.getAllowedOperation(this.state.query, false).div}
             </div>
         </React.Fragment>
     )
@@ -85,7 +89,9 @@ class MyLanguages extends React.Component {
                         {!this.props.loading && this.getFilteredLanguages()
                             .filter(language => this.getAllowedOperation(language.name).type == "-")
                             .map(language => (
-                                <div className="item-added">
+                                <div
+                                    className="item-added"
+                                >
                                     <p>{language.show || language.name}</p>
                                     {this.getAllowedOperation(language.name).div}
                                 </div>
@@ -99,8 +105,12 @@ class MyLanguages extends React.Component {
                             .map(language => {
                                 return (
                                     <React.Fragment>
-                                        <div className="list-item"><p>{language.show || language.name}</p>
-                                            {this.getAllowedOperation(language.name).div}
+                                        <div
+                                            onClick={this.getAllowedOperation(language.name, false).onClick}
+                                            style={{ cursor: "pointer" }} 
+                                             className="list-item"
+                                        ><p>{language.show || language.name}</p>
+                                            {this.getAllowedOperation(language.name,false).div}
                                         </div>
                                     </React.Fragment>
                                 )

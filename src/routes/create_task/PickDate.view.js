@@ -32,12 +32,16 @@ export default props => {
                 </div>
                 <div className="date-section__select flex jcc aic ">
                     <DatePicker
+                        className="margin-auto-mobile"
+                        open={props.calendar_open}
                         dateFormat={"dd-MM-yyyy"}
                         selected={props.due_date}
                         onChange={props.handleDateChange}
+                        onCalendarOpen={props.onCalendarOpen}
+                        onCalendarClose={undefined}
                     />
                 </div>
-                <div className="register__form">
+                <div className="register__form" style={{ padding: "0px 35px", marginTop: 20}}>
                 {props.errors.map(x => (
                         <div class="register__form--error">{x}</div>
                     ))}

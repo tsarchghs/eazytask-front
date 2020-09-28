@@ -26,6 +26,7 @@ export default class Name extends React.Component {
                         onChange={this.props.onNameChange}
                         onKeyDown={this.props.handleInputKeyDown}  
                     />
+                    <p className="special">{this.props.name_limit - this.props.name.length} {this.props.getTrans(this.props.translations.text_54)}</p>
                     {this.props.errors.map(x => (
                         <div class="register__form--error">{x}</div>
                     ))}

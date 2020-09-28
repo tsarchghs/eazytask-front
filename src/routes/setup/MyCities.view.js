@@ -27,21 +27,25 @@ class MyCities extends React.Component {
         this.props.addCity(city_name)
         if (this.state.query === city_name) this.resetQuery()
     }
-    getAllowedOperation = city_name => {
+    getAllowedOperation = (city_name, defaultOnClick = true) => {
         let alreadyExists = this.props.cities.indexOf(city_name) !== -1
         if (alreadyExists) {
-            let div = <span onClick={() => this.props.removeCity(city_name)}>-</span>
-            return { type: "-", div }
+            let div = <span onClick={defaultOnClick && (() => this.props.removeCity(city_name))}>-</span>
+            return { type: "-", div, onClick: () => this.props.removeCity(city_name) }
         }
         else {
-            let div = <span onClick={this.customAddCity(city_name)}>+</span>
-            return { type: "+", div }
+            let div = <span onClick={defaultOnClick && this.customAddCity(city_name)}>+</span>
+            return { type: "+", div, onClick: this.customAddCity(city_name) }
         }
     }
     createCustomCity = () => (
         <React.Fragment>
-            <div className="list-item"><p>Create "{this.state.query}"</p>
-                {this.getAllowedOperation(this.state.query).div}
+            <div
+                onClick={this.getAllowedOperation(this.state.query, false).onClick}
+                style={{ cursor: "pointer" }}
+                className="list-item"
+            ><p>Create "{this.state.query}"</p>
+                {this.getAllowedOperation(this.state.query, false).div}
             </div>
         </React.Fragment>
     )
@@ -77,7 +81,11 @@ class MyCities extends React.Component {
                         {!this.props.loading && this.getFilteredCities()
                             .filter(city => this.getAllowedOperation(city.name).type == "-")
                             .map(city => (
-                                <div className="item-added">
+                                <div
+                                    // onClick={this.getAllowedOperation(city.name, false).onClick}
+                                    // style={{ cursor: "pointer" }}
+                                    className="item-added"
+                                >
                                     <p>{city.name}</p>
                                     {this.getAllowedOperation(city.name).div}
                                 </div>
@@ -91,8 +99,11 @@ class MyCities extends React.Component {
                             .map(city => {
                                 return (
                                     <React.Fragment>
-                                        <div className="list-item"><p>{city.name}</p>
-                                            {this.getAllowedOperation(city.name).div}
+                                        <div
+                                            onClick={this.getAllowedOperation(city.name, false).onClick}
+                                            style={{ cursor: "pointer" }} 
+                                            className="list-item"><p>{city.name}</p>
+                                            {this.getAllowedOperation(city.name,false).div}
                                         </div>
                                     </React.Fragment>
                                 )

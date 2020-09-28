@@ -519,8 +519,15 @@ input[type=number] {
 
 @media screen and (max-width: 39.9375em) {
   .mb-mobile-button--group {
-    margin-bottom: 60px !important; } }
+    margin-bottom: 60px !important; } 
+  .margin-auto-mobile {
+    margin: 0 auto;
+  }
+  }
 
 .react-datepicker__input-container input {
   width: 75%
 }
+
+
+

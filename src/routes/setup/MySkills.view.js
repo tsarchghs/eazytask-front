@@ -27,21 +27,25 @@ class MySkills extends React.Component {
         this.props.addSkill(skill_name)
         if (this.state.query === skill_name) this.resetQuery()
     }
-    getAllowedOperation = skill_name => {
+    getAllowedOperation = (skill_name, defaultOnClick = true) => {
         let alreadyExists = this.props.skills.indexOf(skill_name) !== -1
         if (alreadyExists) {
-            let div = <span onClick={() => this.props.removeSkill(skill_name)}>-</span>
-            return { type: "-", div }
+            let div = <span onClick={defaultOnClick && (() => this.props.removeSkill(skill_name))}>-</span>
+            return { type: "-", div, onClick: () => this.props.removeSkill(skill_name) }
         }
         else {
-            let div = <span onClick={this.customAddSkill(skill_name)}>+</span>
-            return { type: "+", div }
+            let div = <span onClick={defaultOnClick && this.customAddSkill(skill_name)}>+</span>
+            return { type: "+", div, onClick: this.customAddSkill(skill_name) }
         }
     }
     createCustomSkill = () => (
         <React.Fragment>
-            <div className="list-item"><p>Create "{this.state.query}"</p>
-                {this.getAllowedOperation(this.state.query).div}
+            <div
+                onClick={this.getAllowedOperation(this.state.query, false).onClick}
+                style={{ cursor: "pointer" }}
+                className="list-item"
+            ><p>Create "{this.state.query}"</p>
+                {this.getAllowedOperation(this.state.query, false).div}
             </div>
         </React.Fragment>
     )
@@ -55,7 +59,6 @@ class MySkills extends React.Component {
     }
     
     render(){
-        console.log({props: this.props})
         return (
             <React.Fragment>
                 <div className="background-title mb5">
@@ -92,8 +95,11 @@ class MySkills extends React.Component {
                             .map(skill => {
                             return (
                                 <React.Fragment>
-                                    <div className="list-item"><p>{skill.name}</p>
-                                        {this.getAllowedOperation(skill.name).div}
+                                    <div 
+                                        onClick={this.getAllowedOperation(skill.name, false).onClick}
+                                        style={{ cursor: "pointer" }} 
+                                        className="list-item"><p>{skill.name}</p>
+                                        {this.getAllowedOperation(skill.name,false  ).div}
                                     </div>
                                 </React.Fragment>
                             )
