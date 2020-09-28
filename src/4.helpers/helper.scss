@@ -522,11 +522,12 @@ input[type=number] {
     margin-bottom: 60px !important; } 
   .margin-auto-mobile {
     margin: 0 auto;
+    margin-right: 12% !important;
   }
   }
 
 .react-datepicker__input-container input {
-  width: 75%
+  width: 75% !important;
 }
 
 
