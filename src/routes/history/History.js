@@ -96,7 +96,7 @@ class History extends React.Component {
                         <h4 className="flex aic jcc"> <div className="img-circle"><img src={getImageUrl(this.props.own_profile.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                         </div> {this.props.own_profile.first_name} {this.props.own_profile.last_name}</h4>
                       </div>
-                      <p className="special">{this.props.own_profile.short_biography || 
+                      <p className="pre-wrap-text special">{this.props.own_profile.short_biography || 
                       this.getTrans(this.props.translations.web.text_2)}</p>
                     </div>
                   </div>

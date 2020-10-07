@@ -1200,7 +1200,7 @@ input[type="file"] {
   background-color: transparent;
   margin-bottom: 30px;
   padding: 14px 10px;
-  box-shadow: none;
+  box-shadow: none !important;
   outline: none; }
 
 .text-center br {
@@ -6950,7 +6950,8 @@ html body .container .content .filters-card.delete-inputs {
   padding: 0 15px 15px; }
 
 .account-profile__input {
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  text-align: left; }
   .account-profile__input p {
     font-size: 12px;
     color: #5b5b5b;
@@ -6970,6 +6971,15 @@ html body .container .content .filters-card.delete-inputs {
       margin-bottom: 0; }
     .account-profile__input .ap__input img {
       width: 15px; }
+    .account-profile__input .ap__input--text h5 {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .account-profile__input .ap__input--textarea h5 {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
 
 .logout-mobile {
   position: absolute;

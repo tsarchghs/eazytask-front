@@ -118,7 +118,7 @@ class TaskerProfile extends React.Component {
                                     <h4 className="flex aic jcc"> <div className="img-circle"><img src={getImageUrl(this.props.user.profile_image) || window.__PROFILE_DEFAULT_PICTURE__} alt="" />
                                     </div> {this.props.user.first_name} {this.props.user.last_name[0]}.</h4>
                                 </div>
-                                <p className="special">{this.props.user.short_biography || this.props.translations.text_1[this.props.app_lang]}</p>
+                                <p className="pre-wrap-text special">{this.props.user.short_biography || this.props.translations.text_1[this.props.app_lang]}</p>
                             </div>
                         </div>
                         <div className="offers-images__layout">

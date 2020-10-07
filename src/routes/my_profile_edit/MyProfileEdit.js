@@ -49,7 +49,7 @@ class MyProfileEdit extends React.Component {
     getStatic = key => (
         <div className="account-profile__input">
             <p>{this.getKeyDisplay(key)}</p>
-            <div style={{minHeight: 42}} className="ap__input">
+            <div style={{minHeight: key === "short_biography" ? 80 : 42}} className={`ap__input${key === "short_biography" ? ' ap__input--textarea' : ' ap__input--text'}`}>
                 <h5>{this.getInputValue(key)}</h5>
                 <img onClick={() => this.setState({ onEdit: key }, () => this[key + "_ref"].focus())} src="/images/edit-pen.png" alt="" />
             </div>
@@ -57,23 +57,44 @@ class MyProfileEdit extends React.Component {
     )
     getInput = (key, width) => (
         <React.Fragment>
-            <input
-                ref={input => this[key + "_ref"] = input}
-                className="input register__form_input"
-                style={{
-                    width: key == "address" || key === "short_biography" ? "100%" : "50%",
-                    marginBottom: key == "address" || key === "short_biography" ? 10 : "-3%",
-                    marginTop: key == "address" || key === "short_biography" ? 23 : undefined,
-                    padding: "10px 20px",
-                    borderRadius: 13,
-                    backgroundColor: "#ececec",
-                    border: "none",
-                    height: 42,
-                }}
-                placeholder={this.getKeyDisplay(key)}
-                onChange={this.handleOnChange(key)}
-                value={this.getInputValue(key)}
-            />
+            {key === "short_biography" ? (
+                <textarea
+                    ref={input => this[key + "_ref"] = input}
+                    className="input register__form_input"
+                    style={{
+                        width: key === "short_biography" ? "100%" : "50%",
+                        marginBottom: key === "short_biography" ? 10 : "-3%",
+                        marginTop: key === "short_biography" ? 23 : undefined,
+                        padding: "10px 20px",
+                        borderRadius: 13,
+                        backgroundColor: "#ececec",
+                        border: "none",
+                        height: 80,
+                    }}
+                    placeholder={this.getKeyDisplay(key)}
+                    onChange={this.handleOnChange(key)}
+                    value={this.getInputValue(key)}
+                    maxLength="250"
+                />
+            ) : (
+                <input
+                    ref={input => this[key + "_ref"] = input}
+                    className="input register__form_input"
+                    style={{
+                        width: key == "address" ? "100%" : "50%",
+                        marginBottom: key == "address" ? 10 : "-3%",
+                        marginTop: key == "address" ? 23 : undefined,
+                        padding: "10px 20px",
+                        borderRadius: 13,
+                        backgroundColor: "#ececec",
+                        border: "none",
+                        height: 42,
+                    }}
+                    placeholder={this.getKeyDisplay(key)}
+                    onChange={this.handleOnChange(key)}
+                    value={this.getInputValue(key)}
+                />
+            )}
             {/* <img style={{position: "fixed", width:"1.5%", marginLeft: "14%", marginTop: "-8%"}} src="/images/edit-pen.png" alt=""/> */}
         </React.Fragment>
     )
