@@ -26,6 +26,7 @@ import "../src/utils/fonts/product-sans-bold.ttf";
 import { Helmet } from "react-helmet";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { baseURL } from './configs';
 
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
@@ -74,7 +75,8 @@ if (!Array.prototype.find) {
   });
 }
 
-window.__BASE_URL__ = "https://eazytask-back.herokuapp.com/api/v1";       
+window.__BASE_URL__ = baseURL
+window.__API_ENDPOINT__ = baseURL
 
 window.__PROFILE_DEFAULT_PICTURE__ = "/images/no-profile-picture-icon-22.jpg"
 window.__THUMBNAIL_DEFAULT_PICTURE__ = "/images/image_61.png"
@@ -92,7 +94,7 @@ window.__TOAST_BACK_ONLINE_VALUE__ = {
   "en": "You are back online!",
   "de": "Du bist wieder online!"
 }
-window.__AWS_BASE_URL__ = "https://eazytask.s3.amazonaws.com"
+window.__AWS_BASE_URL__ = "https://newmindbeats-1.s3.amazonaws.com"
 // window.__BASE_URL__ = "https://app.swaggerhub.com/apis/gjergjk71/easytask/1.0.0-oas3";
 // window.__BASE_URL__ = "https://eazytask-back.herokuapp.com/api/v1"
 // window.__BASE_URL__ = "http://192.168.0.102:4000/api/v1"

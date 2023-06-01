@@ -66,6 +66,7 @@ const SettingsChangeSkills = lazy(() => import("./settings_change_skills").then(
 const SettingsChangeLanguages = lazy(() => import("./settings_change_languages").then(thenCallback).catch(errorCallback));
 const SettingsChangeCities = lazy(() => import("./settings_change_cities").then(thenCallback).catch(errorCallback));
 const VerifyAccount = lazy(() => import("./verify_account").then(thenCallback).catch(errorCallback))
+const ReviewTask = lazy(() => import("./review_task").then(thenCallback).catch(errorCallback))
 
 // import Login from "./login";
 // import Register from "./register";
@@ -179,7 +180,6 @@ const Routes = props => {
                         <ProtectedRoute to="/login" props={commonProps} Component={SettingsChangeLanguages} allowLoggedIn={true} />
                     } />
 
-
                     <Route exact path="/admin" component={
                         () => <Redirect to="/admin/dashboard"/>
                     }/>
@@ -215,6 +215,9 @@ const Routes = props => {
                     <Route path="/" component={() => <Home {...commonProps}/>} exact/>
                     <Route path="/verify_account/:token" component={VerifyAccount} exact/>
                     <Route path="/task/:taskId" component={() => <Task {...commonProps}/>} exact />
+                    <Route exact path="/task/:taskId/review" component={() =>
+                        <ProtectedRoute to="/login" props={commonProps} Component={ReviewTask} allowLoggedIn={true} />
+                    } />
                     <Route path="/task/:taskId/qa" component={() => <TaskChat {...commonProps}/>} exact/>
                     <Route path="/task/:taskId/edit" component={() => <EditTask {...commonProps}/>} exact />
                     <Route path="/task/:taskId/edit/offers" component={() => <TaskOffers {...commonProps}/>} exact />
