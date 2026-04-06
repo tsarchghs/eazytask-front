@@ -21,7 +21,6 @@
     "lodash": "4.17.15",
     "lodash.debounce": "4.0.8",
     "minimal-react-modal": "^1.0.2",
-    "node-sass": "4.14.1",
     "object-to-formdata": "3.0.9",
     "query-string": "6.13.0",
     "react": "^16.13.1",
@@ -47,6 +46,7 @@
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
+    "sass": "^1.77.0",
     "socket.io-client": "2.3.0",
     "styled-components": "5.1.1",
     "uuid": "^7.0.0",
@@ -54,9 +54,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "CI=false NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "build-and-serve": "npm run-script build-dev && node server",
     "serve": "node server",
-    "build-dev": "react-scripts build",
+    "build-dev": "CI=false NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
