@@ -74,7 +74,7 @@ if (!Array.prototype.find) {
   });
 }
 
-window.__BASE_URL__ = "http://eazytask-back.herokuapp.com/api/v1";       
+window.__BASE_URL__ = "https://eazytask-back.vercel.app/api/v1";       
 
 window.__PROFILE_DEFAULT_PICTURE__ = "/images/no-profile-picture-icon-22.jpg"
 window.__THUMBNAIL_DEFAULT_PICTURE__ = "/images/image_61.png"
@@ -94,7 +94,7 @@ window.__TOAST_BACK_ONLINE_VALUE__ = {
 }
 window.__AWS_BASE_URL__ = "https://eazytask.s3.amazonaws.com"
 // window.__BASE_URL__ = "https://app.swaggerhub.com/apis/gjergjk71/easytask/1.0.0-oas3";
-// window.__BASE_URL__ = "https://eazytask-back.herokuapp.com/api/v1"
+// window.__BASE_URL__ = "https://eazytask-back.vercel.app/api/v1"
 // window.__BASE_URL__ = "http://192.168.0.102:4000/api/v1"
 
 toast.configure({
